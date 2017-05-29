@@ -27,7 +27,7 @@ class RobotViewController: UIViewController {
         webView.loadRequest(URLRequest(url: URL(string: "https://runmyrobot.com/fullview/\(RobotViewController.currentRobot)")!))
         
         if let url = URL(string: "https://runmyrobot.com:8000") {
-            socket = SocketIOClient(socketURL: url, config: [.log(true)])
+            socket = SocketIOClient(socketURL: url, config: [.log(false)])
             
             socket?.on(clientEvent: .connect) { (data, ack) in
                 print("connect", data, ack)
@@ -112,47 +112,36 @@ class RobotViewController: UIViewController {
     
     @IBAction func didPressButton(_ sender: UIButton) {
         switch sender.tag {
-        case 1: // Left
-            
-            
-            let dict = [
-                "command": "L",
-                "_id": RobotViewController.currentRobot,
-                "key_position": "up",
-                "timestamp": formatter.string(from: Date()),
-                "robot_id": RobotViewController.currentRobot,
-                "robot_name": "PonyBot",
-                "user": "wipApp"
-            ] as [String : Any]
-            
-//            let json = JSON.parse("{\"command\": \"L\"," +
-//                "\"key_position\": \"up\"," +
-//                "\"timestamp\": \(formatter.string(from: Date()))," +
-//                "\"robot_id\": \(Int(RobotViewController.currentRobot) ?? 0)," +
-//                "\"robot_name\": \"PonyBot\"}")
-//            print(dict)
-            
-//            socket?.emitWithAck("command_to_robot", with: [0]).timingOut(after: 15) { data in
-//                print("🍏", data)
-//            }
-//            
-//            let json = JSON(dict).rawString() ?? ""
-//            print(json)
-//            socket?.emit("command_to_robot", with: JSON(dict))
-            socket?.emit("command_to_robot", dict)
-            
-//            socket?.emitWithAck(event: String, with: [Any])
+        case 1:
+            sendDirection(.left)
             break
-        case 2: // Forward
+        case 2:
+            sendDirection(.forward)
             break
-        case 3: // Backwards
+        case 3:
+            sendDirection(.backward)
             break
-        case 4: // Right
+        case 4:
+            sendDirection(.right)
             break
         default:
             print("Unknown Button")
             break
         }
+    }
+    
+    func sendDirection(_ command: RobotCommand) {
+        let dict = [
+            "command": command.rawValue,
+            "_id": RobotViewController.currentRobot,
+            "key_position": "down",
+            "timestamp": formatter.string(from: Date()),
+            "robot_id": RobotViewController.currentRobot,
+            "robot_name": "PonyBot",
+            "user": "wipApp"
+        ] as [String : Any]
+        
+        socket?.emit("command_to_robot", dict)
     }
 }
 
