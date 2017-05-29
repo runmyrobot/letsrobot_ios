@@ -27,7 +27,7 @@ class RobotViewController: UIViewController {
         webView.loadRequest(URLRequest(url: URL(string: "https://runmyrobot.com/fullview/\(RobotViewController.currentRobot)")!))
         
         if let url = URL(string: "https://runmyrobot.com:8000") {
-            socket = SocketIOClient(socketURL: url, config: [.log(false), .secure(true)])
+            socket = SocketIOClient(socketURL: url, config: [.log(true)])
             
             socket?.on(clientEvent: .connect) { (data, ack) in
                 print("connect", data, ack)
@@ -60,12 +60,14 @@ class RobotViewController: UIViewController {
                     break
                 case "exclusive_control_status": break
                 case "aggregate_color_change": break
-                    case "news": break
-                    case "num_viewers": break
-                    case "charge_state": break
-                case "robot_command_has_hit_webserver":
-                    print("🚨 Command Hit Server")
-                    break
+                case "news": break
+                case "num_viewers": break
+                case "charge_state": break
+                case "robot_statuses": break
+                case "robot_command_has_hit_webserver": break
+                case "chat_message_with_name": break
+                case "statusChange": break
+                case "connect": break
                 default:
                     print("🚨 Unhandled Event Name: \(event.event)")
                     
@@ -114,18 +116,30 @@ class RobotViewController: UIViewController {
             
             
             let dict = [
-                [
-                    "command": "L",
-                    "key_position": "up",
-                    "timestamp": formatter.string(from: Date()),
-                    "robot_id": Int(RobotViewController.currentRobot) ?? 0,
-                    "robot_name": "PonyBot"
-                ]
-            ]
-            print(dict)
-            socket?.emitWithAck("command_to_robot", with: dict).timingOut(after: 15) { data in
-                print("🍏", data)
-            }
+                "command": "L",
+                "_id": RobotViewController.currentRobot,
+                "key_position": "up",
+                "timestamp": formatter.string(from: Date()),
+                "robot_id": RobotViewController.currentRobot,
+                "robot_name": "PonyBot",
+                "user": "wipApp"
+            ] as [String : Any]
+            
+//            let json = JSON.parse("{\"command\": \"L\"," +
+//                "\"key_position\": \"up\"," +
+//                "\"timestamp\": \(formatter.string(from: Date()))," +
+//                "\"robot_id\": \(Int(RobotViewController.currentRobot) ?? 0)," +
+//                "\"robot_name\": \"PonyBot\"}")
+//            print(dict)
+            
+//            socket?.emitWithAck("command_to_robot", with: [0]).timingOut(after: 15) { data in
+//                print("🍏", data)
+//            }
+//            
+//            let json = JSON(dict).rawString() ?? ""
+//            print(json)
+//            socket?.emit("command_to_robot", with: JSON(dict))
+            socket?.emit("command_to_robot", dict)
             
 //            socket?.emitWithAck(event: String, with: [Any])
             break
