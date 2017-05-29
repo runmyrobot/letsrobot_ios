@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IE6-Ez-vsO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -105,7 +105,101 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="137.18140929535232"/>
+            <point key="canvasLocation" x="1703" y="137"/>
+        </scene>
+        <!--Chooser View Controller-->
+        <scene sceneID="VKX-q5-rwE">
+            <objects>
+                <viewController id="IE6-Ez-vsO" customClass="ChooserViewController" customModule="RunMyRobot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zMq-Sx-NK4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xlu-Qt-X0U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TDC-Eu-zj2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UqC-Zi-IRA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RobotCell" id="zPp-9J-08O">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zPp-9J-08O" id="WMO-su-UX3">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qxa-pm-2pg">
+                                                    <rect key="frame" x="16" y="16" width="100" height="75"/>
+                                                    <color key="backgroundColor" red="0.19215686269999999" green="0.3411764706" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Qxa-pm-2pg" secondAttribute="height" multiplier="4:3" id="Z61-ug-4x1"/>
+                                                        <constraint firstAttribute="width" constant="100" id="a33-AT-GGx"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yel-bg-BxP">
+                                                    <rect key="frame" x="128" y="15.5" width="49" height="21"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• LIVE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGi-4m-tQY">
+                                                            <rect key="frame" x="4" y="2" width="41" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.79607843137254897" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="rGi-4m-tQY" firstAttribute="leading" secondItem="Yel-bg-BxP" secondAttribute="leading" constant="4" id="Px6-o1-ZEY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="rGi-4m-tQY" secondAttribute="trailing" constant="4" id="cRy-YD-usb"/>
+                                                        <constraint firstAttribute="bottom" secondItem="rGi-4m-tQY" secondAttribute="bottom" constant="2" id="n4K-WU-zqB"/>
+                                                        <constraint firstItem="rGi-4m-tQY" firstAttribute="top" secondItem="Yel-bg-BxP" secondAttribute="top" constant="2" id="qWS-jk-jjY"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TrumpBot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kj-RH-AYr">
+                                                    <rect key="frame" x="128" y="46.5" width="223" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9Kj-RH-AYr" secondAttribute="trailing" constant="16" id="5pz-IQ-xdD"/>
+                                                <constraint firstItem="Qxa-pm-2pg" firstAttribute="leading" secondItem="WMO-su-UX3" secondAttribute="leading" constant="16" id="Dl3-Z9-o7e"/>
+                                                <constraint firstItem="9Kj-RH-AYr" firstAttribute="leading" secondItem="Yel-bg-BxP" secondAttribute="leading" id="Uhs-hy-0F1"/>
+                                                <constraint firstItem="9Kj-RH-AYr" firstAttribute="top" secondItem="Yel-bg-BxP" secondAttribute="bottom" constant="10" id="YGD-dm-KnA"/>
+                                                <constraint firstItem="Qxa-pm-2pg" firstAttribute="top" secondItem="WMO-su-UX3" secondAttribute="top" constant="16" id="awh-3c-uZO"/>
+                                                <constraint firstItem="Yel-bg-BxP" firstAttribute="leading" secondItem="Qxa-pm-2pg" secondAttribute="trailing" constant="12" id="fcJ-C9-wda"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9Kj-RH-AYr" secondAttribute="bottom" constant="16" id="rK6-Zf-rug"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Qxa-pm-2pg" secondAttribute="bottom" constant="16" id="uvN-h7-iv1"/>
+                                                <constraint firstItem="Yel-bg-BxP" firstAttribute="top" secondItem="Qxa-pm-2pg" secondAttribute="top" id="zOY-p8-fw3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.098039215686274508" green="0.14901960784313725" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="IE6-Ez-vsO" id="0AC-fv-dnu"/>
+                                    <outlet property="delegate" destination="IE6-Ez-vsO" id="7F3-7f-Jms"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.048076923085221906" green="0.073173076927364661" blue="0.10000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="UqC-Zi-IRA" firstAttribute="top" secondItem="TDC-Eu-zj2" secondAttribute="top" id="5yb-vj-CUs"/>
+                            <constraint firstItem="UqC-Zi-IRA" firstAttribute="leading" secondItem="TDC-Eu-zj2" secondAttribute="leading" id="CE4-MO-4MG"/>
+                            <constraint firstAttribute="trailing" secondItem="UqC-Zi-IRA" secondAttribute="trailing" id="Ntb-9Q-3gF"/>
+                            <constraint firstItem="Xlu-Qt-X0U" firstAttribute="top" secondItem="UqC-Zi-IRA" secondAttribute="bottom" id="fna-jL-f8v"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="UqC-Zi-IRA" id="gaC-36-0rZ"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="ShowRobot" id="6qb-Ev-uid"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rcf-KC-GlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="909.60000000000002" y="137.18140929535232"/>
         </scene>
     </scenes>
 </document>
