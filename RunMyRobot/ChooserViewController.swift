@@ -15,7 +15,7 @@ class ChooserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
         Config.download { config in
             self.robots = config.robots
@@ -25,6 +25,12 @@ class ChooserViewController: UIViewController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowRobot", let destination = segue.destination as? RobotViewController {
+            destination.robot = sender as? Robot
+        }
     }
 }
 
@@ -61,11 +67,11 @@ extension ChooserViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 130
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ShowRobot", sender: indexPath.section)
+        performSegue(withIdentifier: "ShowRobot", sender: robots?[indexPath.section])
     }
     
 }

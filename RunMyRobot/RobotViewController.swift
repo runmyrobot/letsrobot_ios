@@ -12,7 +12,9 @@ import SwiftyJSON
 
 class RobotViewController: UIViewController {
     
-    static let currentRobot = "11467183"
+    /// Current robot, as set from the Robot Chooser segue
+    var robot: Robot!
+    
     var socket: SocketIOClient?
     var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -24,7 +26,7 @@ class RobotViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        webView.loadRequest(URLRequest(url: URL(string: "https://runmyrobot.com/fullview/\(RobotViewController.currentRobot)")!))
+        webView.loadRequest(URLRequest(url: URL(string: "https://runmyrobot.com/fullview/\(robot.id)")!))
         
         if let url = URL(string: "https://runmyrobot.com:8000") {
             socket = SocketIOClient(socketURL: url, config: [.log(false)])
@@ -73,7 +75,7 @@ class RobotViewController: UIViewController {
                     
                     if let dict = event.items?.first as? [String: Any] {
                         if let robot_id = dict["robot_id"] {
-                            guard String(describing: robot_id) == RobotViewController.currentRobot else { break }
+                            guard String(describing: robot_id) == self.robot.id else { break }
                         }
                     }
                     print(event.items)
@@ -88,6 +90,12 @@ class RobotViewController: UIViewController {
             // "U" = Up, "D" = Down, "O" = Open, "C" = Close
             // "LED_OFF", "LED_FULL", "LED_MED", "LED_LOW"
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        socket?.disconnect()
+        socket = nil
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,7 +113,7 @@ class RobotViewController: UIViewController {
 //        }
         
         let id = String(describing: data["robot_id"] ?? "")
-        guard id == RobotViewController.currentRobot else { return }
+        guard id == robot.id else { return }
         
         print(data)
     }
@@ -133,11 +141,11 @@ class RobotViewController: UIViewController {
     func sendDirection(_ command: RobotCommand) {
         let dict = [
             "command": command.rawValue,
-            "_id": RobotViewController.currentRobot,
+            "_id": robot.id,
             "key_position": "down",
             "timestamp": formatter.string(from: Date()),
-            "robot_id": RobotViewController.currentRobot,
-            "robot_name": "PonyBot",
+            "robot_id": robot.id,
+            "robot_name": robot.name,
             "user": "wipApp"
         ] as [String : Any]
         
