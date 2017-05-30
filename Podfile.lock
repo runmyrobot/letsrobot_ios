@@ -1,18 +1,21 @@
 PODS:
   - Alamofire (4.4.0)
+  - Nuke (5.1)
   - Socket.IO-Client-Swift (9.0.1)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - Nuke (~> 5.0)
   - Socket.IO-Client-Swift (~> 9.0.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Nuke: 8ab71e77f6a54ff5fb697f93537c35f419bb01f7
   Socket.IO-Client-Swift: 60b71a684692a312c4aba3ef52f186e0e254e868
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 777180c2054469c7271ed5e1c52d6ba9738cb5a9
+PODFILE CHECKSUM: b7f8edb200f8dc02888f5e3211b6c2b8859b5eed
 
 COCOAPODS: 1.2.0

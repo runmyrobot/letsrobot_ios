@@ -11,10 +11,16 @@ import UIKit
 class ChooserViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    var robots: [Robot]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+        
+        Config.download { config in
+            self.robots = config.robots
+            self.tableView.reloadData()
+        }
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -25,7 +31,7 @@ class ChooserViewController: UIViewController {
 extension ChooserViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        return robots?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,7 +39,13 @@ extension ChooserViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "RobotCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RobotCell", for: indexPath) as! RobotTableViewCell
+        
+        if let robot = robots?[indexPath.section] {
+            cell.setRobot(robot)
+        }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

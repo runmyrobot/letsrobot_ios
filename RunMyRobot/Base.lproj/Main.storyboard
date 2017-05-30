@@ -123,7 +123,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RobotCell" id="zPp-9J-08O">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RobotCell" id="zPp-9J-08O" customClass="RobotTableViewCell" customModule="RunMyRobot" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zPp-9J-08O" id="WMO-su-UX3">
@@ -138,7 +138,7 @@
                                                         <constraint firstAttribute="width" constant="100" id="a33-AT-GGx"/>
                                                     </constraints>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yel-bg-BxP">
+                                                <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Yel-bg-BxP">
                                                     <rect key="frame" x="128" y="15.5" width="49" height="21"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• LIVE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGi-4m-tQY">
@@ -167,6 +167,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="9Kj-RH-AYr" secondAttribute="trailing" constant="16" id="5pz-IQ-xdD"/>
                                                 <constraint firstItem="Qxa-pm-2pg" firstAttribute="leading" secondItem="WMO-su-UX3" secondAttribute="leading" constant="16" id="Dl3-Z9-o7e"/>
                                                 <constraint firstItem="9Kj-RH-AYr" firstAttribute="leading" secondItem="Yel-bg-BxP" secondAttribute="leading" id="Uhs-hy-0F1"/>
+                                                <constraint firstItem="9Kj-RH-AYr" firstAttribute="top" secondItem="Qxa-pm-2pg" secondAttribute="top" priority="250" id="XfV-b3-JiR"/>
                                                 <constraint firstItem="9Kj-RH-AYr" firstAttribute="top" secondItem="Yel-bg-BxP" secondAttribute="bottom" constant="10" id="YGD-dm-KnA"/>
                                                 <constraint firstItem="Qxa-pm-2pg" firstAttribute="top" secondItem="WMO-su-UX3" secondAttribute="top" constant="16" id="awh-3c-uZO"/>
                                                 <constraint firstItem="Yel-bg-BxP" firstAttribute="leading" secondItem="Qxa-pm-2pg" secondAttribute="trailing" constant="12" id="fcJ-C9-wda"/>
@@ -176,6 +177,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.098039215686274508" green="0.14901960784313725" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="nameToOnlineConstraint" destination="YGD-dm-KnA" id="F1c-5f-53a"/>
+                                            <outlet property="onlineContainerView" destination="Yel-bg-BxP" id="v0v-MC-M0M"/>
+                                            <outlet property="robotNameLabel" destination="9Kj-RH-AYr" id="W5V-UP-3A1"/>
+                                            <outlet property="robotThumbnailImageView" destination="Qxa-pm-2pg" id="tfT-5u-dNs"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

@@ -6,4 +6,5 @@ target 'RunMyRobot' do
   pod 'Socket.IO-Client-Swift', '~> 9.0.0'
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
+  pod 'Nuke', '~> 5.0'
 end
