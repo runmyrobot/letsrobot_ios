@@ -45,7 +45,7 @@ extension ChooserViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RobotCell", for: indexPath) as! RobotTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewRobotCell", for: indexPath) as! RobotTableViewCell
         
         if let robot = robots?[indexPath.section] {
             cell.setRobot(robot)
@@ -59,7 +59,7 @@ extension ChooserViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return section == tableView.numberOfSections - 1 ? 0 : 8
+        return 8
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

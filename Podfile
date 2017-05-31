@@ -7,4 +7,5 @@ target 'RunMyRobot' do
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
   pod 'Nuke', '~> 5.0'
+  pod 'UIImageColors'
 end
