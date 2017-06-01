@@ -29,7 +29,7 @@ class AngledView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        let p1 = CGPoint(x: 0, y: 0)
+        let p1 = CGPoint(x: bounds.width, y: 5)
         let p2 = CGPoint(x: bounds.width, y: bounds.height)
         let p3 = CGPoint(x: 0, y: bounds.height)
         
@@ -43,17 +43,21 @@ class AngledView: UIView {
         path.fill()
         
         
-        let p4 = CGPoint(x: 0, y: 0)
-        let p5 = CGPoint(x: bounds.width, y: bounds.height)
+        let p4 = CGPoint(x: 0, y: bounds.height)
+        let p5 = CGPoint(x: bounds.width, y: 5)
         
         let shadow = UIBezierPath()
         shadow.move(to: p4)
         shadow.addLine(to: p5)
         shadow.close()
-//        shadow.lineWidth = 1
         
         shadowColor.set()
         shadow.stroke()
+        
+        layer.shadowRadius = 4
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.4
+        layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     
 }

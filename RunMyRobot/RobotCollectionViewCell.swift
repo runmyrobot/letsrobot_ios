@@ -1,8 +1,8 @@
 //
-//  RobotTableViewCell.swift
+//  RobotCollectionViewCell.swift
 //  RunMyRobot
 //
-//  Created by Sherlock, James (Apprentice Software Developer) on 29/05/2017.
+//  Created by Sherlock, James (Apprentice Software Developer) on 01/06/2017.
 //  Copyright © 2017 Sherlouk. All rights reserved.
 //
 
@@ -10,14 +10,14 @@ import UIKit
 import Nuke
 import UIImageColors
 
-class RobotTableViewCell: UITableViewCell {
-
-    @IBOutlet var containerView: UIView!
-    @IBOutlet var angledOverlayView: AngledView!
-    @IBOutlet var colorOverlayView: UIView!
-//    @IBOutlet var onlineContainerView: UIView!
+class RobotCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet var robotThumbnailImageView: UIImageView!
     @IBOutlet var robotNameLabel: UILabel!
+    
+    @IBOutlet var angledOverlayView: AngledView!
+    @IBOutlet var colorOverlayView: UIView!
+    
     @IBOutlet var loadingActivityIndicator: UIActivityIndicatorView!
     
     var robotId: String?
@@ -25,31 +25,26 @@ class RobotTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        selectionStyle = .none
-        containerView.layer.shadowColor = UIColor.black.cgColor
-        containerView.layer.shadowRadius = 2
-        containerView.layer.shadowOpacity = 0.4
-        containerView.layer.shadowOffset = CGSize(width: 0, height: 1)
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        colorOverlayView.backgroundColor = colorOverlayView.tintColor
-        angledOverlayView.shadowColor = .white
-        angledOverlayView.angleColor = colorOverlayView.tintColor
+//        selectionStyle = .none
+//        containerView.layer.shadowColor = UIColor.black.cgColor
+//        containerView.layer.shadowRadius = 2
+//        containerView.layer.shadowOpacity = 0.4
+//        containerView.layer.shadowOffset = CGSize(width: 0, height: 1)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        setFocussed(selected, animated: animated)
+    override var isSelected: Bool {
+        didSet {
+            setFocussed(isSelected)
+        }
     }
     
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        super.setHighlighted(highlighted, animated: animated)
-        setFocussed(highlighted, animated: animated)
+    override var isHighlighted: Bool {
+        didSet {
+            setFocussed(isHighlighted)
+        }
     }
     
-    func setFocussed(_ focussed: Bool, animated: Bool) {
+    func setFocussed(_ focussed: Bool) {
         guard let robotId = robotId else { return }
         let robot = Config.shared?.robots[robotId]
         guard let colors = robot?.colors else { return }
@@ -63,15 +58,29 @@ class RobotTableViewCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        colorOverlayView.backgroundColor = colorOverlayView.tintColor
+        angledOverlayView.shadowColor = .white
+        angledOverlayView.angleColor = colorOverlayView.tintColor
+        robotNameLabel.textColor = .white
+    }
+    
     func setRobot(_ robot: Robot) {
         robotId = robot.id
-//        onlineContainerView.isHidden = !robot.live
+        
         robotNameLabel.text = robot.name.uppercased()
         robotThumbnailImageView.image = nil
         
         if let imageURL = robot.avatarUrl {
             loadingActivityIndicator.startAnimating()
             Nuke.loadImage(with: imageURL, into: robotThumbnailImageView) { (result, isFromCache) in
+                if let error = result.error {
+                    print(error.localizedDescription)
+                    self.loadingActivityIndicator.stopAnimating()
+                }
+                
                 if let colors = robot.colors {
                     self.robotThumbnailImageView.image = result.value
                     self.setColors(colors)
@@ -94,5 +103,31 @@ class RobotTableViewCell: UITableViewCell {
         angledOverlayView.angleColor = colors.backgroundColor.darker(by: 5)
         robotNameLabel.textColor = colors.primaryColor
     }
+}
 
+extension UIColor {
+    
+    func lighter(by percentage: CGFloat) -> UIColor {
+        return self.adjust(by: abs(percentage) )
+    }
+    
+    func darker(by percentage: CGFloat) -> UIColor {
+        return self.adjust(by: -1 * abs(percentage) )
+    }
+    
+    private func adjust(by percentage: CGFloat) -> UIColor {
+        var r: CGFloat = 0,
+        g: CGFloat = 0,
+        b: CGFloat = 0,
+        a: CGFloat = 0
+        
+        if getRed(&r, green: &g, blue: &b, alpha: &a) {
+            return UIColor(red: min(r + percentage/100, 1.0),
+                           green: min(g + percentage/100, 1.0),
+                           blue: min(b + percentage/100, 1.0),
+                           alpha: a)
+        }
+        
+        return self
+    }
 }

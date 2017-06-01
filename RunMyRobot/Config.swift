@@ -9,28 +9,36 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import UIImageColors
 
 extension Config {
+    
+    static var shared: Config?
     
     static func download(callback: @escaping ((Config) -> Void)) {
         Alamofire.request("https://runmyrobot.com/internal/").validate().responseJSON { response in
             if let rawJSON = response.result.value {
-                callback(Config(json: JSON(rawJSON)))
+                let config = Config(json: JSON(rawJSON))
+                Config.shared = config
+                print("Got Config!")
+                callback(config)
+            } else {
+                print("Something went wrong!")
             }
         }
     }
     
 }
 
-struct Config {
+class Config {
     
-    var robots = [Robot]()
+    var robots = [String: Robot]()
     
     init(json: JSON) {
         if let robotsJSON = json["robots"].array {
             for robotJSON in robotsJSON {
                 if let robot = Robot(json: robotJSON) {
-                    self.robots.append(robot)
+                    self.robots[robot.id] = robot
                 }
             }
         }
@@ -42,7 +50,12 @@ struct Robot {
     var name: String
     var id: String
     var live: Bool
-    var avatarUrl: String
+    
+    /// URL of the robot's avatar, will use a medium pre-approved avatar, or the thumbnail as backup.
+    var avatarUrl: URL?
+    
+    /// A set of colours which are generated based on the avatar image, only set once image has been downloaded
+    var colors: UIImageColors?
     
     init?(json: JSON) {
         guard let name = json["name"].string,
@@ -53,11 +66,11 @@ struct Robot {
         self.live = json["status"].string == "online"
         
         let approvedAvatar = json["avatar_approved"].bool == true
-        if approvedAvatar, let avatarUrl = json["avatar", "medium"].string {
-            self.avatarUrl = avatarUrl
+        if approvedAvatar, let avatarUrl = json["avatar", "medium"].string, let url = URL(string: avatarUrl) {
+            self.avatarUrl = url
         } else {
             let thumbnailTemplate = "http://runmyrobot.com/images/thumbnails/{id}.jpg"
-            self.avatarUrl = thumbnailTemplate.replacingOccurrences(of: "{id}", with: id)
+            self.avatarUrl = URL(string: thumbnailTemplate.replacingOccurrences(of: "{id}", with: id))
         }
     }
 }

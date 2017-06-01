@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4EA176B31F348803F66E4C7C /* Pods_RunMyRobot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC487CD756551459CEE4F0A /* Pods_RunMyRobot.framework */; };
-		983BCB191EDCC3F6007A1247 /* ChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB181EDCC3F6007A1247 /* ChooserViewController.swift */; };
 		983BCB1B1EDCC982007A1247 /* RobotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB1A1EDCC982007A1247 /* RobotTableViewCell.swift */; };
 		983BCB521EDE29A8007A1247 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB511EDE29A8007A1247 /* Config.swift */; };
 		983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB531EDE9BB0007A1247 /* AngledView.swift */; };
+		98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C791EDF59C400CFA446 /* StreamViewController.swift */; };
+		98500C7C1EE0892E00CFA446 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C7B1EE0892E00CFA446 /* ListViewController.swift */; };
+		98500C7E1EE08C5300CFA446 /* RobotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */; };
 		98DB07FF1EDC4DF0005BAF18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DB07FE1EDC4DF0005BAF18 /* AppDelegate.swift */; };
 		98DB08011EDC4DF0005BAF18 /* RobotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DB08001EDC4DF0005BAF18 /* RobotViewController.swift */; };
 		98DB08041EDC4DF0005BAF18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98DB08021EDC4DF0005BAF18 /* Main.storyboard */; };
@@ -23,10 +25,12 @@
 		1CC487CD756551459CEE4F0A /* Pods_RunMyRobot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunMyRobot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A83AC29B03929204B65F130 /* Pods-RunMyRobot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunMyRobot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunMyRobot/Pods-RunMyRobot.debug.xcconfig"; sourceTree = "<group>"; };
 		735CEECD8205A7235D37850D /* Pods-RunMyRobot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunMyRobot.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunMyRobot/Pods-RunMyRobot.release.xcconfig"; sourceTree = "<group>"; };
-		983BCB181EDCC3F6007A1247 /* ChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooserViewController.swift; sourceTree = "<group>"; };
 		983BCB1A1EDCC982007A1247 /* RobotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotTableViewCell.swift; sourceTree = "<group>"; };
 		983BCB511EDE29A8007A1247 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		983BCB531EDE9BB0007A1247 /* AngledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngledView.swift; sourceTree = "<group>"; };
+		98500C791EDF59C400CFA446 /* StreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
+		98500C7B1EE0892E00CFA446 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotCollectionViewCell.swift; sourceTree = "<group>"; };
 		98DB07FB1EDC4DF0005BAF18 /* RunMyRobot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunMyRobot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98DB07FE1EDC4DF0005BAF18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		98DB08001EDC4DF0005BAF18 /* RobotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotViewController.swift; sourceTree = "<group>"; };
@@ -84,10 +88,12 @@
 				98DB08051EDC4DF0005BAF18 /* Assets.xcassets */,
 				98DB08071EDC4DF0005BAF18 /* LaunchScreen.storyboard */,
 				98DB080A1EDC4DF0005BAF18 /* Info.plist */,
-				983BCB181EDCC3F6007A1247 /* ChooserViewController.swift */,
 				983BCB1A1EDCC982007A1247 /* RobotTableViewCell.swift */,
 				983BCB511EDE29A8007A1247 /* Config.swift */,
 				983BCB531EDE9BB0007A1247 /* AngledView.swift */,
+				98500C791EDF59C400CFA446 /* StreamViewController.swift */,
+				98500C7B1EE0892E00CFA446 /* ListViewController.swift */,
+				98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */,
 			);
 			path = RunMyRobot;
 			sourceTree = "<group>";
@@ -226,9 +232,11 @@
 				983BCB521EDE29A8007A1247 /* Config.swift in Sources */,
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
 				983BCB1B1EDCC982007A1247 /* RobotTableViewCell.swift in Sources */,
-				983BCB191EDCC3F6007A1247 /* ChooserViewController.swift in Sources */,
 				98DB08011EDC4DF0005BAF18 /* RobotViewController.swift in Sources */,
 				98DB07FF1EDC4DF0005BAF18 /* AppDelegate.swift in Sources */,
+				98500C7C1EE0892E00CFA446 /* ListViewController.swift in Sources */,
+				98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */,
+				98500C7E1EE08C5300CFA446 /* RobotCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
