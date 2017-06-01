@@ -18,6 +18,7 @@ class RobotCollectionViewCell: UICollectionViewCell {
     @IBOutlet var angledOverlayView: AngledView!
     @IBOutlet var colorOverlayView: UIView!
     
+    @IBOutlet var liveIndicator: UIView!
     @IBOutlet var loadingActivityIndicator: UIActivityIndicatorView!
     
     var robotId: String?
@@ -25,11 +26,8 @@ class RobotCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        selectionStyle = .none
-//        containerView.layer.shadowColor = UIColor.black.cgColor
-//        containerView.layer.shadowRadius = 2
-//        containerView.layer.shadowOpacity = 0.4
-//        containerView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        liveIndicator.layer.borderColor = UIColor.white.withAlphaComponent(0.6).cgColor
+        liveIndicator.layer.borderWidth = 1
     }
 
     override var isSelected: Bool {
@@ -70,6 +68,7 @@ class RobotCollectionViewCell: UICollectionViewCell {
     func setRobot(_ robot: Robot) {
         robotId = robot.id
         
+        liveIndicator.isHidden = !robot.live
         robotNameLabel.text = robot.name.uppercased()
         robotThumbnailImageView.image = nil
         

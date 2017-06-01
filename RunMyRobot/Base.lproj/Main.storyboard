@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Run My Robot-->
+        <!--Let's Robot-->
         <scene sceneID="m9X-nJ-VeD">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="RbZ-ZU-IDB" customClass="ListViewController" customModule="RunMyRobot" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,7 +29,7 @@
                                     <size key="itemSize" width="144" height="164"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="24" minY="24" maxX="24" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="24" minY="24" maxX="24" maxY="24"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RobotCell" id="bnU-P8-FxP" customClass="RobotCollectionViewCell" customModule="RunMyRobot" customModuleProvider="target">
@@ -41,7 +41,7 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="do4-f1-SwB">
                                                     <rect key="frame" x="0.0" y="0.0" width="144" height="108.5"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="do4-f1-SwB" secondAttribute="height" multiplier="4:3" id="HQS-py-AaS"/>
                                                     </constraints>
@@ -49,9 +49,9 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgM-AR-ozi">
                                                     <rect key="frame" x="0.0" y="108.5" width="144" height="55.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRUMPBOT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="IJP-B3-Z2z">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRUMPBOT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJP-B3-Z2z">
                                                             <rect key="frame" x="8" y="23.5" width="128" height="24"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -79,12 +79,26 @@
                                                 </view>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="lhZ-Aa-RVj">
                                                     <rect key="frame" x="54" y="36" width="37" height="37"/>
-                                                    <color key="color" red="0.023529411764705882" green="0.24313725490196078" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </activityIndicatorView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KwM-1D-WV1">
+                                                    <rect key="frame" x="120" y="8" width="16" height="16"/>
+                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="16" id="WZR-yI-C6m"/>
+                                                        <constraint firstAttribute="width" secondItem="KwM-1D-WV1" secondAttribute="height" multiplier="1:1" id="fpS-ER-xqy"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="8"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="lhZ-Aa-RVj" firstAttribute="centerX" secondItem="do4-f1-SwB" secondAttribute="centerX" id="4dt-UE-oNF"/>
+                                            <constraint firstAttribute="trailing" secondItem="KwM-1D-WV1" secondAttribute="trailing" constant="8" id="4ia-MB-x4e"/>
                                             <constraint firstItem="do4-f1-SwB" firstAttribute="leading" secondItem="bnU-P8-FxP" secondAttribute="leading" id="5ff-6a-tAW"/>
                                             <constraint firstAttribute="trailing" secondItem="do4-f1-SwB" secondAttribute="trailing" id="7b3-wa-6YX"/>
                                             <constraint firstItem="do4-f1-SwB" firstAttribute="top" secondItem="bnU-P8-FxP" secondAttribute="top" id="HrS-XV-lMN"/>
@@ -96,15 +110,17 @@
                                             <constraint firstItem="lhZ-Aa-RVj" firstAttribute="centerY" secondItem="do4-f1-SwB" secondAttribute="centerY" id="l5t-dc-7rt"/>
                                             <constraint firstAttribute="bottom" secondItem="DgM-AR-ozi" secondAttribute="bottom" id="rQX-Hq-XYX"/>
                                             <constraint firstItem="DgM-AR-ozi" firstAttribute="leading" secondItem="bnU-P8-FxP" secondAttribute="leading" id="rWq-As-dJP"/>
+                                            <constraint firstItem="KwM-1D-WV1" firstAttribute="top" secondItem="bnU-P8-FxP" secondAttribute="top" constant="8" id="u6b-mz-Y76"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="4"/>
+                                                <integer key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="angledOverlayView" destination="Zpj-aD-qcu" id="jot-OH-FbX"/>
                                             <outlet property="colorOverlayView" destination="DgM-AR-ozi" id="xzA-gP-k9h"/>
+                                            <outlet property="liveIndicator" destination="KwM-1D-WV1" id="HdS-Yd-zKA"/>
                                             <outlet property="loadingActivityIndicator" destination="lhZ-Aa-RVj" id="IAM-rb-LgE"/>
                                             <outlet property="robotNameLabel" destination="IJP-B3-Z2z" id="hty-sf-fzb"/>
                                             <outlet property="robotThumbnailImageView" destination="do4-f1-SwB" id="f9B-SN-eiV"/>
@@ -117,7 +133,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="rv5-bc-EXz" firstAttribute="top" secondItem="01V-iz-qSP" secondAttribute="bottom" id="Egh-eC-WMl"/>
                             <constraint firstItem="Sd7-xD-Adc" firstAttribute="top" secondItem="rv5-bc-EXz" secondAttribute="bottom" id="gX3-Iw-9fI"/>
@@ -125,7 +141,7 @@
                             <constraint firstAttribute="trailing" secondItem="rv5-bc-EXz" secondAttribute="trailing" id="xgQ-e6-0OZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Run My Robot" id="qZw-T5-DP6"/>
+                    <navigationItem key="navigationItem" title="Let's Robot" id="qZw-T5-DP6"/>
                     <connections>
                         <outlet property="collectionView" destination="rv5-bc-EXz" id="d0Y-UN-Trl"/>
                         <segue destination="s8K-cS-TTW" kind="show" identifier="ShowRobot" id="ekE-wi-hjZ"/>
@@ -138,7 +154,7 @@
         <!--Stream View Controller-->
         <scene sceneID="rly-if-LCR">
             <objects>
-                <viewController id="s8K-cS-TTW" customClass="StreamViewController" customModule="RunMyRobot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="s8K-cS-TTW" customClass="StreamViewController" customModule="RunMyRobot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7R4-bN-aIa"/>
                         <viewControllerLayoutGuide type="bottom" id="vf7-ur-3lD"/>
@@ -150,18 +166,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQa-lO-eeO" userLabel="Camera Zone">
                                 <rect key="frame" x="0.0" y="64" width="375" height="211"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZ7-Nu-bQH">
-                                        <rect key="frame" x="157" y="95" width="60" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <webView opaque="NO" contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f1H-pu-IfF">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <dataDetectorType key="dataDetectorTypes"/>
+                                    </webView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.023529411760000001" green="0.24313725489999999" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="gZ7-Nu-bQH" firstAttribute="centerY" secondItem="bQa-lO-eeO" secondAttribute="centerY" id="8zD-sd-iSX"/>
+                                    <constraint firstAttribute="trailing" secondItem="f1H-pu-IfF" secondAttribute="trailing" id="Pll-rV-xUT"/>
+                                    <constraint firstItem="f1H-pu-IfF" firstAttribute="top" secondItem="bQa-lO-eeO" secondAttribute="top" id="dq8-HK-GVe"/>
                                     <constraint firstAttribute="width" secondItem="bQa-lO-eeO" secondAttribute="height" multiplier="16:9" id="k0j-BE-Ojg"/>
-                                    <constraint firstItem="gZ7-Nu-bQH" firstAttribute="centerX" secondItem="bQa-lO-eeO" secondAttribute="centerX" id="tsH-uE-UUb"/>
+                                    <constraint firstItem="f1H-pu-IfF" firstAttribute="leading" secondItem="bQa-lO-eeO" secondAttribute="leading" id="kAW-iF-3dp"/>
+                                    <constraint firstAttribute="bottom" secondItem="f1H-pu-IfF" secondAttribute="bottom" id="syr-wF-tJK"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcU-if-6NQ" userLabel="View Swapper">
@@ -314,6 +331,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cameraContainerView" destination="bQa-lO-eeO" id="vvB-a9-mkZ"/>
+                        <outlet property="cameraWebView" destination="f1H-pu-IfF" id="pM0-3m-oJk"/>
                         <outlet property="chatBoxTrailingConstraint" destination="tgg-hc-hoc" id="QoV-JF-fdN"/>
                         <outlet property="chatTableView" destination="lHz-LG-Jou" id="9NW-Wh-jwx"/>
                         <outlet property="chatTextField" destination="NaL-eS-xAd" id="Y3W-0z-YpE"/>
@@ -330,9 +349,14 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5T5-to-IrK" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IW5-AB-ZHB">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="IW5-AB-ZHB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -10,8 +10,15 @@ import UIKit
 
 class StreamViewController: UIViewController {
 
+    // Camera
+    @IBOutlet var cameraContainerView: UIView!
+    @IBOutlet var cameraWebView: UIWebView!
+    
+    // Chat
     @IBOutlet var chatTextField: UITextField!
     @IBOutlet var chatTableView: UITableView!
+    
+    // Constraints
     @IBOutlet var gameIconTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var chatBoxTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var viewSwapperBottomConstraint: NSLayoutConstraint!
@@ -30,6 +37,13 @@ class StreamViewController: UIViewController {
         ])
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
+        
+        if let cameraURL = URL(string: "https://runmyrobot.com/fullview/\(robot.id)") {
+            let request = URLRequest(url: cameraURL)
+//            cameraWebView.scrollView.isScrollEnabled = false
+            cameraWebView.loadRequest(request)
+            cameraWebView.layoutIfNeeded()
+        }
     }
     
     deinit {
