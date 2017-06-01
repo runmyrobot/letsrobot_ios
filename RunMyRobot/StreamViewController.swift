@@ -44,10 +44,13 @@ class StreamViewController: UIViewController {
             cameraWebView.loadRequest(request)
             cameraWebView.layoutIfNeeded()
         }
+        
+        Socket.shared.chatCallback = chatUpdated
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        Socket.shared.chatCallback = nil
     }
     
     @IBAction func didPressChangeView(_ sender: UIButton) {
@@ -68,6 +71,7 @@ class StreamViewController: UIViewController {
     @IBAction func didPressMessageSend(_ sender: UITextField) {
         guard let message = sender.text else { return }
         print("Send Message:", message)
+        Socket.shared.chat(message, robot: robot)
         
         // Clear the field
         sender.text = nil
@@ -75,6 +79,10 @@ class StreamViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    func chatUpdated(message: Socket.Message) {
+        chatTableView.reloadData()
     }
     
     // MARK: - Notifications
@@ -102,7 +110,7 @@ class StreamViewController: UIViewController {
 extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return Socket.shared.chatMessages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
