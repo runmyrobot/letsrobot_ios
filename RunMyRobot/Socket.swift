@@ -16,6 +16,7 @@ class Socket {
     private init() { }
     
     typealias Message = (author: String, message: String, anonymous: Bool)
+    var users = [User]()
     var chatMessages = [Message]()
     var socket: SocketIOClient?
     var chatCallback: ((Message) -> Void)?
@@ -57,8 +58,8 @@ class Socket {
                 let ignore = [
                     "pip", "robot_command_has_hit_webserver", "aggregate_color_change", "exclusive_control_status", // Incomplete
                     "connect", "disconnect", "error", "reconnect", "reconnectAttempt", "statusChange", // Client Events
-                    "news", "num_viewers", "robot_statuses", "chat_message_with_name", // Implemented
-                    "users_list", "charge_state" // No Purpose
+                    "news", "num_viewers", "robot_statuses", "chat_message_with_name", "users_list", // Implemented
+                    "charge_state" // No Purpose
                 ]
                 
                 if ignore.contains(event.event) {
@@ -125,6 +126,18 @@ class Socket {
                 print("💬 [\(name)] \(text) (/\(self.chatMessages.count))")
             }
             
+            socket?.on("users_list") { (data, ack) in
+                guard let data = data.first, let userJSON = JSON(data).dictionary else { return }
+                
+                var builder = [User]()
+                for userJSON in Array(userJSON.values) {
+                    let user = User(username: userJSON["user", "username"].stringValue)
+                    builder.append(user)
+                }
+                
+                self.users = builder
+            }
+            
             socket?.connect()
         }
     }
@@ -170,4 +183,8 @@ enum RobotCommand: String {
     case ledFull = "LED_FULL"
     case ledMed = "LED_MED"
     case ledLow = "LED_LOW"
+}
+
+struct User {
+    var username: String
 }
