@@ -16,7 +16,6 @@
 		98500C7E1EE08C5300CFA446 /* RobotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */; };
 		98500C801EE0A57B00CFA446 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C7F1EE0A57B00CFA446 /* Socket.swift */; };
 		98DB07FF1EDC4DF0005BAF18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DB07FE1EDC4DF0005BAF18 /* AppDelegate.swift */; };
-		98DB08011EDC4DF0005BAF18 /* RobotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DB08001EDC4DF0005BAF18 /* RobotViewController.swift */; };
 		98DB08041EDC4DF0005BAF18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98DB08021EDC4DF0005BAF18 /* Main.storyboard */; };
 		98DB08061EDC4DF0005BAF18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98DB08051EDC4DF0005BAF18 /* Assets.xcassets */; };
 		98DB08091EDC4DF0005BAF18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98DB08071EDC4DF0005BAF18 /* LaunchScreen.storyboard */; };
@@ -35,7 +34,6 @@
 		98500C7F1EE0A57B00CFA446 /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 		98DB07FB1EDC4DF0005BAF18 /* RunMyRobot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunMyRobot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98DB07FE1EDC4DF0005BAF18 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		98DB08001EDC4DF0005BAF18 /* RobotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotViewController.swift; sourceTree = "<group>"; };
 		98DB08031EDC4DF0005BAF18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		98DB08051EDC4DF0005BAF18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98DB08081EDC4DF0005BAF18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				98500C7B1EE0892E00CFA446 /* ListViewController.swift */,
-				98DB08001EDC4DF0005BAF18 /* RobotViewController.swift */,
 				98500C791EDF59C400CFA446 /* StreamViewController.swift */,
 			);
 			name = "View Controllers";
@@ -268,7 +265,6 @@
 				983BCB521EDE29A8007A1247 /* Config.swift in Sources */,
 				980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */,
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
-				98DB08011EDC4DF0005BAF18 /* RobotViewController.swift in Sources */,
 				98DB07FF1EDC4DF0005BAF18 /* AppDelegate.swift in Sources */,
 				98500C7C1EE0892E00CFA446 /* ListViewController.swift in Sources */,
 				98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */,
