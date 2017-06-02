@@ -19,6 +19,11 @@ class Socket {
     var chatMessages = [Message]()
     var socket: SocketIOClient?
     var chatCallback: ((Message) -> Void)?
+    var formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        return formatter
+    }()
     
     func start() {
         if let url = URL(string: "https://runmyrobot.com:8000") {
@@ -134,6 +139,20 @@ class Socket {
         ] as [String: Any]
         
         socket?.emit("chat_message", payload)
+    }
+    
+    func sendDirection(_ command: RobotCommand, robot: Robot, keyPosition: String) {
+        let dict = [
+            "command": command.rawValue,
+            "_id": robot.id,
+            "key_position": keyPosition,
+//            "timestamp": formatter.string(from: Date()),
+            "robot_id": robot.id,
+            "robot_name": robot.name,
+            "user": "wipApp"
+        ] as [String : Any]
+        
+        socket?.emit("command_to_robot", dict)
     }
     
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReverseExtension
 
 class StreamViewController: UIViewController {
 
@@ -45,6 +46,7 @@ class StreamViewController: UIViewController {
             cameraWebView.layoutIfNeeded()
         }
         
+        chatTableView.re.delegate = self
         Socket.shared.chatCallback = chatUpdated
     }
     
@@ -77,12 +79,37 @@ class StreamViewController: UIViewController {
         sender.text = nil
     }
     
+    @IBAction func didPressDirection(_ sender: UIButton) {
+        guard let direction = command(from: sender.tag) else { return }
+        print("down", direction.rawValue)
+        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
+    }
+    
+    @IBAction func didReleaseDirection(_ sender: UIButton) {
+        guard let direction = command(from: sender.tag) else { return }
+        print("up", direction.rawValue)
+        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "up")
+    }
+    
+    func command(from tag: Int) -> RobotCommand? {
+        switch tag {
+        case 1: return .up
+        case 2: return .down
+        case 3: return .left
+        case 4: return .right
+        default: return nil
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
     func chatUpdated(message: Socket.Message) {
-        chatTableView.reloadData()
+        chatTableView.beginUpdates()
+        let count = Socket.shared.chatMessages.count
+        chatTableView.re.insertRows(at: [IndexPath(row: count - 1, section: 0)], with: .automatic)
+        chatTableView.endUpdates()
     }
     
     // MARK: - Notifications

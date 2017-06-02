@@ -263,7 +263,89 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V08-TI-rmC" userLabel="Control Box">
                                 <rect key="frame" x="375" y="315" width="375" height="302"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXg-QT-H0V">
+                                        <rect key="frame" x="87.5" y="80.5" width="200" height="141"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khR-Xz-0zQ" userLabel="Up">
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="70"/>
+                                                <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="EiQ-ZI-9VX"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" image="icon-up"/>
+                                                <connections>
+                                                    <action selector="didPressDirection:" destination="s8K-cS-TTW" eventType="touchDown" id="ujg-bu-4jg"/>
+                                                    <action selector="didReleaseDirection:" destination="s8K-cS-TTW" eventType="touchUpInside" id="Qbd-zr-rWa"/>
+                                                    <action selector="didReleaseDirection:" destination="s8K-cS-TTW" eventType="touchUpOutside" id="wo3-Y6-GPt"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc7-z5-Tw2" userLabel="Down">
+                                                <rect key="frame" x="0.0" y="71" width="200" height="70"/>
+                                                <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" image="icon-down"/>
+                                                <connections>
+                                                    <action selector="didPressDirection:" destination="s8K-cS-TTW" eventType="touchDown" id="0VO-dy-iqa"/>
+                                                    <action selector="didReleaseDirection:" destination="s8K-cS-TTW" eventType="touchUpOutside" id="V6j-TR-nkb"/>
+                                                    <action selector="didReleaseDirection:" destination="s8K-cS-TTW" eventType="touchUpInside" id="pda-Ta-p4l"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="khR-Xz-0zQ" firstAttribute="height" secondItem="vc7-z5-Tw2" secondAttribute="height" id="16l-aH-d57"/>
+                                            <constraint firstItem="vc7-z5-Tw2" firstAttribute="top" secondItem="khR-Xz-0zQ" secondAttribute="bottom" constant="1" id="Lku-s7-XQK"/>
+                                            <constraint firstAttribute="bottom" secondItem="vc7-z5-Tw2" secondAttribute="bottom" id="RN9-ct-94v"/>
+                                            <constraint firstItem="vc7-z5-Tw2" firstAttribute="leading" secondItem="PXg-QT-H0V" secondAttribute="leading" id="YJj-cp-7ep"/>
+                                            <constraint firstItem="khR-Xz-0zQ" firstAttribute="top" secondItem="PXg-QT-H0V" secondAttribute="top" id="cte-aX-PU7"/>
+                                            <constraint firstAttribute="width" constant="200" id="drF-0r-WhR"/>
+                                            <constraint firstItem="khR-Xz-0zQ" firstAttribute="leading" secondItem="PXg-QT-H0V" secondAttribute="leading" id="sBM-ji-9Z5"/>
+                                            <constraint firstAttribute="trailing" secondItem="vc7-z5-Tw2" secondAttribute="trailing" id="sbg-5g-ktC"/>
+                                            <constraint firstAttribute="trailing" secondItem="khR-Xz-0zQ" secondAttribute="trailing" id="zE0-cv-fXi"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJx-L9-hbf" userLabel="Left">
+                                        <rect key="frame" x="16.5" y="80.5" width="70" height="141"/>
+                                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="9k6-PY-3Bc"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="icon-left"/>
+                                        <connections>
+                                            <action selector="didPressDirection:" destination="s8K-cS-TTW" eventType="touchDown" id="SZf-KB-GcD"/>
+                                            <action selector="didReleaseDirection:" destination="s8K-cS-TTW" eventType="touchUpInside" id="eCK-R0-FiZ"/>
+                                            <action selector="didReleaseDirection:" destination="s8K-cS-TTW" eventType="touchUpOutside" id="kfz-W0-JJW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Loq-mG-nDA" userLabel="Right">
+                                        <rect key="frame" x="288.5" y="80.5" width="70" height="141"/>
+                                        <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="icon-right"/>
+                                        <connections>
+                                            <action selector="didPressDirection:" destination="s8K-cS-TTW" eventType="touchDown" id="drt-Rf-KDN"/>
+                                            <action selector="didReleaseDirection:" destination="s8K-cS-TTW" eventType="touchUpOutside" id="0sn-eX-iJO"/>
+                                            <action selector="didReleaseDirection:" destination="s8K-cS-TTW" eventType="touchUpInside" id="oJv-sH-sPm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="pJx-L9-hbf" firstAttribute="bottom" secondItem="Loq-mG-nDA" secondAttribute="bottom" id="1Fw-PP-nfk"/>
+                                    <constraint firstItem="pJx-L9-hbf" firstAttribute="top" secondItem="Loq-mG-nDA" secondAttribute="top" id="8RP-6g-BKG"/>
+                                    <constraint firstItem="pJx-L9-hbf" firstAttribute="height" secondItem="PXg-QT-H0V" secondAttribute="height" id="IMu-xX-aAx"/>
+                                    <constraint firstItem="PXg-QT-H0V" firstAttribute="centerY" secondItem="V08-TI-rmC" secondAttribute="centerY" id="Kca-OA-q17"/>
+                                    <constraint firstItem="Loq-mG-nDA" firstAttribute="leading" secondItem="PXg-QT-H0V" secondAttribute="trailing" constant="1" id="RaP-yQ-CsE"/>
+                                    <constraint firstItem="Loq-mG-nDA" firstAttribute="height" secondItem="PXg-QT-H0V" secondAttribute="height" id="SM3-Gp-E97"/>
+                                    <constraint firstItem="pJx-L9-hbf" firstAttribute="bottom" secondItem="PXg-QT-H0V" secondAttribute="bottom" id="W5Y-fW-X0B"/>
+                                    <constraint firstItem="pJx-L9-hbf" firstAttribute="width" secondItem="Loq-mG-nDA" secondAttribute="width" id="e63-gB-n79"/>
+                                    <constraint firstItem="PXg-QT-H0V" firstAttribute="leading" secondItem="pJx-L9-hbf" secondAttribute="trailing" constant="1" id="eV1-Xb-YEI"/>
+                                    <constraint firstItem="pJx-L9-hbf" firstAttribute="top" secondItem="PXg-QT-H0V" secondAttribute="top" id="ssH-Pn-7ND"/>
+                                    <constraint firstItem="PXg-QT-H0V" firstAttribute="centerX" secondItem="V08-TI-rmC" secondAttribute="centerX" id="vhu-02-fRC"/>
+                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHz-LG-Jou" userLabel="Chat Box">
                                 <rect key="frame" x="0.0" y="315" width="375" height="302"/>
@@ -273,7 +355,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ms9-cc-2rh" id="n1G-ic-uVO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jill:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amm-qJ-Tas">
@@ -304,7 +386,6 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="s8K-cS-TTW" id="6qO-zz-X0C"/>
-                                    <outlet property="delegate" destination="s8K-cS-TTW" id="XsE-IE-CnW"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -350,7 +431,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5T5-to-IrK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="IW5-AB-ZHB">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="IW5-AB-ZHB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
@@ -370,6 +451,10 @@
     </scenes>
     <resources>
         <image name="icon-chat" width="25" height="25"/>
+        <image name="icon-down" width="25" height="25"/>
         <image name="icon-game" width="25" height="25"/>
+        <image name="icon-left" width="25" height="25"/>
+        <image name="icon-right" width="25" height="25"/>
+        <image name="icon-up" width="25" height="25"/>
     </resources>
 </document>
