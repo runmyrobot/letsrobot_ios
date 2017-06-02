@@ -128,6 +128,11 @@ class StreamViewController: UIViewController {
     func chatUpdated(message: Socket.Message) {
         chatTableView.beginUpdates()
         let count = Socket.shared.chatMessages.count
+        
+        if count == 100 {
+            chatTableView.re.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        }
+        
         chatTableView.re.insertRows(at: [IndexPath(row: count - 1, section: 0)], with: .automatic)
         chatTableView.endUpdates()
     }

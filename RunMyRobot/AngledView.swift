@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Creates a basic right angled triangle view of the given color
 class AngledView: UIView {
     
     var angleColor: UIColor = .red {
