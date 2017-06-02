@@ -31,27 +31,38 @@ class Socket {
             socket = SocketIOClient(socketURL: url, config: [.log(false)])
             
             socket?.on(clientEvent: .connect) { (data, ack) in
-                print("connect")
+                print("✅ [SOCKET] Connected")
             }
             
             socket?.on(clientEvent: .disconnect) { (data, ack) in
-                print("disconnect", data, ack)
+                print("⛔️ [SOCKET] Disconnected")
             }
             
             socket?.on(clientEvent: .error) { (data, ack) in
-                print("error", data, ack)
+                print("‼️ [SOCKET] Error", data, ack)
             }
             
             socket?.on(clientEvent: .reconnect) { (data, ack) in
-                print("reconnect", data, ack)
+                print("♻︎ [SOCKET] Reconnect", data, ack)
             }
             
             socket?.on(clientEvent: .reconnectAttempt) { (data, ack) in
-                print("reconnectAttempt", data, ack)
+                print("♻︎ [SOCKET] Reconnect Attempt", data, ack)
             }
             
             socket?.on(clientEvent: .statusChange) { (data, ack) in
-                print("statusChange", (data.first as? SocketIOClientStatus)?.rawValue ?? -1)
+                guard let status = data.first as? SocketIOClientStatus else { return }
+                
+                var message = "Unknown"
+                
+                switch status {
+                case .connected: message = "Connected"
+                case .connecting: message = "Connecting"
+                case .disconnected: message = "Disconnected"
+                case .notConnected: message = "Not Connected"
+                }
+                
+                print("⚠️ [SOCKET] Status Changed: \(message)")
             }
             
             socket?.onAny { (event) in
@@ -79,7 +90,7 @@ class Socket {
             
             socket?.on("num_viewers") { (data, ack) in
                 guard let data = data.first as? Int else { return }
-                print("🎲 [VIEWER COUNT] \(data)")
+                print("🎲 [VIEWER COUNT] \(data) (User Count: \(self.users.count))")
             }
             
             socket?.on("robot_statuses") { (data, ack) in
