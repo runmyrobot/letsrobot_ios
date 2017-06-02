@@ -152,18 +152,3 @@ class RobotViewController: UIViewController {
         socket?.emit("command_to_robot", dict)
     }
 }
-
-enum RobotCommand: String {
-    case forward = "F"
-    case backward = "B"
-    case left = "L"
-    case right = "R"
-    case up = "U"
-    case down = "D"
-    case open = "O"
-    case close = "C"
-    case ledOff = "LED_OFF"
-    case ledFull = "LED_FULL"
-    case ledMed = "LED_MED"
-    case ledLow = "LED_LOW"
-}

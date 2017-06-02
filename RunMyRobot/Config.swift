@@ -20,7 +20,9 @@ extension Config {
             if let rawJSON = response.result.value {
                 let config = Config(json: JSON(rawJSON))
                 Config.shared = config
-                print("Got Config!")
+                
+                // TODO: Should we wait for socket to connect before showing content?
+                Socket.shared.start()
                 callback(config)
             } else {
                 print("Something went wrong!")
@@ -32,6 +34,8 @@ extension Config {
 
 class Config {
     
+    var chatSecret: String
+    var socketPort: Int
     var robots = [String: Robot]()
     
     init(json: JSON) {
@@ -42,6 +46,22 @@ class Config {
                 }
             }
         }
+        
+        if let chatJSON = json["chat_messages"].array {
+            var builder: [Socket.Message] = []
+            
+            for chatMessage in chatJSON {
+                let author = chatMessage["username"].stringValue
+                let text = chatMessage["message"].stringValue
+                let anonymous = chatMessage["anonymous"].boolValue
+                builder.append((author, text, anonymous))
+            }
+            
+            Socket.shared.chatMessages = builder
+        }
+        
+        socketPort = json["socket_io_messaging_to_web_client_port"].intValue
+        chatSecret = json["chat_secret"].stringValue
     }
     
 }

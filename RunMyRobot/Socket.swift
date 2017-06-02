@@ -26,7 +26,7 @@ class Socket {
     }()
     
     func start() {
-        if let url = URL(string: "https://runmyrobot.com:8000") {
+        if let url = URL(string: "https://runmyrobot.com:\(Config.shared?.socketPort ?? 8000)") {
             socket = SocketIOClient(socketURL: url, config: [.log(false)])
             
             socket?.on(clientEvent: .connect) { (data, ack) in
@@ -134,7 +134,7 @@ class Socket {
             "message": "[\(robot.name)] " + message,
             "robot_name": robot.name,
             "robot_id": robot.id,
-            "secret": "iknowyourelookingatthisthatsfine",
+            "secret": Config.shared?.chatSecret ?? "",
             "username": "Sherlouk"
         ] as [String: Any]
         
@@ -146,7 +146,7 @@ class Socket {
             "command": command.rawValue,
             "_id": robot.id,
             "key_position": keyPosition,
-//            "timestamp": formatter.string(from: Date()),
+            "timestamp": formatter.string(from: Date()),
             "robot_id": robot.id,
             "robot_name": robot.name,
             "user": "wipApp"
@@ -155,4 +155,19 @@ class Socket {
         socket?.emit("command_to_robot", dict)
     }
     
+}
+
+enum RobotCommand: String {
+    case forward = "F"
+    case backward = "B"
+    case left = "L"
+    case right = "R"
+    case up = "U"
+    case down = "D"
+    case open = "O"
+    case close = "C"
+    case ledOff = "LED_OFF"
+    case ledFull = "LED_FULL"
+    case ledMed = "LED_MED"
+    case ledLow = "LED_LOW"
 }

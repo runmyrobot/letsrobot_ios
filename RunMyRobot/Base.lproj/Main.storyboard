@@ -347,27 +347,27 @@
                                     <constraint firstItem="PXg-QT-H0V" firstAttribute="centerX" secondItem="V08-TI-rmC" secondAttribute="centerX" id="vhu-02-fRC"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHz-LG-Jou" userLabel="Chat Box">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHz-LG-Jou" userLabel="Chat Box">
                                 <rect key="frame" x="0.0" y="315" width="375" height="302"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatMessage" id="Ms9-cc-2rh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatMessage" id="Ms9-cc-2rh" customClass="ChatMessageTableViewCell" customModule="RunMyRobot" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ms9-cc-2rh" id="n1G-ic-uVO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jill:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amm-qJ-Tas">
-                                                    <rect key="frame" x="8" y="11" width="25.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                                                    <color key="textColor" red="0.023529411760000001" green="0.24313725489999999" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Jill:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amm-qJ-Tas">
+                                                    <rect key="frame" x="8" y="11" width="26.5" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[TrumpBot] Generic Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPn-s9-XdG">
-                                                    <rect key="frame" x="41.5" y="13.5" width="190" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[TrumpBot] Generic Message" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPn-s9-XdG">
+                                                    <rect key="frame" x="42.5" y="12.5" width="213.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -376,12 +376,17 @@
                                                 <constraint firstItem="jPn-s9-XdG" firstAttribute="leading" secondItem="amm-qJ-Tas" secondAttribute="trailing" constant="8" id="8un-p1-hzS"/>
                                                 <constraint firstItem="jPn-s9-XdG" firstAttribute="top" relation="greaterThanOrEqual" secondItem="n1G-ic-uVO" secondAttribute="top" constant="8" id="BIq-YV-Jcw"/>
                                                 <constraint firstItem="amm-qJ-Tas" firstAttribute="leading" secondItem="n1G-ic-uVO" secondAttribute="leadingMargin" id="D7x-uK-dza"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="jPn-s9-XdG" secondAttribute="trailing" constant="16" id="NF6-2R-PQ7"/>
                                                 <constraint firstItem="jPn-s9-XdG" firstAttribute="centerY" secondItem="n1G-ic-uVO" secondAttribute="centerY" id="e8N-L2-4xb"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jPn-s9-XdG" secondAttribute="bottom" constant="8" id="jj0-Pi-WcO"/>
                                                 <constraint firstItem="amm-qJ-Tas" firstAttribute="centerY" secondItem="n1G-ic-uVO" secondAttribute="centerY" id="w7W-94-9LY"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="messageLabel" destination="jPn-s9-XdG" id="S4o-3L-Pua"/>
+                                            <outlet property="nameLabel" destination="amm-qJ-Tas" id="Wq3-Nt-BI2"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

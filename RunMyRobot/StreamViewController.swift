@@ -24,6 +24,12 @@ class StreamViewController: UIViewController {
     @IBOutlet var chatBoxTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var viewSwapperBottomConstraint: NSLayoutConstraint!
     
+    /// Timer used to send out continous socket messages when holding down a direction
+    var touchDownTimer: Timer?
+    
+    /// Last direction touched down on, used in conjuction with the timer to send out continous socket messages.
+    var touchDownDirection: RobotCommand?
+    
     /// Current robot, as set from the Robot Chooser segue
     var robot: Robot!
     
@@ -72,7 +78,6 @@ class StreamViewController: UIViewController {
     
     @IBAction func didPressMessageSend(_ sender: UITextField) {
         guard let message = sender.text else { return }
-        print("Send Message:", message)
         Socket.shared.chat(message, robot: robot)
         
         // Clear the field
@@ -81,20 +86,35 @@ class StreamViewController: UIViewController {
     
     @IBAction func didPressDirection(_ sender: UIButton) {
         guard let direction = command(from: sender.tag) else { return }
-        print("down", direction.rawValue)
+        
+        // Setup a timer which will be used to send out continous direction requests via the socket
+        // This allows the user to hold down a direction and continue moving
+        touchDownDirection = direction
+        touchDownTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(didHoldDirection), userInfo: nil, repeats: true)
+        
         Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
     }
     
     @IBAction func didReleaseDirection(_ sender: UIButton) {
         guard let direction = command(from: sender.tag) else { return }
-        print("up", direction.rawValue)
+        
+        // Clean up the timer and cancel any future runs
+        touchDownTimer?.invalidate()
+        touchDownTimer = nil
+        touchDownDirection = nil
+        
         Socket.shared.sendDirection(direction, robot: robot, keyPosition: "up")
+    }
+    
+    func didHoldDirection() {
+        guard let direction = touchDownDirection else { return }
+        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
     }
     
     func command(from tag: Int) -> RobotCommand? {
         switch tag {
-        case 1: return .up
-        case 2: return .down
+        case 1: return .forward
+        case 2: return .backward
         case 3: return .left
         case 4: return .right
         default: return nil
@@ -141,7 +161,11 @@ extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "ChatMessage", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessage", for: indexPath) as! ChatMessageTableViewCell
+        
+        let count = Socket.shared.chatMessages.count - 1 - indexPath.row
+        cell.setMessage(Socket.shared.chatMessages[count])
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
