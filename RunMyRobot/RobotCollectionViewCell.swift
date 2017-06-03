@@ -18,17 +18,9 @@ class RobotCollectionViewCell: UICollectionViewCell {
     @IBOutlet var angledOverlayView: AngledView!
     @IBOutlet var colorOverlayView: UIView!
     
-    @IBOutlet var liveIndicator: UIView!
     @IBOutlet var loadingActivityIndicator: UIActivityIndicatorView!
     
     var robotId: String?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        liveIndicator.layer.borderColor = UIColor.white.withAlphaComponent(0.6).cgColor
-        liveIndicator.layer.borderWidth = 1
-    }
 
     override var isSelected: Bool {
         didSet {
@@ -68,9 +60,9 @@ class RobotCollectionViewCell: UICollectionViewCell {
     func setRobot(_ robot: Robot) {
         robotId = robot.id
         
-        liveIndicator.isHidden = !robot.live
         robotNameLabel.text = robot.name.uppercased()
         robotThumbnailImageView.image = nil
+        alpha = robot.live ? 1 : 0.7
         
         if let imageURL = robot.avatarUrl {
             loadingActivityIndicator.startAnimating()

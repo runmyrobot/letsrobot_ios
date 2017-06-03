@@ -112,6 +112,7 @@ class Socket {
                             changes = true
                         }
                     } else {
+                        // Likely caused by private robots
 //                        print("Unknown robot!", status)
                     }
                 }
