@@ -306,9 +306,21 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qGk-oq-HIj" userLabel="Info Box">
                                 <rect key="frame" x="0.0" y="345.5" width="375" height="40"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hae-2Y-nTx">
+                                        <rect key="frame" x="107" y="6" width="161" height="29"/>
+                                        <segments>
+                                            <segment title="All Robots"/>
+                                            <segment title="This Robot"/>
+                                        </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </segmentedControl>
+                                </subviews>
                                 <color key="backgroundColor" red="0.018536585361242138" green="0.1932439024366418" blue="0.38" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="Hae-2Y-nTx" firstAttribute="centerX" secondItem="qGk-oq-HIj" secondAttribute="centerX" id="1aJ-vf-FtC"/>
                                     <constraint firstAttribute="height" constant="40" id="osm-xR-1qf"/>
+                                    <constraint firstItem="Hae-2Y-nTx" firstAttribute="centerY" secondItem="qGk-oq-HIj" secondAttribute="centerY" id="vFT-Fx-AyJ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V08-TI-rmC" userLabel="Control Box">

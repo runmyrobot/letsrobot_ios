@@ -22,8 +22,8 @@ class ChatMessageTableViewCell: UITableViewCell {
     }
     @IBOutlet var messageLabel: UILabel!
     
-    func setMessage(_ message: Socket.Message) {
-        let fullMessage = "\(message.author): \(message.message)"
+    func setMessage(_ message: ChatMessage) {
+        let fullMessage = "\(message.author): [\(message.robotName)] \(message.message)"
         guard let regex = try? NSRegularExpression(pattern: "(\\w*:) \\[(\\w*)\\] (.*)", options: .caseInsensitive) else { return }
         let matches = regex.matches(in: fullMessage, options: .anchored, range: NSRange(location: 0, length: fullMessage.characters.count)).first
         

@@ -15,11 +15,12 @@ class Socket {
     static let shared = Socket()
     private init() { }
     
-    typealias Message = (author: String, message: String, anonymous: Bool)
     var users = [User]()
-    var chatMessages = [Message]()
+    
+    var chatMessages = [ChatMessage]()
+    var chatCallback: ((ChatMessage) -> Void)?
+    
     var socket: SocketIOClient?
-    var chatCallback: ((Message) -> Void)?
     var formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -122,13 +123,8 @@ class Socket {
             
             socket?.on("chat_message_with_name") { (data, ack) in
                 guard let data = data.first else { return }
-                let json = JSON(data)
+                guard let message = ChatMessage(json: JSON(data)) else { return }
                 
-                let anonymous = json["anonymous"].boolValue
-                let name = json["name"].stringValue
-                let text = json["message"].stringValue
-                
-                let message: Message = (name, text, anonymous)
                 self.chatMessages.append(message)
                 
                 if self.chatMessages.count > 100 {
@@ -137,7 +133,7 @@ class Socket {
                 
                 self.chatCallback?(message)
                 
-                print("💬 [\(name)] \(text) (/\(self.chatMessages.count))")
+                print("💬 [\(message.author) @ \(message.robotName)]: \(message.message) (/\(self.chatMessages.count))")
             }
             
             socket?.on("users_list") { (data, ack) in
@@ -157,6 +153,8 @@ class Socket {
     }
     
     func chat(_ message: String, robot: Robot) {
+        guard socket?.engine?.connected == true else { return }
+        
         let payload = [
             "message": "[\(robot.name)] " + message,
             "robot_name": robot.name,
@@ -169,6 +167,8 @@ class Socket {
     }
     
     func sendDirection(_ command: RobotCommand, robot: Robot, keyPosition: String) {
+        guard socket?.engine?.connected == true else { return }
+        
         let dict = [
             "command": command.rawValue,
             "_id": robot.id,
@@ -201,4 +201,28 @@ enum RobotCommand: String {
 
 struct User {
     var username: String
+}
+
+struct ChatMessage {
+    var author: String
+    var message: String
+    var anonymous: Bool
+    var robotName: String
+    
+    init?(json: JSON) {
+        author = json["name"].string ?? json["username"].string ?? "Unknown"
+        anonymous = json["anonymous"].boolValue
+        
+        guard let matches = json["message"].stringValue.matches(pattern: "\\[(\\w*)\\](.*)").first, matches.count == 2 else { return nil }
+        robotName = matches[0].trimmingCharacters(in: .whitespacesAndNewlines)
+        message = matches[1].trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    var robot: Robot? {
+        return Config.shared?.robots.first(where: { $0.value.name == robotName })?.value
+    }
+    
+    var user: User? {
+        return Socket.shared.users.first(where: { $0.username == author })
+    }
 }

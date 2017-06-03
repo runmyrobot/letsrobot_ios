@@ -125,7 +125,7 @@ class StreamViewController: UIViewController {
         view.endEditing(true)
     }
     
-    func chatUpdated(message: Socket.Message) {
+    func chatUpdated(message: ChatMessage) {
         chatTableView.beginUpdates()
         let count = Socket.shared.chatMessages.count
         

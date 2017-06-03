@@ -29,13 +29,11 @@ class Config {
         }
         
         if let chatJSON = json["chat_messages"].array {
-            var builder: [Socket.Message] = []
+            var builder: [ChatMessage] = []
             
             for chatMessage in chatJSON {
-                let author = chatMessage["username"].stringValue
-                let text = chatMessage["message"].stringValue
-                let anonymous = chatMessage["anonymous"].boolValue
-                builder.append((author, text, anonymous))
+                guard let message = ChatMessage(json: chatMessage) else { continue }
+                builder.append(message)
             }
             
             Socket.shared.chatMessages = builder
