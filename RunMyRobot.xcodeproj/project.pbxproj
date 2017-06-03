@@ -69,8 +69,8 @@
 			isa = PBXGroup;
 			children = (
 				98500C7B1EE0892E00CFA446 /* ListViewController.swift */,
-				98500C791EDF59C400CFA446 /* StreamViewController.swift */,
 				980ADD551EE2BFD200B00B33 /* LoaderViewController.swift */,
+				98500C791EDF59C400CFA446 /* StreamViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

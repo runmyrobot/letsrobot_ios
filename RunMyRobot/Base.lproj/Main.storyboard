@@ -399,7 +399,7 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHz-LG-Jou" userLabel="Chat Box">
                                 <rect key="frame" x="0.0" y="385.5" width="375" height="231.5"/>
-                                <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.21176470588235294" green="0.21176470588235294" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatMessage" id="Ms9-cc-2rh" customClass="ChatMessageTableViewCell" customModule="RunMyRobot" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -408,14 +408,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Jill:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amm-qJ-Tas">
-                                                    <rect key="frame" x="8" y="8" width="28" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                                    <color key="textColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[TrumpBot] Generic Message" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPn-s9-XdG">
-                                                    <rect key="frame" x="44" y="8" width="213.5" height="19.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sherlouk: [TrumpBot] Generic Message" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPn-s9-XdG">
+                                                    <rect key="frame" x="16" y="8" width="286" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -423,18 +417,15 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="jPn-s9-XdG" firstAttribute="leading" secondItem="amm-qJ-Tas" secondAttribute="trailing" constant="8" id="8un-p1-hzS"/>
+                                                <constraint firstItem="jPn-s9-XdG" firstAttribute="leading" secondItem="n1G-ic-uVO" secondAttribute="leading" constant="16" id="5U8-xp-Ftz"/>
                                                 <constraint firstItem="jPn-s9-XdG" firstAttribute="top" secondItem="n1G-ic-uVO" secondAttribute="top" constant="8" id="BIq-YV-Jcw"/>
-                                                <constraint firstItem="amm-qJ-Tas" firstAttribute="leading" secondItem="n1G-ic-uVO" secondAttribute="leadingMargin" id="D7x-uK-dza"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="jPn-s9-XdG" secondAttribute="trailing" constant="16" id="NF6-2R-PQ7"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="jPn-s9-XdG" secondAttribute="bottom" constant="8" id="jj0-Pi-WcO"/>
-                                                <constraint firstItem="amm-qJ-Tas" firstAttribute="top" secondItem="n1G-ic-uVO" secondAttribute="top" constant="8" id="pIa-tT-QGP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="messageLabel" destination="jPn-s9-XdG" id="S4o-3L-Pua"/>
-                                            <outlet property="nameLabel" destination="amm-qJ-Tas" id="Wq3-Nt-BI2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

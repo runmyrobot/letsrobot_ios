@@ -110,6 +110,8 @@ class Socket {
                             Config.shared?.robots[id] = robot
                             changes = true
                         }
+                    } else {
+                        print("Unknown robot!", status)
                     }
                 }
                 
