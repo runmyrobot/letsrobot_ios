@@ -271,7 +271,7 @@ class StreamViewController: UIViewController {
     }
     
     @IBAction func didPressBack() {
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     // MARK: - Notifications
