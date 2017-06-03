@@ -102,7 +102,7 @@ class Socket {
                 for status in statuses {
                     guard let id = status["robot_id"].string else { continue }
                     
-                    if var robot = Config.shared?.robots[id] {
+                    if let robot = Config.shared?.robots[id] {
                         let before = robot.live
                         robot.live = status["status"].string == "online"
                         let after = robot.live
@@ -213,6 +213,8 @@ struct ChatMessage {
         author = json["name"].string ?? json["username"].string ?? "Unknown"
         anonymous = json["anonymous"].boolValue
         
+        // Message can come out as an empty string (due to profanity filter)
+        // Currently we just don't render this, which is good, but we should maybe change that.
         guard let matches = json["message"].stringValue.matches(pattern: "\\[(.*)\\](.*)").first, matches.count == 2 else { return nil }
         robotName = matches[0].trimmingCharacters(in: .whitespacesAndNewlines)
         message = matches[1].trimmingCharacters(in: .whitespacesAndNewlines)

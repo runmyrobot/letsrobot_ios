@@ -14,6 +14,8 @@ class StreamViewController: UIViewController {
     // Camera
     @IBOutlet var cameraContainerView: UIView!
     @IBOutlet var cameraWebView: UIWebView!
+    @IBOutlet var cameraLoadingView: UIView!
+    @IBOutlet var cameraErrorLabel: UILabel!
     
     // Chat
     @IBOutlet var chatTextField: UITextField!
@@ -22,6 +24,10 @@ class StreamViewController: UIViewController {
     
     // Controls
     @IBOutlet var controlContainerView: UIView!
+    
+    // Loading View
+    @IBOutlet var loadingViewContainer: UIView!
+    @IBOutlet var loadingMessageLabel: UILabel!
     
     // Constraints
     @IBOutlet var gameIconTrailingConstraint: NSLayoutConstraint!
@@ -54,11 +60,31 @@ class StreamViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Loading view is at back of hierarchy on storyboard to make it easier to modify the design
+        // Bring it to the front so it's visible to users
+        view.bringSubview(toFront: loadingViewContainer)
+        
+        robot.download { [weak self] success in
+            guard success else {
+                self?.loadingMessageLabel.text = "Error Loading Robot :("
+                return
+            }
+            
+            UIView.animate(withDuration: 0.3) {
+                self?.loadingViewContainer.alpha = 0
+            }
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
+        chatTableView.re.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         chatTextField.attributedPlaceholder = NSAttributedString(string: "Type your text here...", attributes: [
             NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.8)
         ])
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
         
         if let cameraURL = URL(string: "https://runmyrobot.com/fullview/\(robot.id)") {
             // Turn off interaction as there is nothing to interact with, and this prevents scrolling/bouncing and zooming.
@@ -71,7 +97,6 @@ class StreamViewController: UIViewController {
             cameraWebView.loadRequest(request)
         }
         
-        chatTableView.re.delegate = self
         Socket.shared.chatCallback = { [weak self] message in
             self?.chatUpdated(message: message)
         }
@@ -201,6 +226,12 @@ extension StreamViewController: UIWebViewDelegate {
         // I've mentioned this to Theo, and hopefully we can get this change applied directly to the website and this won't be necessary!
         let js = "document.getElementById(\"videoCanvasFullView\").setAttribute(\"style\", \"height: 100vh; width: 100vw;\")"
         _ = cameraWebView.stringByEvaluatingJavaScript(from: js)
+        
+        cameraLoadingView.isHidden = true
+    }
+    
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        cameraErrorLabel.text = error.localizedDescription
     }
     
 }

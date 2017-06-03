@@ -45,7 +45,7 @@ class Config {
     
 }
 
-struct Robot {
+class Robot {
     var name: String
     var id: String
     var live: Bool
@@ -55,6 +55,15 @@ struct Robot {
     
     /// A set of colours which are generated based on the avatar image, only set once image has been downloaded
     var colors: UIImageColors?
+    
+    /// Username of the robot owner (Requires Download)
+    var owner: String?
+    
+    /// Description of the robot (Requires Download)
+    var description: String?
+    
+    /// Array of custom button panels (Requires download; still may be nil if they use default panels)
+    var panels: [ButtonPanel]?
     
     init?(json: JSON) {
         guard let name = json["name"].string,
@@ -68,8 +77,58 @@ struct Robot {
         if approvedAvatar, let avatarUrl = json["avatar", "medium"].string, let url = URL(string: avatarUrl) {
             self.avatarUrl = url
         } else {
-            let thumbnailTemplate = "http://runmyrobot.com/images/thumbnails/{id}.jpg"
-            self.avatarUrl = URL(string: thumbnailTemplate.replacingOccurrences(of: "{id}", with: id))
+            let thumbnailTemplate = "https://runmyrobot.com/images/thumbnails/\(id).jpg"
+            self.avatarUrl = URL(string: thumbnailTemplate)
+        }
+    }
+    
+    /// Downloads the full feed of information for this robot, some values are only accessible once the download has happened
+    func download(callback: @escaping ((Bool) -> Void)) {
+        Alamofire.request("https://runmyrobot.com/internal/robot/\(id)").validate().responseJSON { [weak self] response in
+            guard let rawJSON = response.result.value else {
+                print("Something went wrong!", response.error?.localizedDescription ?? "Unknown error")
+                callback(false)
+                return
+            }
+            
+            let json = JSON(rawJSON)
+            self?.owner = json["owner"].string
+            self?.description = json["robot_description"].string?.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            if json["custom_panels"].boolValue, let panels = json["panels", "button_panels"].array, panels.count > 0 {
+                self?.panels = [ButtonPanel]()
+                
+                for panel in panels {
+                    guard let buttonPanel = ButtonPanel(json: panel) else { continue }
+                    self?.panels?.append(buttonPanel)
+                }
+            }
+            
+            callback(true)
+        }
+    }
+}
+
+struct ButtonPanel {
+    struct Button {
+        var label: String
+        var command: String
+    }
+    
+    var title: String
+    var buttons: [Button]
+    
+    init?(json: JSON) {
+        title = json["button_panel_label"].stringValue
+        
+        guard let buttonArray = json["buttons"].array, buttonArray.count > 0 else { return nil }
+        buttons = [Button]()
+        
+        for button in buttonArray {
+            let label = button["label"].stringValue
+            let command = button["command"].stringValue
+            
+            buttons.append(Button(label: label, command: command))
         }
     }
 }
