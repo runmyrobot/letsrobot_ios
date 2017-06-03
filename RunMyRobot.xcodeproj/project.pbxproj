@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4EA176B31F348803F66E4C7C /* Pods_RunMyRobot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC487CD756551459CEE4F0A /* Pods_RunMyRobot.framework */; };
 		980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD4F1EE186CC00B00B33 /* ChatMessageTableViewCell.swift */; };
+		980ADD561EE2BFD200B00B33 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD551EE2BFD200B00B33 /* LoaderViewController.swift */; };
+		980ADD591EE2C2D100B00B33 /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD581EE2C2D100B00B33 /* Threading.swift */; };
 		983BCB521EDE29A8007A1247 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB511EDE29A8007A1247 /* Config.swift */; };
 		983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB531EDE9BB0007A1247 /* AngledView.swift */; };
 		98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C791EDF59C400CFA446 /* StreamViewController.swift */; };
@@ -26,6 +28,8 @@
 		5A83AC29B03929204B65F130 /* Pods-RunMyRobot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunMyRobot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunMyRobot/Pods-RunMyRobot.debug.xcconfig"; sourceTree = "<group>"; };
 		735CEECD8205A7235D37850D /* Pods-RunMyRobot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunMyRobot.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunMyRobot/Pods-RunMyRobot.release.xcconfig"; sourceTree = "<group>"; };
 		980ADD4F1EE186CC00B00B33 /* ChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageTableViewCell.swift; sourceTree = "<group>"; };
+		980ADD551EE2BFD200B00B33 /* LoaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
+		980ADD581EE2C2D100B00B33 /* Threading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threading.swift; sourceTree = "<group>"; };
 		983BCB511EDE29A8007A1247 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		983BCB531EDE9BB0007A1247 /* AngledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngledView.swift; sourceTree = "<group>"; };
 		98500C791EDF59C400CFA446 /* StreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 			children = (
 				98500C7B1EE0892E00CFA446 /* ListViewController.swift */,
 				98500C791EDF59C400CFA446 /* StreamViewController.swift */,
+				980ADD551EE2BFD200B00B33 /* LoaderViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -100,6 +105,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		980ADD571EE2C2BE00B00B33 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				980ADD581EE2C2D100B00B33 /* Threading.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		98DB07F21EDC4DF0005BAF18 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +137,7 @@
 				98DB07FE1EDC4DF0005BAF18 /* AppDelegate.swift */,
 				980ADD531EE20EBA00B00B33 /* Business */,
 				980ADD541EE20EC900B00B33 /* Resources */,
+				980ADD571EE2C2BE00B00B33 /* Utilities */,
 				980ADD511EE20E9300B00B33 /* View Controllers */,
 				980ADD521EE20EAD00B00B33 /* Views */,
 			);
@@ -261,10 +275,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				980ADD591EE2C2D100B00B33 /* Threading.swift in Sources */,
 				98500C801EE0A57B00CFA446 /* Socket.swift in Sources */,
 				983BCB521EDE29A8007A1247 /* Config.swift in Sources */,
 				980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */,
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
+				980ADD561EE2BFD200B00B33 /* LoaderViewController.swift in Sources */,
 				98DB07FF1EDC4DF0005BAF18 /* AppDelegate.swift in Sources */,
 				98500C7C1EE0892E00CFA446 /* ListViewController.swift in Sources */,
 				98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */,

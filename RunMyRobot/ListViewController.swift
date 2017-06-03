@@ -16,14 +16,13 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        Config.download { config in
-            let robots = Array(config.robots.values)
-            let online = robots.filter { $0.live }
-            let offline = robots.filter { !$0.live }
-            
-            self.robots = online + offline
-            self.collectionView.reloadData()
-        }
+        guard let config = Config.shared else { return }
+        let robots = Array(config.robots.values)
+        let online = robots.filter { $0.live }
+        let offline = robots.filter { !$0.live }
+        
+        self.robots = online + offline
+        self.collectionView.reloadData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

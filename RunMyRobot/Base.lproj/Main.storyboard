@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5T5-to-IrK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="YCQ-YM-agY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,56 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Loader-->
+        <scene sceneID="dF3-rX-zZX">
+            <objects>
+                <viewController title="Loader" id="YCQ-YM-agY" customClass="LoaderViewController" customModule="RunMyRobot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qeH-O8-oCj"/>
+                        <viewControllerLayoutGuide type="bottom" id="uf7-ZU-gEx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oor-Ut-1oe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Wut-xO-OgE">
+                                <rect key="frame" x="112.5" y="258.5" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="ZJ2-Q9-CsF"/>
+                                    <constraint firstAttribute="width" secondItem="Wut-xO-OgE" secondAttribute="height" multiplier="1:1" id="oaP-Bn-lMT"/>
+                                </constraints>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qLk-f7-TJG">
+                                <rect key="frame" x="169" y="408.5" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloading Config" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uro-9Q-O07">
+                                <rect key="frame" x="24" y="469.5" width="327" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <color key="textColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Uro-9Q-O07" secondAttribute="trailing" constant="24" id="KBu-jh-feF"/>
+                            <constraint firstItem="qLk-f7-TJG" firstAttribute="centerX" secondItem="Wut-xO-OgE" secondAttribute="centerX" id="MuA-Ob-p6G"/>
+                            <constraint firstItem="Wut-xO-OgE" firstAttribute="centerY" secondItem="oor-Ut-1oe" secondAttribute="centerY" id="Vme-Wv-phF"/>
+                            <constraint firstItem="Wut-xO-OgE" firstAttribute="centerX" secondItem="oor-Ut-1oe" secondAttribute="centerX" id="aYI-hn-zKm"/>
+                            <constraint firstItem="Uro-9Q-O07" firstAttribute="leading" secondItem="oor-Ut-1oe" secondAttribute="leading" constant="24" id="iLD-IM-cjr"/>
+                            <constraint firstItem="qLk-f7-TJG" firstAttribute="top" secondItem="Wut-xO-OgE" secondAttribute="bottom" id="qwf-Nh-aDP"/>
+                            <constraint firstItem="Uro-9Q-O07" firstAttribute="top" secondItem="qLk-f7-TJG" secondAttribute="bottom" constant="24" id="s9D-vD-9qf"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="progressLabel" destination="Uro-9Q-O07" id="PZo-j0-CwY"/>
+                        <segue destination="5T5-to-IrK" kind="show" identifier="EnterApp" id="iiE-69-2oP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mrE-Kt-Igc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="910" y="119"/>
+        </scene>
         <!--Let's Robot-->
         <scene sceneID="m9X-nJ-VeD">
             <objects>
@@ -460,5 +510,6 @@
         <image name="icon-left" width="25" height="25"/>
         <image name="icon-right" width="25" height="25"/>
         <image name="icon-up" width="25" height="25"/>
+        <image name="logo" width="257" height="257"/>
     </resources>
 </document>

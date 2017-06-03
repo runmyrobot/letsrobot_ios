@@ -11,28 +11,9 @@ import Alamofire
 import SwiftyJSON
 import UIImageColors
 
-extension Config {
+class Config {
     
     static var shared: Config?
-    
-    static func download(callback: @escaping ((Config) -> Void)) {
-        Alamofire.request("https://runmyrobot.com/internal/").validate().responseJSON { response in
-            if let rawJSON = response.result.value {
-                let config = Config(json: JSON(rawJSON))
-                Config.shared = config
-                
-                // TODO: Should we wait for socket to connect before showing content?
-                Socket.shared.start()
-                callback(config)
-            } else {
-                print("Something went wrong!")
-            }
-        }
-    }
-    
-}
-
-class Config {
     
     var chatSecret: String
     var socketPort: Int

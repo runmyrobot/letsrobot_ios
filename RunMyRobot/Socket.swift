@@ -26,12 +26,13 @@ class Socket {
         return formatter
     }()
     
-    func start() {
+    func start(callback: @escaping ((Bool) -> Void)) {
         if let url = URL(string: "https://runmyrobot.com:\(Config.shared?.socketPort ?? 8000)") {
             socket = SocketIOClient(socketURL: url, config: [.log(false)])
             
             socket?.on(clientEvent: .connect) { (data, ack) in
                 print("✅ [SOCKET] Connected")
+                callback(true)
             }
             
             socket?.on(clientEvent: .disconnect) { (data, ack) in
