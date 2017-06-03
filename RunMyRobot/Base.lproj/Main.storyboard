@@ -216,7 +216,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQa-lO-eeO" userLabel="Camera Zone">
                                 <rect key="frame" x="0.0" y="64" width="375" height="281.5"/>
                                 <subviews>
-                                    <webView opaque="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="f1H-pu-IfF">
+                                    <webView opaque="NO" contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f1H-pu-IfF">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="281.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <dataDetectorType key="dataDetectorTypes"/>
@@ -479,6 +479,7 @@
                         <outlet property="chatFilterControl" destination="Hae-2Y-nTx" id="ZVP-Dy-C9X"/>
                         <outlet property="chatTableView" destination="lHz-LG-Jou" id="9NW-Wh-jwx"/>
                         <outlet property="chatTextField" destination="NaL-eS-xAd" id="Y3W-0z-YpE"/>
+                        <outlet property="controlContainerView" destination="V08-TI-rmC" id="Cdn-s4-kK5"/>
                         <outlet property="gameIconTrailingConstraint" destination="39s-H0-ZWt" id="9tA-AT-Krt"/>
                         <outlet property="viewSwapperBottomConstraint" destination="ZMR-zR-1Ky" id="eA7-Qz-bmm"/>
                     </connections>

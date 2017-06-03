@@ -47,8 +47,11 @@ class ChatMessageTableViewCell: UITableViewCell {
         let robot = Config.shared?.robots.first(where: { $0.value.name == robotName })
         let robotColor = robot?.value.colors?.primaryColor
         attributedString.addAttributes([
-            NSForegroundColorAttributeName: robotColor ?? ChatColours.grey,
-            NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: robotColor == nil ? UIFontWeightRegular : UIFontWeightMedium)
+            // Idea was to use the robotColor here, but this can sometimes conflict with the background color.
+            // For now we will keep it white but bold it to stand out from the rest of the text!
+            // Plan is to make this tappable to allow the user to switch to the robot
+            NSForegroundColorAttributeName: UIColor.white,
+            NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: robotColor == nil ? UIFontWeightMedium : UIFontWeightSemibold)
         ], range: robotRange)
         
         messageLabel.attributedText = attributedString

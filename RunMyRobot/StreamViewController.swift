@@ -20,6 +20,9 @@ class StreamViewController: UIViewController {
     @IBOutlet var chatTableView: UITableView!
     @IBOutlet var chatFilterControl: UISegmentedControl!
     
+    // Controls
+    @IBOutlet var controlContainerView: UIView!
+    
     // Constraints
     @IBOutlet var gameIconTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var chatBoxTrailingConstraint: NSLayoutConstraint!
@@ -52,20 +55,26 @@ class StreamViewController: UIViewController {
         super.viewDidLoad()
         
         chatTextField.attributedPlaceholder = NSAttributedString(string: "Type your text here...", attributes: [
-            NSForegroundColorAttributeName: UIColor.white
+            NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.8)
         ])
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
         
         if let cameraURL = URL(string: "https://runmyrobot.com/fullview/\(robot.id)") {
+            // Turn off interaction as there is nothing to interact with, and this prevents scrolling/bouncing and zooming.
+            cameraWebView.isUserInteractionEnabled = false
+            
+            // Delegate is set to fix the video feed from being partly cut off
+            cameraWebView.delegate = self
+            
             let request = URLRequest(url: cameraURL)
-//            cameraWebView.scrollView.isScrollEnabled = false
             cameraWebView.loadRequest(request)
-            cameraWebView.layoutIfNeeded()
         }
         
         chatTableView.re.delegate = self
-        Socket.shared.chatCallback = chatUpdated
+        Socket.shared.chatCallback = { [weak self] message in
+            self?.chatUpdated(message: message)
+        }
     }
     
     deinit {
@@ -83,9 +92,18 @@ class StreamViewController: UIViewController {
         chatBoxTrailingConstraint.isActive = desiredView == 1
         gameIconTrailingConstraint.isActive = desiredView == 1
         
-        UIView.animate(withDuration: 0.3) {
+        controlContainerView.isHidden = false
+        chatTableView.isHidden = false
+        
+        UIView.animate(withDuration: 0.3, animations: { 
             self.view.layoutIfNeeded()
-        }
+        }, completion: { success in
+            if desiredView == 1 {
+                self.controlContainerView.isHidden = true
+            } else {
+                self.chatTableView.isHidden = true
+            }
+        })
     }
     
     @IBAction func didChangeChatFilter(_ sender: UISegmentedControl) {
@@ -173,6 +191,18 @@ class StreamViewController: UIViewController {
         }, completion: nil)
     }
 
+}
+
+extension StreamViewController: UIWebViewDelegate {
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        // There is an issue with the fullview video feed when used in an iOS web view which means the aspect ratio is not maintained
+        // and part of it is therefore cut off. By changing the style tag to use vh/vw rather than percentage, this issue is fixed.
+        // I've mentioned this to Theo, and hopefully we can get this change applied directly to the website and this won't be necessary!
+        let js = "document.getElementById(\"videoCanvasFullView\").setAttribute(\"style\", \"height: 100vh; width: 100vw;\")"
+        _ = cameraWebView.stringByEvaluatingJavaScript(from: js)
+    }
+    
 }
 
 extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
