@@ -308,12 +308,16 @@
                                 <rect key="frame" x="0.0" y="345.5" width="375" height="40"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hae-2Y-nTx">
-                                        <rect key="frame" x="107" y="6" width="161" height="29"/>
+                                        <rect key="frame" x="66.5" y="6" width="242" height="29"/>
                                         <segments>
                                             <segment title="All Robots"/>
                                             <segment title="This Robot"/>
+                                            <segment title="My Robots"/>
                                         </segments>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="didChangeChatFilter:" destination="s8K-cS-TTW" eventType="valueChanged" id="WBN-yE-KLq"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" red="0.018536585361242138" green="0.1932439024366418" blue="0.38" alpha="1" colorSpace="calibratedRGB"/>
@@ -472,6 +476,7 @@
                         <outlet property="cameraContainerView" destination="bQa-lO-eeO" id="vvB-a9-mkZ"/>
                         <outlet property="cameraWebView" destination="f1H-pu-IfF" id="pM0-3m-oJk"/>
                         <outlet property="chatBoxTrailingConstraint" destination="tgg-hc-hoc" id="QoV-JF-fdN"/>
+                        <outlet property="chatFilterControl" destination="Hae-2Y-nTx" id="ZVP-Dy-C9X"/>
                         <outlet property="chatTableView" destination="lHz-LG-Jou" id="9NW-Wh-jwx"/>
                         <outlet property="chatTextField" destination="NaL-eS-xAd" id="Y3W-0z-YpE"/>
                         <outlet property="gameIconTrailingConstraint" destination="39s-H0-ZWt" id="9tA-AT-Krt"/>

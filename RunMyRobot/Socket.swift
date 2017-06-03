@@ -112,7 +112,7 @@ class Socket {
                             changes = true
                         }
                     } else {
-                        print("Unknown robot!", status)
+//                        print("Unknown robot!", status)
                     }
                 }
                 
@@ -213,7 +213,7 @@ struct ChatMessage {
         author = json["name"].string ?? json["username"].string ?? "Unknown"
         anonymous = json["anonymous"].boolValue
         
-        guard let matches = json["message"].stringValue.matches(pattern: "\\[(\\w*)\\](.*)").first, matches.count == 2 else { return nil }
+        guard let matches = json["message"].stringValue.matches(pattern: "\\[(.*)\\](.*)").first, matches.count == 2 else { return nil }
         robotName = matches[0].trimmingCharacters(in: .whitespacesAndNewlines)
         message = matches[1].trimmingCharacters(in: .whitespacesAndNewlines)
     }

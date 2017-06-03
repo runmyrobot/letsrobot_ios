@@ -24,7 +24,7 @@ class ChatMessageTableViewCell: UITableViewCell {
     
     func setMessage(_ message: ChatMessage) {
         let fullMessage = "\(message.author): [\(message.robotName)] \(message.message)"
-        guard let regex = try? NSRegularExpression(pattern: "(\\w*:) \\[(\\w*)\\] (.*)", options: .caseInsensitive) else { return }
+        guard let regex = try? NSRegularExpression(pattern: "(\\w*:) \\[(.*)\\] (.*)", options: .caseInsensitive) else { return }
         let matches = regex.matches(in: fullMessage, options: .anchored, range: NSRange(location: 0, length: fullMessage.characters.count)).first
         
         let attributedString = NSMutableAttributedString(string: fullMessage, attributes: [

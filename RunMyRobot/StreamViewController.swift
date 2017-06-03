@@ -18,6 +18,7 @@ class StreamViewController: UIViewController {
     // Chat
     @IBOutlet var chatTextField: UITextField!
     @IBOutlet var chatTableView: UITableView!
+    @IBOutlet var chatFilterControl: UISegmentedControl!
     
     // Constraints
     @IBOutlet var gameIconTrailingConstraint: NSLayoutConstraint!
@@ -35,6 +36,17 @@ class StreamViewController: UIViewController {
     
     /// The current view shown to the user: 1 is Chat, 2 is Controls
     var activeView: Int = 1
+    
+    /// Returns an array of all the current chat messages to show, taking into account the chat filter control
+    var chatMessages: [ChatMessage] {
+        let allMessages = Socket.shared.chatMessages
+        
+        switch chatFilterControl.selectedSegmentIndex {
+        case 1: return allMessages.filter { $0.robotName == robot.name }
+        case 2: return allMessages
+        default: return allMessages
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +86,10 @@ class StreamViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
+    }
+    
+    @IBAction func didChangeChatFilter(_ sender: UISegmentedControl) {
+        chatTableView.reloadData()
     }
     
     @IBAction func didPressMessageSend(_ sender: UITextField) {
@@ -127,7 +143,7 @@ class StreamViewController: UIViewController {
     
     func chatUpdated(message: ChatMessage) {
         chatTableView.beginUpdates()
-        let count = Socket.shared.chatMessages.count
+        let count = chatMessages.count
         
         if count == 100 {
             chatTableView.re.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
@@ -162,14 +178,14 @@ class StreamViewController: UIViewController {
 extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Socket.shared.chatMessages.count
+        return chatMessages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessage", for: indexPath) as! ChatMessageTableViewCell
         
-        let count = Socket.shared.chatMessages.count - 1 - indexPath.row
-        cell.setMessage(Socket.shared.chatMessages[count])
+        let count = chatMessages.count - 1 - indexPath.row
+        cell.setMessage(chatMessages[count])
         return cell
     }
     
