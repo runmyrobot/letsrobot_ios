@@ -65,6 +65,10 @@ class Robot {
     /// Array of custom button panels (Requires download; still may be nil if they use default panels)
     var panels: [ButtonPanel]?
     
+    var users: [User] {
+        return Socket.shared.users.filter { $0.robotName == name }
+    }
+    
     init?(json: JSON) {
         guard let name = json["name"].string,
             let id = json["id"].string else { return nil }
@@ -92,10 +96,10 @@ class Robot {
             }
             
             let json = JSON(rawJSON)
-            self?.owner = json["owner"].string
-            self?.description = json["robot_description"].string?.trimmingCharacters(in: .whitespacesAndNewlines)
+            self?.owner = json["robot", "owner"].string
+            self?.description = json["robot", "robot_description"].string?.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            if json["custom_panels"].boolValue, let panels = json["panels", "button_panels"].array, panels.count > 0 {
+            if json["custom_panels"].boolValue, let panels = json["robot", "panels", "button_panels"].array, panels.count > 0 {
                 self?.panels = [ButtonPanel]()
                 
                 for panel in panels {

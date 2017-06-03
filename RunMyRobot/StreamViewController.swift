@@ -16,6 +16,7 @@ class StreamViewController: UIViewController {
     @IBOutlet var cameraWebView: UIWebView!
     @IBOutlet var cameraLoadingView: UIView!
     @IBOutlet var cameraErrorLabel: UILabel!
+    @IBOutlet var cameraOverlayView: UIView!
     
     // Chat
     @IBOutlet var chatTextField: UITextField!
@@ -24,6 +25,10 @@ class StreamViewController: UIViewController {
     
     // Controls
     @IBOutlet var controlContainerView: UIView!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var viewCountLabel: UILabel!
+    @IBOutlet var backButton: UIButton!
+    @IBOutlet var ownerLabel: UILabel!
     
     // Loading View
     @IBOutlet var loadingViewContainer: UIView!
@@ -33,6 +38,7 @@ class StreamViewController: UIViewController {
     @IBOutlet var gameIconTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var chatBoxTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var viewSwapperBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var titleVerticalConstraint: NSLayoutConstraint!
     
     /// Timer used to send out continous socket messages when holding down a direction
     var touchDownTimer: Timer?
@@ -45,6 +51,23 @@ class StreamViewController: UIViewController {
     
     /// The current view shown to the user: 1 is Chat, 2 is Controls
     var activeView: Int = 1
+    
+    /// Current state of the controls visible (back button, etc)
+    var controlsVisible = false {
+        didSet {
+            if controlsVisible {
+                controlsTimer.schedule(after: 3) { [weak self] in
+                    self?.setCameraControlsVisible(false)
+                }
+            }
+        }
+    }
+    
+    /// Timer object which is used to auto-hide the controls
+    var controlsTimer = InterruptableTimer()
+    
+    /// Gradient layer used under the controls (back button, etc) to make them stand out
+    var controlsGradientLayer: CAGradientLayer?
     
     /// Returns an array of all the current chat messages to show, taking into account the chat filter control
     var chatMessages: [ChatMessage] {
@@ -63,6 +86,7 @@ class StreamViewController: UIViewController {
         // Loading view is at back of hierarchy on storyboard to make it easier to modify the design
         // Bring it to the front so it's visible to users
         view.bringSubview(toFront: loadingViewContainer)
+        view.bringSubview(toFront: backButton)
         
         robot.download { [weak self] success in
             guard success else {
@@ -70,13 +94,39 @@ class StreamViewController: UIViewController {
                 return
             }
             
-            UIView.animate(withDuration: 0.3) {
-                self?.loadingViewContainer.alpha = 0
+            self?.titleLabel.text = self?.robot.name
+            
+            if let owner = self?.robot.owner {
+                self?.ownerLabel.text = "Owner: \(owner)"
+                self?.titleVerticalConstraint.constant = -6
             }
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self?.loadingViewContainer.alpha = 0
+            }, completion: { success in
+                self?.setCameraControlsVisible(true, animated: false)
+            })
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
         chatTableView.re.delegate = self
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCamera))
+        cameraOverlayView.addGestureRecognizer(tapGesture)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = cameraOverlayView.bounds
+        let black = UIColor.black.withAlphaComponent(0.8).cgColor
+        gradientLayer.colors = [black, UIColor.clear.cgColor, UIColor.clear.cgColor, black]
+        gradientLayer.locations = [NSNumber(value: 0), NSNumber(value: 0.35), NSNumber(value: 0.8) ,NSNumber(value: 1)]
+        cameraOverlayView.layer.insertSublayer(gradientLayer, at: 0)
+        controlsGradientLayer = gradientLayer
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,9 +152,33 @@ class StreamViewController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        controlsGradientLayer?.frame = cameraOverlayView.bounds
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
         Socket.shared.chatCallback = nil
+    }
+    
+    func didTapCamera() {
+        setCameraControlsVisible(!controlsVisible)
+    }
+    
+    func setCameraControlsVisible(_ visible: Bool, animated: Bool = true) {
+        guard visible != controlsVisible else { return }
+        controlsVisible = visible
+        
+        UIView.animate(withDuration: animated ? 0.2 : 0) {
+            let alpha: CGFloat = self.controlsVisible ? 1 : 0
+            for view in self.cameraOverlayView.subviews {
+                view.alpha = alpha
+            }
+            
+            self.backButton.alpha = alpha
+            self.controlsGradientLayer?.opacity = Float(alpha)
+        }
     }
     
     @IBAction func didPressChangeView(_ sender: UIButton) {
@@ -196,6 +270,10 @@ class StreamViewController: UIViewController {
         chatTableView.endUpdates()
     }
     
+    @IBAction func didPressBack() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: - Notifications
     
     func keyboardWillChangeFrame(_ notification: NSNotification) {
@@ -216,6 +294,9 @@ class StreamViewController: UIViewController {
         }, completion: nil)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 extension StreamViewController: UIWebViewDelegate {

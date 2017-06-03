@@ -142,7 +142,9 @@ class Socket {
                 
                 var builder = [User]()
                 for userJSON in Array(userJSON.values) {
-                    let user = User(username: userJSON["user", "username"].stringValue)
+                    let username = userJSON["user", "username"].stringValue
+                    let robotName = userJSON["robot_id"].stringValue
+                    let user = User(username: username, robotName: robotName)
                     builder.append(user)
                 }
                 
@@ -202,6 +204,7 @@ enum RobotCommand: String {
 
 struct User {
     var username: String
+    var robotName: String
 }
 
 struct ChatMessage {
