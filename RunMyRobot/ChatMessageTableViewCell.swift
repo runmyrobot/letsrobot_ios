@@ -2,7 +2,7 @@
 //  ChatMessageTableViewCell.swift
 //  RunMyRobot
 //
-//  Created by Sherlock, James (Apprentice Software Developer) on 02/06/2017.
+//  Created by Sherlock, James on 02/06/2017.
 //  Copyright © 2017 Sherlouk. All rights reserved.
 //
 
@@ -23,7 +23,7 @@ class ChatMessageTableViewCell: UITableViewCell {
     @IBOutlet var messageLabel: UILabel!
     
     func setMessage(_ message: ChatMessage) {
-        let fullMessage = "\(message.author): [\(message.robotName)] \(message.message)"
+        let fullMessage = "\(message.author): [\(message.robot?.name ?? message.robotName)] \(message.message)"
         guard let regex = try? NSRegularExpression(pattern: "(\\w*:) \\[(.*)\\] (.*)", options: .caseInsensitive) else { return }
         let matches = regex.matches(in: fullMessage, options: .anchored, range: NSRange(location: 0, length: fullMessage.characters.count)).first
         

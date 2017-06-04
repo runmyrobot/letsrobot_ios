@@ -455,7 +455,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1Q-ff-Yof">
                                         <rect key="frame" x="8" y="8" width="90" height="28"/>
-                                        <color key="backgroundColor" red="0.75" green="0.18577981651376152" blue="0.33623853211009175" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.74901960784313726" green="0.18431372549019609" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
@@ -650,6 +650,7 @@
                         <outlet property="cameraOverlayView" destination="XZq-qu-Er1" id="Qxz-N2-Rhh"/>
                         <outlet property="cameraWebView" destination="f1H-pu-IfF" id="pM0-3m-oJk"/>
                         <outlet property="chatBoxTrailingConstraint" destination="tgg-hc-hoc" id="QoV-JF-fdN"/>
+                        <outlet property="chatPageButton" destination="V5K-8x-LJA" id="d2g-v3-MZu"/>
                         <outlet property="chatTableView" destination="lHz-LG-Jou" id="9NW-Wh-jwx"/>
                         <outlet property="chatTextField" destination="NaL-eS-xAd" id="Y3W-0z-YpE"/>
                         <outlet property="controlContainerView" destination="V08-TI-rmC" id="Cdn-s4-kK5"/>

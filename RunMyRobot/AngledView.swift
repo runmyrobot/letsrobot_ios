@@ -2,7 +2,7 @@
 //  AngledView.swift
 //  RunMyRobot
 //
-//  Created by Sherlock, James (Apprentice Software Developer) on 31/05/2017.
+//  Created by Sherlock, James on 31/05/2017.
 //  Copyright © 2017 Sherlouk. All rights reserved.
 //
 

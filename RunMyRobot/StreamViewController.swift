@@ -2,7 +2,7 @@
 //  StreamViewController.swift
 //  RunMyRobot
 //
-//  Created by Sherlock, James (Apprentice Software Developer) on 31/05/2017.
+//  Created by Sherlock, James on 31/05/2017.
 //  Copyright © 2017 Sherlouk. All rights reserved.
 //
 
@@ -21,7 +21,7 @@ class StreamViewController: UIViewController {
     // Chat
     @IBOutlet var chatTextField: UITextField!
     @IBOutlet var chatTableView: UITableView!
-//    @IBOutlet var chatFilterControl: UISegmentedControl!
+    @IBOutlet var chatPageButton: UIButton!
     
     // Controls
     @IBOutlet var controlContainerView: UIView!
@@ -72,16 +72,42 @@ class StreamViewController: UIViewController {
     var controlsTimer = InterruptableTimer()
     
     /// Gradient layer used under the controls (back button, etc) to make them stand out
-    var controlsGradientLayer: CAGradientLayer?
+    var controlsGradientLayer: CAGradientLayer = {
+        let gradientLayer = CAGradientLayer()
+        
+        let black = UIColor.black.withAlphaComponent(0.8).cgColor
+        let clear = UIColor.clear.cgColor
+        
+        gradientLayer.colors = [black, clear, clear, black]
+        gradientLayer.locations = [NSNumber(value: 0), NSNumber(value: 0.35), NSNumber(value: 0.8) ,NSNumber(value: 1)]
+        
+        return gradientLayer
+    }()
     
     /// Returns an array of all the current chat messages to show, taking into account the chat filter control
     var chatMessages: [ChatMessage] {
         let allMessages = Socket.shared.chatMessages
-        return allMessages
-//        switch chatFilterControl.selectedSegmentIndex {
-//        case 1: return allMessages.filter { $0.robotName.lowercased() == robot.name.lowercased() }
-//        default: return allMessages
-//        }
+        
+        switch chatFilterMode {
+        case 1: return allMessages.filter { $0.robotName.lowercased() == robot.name.lowercased() }
+        default: return allMessages
+        }
+    }
+    
+    /// Reference to the setting views presented via a popover, necessary to set frame to fix bug within library
+    var settingsView: ChatSettingsView?
+    
+    /// Current mode of the chat filter, 0 is all chat, 1 is this robot.
+    var chatFilterMode: Int = 0 {
+        didSet {
+            chatTableView.reloadData()
+        }
+    }
+    
+    var profanityFilterEnabled: Bool = true {
+        didSet {
+            chatTableView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
@@ -117,23 +143,30 @@ class StreamViewController: UIViewController {
             })
         }
         
+        // Add notification listeners
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
+        
+        // Set the tableView delegate to be self, dataSource is done via storyboard
         chatTableView.re.delegate = self
+        
+        // Hide the navigation bar, as we have a custom overlay view for this controller
         navigationController?.setNavigationBarHidden(true, animated: true)
         
+        // Add tap gesture for camera overlay view
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCamera))
         cameraOverlayView.addGestureRecognizer(tapGesture)
         
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = cameraOverlayView.bounds
-        let black = UIColor.black.withAlphaComponent(0.8).cgColor
-        gradientLayer.colors = [black, UIColor.clear.cgColor, UIColor.clear.cgColor, black]
-        gradientLayer.locations = [NSNumber(value: 0), NSNumber(value: 0.35), NSNumber(value: 0.8) ,NSNumber(value: 1)]
-        cameraOverlayView.layer.insertSublayer(gradientLayer, at: 0)
-        controlsGradientLayer = gradientLayer
+        // Add gradient layer to camera overlay view
+        controlsGradientLayer.frame = cameraOverlayView.bounds
+        cameraOverlayView.layer.insertSublayer(controlsGradientLayer, at: 0)
         
+        // Add border to subscriber count container view
         subscriberCountContainerView.layer.borderColor = UIColor.white.withAlphaComponent(0.4).cgColor
         subscriberCountContainerView.layer.borderWidth = 1
+        
+        // Add long tap gesture to chat button for chat settings
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(didHoldChatButton(_:)))
+        chatPageButton.addGestureRecognizer(longGesture)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -166,7 +199,7 @@ class StreamViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        controlsGradientLayer?.frame = cameraOverlayView.bounds
+        controlsGradientLayer.frame = cameraOverlayView.bounds
     }
     
     deinit {
@@ -185,7 +218,7 @@ class StreamViewController: UIViewController {
             }
             
             self.backButton.alpha = alpha
-            self.controlsGradientLayer?.opacity = Float(alpha)
+            self.controlsGradientLayer.opacity = Float(alpha)
         }
     }
     

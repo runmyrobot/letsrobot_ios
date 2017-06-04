@@ -2,7 +2,7 @@
 //  RobotCollectionViewCell.swift
 //  RunMyRobot
 //
-//  Created by Sherlock, James (Apprentice Software Developer) on 01/06/2017.
+//  Created by Sherlock, James on 01/06/2017.
 //  Copyright © 2017 Sherlouk. All rights reserved.
 //
 

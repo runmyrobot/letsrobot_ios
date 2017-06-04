@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.4.0)
   - Nuke (5.1)
+  - Popover (1.0.5)
   - ReverseExtension (0.4.8)
   - Socket.IO-Client-Swift (9.0.1)
   - SwiftyJSON (3.1.4)
@@ -9,6 +10,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - Nuke (~> 5.0)
+  - Popover
   - ReverseExtension
   - Socket.IO-Client-Swift (~> 9.0.0)
   - SwiftyJSON
@@ -17,11 +19,12 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Nuke: 8ab71e77f6a54ff5fb697f93537c35f419bb01f7
+  Popover: f31b0ef6f43192256e6fcf13a0ce10f01c803159
   ReverseExtension: 78dcc8414c4efb6115d787694649d9f4f020324a
   Socket.IO-Client-Swift: 60b71a684692a312c4aba3ef52f186e0e254e868
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   UIImageColors: ba833ce88773453e0a1065f29cde333a97865607
 
-PODFILE CHECKSUM: ba43b27a85bf1ef0016dd0b1a3dc2fa0175c86f1
+PODFILE CHECKSUM: f4f31ad2c332d6723d58f00a2ce07657d527cbda
 
 COCOAPODS: 1.2.0

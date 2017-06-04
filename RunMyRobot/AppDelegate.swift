@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  RunMyRobot
 //
-//  Created by Sherlock, James (Apprentice Software Developer) on 29/05/2017.
+//  Created by Sherlock, James on 29/05/2017.
 //  Copyright © 2017 Sherlouk. All rights reserved.
 //
 

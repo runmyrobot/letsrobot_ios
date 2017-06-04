@@ -9,4 +9,5 @@ target 'RunMyRobot' do
   pod 'Nuke', '~> 5.0'
   pod 'UIImageColors'
   pod 'ReverseExtension'
+  pod 'Popover'
 end
