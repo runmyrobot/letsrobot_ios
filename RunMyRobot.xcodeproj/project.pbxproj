@@ -22,6 +22,8 @@
 		980ADD6E1EE43CD300B00B33 /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD6D1EE43CD300B00B33 /* Robot.swift */; };
 		980ADD711EE43F6600B00B33 /* ChatSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD701EE43F6600B00B33 /* ChatSettingsView.swift */; };
 		980ADD731EE43F6F00B00B33 /* ChatSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980ADD721EE43F6F00B00B33 /* ChatSettingsView.xib */; };
+		980ADD751EE465F500B00B33 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD741EE465F500B00B33 /* User.swift */; };
+		980ADD771EE46AC100B00B33 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD761EE46AC100B00B33 /* Errors.swift */; };
 		983BCB521EDE29A8007A1247 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB511EDE29A8007A1247 /* Config.swift */; };
 		983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB531EDE9BB0007A1247 /* AngledView.swift */; };
 		98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C791EDF59C400CFA446 /* StreamViewController.swift */; };
@@ -52,6 +54,8 @@
 		980ADD6D1EE43CD300B00B33 /* Robot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
 		980ADD701EE43F6600B00B33 /* ChatSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatSettingsView.swift; sourceTree = "<group>"; };
 		980ADD721EE43F6F00B00B33 /* ChatSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatSettingsView.xib; sourceTree = "<group>"; };
+		980ADD741EE465F500B00B33 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		980ADD761EE46AC100B00B33 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		983BCB511EDE29A8007A1247 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		983BCB531EDE9BB0007A1247 /* AngledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngledView.swift; sourceTree = "<group>"; };
 		98500C791EDF59C400CFA446 /* StreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
@@ -112,9 +116,11 @@
 		980ADD531EE20EBA00B00B33 /* Business */ = {
 			isa = PBXGroup;
 			children = (
-				98500C7F1EE0A57B00CFA446 /* Socket.swift */,
 				983BCB511EDE29A8007A1247 /* Config.swift */,
+				980ADD761EE46AC100B00B33 /* Errors.swift */,
 				980ADD6D1EE43CD300B00B33 /* Robot.swift */,
+				98500C7F1EE0A57B00CFA446 /* Socket.swift */,
+				980ADD741EE465F500B00B33 /* User.swift */,
 			);
 			name = Business;
 			sourceTree = "<group>";
@@ -343,8 +349,10 @@
 				980ADD671EE3F8DD00B00B33 /* StreamViewController+WebView.swift in Sources */,
 				980ADD651EE3F8CC00B00B33 /* StreamViewController+ChatView.swift in Sources */,
 				980ADD711EE43F6600B00B33 /* ChatSettingsView.swift in Sources */,
+				980ADD771EE46AC100B00B33 /* Errors.swift in Sources */,
 				98500C7E1EE08C5300CFA446 /* RobotCollectionViewCell.swift in Sources */,
 				980ADD5B1EE2E0AC00B00B33 /* Regex.swift in Sources */,
+				980ADD751EE465F500B00B33 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

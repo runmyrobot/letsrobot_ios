@@ -155,22 +155,30 @@ class Socket {
         }
     }
     
-    func chat(_ message: String, robot: Robot) {
+    func chat(_ message: String, robot: Robot) throws {
         guard socket?.engine?.connected == true else { return }
+        
+        guard let user = AuthenticatedUser.current else {
+            throw RobotError.notLoggedIn
+        }
         
         let payload = [
             "message": "[\(robot.name)] " + message,
             "robot_name": robot.name,
             "robot_id": robot.id,
             "secret": Config.shared?.chatSecret ?? "",
-            "username": "Sherlouk"
+            "username": user.username
         ] as [String: Any]
         
         socket?.emit("chat_message", payload)
     }
     
-    func sendDirection(_ command: RobotCommand, robot: Robot, keyPosition: String) {
+    func sendDirection(_ command: RobotCommand, robot: Robot, keyPosition: String) throws {
         guard socket?.engine?.connected == true else { return }
+        
+        guard let user = AuthenticatedUser.current else {
+            throw RobotError.notLoggedIn
+        }
         
         let dict = [
             "command": command.rawValue,
@@ -179,7 +187,7 @@ class Socket {
             "timestamp": formatter.string(from: Date()),
             "robot_id": robot.id,
             "robot_name": robot.name,
-            "user": "wipApp"
+            "user": user.username
         ] as [String : Any]
         
         socket?.emit("command_to_robot", dict)
@@ -200,11 +208,6 @@ enum RobotCommand: String {
     case ledFull = "LED_FULL"
     case ledMed = "LED_MED"
     case ledLow = "LED_LOW"
-}
-
-struct User {
-    var username: String
-    var robotName: String?
 }
 
 struct ChatMessage {

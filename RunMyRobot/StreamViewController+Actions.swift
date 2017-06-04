@@ -78,7 +78,7 @@ extension StreamViewController {
     
     @IBAction func didPressMessageSend(_ sender: UITextField) {
         guard let message = sender.text else { return }
-        Socket.shared.chat(message, robot: robot)
+        try? Socket.shared.chat(message, robot: robot)
         
         // Clear the field
         sender.text = nil
@@ -92,7 +92,7 @@ extension StreamViewController {
         touchDownDirection = direction
         touchDownTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(didHoldDirection), userInfo: nil, repeats: true)
         
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
+        try? Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
     }
     
     @IBAction func didReleaseDirection(_ sender: UIButton) {
@@ -103,12 +103,12 @@ extension StreamViewController {
         touchDownTimer = nil
         touchDownDirection = nil
         
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "up")
+        try? Socket.shared.sendDirection(direction, robot: robot, keyPosition: "up")
     }
     
     func didHoldDirection() {
         guard let direction = touchDownDirection else { return }
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
+        try? Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
     }
     
     func didTapCamera() {

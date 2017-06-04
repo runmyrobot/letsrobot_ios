@@ -49,6 +49,11 @@ class ListViewController: UIViewController {
         return offlineRobots?[indexPath.item]
     }
     
+    @IBAction func didPressUser() {
+        User.authenticate(user: "Sherlouk", pass: "thisisntactuallymypassword") { (user, error) in
+            // Handle
+        }
+    }
 }
 
 extension ListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
