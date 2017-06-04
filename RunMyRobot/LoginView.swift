@@ -14,6 +14,8 @@ class LoginView: UIView {
     @IBOutlet var passwordField: UITextField!
     @IBOutlet var usernameField: UITextField!
     
+    var success: (() -> Void)?
+    
     class func createView() -> LoginView {
         let viewNib = UINib(nibName: "LoginView", bundle: nil)
         let view = viewNib.instantiate(withOwner: self, options: nil).first as! LoginView
@@ -35,11 +37,11 @@ class LoginView: UIView {
         
         usernameField.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [
             NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.8)
-            ])
+        ])
         
         passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [
             NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.8)
-            ])
+        ])
         
         errorLabel.text = " "
     }
@@ -63,13 +65,19 @@ class LoginView: UIView {
         
         passwordContainer?.layer.borderColor = UIColor.white.cgColor
         
-        User.authenticate(user: username, pass: password) { (user, error) in
+        User.authenticate(user: username, pass: password) { [weak self] (user, error) in
             if let error = error as? RobotError {
-                self.errorLabel.text = "Something went wrong!"
+                switch error {
+                case .invalidLoginDetails:
+                    self?.errorLabel.text = "Incorrect login details!"
+                default:
+                    self?.errorLabel.text = "Something went wrong!"
+                }
+                
                 return
             }
             
-            self.errorLabel.text = "Success"
+            self?.success?()
         }
     }
 

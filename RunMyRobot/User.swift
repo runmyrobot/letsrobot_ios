@@ -20,7 +20,7 @@ class User {
     }
     
     init?(json: JSON) {
-        guard let name = json["username"].string else {
+        guard let name = json["user", "username"].string else {
             return nil
         }
         
@@ -35,7 +35,7 @@ class AuthenticatedUser: User {
     override init?(json: JSON) {
         super.init(json: json)
         
-        guard let email = json["email"].string else {
+        guard let email = json["user", "email"].string else {
             return nil
         }
         

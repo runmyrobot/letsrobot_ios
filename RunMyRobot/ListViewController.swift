@@ -63,6 +63,10 @@ class ListViewController: UIViewController {
             loginView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 50, height: 350)
         }
         
+        loginView.success = {
+            popover.dismiss()
+        }
+        
         popover.showAsDialog(loginView)
     }
     
