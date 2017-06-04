@@ -67,7 +67,7 @@ class Robot {
             self?.owner = json["robot", "owner"].string
             self?.description = json["robot", "robot_description"].string?.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            if json["robot", "custom_panels"].boolValue, let panels = json["robot", "panels", "button_panels"].array, panels.count > 0 {
+            if json["robot", "custom_panels"].boolValue, let panels = json["robot", "panels"].array?.first?["button_panels"].array, panels.count > 0 {
                 self?.panels = [ButtonPanel]()
                 
                 for panel in panels {
