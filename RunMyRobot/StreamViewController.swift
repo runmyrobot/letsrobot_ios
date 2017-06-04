@@ -240,7 +240,7 @@ class StreamViewController: UIViewController {
         chatTableView.beginUpdates()
         let count = chatMessages.count
         
-        if count == 100 {
+        if count == 99 {
             chatTableView.re.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         }
         

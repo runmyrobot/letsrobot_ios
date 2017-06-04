@@ -196,7 +196,15 @@
                             <constraint firstAttribute="trailing" secondItem="rv5-bc-EXz" secondAttribute="trailing" id="xgQ-e6-0OZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="qZw-T5-DP6"/>
+                    <navigationItem key="navigationItem" id="qZw-T5-DP6">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Tl9-3g-Yoj">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Onm-NJ-6qG">
+                                <rect key="frame" x="276" y="7" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="icon-user"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="rv5-bc-EXz" id="d0Y-UN-Trl"/>
                         <segue destination="s8K-cS-TTW" kind="show" identifier="ShowRobot" id="ekE-wi-hjZ"/>
@@ -475,7 +483,7 @@
                                     <constraint firstItem="J5p-6d-wgn" firstAttribute="centerY" secondItem="J1Q-ff-Yof" secondAttribute="centerY" id="uEM-v6-z3s"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHz-LG-Jou" userLabel="Chat Box">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHz-LG-Jou" userLabel="Chat Box">
                                 <rect key="frame" x="0.0" y="325" width="375" height="292"/>
                                 <color key="backgroundColor" red="0.21176470588235294" green="0.21176470588235294" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -708,6 +716,7 @@
         <image name="icon-right" width="25" height="25"/>
         <image name="icon-share" width="25" height="25"/>
         <image name="icon-up" width="25" height="25"/>
+        <image name="icon-user" width="25" height="25"/>
         <image name="logo" width="257" height="257"/>
     </resources>
 </document>
