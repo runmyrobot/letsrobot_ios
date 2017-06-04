@@ -26,6 +26,7 @@
 		980ADD771EE46AC100B00B33 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD761EE46AC100B00B33 /* Errors.swift */; };
 		980ADD7C1EE47F2D00B00B33 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980ADD7B1EE47F2D00B00B33 /* LoginView.xib */; };
 		980ADD7E1EE47F3800B00B33 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD7D1EE47F3800B00B33 /* LoginView.swift */; };
+		980ADD801EE490F100B00B33 /* ControlArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD7F1EE490F100B00B33 /* ControlArrowButton.swift */; };
 		983BCB521EDE29A8007A1247 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB511EDE29A8007A1247 /* Config.swift */; };
 		983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB531EDE9BB0007A1247 /* AngledView.swift */; };
 		98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C791EDF59C400CFA446 /* StreamViewController.swift */; };
@@ -60,6 +61,7 @@
 		980ADD761EE46AC100B00B33 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		980ADD7B1EE47F2D00B00B33 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		980ADD7D1EE47F3800B00B33 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		980ADD7F1EE490F100B00B33 /* ControlArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlArrowButton.swift; sourceTree = "<group>"; };
 		983BCB511EDE29A8007A1247 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		983BCB531EDE9BB0007A1247 /* AngledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngledView.swift; sourceTree = "<group>"; };
 		98500C791EDF59C400CFA446 /* StreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
@@ -108,12 +110,13 @@
 		980ADD521EE20EAD00B00B33 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				980ADD7A1EE47F2300B00B33 /* Login Form */,
-				980ADD6F1EE43F4700B00B33 /* Chat Settings */,
 				983BCB531EDE9BB0007A1247 /* AngledView.swift */,
 				980ADD4F1EE186CC00B00B33 /* ChatMessageTableViewCell.swift */,
-				98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */,
+				980ADD7F1EE490F100B00B33 /* ControlArrowButton.swift */,
 				980ADD5E1EE33E3F00B00B33 /* ListTitleCollectionReusableView.swift */,
+				98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */,
+				980ADD6F1EE43F4700B00B33 /* Chat Settings */,
+				980ADD7A1EE47F2300B00B33 /* Login Form */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				980ADD591EE2C2D100B00B33 /* Threading.swift in Sources */,
 				98500C801EE0A57B00CFA446 /* Socket.swift in Sources */,
 				983BCB521EDE29A8007A1247 /* Config.swift in Sources */,
+				980ADD801EE490F100B00B33 /* ControlArrowButton.swift in Sources */,
 				980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */,
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
 				980ADD7E1EE47F3800B00B33 /* LoginView.swift in Sources */,
