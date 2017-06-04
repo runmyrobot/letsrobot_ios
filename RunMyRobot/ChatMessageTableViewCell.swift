@@ -44,7 +44,7 @@ class ChatMessageTableViewCell: UITableViewCell {
         
         // Robot (not including square brackets)
         let robotName = (fullMessage as NSString).substring(with: robotRange)
-        let robot = Config.shared?.robots.first(where: { $0.value.name == robotName })
+        let robot = Config.shared?.robots.first(where: { $0.value.name.lowercased() == robotName.lowercased() })
         let robotColor = robot?.value.colors?.primaryColor
         attributedString.addAttributes([
             // Idea was to use the robotColor here, but this can sometimes conflict with the background color.

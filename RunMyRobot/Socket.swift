@@ -204,7 +204,7 @@ enum RobotCommand: String {
 
 struct User {
     var username: String
-    var robotName: String
+    var robotName: String?
 }
 
 struct ChatMessage {
@@ -225,10 +225,10 @@ struct ChatMessage {
     }
     
     var robot: Robot? {
-        return Config.shared?.robots.first(where: { $0.value.name == robotName })?.value
+        return Config.shared?.robots.first(where: { $0.value.name.lowercased() == robotName.lowercased() })?.value
     }
     
     var user: User? {
-        return Socket.shared.users.first(where: { $0.username == author })
+        return Socket.shared.users.first(where: { $0.username.lowercased() == author.lowercased() })
     }
 }

@@ -18,6 +18,7 @@ class Config {
     var chatSecret: String
     var socketPort: Int
     var robots = [String: Robot]()
+    var user: User?
     
     init(json: JSON) {
         if let robotsJSON = json["robots"].array {
@@ -41,6 +42,10 @@ class Config {
         
         socketPort = json["socket_io_messaging_to_web_client_port"].intValue
         chatSecret = json["chat_secret"].stringValue
+        
+        if let username = json["user", "username"].string {
+            user = User(username: username, robotName: nil)
+        }
     }
     
 }
@@ -66,8 +71,10 @@ class Robot {
     var panels: [ButtonPanel]?
     
     var users: [User] {
-        return Socket.shared.users.filter { $0.robotName == name }
+        return Socket.shared.users.filter { $0.robotName?.lowercased() == name.lowercased() }
     }
+    
+    var subscribers: [User]?
     
     init?(json: JSON) {
         guard let name = json["name"].string,
@@ -99,13 +106,17 @@ class Robot {
             self?.owner = json["robot", "owner"].string
             self?.description = json["robot", "robot_description"].string?.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            if json["custom_panels"].boolValue, let panels = json["robot", "panels", "button_panels"].array, panels.count > 0 {
+            if json["robot", "custom_panels"].boolValue, let panels = json["robot", "panels", "button_panels"].array, panels.count > 0 {
                 self?.panels = [ButtonPanel]()
                 
                 for panel in panels {
                     guard let buttonPanel = ButtonPanel(json: panel) else { continue }
                     self?.panels?.append(buttonPanel)
                 }
+            }
+            
+            if let subscribers = json["robot", "subscribers"].arrayObject as? [String] {
+                self?.subscribers = subscribers.map { User(username: $0, robotName: nil) }
             }
             
             callback(true)

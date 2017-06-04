@@ -21,7 +21,7 @@ class StreamViewController: UIViewController {
     // Chat
     @IBOutlet var chatTextField: UITextField!
     @IBOutlet var chatTableView: UITableView!
-    @IBOutlet var chatFilterControl: UISegmentedControl!
+//    @IBOutlet var chatFilterControl: UISegmentedControl!
     
     // Controls
     @IBOutlet var controlContainerView: UIView!
@@ -33,6 +33,11 @@ class StreamViewController: UIViewController {
     // Loading View
     @IBOutlet var loadingViewContainer: UIView!
     @IBOutlet var loadingMessageLabel: UILabel!
+    
+    // Subscribe
+    @IBOutlet var subscribeButton: UIButton!
+    @IBOutlet var subscriberCountLabel: UILabel!
+    @IBOutlet var subscriberCountContainerView: UIView!
     
     // Constraints
     @IBOutlet var gameIconTrailingConstraint: NSLayoutConstraint!
@@ -72,12 +77,11 @@ class StreamViewController: UIViewController {
     /// Returns an array of all the current chat messages to show, taking into account the chat filter control
     var chatMessages: [ChatMessage] {
         let allMessages = Socket.shared.chatMessages
-        
-        switch chatFilterControl.selectedSegmentIndex {
-        case 1: return allMessages.filter { $0.robotName == robot.name }
-        case 2: return allMessages
-        default: return allMessages
-        }
+        return allMessages
+//        switch chatFilterControl.selectedSegmentIndex {
+//        case 1: return allMessages.filter { $0.robotName.lowercased() == robot.name.lowercased() }
+//        default: return allMessages
+//        }
     }
     
     override func viewDidLoad() {
@@ -95,6 +99,11 @@ class StreamViewController: UIViewController {
             }
             
             self?.titleLabel.text = self?.robot.name
+            self?.subscriberCountLabel.text = String(describing: self?.robot.subscribers?.count ?? 0)
+            
+            if self?.robot.subscribers?.first(where: { $0.username.lowercased() == Config.shared?.user?.username.lowercased() }) != nil {
+                self?.subscribeButton.setTitle("unsubscribe", for: .normal)
+            }
             
             if let owner = self?.robot.owner {
                 self?.ownerLabel.text = "Owner: \(owner)"
@@ -122,6 +131,9 @@ class StreamViewController: UIViewController {
         gradientLayer.locations = [NSNumber(value: 0), NSNumber(value: 0.35), NSNumber(value: 0.8) ,NSNumber(value: 1)]
         cameraOverlayView.layer.insertSublayer(gradientLayer, at: 0)
         controlsGradientLayer = gradientLayer
+        
+        subscriberCountContainerView.layer.borderColor = UIColor.white.withAlphaComponent(0.4).cgColor
+        subscriberCountContainerView.layer.borderWidth = 1
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -162,10 +174,6 @@ class StreamViewController: UIViewController {
         Socket.shared.chatCallback = nil
     }
     
-    func didTapCamera() {
-        setCameraControlsVisible(!controlsVisible)
-    }
-    
     func setCameraControlsVisible(_ visible: Bool, animated: Bool = true) {
         guard visible != controlsVisible else { return }
         controlsVisible = visible
@@ -179,69 +187,6 @@ class StreamViewController: UIViewController {
             self.backButton.alpha = alpha
             self.controlsGradientLayer?.opacity = Float(alpha)
         }
-    }
-    
-    @IBAction func didPressChangeView(_ sender: UIButton) {
-        let desiredView = sender.tag
-        guard activeView != desiredView else { return }
-        
-        view.endEditing(true)
-        activeView = desiredView
-        
-        chatBoxTrailingConstraint.isActive = desiredView == 1
-        gameIconTrailingConstraint.isActive = desiredView == 1
-        
-        controlContainerView.isHidden = false
-        chatTableView.isHidden = false
-        
-        UIView.animate(withDuration: 0.3, animations: { 
-            self.view.layoutIfNeeded()
-        }, completion: { success in
-            if desiredView == 1 {
-                self.controlContainerView.isHidden = true
-            } else {
-                self.chatTableView.isHidden = true
-            }
-        })
-    }
-    
-    @IBAction func didChangeChatFilter(_ sender: UISegmentedControl) {
-        chatTableView.reloadData()
-    }
-    
-    @IBAction func didPressMessageSend(_ sender: UITextField) {
-        guard let message = sender.text else { return }
-        Socket.shared.chat(message, robot: robot)
-        
-        // Clear the field
-        sender.text = nil
-    }
-    
-    @IBAction func didPressDirection(_ sender: UIButton) {
-        guard let direction = command(from: sender.tag) else { return }
-        
-        // Setup a timer which will be used to send out continous direction requests via the socket
-        // This allows the user to hold down a direction and continue moving
-        touchDownDirection = direction
-        touchDownTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(didHoldDirection), userInfo: nil, repeats: true)
-        
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
-    }
-    
-    @IBAction func didReleaseDirection(_ sender: UIButton) {
-        guard let direction = command(from: sender.tag) else { return }
-        
-        // Clean up the timer and cancel any future runs
-        touchDownTimer?.invalidate()
-        touchDownTimer = nil
-        touchDownDirection = nil
-        
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "up")
-    }
-    
-    func didHoldDirection() {
-        guard let direction = touchDownDirection else { return }
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
     }
     
     func command(from tag: Int) -> RobotCommand? {
@@ -270,10 +215,6 @@ class StreamViewController: UIViewController {
         chatTableView.endUpdates()
     }
     
-    @IBAction func didPressBack() {
-        _ = navigationController?.popViewController(animated: true)
-    }
-    
     // MARK: - Notifications
     
     func keyboardWillChangeFrame(_ notification: NSNotification) {
@@ -293,50 +234,10 @@ class StreamViewController: UIViewController {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
-
+    
+    // MARK: - Status Bar
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-}
-
-extension StreamViewController: UIWebViewDelegate {
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        // There is an issue with the fullview video feed when used in an iOS web view which means the aspect ratio is not maintained
-        // and part of it is therefore cut off. By changing the style tag to use vh/vw rather than percentage, this issue is fixed.
-        // I've mentioned this to Theo, and hopefully we can get this change applied directly to the website and this won't be necessary!
-        let js = "document.getElementById(\"videoCanvasFullView\").setAttribute(\"style\", \"height: 100vh; width: 100vw;\")"
-        _ = cameraWebView.stringByEvaluatingJavaScript(from: js)
-        
-        cameraLoadingView.isHidden = true
-    }
-    
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        cameraErrorLabel.text = error.localizedDescription
-    }
-    
-}
-
-extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatMessages.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessage", for: indexPath) as! ChatMessageTableViewCell
-        
-        let count = chatMessages.count - 1 - indexPath.row
-        cell.setMessage(chatMessages[count])
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
-    }
-    
 }
