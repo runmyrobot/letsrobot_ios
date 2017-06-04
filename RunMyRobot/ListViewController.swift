@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Popover
 
 class ListViewController: UIViewController {
 
@@ -50,10 +51,21 @@ class ListViewController: UIViewController {
     }
     
     @IBAction func didPressUser() {
-        User.authenticate(user: "Sherlouk", pass: "thisisntactuallymypassword") { (user, error) in
-            // Handle
+        let popover = Popover(options: [
+            .blackOverlayColor(UIColor(white: 0.0, alpha: 0.6)),
+            .color(UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))
+        ])
+        
+        let loginView = LoginView.createView()
+        loginView.frame = CGRect(x: 0, y: 0, width: view.bounds.width - 50, height: 350)
+        
+        popover.willShowHandler = {
+            loginView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 50, height: 350)
         }
+        
+        popover.showAsDialog(loginView)
     }
+    
 }
 
 extension ListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {

@@ -201,9 +201,9 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Onm-NJ-6qG">
                                 <rect key="frame" x="334" y="9" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="icon-user"/>
+                                <state key="normal" image="icon-user-round"/>
                                 <connections>
-                                    <action selector="didPressUser" destination="RbZ-ZU-IDB" eventType="touchUpInside" id="ojE-aH-GGY"/>
+                                    <action selector="didPressUser" destination="RbZ-ZU-IDB" eventType="touchUpInside" id="wsl-M8-oQR"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -719,7 +719,7 @@
         <image name="icon-right" width="25" height="25"/>
         <image name="icon-share" width="25" height="25"/>
         <image name="icon-up" width="25" height="25"/>
-        <image name="icon-user" width="25" height="25"/>
+        <image name="icon-user-round" width="25" height="25"/>
         <image name="logo" width="257" height="257"/>
     </resources>
 </document>
