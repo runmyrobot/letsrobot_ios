@@ -61,6 +61,10 @@ class ChatMessageTableViewCell: UITableViewCell {
         var hash: Int = 0
         
         for i in 0 ..< name.length {
+            if i > 7 {
+                return hash
+            }
+            
             let char = Int(name.character(at: i))
             hash = char + ((hash << 5) - hash)
         }

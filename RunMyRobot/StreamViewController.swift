@@ -29,6 +29,7 @@ class StreamViewController: UIViewController {
     @IBOutlet var viewCountLabel: UILabel!
     @IBOutlet var backButton: UIButton!
     @IBOutlet var ownerLabel: UILabel!
+    @IBOutlet var customControlsCollectionView: UICollectionView!
     
     // Loading View
     @IBOutlet var loadingViewContainer: UIView!
@@ -136,6 +137,12 @@ class StreamViewController: UIViewController {
                 self?.titleVerticalConstraint.constant = -6
             }
             
+            if let panels = self?.robot.panels, panels.count > 0 {
+                self?.customControlsCollectionView.reloadData()
+            } else {
+                self?.customControlsCollectionView.isHidden = true
+            }
+            
             UIView.animate(withDuration: 0.3, animations: {
                 self?.loadingViewContainer.alpha = 0
             }, completion: { success in
@@ -240,7 +247,7 @@ class StreamViewController: UIViewController {
         chatTableView.beginUpdates()
         let count = chatMessages.count
         
-        if count == 99 {
+        if count == 100 {
             chatTableView.re.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         }
         
