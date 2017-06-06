@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SettingsListSwitchCell" customModule="RunMyRobot" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ANONYMOUS CONTROL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWR-A5-BmT" customClass="TTTAttributedLabel">
+                        <rect key="frame" x="24" y="16" width="228" height="20"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allows users who are not logged in to control your robot" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTN-gM-PvJ">
+                        <rect key="frame" x="24" y="40" width="218" height="33.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yd6-c0-jtf">
+                        <rect key="frame" x="302" y="16" width="51" height="31"/>
+                        <color key="onTintColor" red="0.93725490199999995" green="0.65098039220000004" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="didPressSwitch:" destination="KGk-i7-Jjw" eventType="valueChanged" id="hDe-sK-oCy"/>
+                        </connections>
+                    </switch>
+                </subviews>
+                <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="oWR-A5-BmT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="8wq-92-vgZ"/>
+                    <constraint firstAttribute="trailing" secondItem="yd6-c0-jtf" secondAttribute="trailing" constant="24" id="Rkn-oL-S4X"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="QTN-gM-PvJ" secondAttribute="bottom" constant="8" id="Rnb-NU-Jlp"/>
+                    <constraint firstItem="QTN-gM-PvJ" firstAttribute="top" secondItem="oWR-A5-BmT" secondAttribute="bottom" constant="4" id="ZG5-Jp-NMp"/>
+                    <constraint firstItem="QTN-gM-PvJ" firstAttribute="leading" secondItem="oWR-A5-BmT" secondAttribute="leading" id="abV-ZE-JKn"/>
+                    <constraint firstItem="QTN-gM-PvJ" firstAttribute="trailing" secondItem="oWR-A5-BmT" secondAttribute="trailing" constant="-10" id="cYz-PI-5qQ"/>
+                    <constraint firstItem="yd6-c0-jtf" firstAttribute="top" secondItem="oWR-A5-BmT" secondAttribute="top" id="jjp-fc-EXs"/>
+                    <constraint firstItem="oWR-A5-BmT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="mEi-yK-dci"/>
+                    <constraint firstItem="yd6-c0-jtf" firstAttribute="leading" secondItem="oWR-A5-BmT" secondAttribute="trailing" constant="50" id="xZp-mg-hyP"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="primaryLabel" destination="oWR-A5-BmT" id="fii-mZ-w3C"/>
+                <outlet property="secondaryLabel" destination="QTN-gM-PvJ" id="Ueu-j6-lb5"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </tableViewCell>
+    </objects>
+</document>

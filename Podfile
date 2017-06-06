@@ -10,4 +10,8 @@ target 'RunMyRobot' do
   pod 'UIImageColors'
   pod 'ReverseExtension'
   pod 'Popover'
+  pod 'MXPagerView'
+  pod 'SnapKit', '~> 3.2.0'
+  pod 'GSMessages'
+  pod 'TTTAttributedLabel'
 end
