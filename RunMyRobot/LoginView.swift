@@ -18,7 +18,11 @@ class LoginView: UIView {
     
     class func createView() -> LoginView {
         let viewNib = UINib(nibName: "LoginView", bundle: nil)
-        let view = viewNib.instantiate(withOwner: self, options: nil).first as! LoginView
+        
+        guard let view = viewNib.instantiate(withOwner: self, options: nil).first as? LoginView else {
+            fatalError()
+        }
+        
         view.load()
         
         return view
@@ -65,7 +69,7 @@ class LoginView: UIView {
         
         passwordContainer?.layer.borderColor = UIColor.white.cgColor
         
-        User.authenticate(user: username, pass: password) { [weak self] (user, error) in
+        User.authenticate(user: username, pass: password) { [weak self] (_, error) in
             if let error = error as? RobotError {
                 switch error {
                 case .invalidLoginDetails:

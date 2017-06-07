@@ -67,7 +67,7 @@ extension StreamViewController {
         
         UIView.animate(withDuration: 0.3, animations: {
             self.view.layoutIfNeeded()
-        }, completion: { success in
+        }, completion: { _ in
             if desiredView == 1 {
                 self.controlContainerView.isHidden = true
             } else {

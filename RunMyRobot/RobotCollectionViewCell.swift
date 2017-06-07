@@ -66,7 +66,7 @@ class RobotCollectionViewCell: UICollectionViewCell {
         
         if let imageURL = robot.avatarUrl {
             loadingActivityIndicator.startAnimating()
-            Nuke.loadImage(with: imageURL, into: robotThumbnailImageView) { (result, isFromCache) in
+            Nuke.loadImage(with: imageURL, into: robotThumbnailImageView) { (result, _) in
                 if let error = result.error {
                     print(error.localizedDescription)
                     self.loadingActivityIndicator.stopAnimating()

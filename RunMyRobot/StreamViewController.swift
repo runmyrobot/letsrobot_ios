@@ -8,6 +8,7 @@
 
 import UIKit
 import ReverseExtension
+import Crashlytics
 
 class StreamViewController: UIViewController {
 
@@ -80,7 +81,7 @@ class StreamViewController: UIViewController {
         let clear = UIColor.clear.cgColor
         
         gradientLayer.colors = [black, clear, clear, black]
-        gradientLayer.locations = [NSNumber(value: 0), NSNumber(value: 0.35), NSNumber(value: 0.8) ,NSNumber(value: 1)]
+        gradientLayer.locations = [NSNumber(value: 0), NSNumber(value: 0.35), NSNumber(value: 0.8), NSNumber(value: 1)]
         
         return gradientLayer
     }()
@@ -90,8 +91,12 @@ class StreamViewController: UIViewController {
         let allMessages = Socket.shared.chatMessages
         
         switch chatFilterMode {
-        case 1: return allMessages.filter { $0.robotName.lowercased() == robot.name.lowercased() }
-        default: return allMessages
+        case 1:
+            return allMessages.filter {
+                $0.robotName.lowercased() == robot.name.lowercased()
+            }
+        default:
+            return allMessages
         }
     }
     
@@ -145,9 +150,11 @@ class StreamViewController: UIViewController {
             
             UIView.animate(withDuration: 0.3, animations: {
                 self?.loadingViewContainer.alpha = 0
-            }, completion: { success in
+            }, completion: { _ in
                 self?.setCameraControlsVisible(true, animated: false)
             })
+            
+            Answers.logContentView(withName: "Viewed Robot Stream", contentType: "robot", contentId: self.robot.id)
         }
         
         // Add notification listeners
@@ -231,11 +238,16 @@ class StreamViewController: UIViewController {
     
     func command(from tag: Int) -> RobotCommand? {
         switch tag {
-        case 1: return .forward
-        case 2: return .backward
-        case 3: return .left
-        case 4: return .right
-        default: return nil
+        case 1:
+            return .forward
+        case 2:
+            return .backward
+        case 3:
+            return .left
+        case 4:
+            return .right
+        default:
+            return nil
         }
     }
     

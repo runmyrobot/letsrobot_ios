@@ -30,7 +30,7 @@ class LoaderViewController: UIViewController {
             Config.shared = config
             
             self?.progressLabel.text = "Connecting Socket"
-            Socket.shared.start { [weak self] success in
+            Socket.shared.start { [weak self] _ in
                 self?.progressLabel.text = "Connected"
                 
                 Threading.run(on: .main, after: 0.3) { [weak self] in

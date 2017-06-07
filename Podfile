@@ -17,4 +17,5 @@ target 'RunMyRobot' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'SideMenu'
+  pod 'SwiftLint'
 end

@@ -21,7 +21,10 @@ class ChatSettingsView: UIView {
     
     class func createView() -> ChatSettingsView {
         let viewNib = UINib(nibName: "ChatSettingsView", bundle: nil)
-        let view = viewNib.instantiate(withOwner: self, options: nil).first as! ChatSettingsView
+        
+        guard let view = viewNib.instantiate(withOwner: self, options: nil).first as? ChatSettingsView else {
+            fatalError()
+        }
         
         return view
     }

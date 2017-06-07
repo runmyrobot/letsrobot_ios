@@ -58,7 +58,58 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrE-Kt-Igc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="910" y="59"/>
+            <point key="canvasLocation" x="910" y="145"/>
+        </scene>
+        <!--Side Menu Navigation Controller-->
+        <scene sceneID="7OF-Qh-e0b">
+            <objects>
+                <navigationController id="mHn-Pj-I5Y" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="77i-5p-8pJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <segue destination="I59-XH-3bB" kind="relationship" relationship="rootViewController" id="ZcB-Nc-tQK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jzW-f4-OWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1678" y="1571"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="iY1-1T-uGO">
+            <objects>
+                <viewController id="I59-XH-3bB" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XAd-4S-XqI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jcd-bQ-tJO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fvD-vd-lrw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciy-Nd-oC8">
+                                <rect key="frame" x="164" y="318" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="wCd-yS-qOa" kind="presentation" id="vvA-gv-Qfj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ciy-Nd-oC8" firstAttribute="centerY" secondItem="fvD-vd-lrw" secondAttribute="centerY" id="jzW-wW-aFI"/>
+                            <constraint firstItem="ciy-Nd-oC8" firstAttribute="centerX" secondItem="fvD-vd-lrw" secondAttribute="centerX" id="rci-WB-DyB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="mC6-CE-5O7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HKv-nC-QlA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2446" y="1571"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="m9X-nJ-VeD">
@@ -197,13 +248,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qZw-T5-DP6">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="U7J-S6-yUb">
+                        <barButtonItem key="leftBarButtonItem" id="U7J-S6-yUb">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WxA-mv-Dsu">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Test"/>
                                 <connections>
-                                    <segue destination="wCd-yS-qOa" kind="presentation" id="nz1-EJ-l4Q"/>
+                                    <segue destination="mHn-Pj-I5Y" kind="presentation" id="98X-Uv-llH"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -348,7 +399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y67-co-oVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1677.5999999999999" y="1584.5577211394304"/>
+            <point key="canvasLocation" x="3241" y="1571"/>
         </scene>
         <!--Stream View Controller-->
         <scene sceneID="rly-if-LCR">
@@ -904,7 +955,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHZ-FX-cC4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2472.8000000000002" y="852.3238380809596"/>
+            <point key="canvasLocation" x="2446" y="853"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="khA-By-Pp7">

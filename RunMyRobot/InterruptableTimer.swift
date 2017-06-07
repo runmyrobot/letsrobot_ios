@@ -37,6 +37,5 @@ class InterruptableTimer: NSObject {
         timer = nil
         callback = nil
     }
-
     
 }

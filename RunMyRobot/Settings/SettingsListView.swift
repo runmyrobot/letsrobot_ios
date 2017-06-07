@@ -87,16 +87,18 @@ extension SettingsListView: UITableViewDataSource {
         case "robotpicker":
             return tableView.dequeueReusableCell(withIdentifier: "RobotPicker", for: indexPath)
         case "toggle":
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Switch", for: indexPath) as! SettingsListSwitchCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "Switch", for: indexPath) as? SettingsListSwitchCell else {
+                fatalError()
+            }
             
             if let title = cellInfo["title"] as? String, let subtitle = cellInfo["subtitle"] as? String {
                 cell.setText(title, subtitle)
             }
             
             return cell
-        default: fatalError()
+        default:
+            fatalError()
         }
-        
         
 //        if indexPath.item == 0 {
 //            return tableView.dequeueReusableCell(withIdentifier: "RobotPicker", for: indexPath)

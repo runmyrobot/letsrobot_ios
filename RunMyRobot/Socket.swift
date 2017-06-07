@@ -27,16 +27,16 @@ class Socket {
         return formatter
     }()
     
-    func start(callback: @escaping ((Bool) -> Void)) {
+    func start(callback: @escaping ((Bool) -> Void)) { // swiftlint:disable:this function_body_length cyclomatic_complexity
         if let url = URL(string: "https://runmyrobot.com:\(Config.shared?.socketPort ?? 8000)") {
             socket = SocketIOClient(socketURL: url, config: [.log(false)])
             
-            socket?.on(clientEvent: .connect) { (data, ack) in
+            socket?.on(clientEvent: .connect) { (_, _) in
                 print("✅ [SOCKET] Connected")
                 callback(true)
             }
             
-            socket?.on(clientEvent: .disconnect) { (data, ack) in
+            socket?.on(clientEvent: .disconnect) { (_, _) in
                 print("⛔️ [SOCKET] Disconnected")
             }
             
@@ -52,16 +52,20 @@ class Socket {
                 print("♻︎ [SOCKET] Reconnect Attempt", data, ack)
             }
             
-            socket?.on(clientEvent: .statusChange) { (data, ack) in
+            socket?.on(clientEvent: .statusChange) { (data, _) in
                 guard let status = data.first as? SocketIOClientStatus else { return }
                 
                 var message = "Unknown"
                 
                 switch status {
-                case .connected: message = "Connected"
-                case .connecting: message = "Connecting"
-                case .disconnected: message = "Disconnected"
-                case .notConnected: message = "Not Connected"
+                case .connected:
+                    message = "Connected"
+                case .connecting:
+                    message = "Connecting"
+                case .disconnected:
+                    message = "Disconnected"
+                case .notConnected:
+                    message = "Not Connected"
                 }
                 
                 print("⚠️ [SOCKET] Status Changed: \(message)")
@@ -82,7 +86,7 @@ class Socket {
                 print(event.event)
             }
             
-            socket?.on("news") { (data, ack) in
+            socket?.on("news") { (data, _) in
                 guard let data = data.first as? [String: String] else { return }
                 
                 for item in data {
@@ -90,12 +94,12 @@ class Socket {
                 }
             }
             
-            socket?.on("num_viewers") { (data, ack) in
+            socket?.on("num_viewers") { (data, _) in
                 guard let data = data.first as? Int else { return }
                 print("🎲 [VIEWER COUNT] \(data) (User Count: \(self.users.count))")
             }
             
-            socket?.on("robot_statuses") { (data, ack) in
+            socket?.on("robot_statuses") { (data, _) in
                 guard let data = data.first, let statuses = JSON(data)["robot_statuses"].array else { return }
                 
                 var changes = false
@@ -122,7 +126,7 @@ class Socket {
                 }
             }
             
-            socket?.on("chat_message_with_name") { (data, ack) in
+            socket?.on("chat_message_with_name") { (data, _) in
                 guard let data = data.first else { return }
                 guard let message = ChatMessage(json: JSON(data)) else { return }
                 
@@ -137,7 +141,7 @@ class Socket {
                 print("💬 [\(message.author) @ \(message.robotName)]: \(message.message) (/\(self.chatMessages.count))")
             }
             
-            socket?.on("users_list") { (data, ack) in
+            socket?.on("users_list") { (data, _) in
                 guard let data = data.first, let userJSON = JSON(data).dictionary else { return }
                 
                 var builder = [User]()

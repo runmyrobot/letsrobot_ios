@@ -27,7 +27,7 @@ class SettingsListSwitchCell: UITableViewCell {
     }
     
     @IBAction func didPressSwitch(_ sender: UISwitch) {
-        UIView.animate(withDuration: 0.2) { 
+        UIView.animate(withDuration: 0.2) {
             self.primaryLabel.alpha = sender.isOn ? 1 : 0.3
             self.secondaryLabel.alpha = sender.isOn ? 1 : 0.3
         }

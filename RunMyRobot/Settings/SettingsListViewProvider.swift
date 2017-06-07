@@ -113,7 +113,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "title": "DEV MODE",
                 "subtitle": "Prevents users from being able to interact with the robot whilst you validate it all works!",
                 "type": "toggle"
-            ],
+            ]
 //            [
 //                "title": "CUSTOM PANELS",
 //                "subtitle": "Allows you to start using custom panels; a way to change the default controls of your robot",

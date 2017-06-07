@@ -43,7 +43,6 @@ class AngledView: UIView {
         angleColor.set()
         path.fill()
         
-        
         let p4 = CGPoint(x: 0, y: bounds.height)
         let p5 = CGPoint(x: bounds.width, y: 5)
         

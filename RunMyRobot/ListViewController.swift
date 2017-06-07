@@ -89,7 +89,9 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RobotCell", for: indexPath) as! RobotCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RobotCell", for: indexPath) as? RobotCollectionViewCell else {
+            fatalError()
+        }
         
         if let robot = robotForIndexPath(indexPath) {
             cell.setRobot(Config.shared?.robots[robot.id] ?? robot)
@@ -112,7 +114,10 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionTitle", for: indexPath) as! ListTitleCollectionReusableView
+        guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionTitle", for: indexPath) as? ListTitleCollectionReusableView else {
+            fatalError()
+        }
+        
         view.titleLabel.text = indexPath.section == 0 ? "ONLINE ROBOTS" : "OFFLINE ROBOTS"
         return view
     }

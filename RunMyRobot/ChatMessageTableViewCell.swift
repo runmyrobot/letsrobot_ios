@@ -76,14 +76,22 @@ class ChatMessageTableViewCell: UITableViewCell {
         let nameHash = hash(name: name as NSString)
         
         switch nameHash % 7 {
-        case 0: return ChatColours.blue // 21BCE5
-        case 1: return ChatColours.grey // 97E062
-        case 2: return ChatColours.yellow // F3EB48
-        case 3: return ChatColours.purple // 5F79FF
-        case 4: return ChatColours.orange // F9AA67
-        case 5: return ChatColours.pink // F16B74
-        case 6: return ChatColours.violet // A652Af
-        default: return ChatColours.blue // 21BCE5
+        case 0:
+            return ChatColours.blue // 21BCE5
+        case 1:
+            return ChatColours.grey // 97E062
+        case 2:
+            return ChatColours.yellow // F3EB48
+        case 3:
+            return ChatColours.purple // 5F79FF
+        case 4:
+            return ChatColours.orange // F9AA67
+        case 5:
+            return ChatColours.pink // F16B74
+        case 6:
+            return ChatColours.violet // A652Af
+        default:
+            return ChatColours.blue // 21BCE5
         }
     }
 

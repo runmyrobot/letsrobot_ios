@@ -23,7 +23,9 @@ extension StreamViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SingleButton", for: indexPath) as! CustomButtonCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SingleButton", for: indexPath) as? CustomButtonCollectionViewCell else {
+            fatalError()
+        }
         
         if let panel = robot.panels?[indexPath.section] {
             let button = panel.buttons[indexPath.item]
@@ -45,7 +47,9 @@ extension StreamViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionTitle", for: indexPath) as! ListTitleCollectionReusableView
+        guard let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionTitle", for: indexPath) as? ListTitleCollectionReusableView else {
+            fatalError()
+        }
         view.titleLabel.text = robot.panels?[indexPath.section].title.uppercased() ?? "UNKNOWN SECTION"
         return view
     }

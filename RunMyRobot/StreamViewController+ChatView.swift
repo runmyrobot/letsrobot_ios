@@ -15,7 +15,9 @@ extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessage", for: indexPath) as! ChatMessageTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessage", for: indexPath) as? ChatMessageTableViewCell else {
+            fatalError()
+        }
         
         let count = chatMessages.count - 1 - indexPath.row
         cell.setMessage(chatMessages[count])

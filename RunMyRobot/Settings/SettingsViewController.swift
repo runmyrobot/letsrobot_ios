@@ -84,10 +84,14 @@ extension SettingsViewController: MXPagerViewDataSource, MXPagerViewDelegate {
     func pagerView(_ pagerView: MXPagerView, viewForPageAt index: Int) -> UIView? {
         let provider: SettingsListViewProvider? = {
             switch index {
-            case 0: return UserSettingsListProvider()
-            case 1: return NotificationSettingsListProvider()
-            case 2: return RobotSettingsListProvider(robots: ["Roxi"])
-            default: return nil
+            case 0:
+                return UserSettingsListProvider()
+            case 1:
+                return NotificationSettingsListProvider()
+            case 2:
+                return RobotSettingsListProvider(robots: ["Roxi"])
+            default:
+                return nil
             }
         }()
         
