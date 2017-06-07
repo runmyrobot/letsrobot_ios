@@ -53,36 +53,17 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="progressLabel" destination="Uro-9Q-O07" id="PZo-j0-CwY"/>
-                        <segue destination="5T5-to-IrK" kind="show" identifier="EnterApp" id="iiE-69-2oP"/>
+                        <segue destination="agr-FB-9qS" kind="show" identifier="EnterApp" id="8EN-u5-myK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrE-Kt-Igc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="910" y="145"/>
         </scene>
-        <!--Side Menu Navigation Controller-->
-        <scene sceneID="7OF-Qh-e0b">
-            <objects>
-                <navigationController id="mHn-Pj-I5Y" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="77i-5p-8pJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <segue destination="I59-XH-3bB" kind="relationship" relationship="rootViewController" id="ZcB-Nc-tQK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jzW-f4-OWm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1678" y="1571"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="iY1-1T-uGO">
             <objects>
-                <viewController id="I59-XH-3bB" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuView" id="I59-XH-3bB" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XAd-4S-XqI"/>
                         <viewControllerLayoutGuide type="bottom" id="Jcd-bQ-tJO"/>
@@ -92,14 +73,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciy-Nd-oC8">
-                                <rect key="frame" x="164" y="318" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <rect key="frame" x="131.5" y="318" width="111" height="30"/>
+                                <state key="normal" title="Launch Settings">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <segue destination="wCd-yS-qOa" kind="presentation" id="vvA-gv-Qfj"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.1960784314" green="0.23137254900000001" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="ciy-Nd-oC8" firstAttribute="centerY" secondItem="fvD-vd-lrw" secondAttribute="centerY" id="jzW-wW-aFI"/>
                             <constraint firstItem="ciy-Nd-oC8" firstAttribute="centerX" secondItem="fvD-vd-lrw" secondAttribute="centerX" id="rci-WB-DyB"/>
@@ -109,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKv-nC-QlA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2446" y="1571"/>
+            <point key="canvasLocation" x="910" y="1568"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="m9X-nJ-VeD">
@@ -253,9 +236,6 @@
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Test"/>
-                                <connections>
-                                    <segue destination="mHn-Pj-I5Y" kind="presentation" id="98X-Uv-llH"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" id="Tl9-3g-Yoj">
@@ -298,6 +278,9 @@
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="icon-back"/>
+                                <connections>
+                                    <action selector="didPressClose" destination="wCd-yS-qOa" eventType="touchUpInside" id="9QN-rb-Dmt"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bb3-Di-JD4">
                                 <rect key="frame" x="146" y="40" width="83" height="21.5"/>
@@ -399,7 +382,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y67-co-oVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3241" y="1571"/>
+            <point key="canvasLocation" x="1678" y="1567"/>
+        </scene>
+        <!--Menu Container View Controller-->
+        <scene sceneID="x5w-js-lnM">
+            <objects>
+                <viewController id="agr-FB-9qS" customClass="MenuContainerViewController" customModule="RunMyRobot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ftW-58-Ra8"/>
+                        <viewControllerLayoutGuide type="bottom" id="03W-Ab-II8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Mjh-Cr-h7A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OOW-vR-Q6v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1678" y="144"/>
         </scene>
         <!--Stream View Controller-->
         <scene sceneID="rly-if-LCR">
@@ -960,7 +961,7 @@
         <!--Navigation Controller-->
         <scene sceneID="khA-By-Pp7">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5T5-to-IrK" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainView" automaticallyAdjustsScrollViewInsets="NO" id="5T5-to-IrK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

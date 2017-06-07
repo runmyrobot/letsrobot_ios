@@ -31,6 +31,7 @@
 		980ADD841EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD831EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift */; };
 		983BCB521EDE29A8007A1247 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB511EDE29A8007A1247 /* Config.swift */; };
 		983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB531EDE9BB0007A1247 /* AngledView.swift */; };
+		983F85B11EE83414001FD90A /* MenuContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983F85B01EE83414001FD90A /* MenuContainerViewController.swift */; };
 		98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C791EDF59C400CFA446 /* StreamViewController.swift */; };
 		98500C7C1EE0892E00CFA446 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C7B1EE0892E00CFA446 /* ListViewController.swift */; };
 		98500C7E1EE08C5300CFA446 /* RobotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */; };
@@ -75,6 +76,7 @@
 		980ADD831EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonCollectionViewCell.swift; sourceTree = "<group>"; };
 		983BCB511EDE29A8007A1247 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		983BCB531EDE9BB0007A1247 /* AngledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngledView.swift; sourceTree = "<group>"; };
+		983F85B01EE83414001FD90A /* MenuContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuContainerViewController.swift; sourceTree = "<group>"; };
 		98500C791EDF59C400CFA446 /* StreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
 		98500C7B1EE0892E00CFA446 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				98500C7B1EE0892E00CFA446 /* ListViewController.swift */,
 				980ADD551EE2BFD200B00B33 /* LoaderViewController.swift */,
 				980ADD681EE3F8F500B00B33 /* Stream VC */,
+				983F85B01EE83414001FD90A /* MenuContainerViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				980ADD651EE3F8CC00B00B33 /* StreamViewController+ChatView.swift in Sources */,
 				98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */,
 				980ADD711EE43F6600B00B33 /* ChatSettingsView.swift in Sources */,
+				983F85B11EE83414001FD90A /* MenuContainerViewController.swift in Sources */,
 				98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */,
 				980ADD771EE46AC100B00B33 /* Errors.swift in Sources */,
 				98500C7E1EE08C5300CFA446 /* RobotCollectionViewCell.swift in Sources */,

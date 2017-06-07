@@ -8,7 +8,7 @@ PODS:
   - Nuke (5.1)
   - Popover (1.0.5)
   - ReverseExtension (0.4.8)
-  - SideMenu (2.3.2)
+  - SlideMenuControllerSwift (3.0.1)
   - SnapKit (3.2.0)
   - Socket.IO-Client-Swift (9.0.1)
   - SwiftLint (0.19.0)
@@ -25,7 +25,7 @@ DEPENDENCIES:
   - Nuke (~> 5.0)
   - Popover
   - ReverseExtension
-  - SideMenu
+  - SlideMenuControllerSwift
   - SnapKit (~> 3.2.0)
   - Socket.IO-Client-Swift (~> 9.0.0)
   - SwiftLint
@@ -42,7 +42,7 @@ SPEC CHECKSUMS:
   Nuke: 8ab71e77f6a54ff5fb697f93537c35f419bb01f7
   Popover: f31b0ef6f43192256e6fcf13a0ce10f01c803159
   ReverseExtension: 78dcc8414c4efb6115d787694649d9f4f020324a
-  SideMenu: 3fa07dd05d4bade2b6f9889fb1877e312e1ba319
+  SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   Socket.IO-Client-Swift: 60b71a684692a312c4aba3ef52f186e0e254e868
   SwiftLint: 3537a05b34060e78e7510f04fb7537d738247803
@@ -50,6 +50,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UIImageColors: ba833ce88773453e0a1065f29cde333a97865607
 
-PODFILE CHECKSUM: 84cbb94afef8fde1e4baa9936d585095e1e05536
+PODFILE CHECKSUM: 29a0625298a2e46630a4d5e296ba1a4b1e67c381
 
 COCOAPODS: 1.2.0

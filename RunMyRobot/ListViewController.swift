@@ -36,6 +36,11 @@ class ListViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        slideMenuController()?.openLeft()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowRobot", let destination = segue.destination as? StreamViewController {
             destination.robot = sender as? Robot

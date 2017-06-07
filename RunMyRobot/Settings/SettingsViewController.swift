@@ -31,19 +31,22 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        changePage(number: 1)
+        changePage(number: 1, animate: false)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
 
+    @IBAction func didPressClose() {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 // MARK: - Navigation Bar
 extension SettingsViewController {
     
-    func changePage(number: Int) {
+    func changePage(number: Int, animate: Bool = true) {
         // Get new navigation button
         let newPageButton = navigationStackView.arrangedSubviews[number - 1]
         
@@ -52,7 +55,7 @@ extension SettingsViewController {
             make.centerX.equalTo(newPageButton.snp.centerX)
         }
         
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: animate ? 0.3 : 0) {
             // Animate the indicator movement
             self.view.layoutIfNeeded()
             
@@ -66,7 +69,7 @@ extension SettingsViewController {
         }
         
         // Change Page
-        pagerView.showPage(at: number - 1, animated: true)
+        pagerView.showPage(at: number - 1, animated: animate)
     }
     
     @IBAction func didPressChangePage(_ sender: UIButton) {

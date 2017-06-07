@@ -16,6 +16,6 @@ target 'RunMyRobot' do
   pod 'TTTAttributedLabel'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'SideMenu'
+  pod 'SlideMenuControllerSwift'
   pod 'SwiftLint'
 end
