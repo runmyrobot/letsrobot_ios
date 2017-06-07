@@ -9,6 +9,7 @@
 import UIKit
 import Nuke
 import Popover
+import Crashlytics
 
 extension StreamViewController {
     
@@ -48,6 +49,13 @@ extension StreamViewController {
         
         let activity = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activity.popoverPresentationController?.sourceView = sender
+        activity.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
+            guard let activityType = activityType, completed else {
+                return
+            }
+            
+            Answers.logShare(withMethod: activityType.rawValue, contentName: "robot", contentType: "share", contentId: self.robot.id)
+        }
         
         present(activity, animated: true, completion: nil)
     }

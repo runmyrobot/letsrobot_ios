@@ -154,7 +154,7 @@ class StreamViewController: UIViewController {
                 self?.setCameraControlsVisible(true, animated: false)
             })
             
-            Answers.logContentView(withName: "Viewed Robot Stream", contentType: "robot", contentId: self.robot.id)
+            Answers.logContentView(withName: "Viewed Robot Stream", contentType: "robot", contentId: self?.robot.id)
         }
         
         // Add notification listeners
