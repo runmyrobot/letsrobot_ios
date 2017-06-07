@@ -14,4 +14,7 @@ target 'RunMyRobot' do
   pod 'SnapKit', '~> 3.2.0'
   pod 'GSMessages'
   pod 'TTTAttributedLabel'
+  pod 'Fabric'
+  pod 'Crashlytics'
+  pod 'SideMenu'
 end
