@@ -29,7 +29,12 @@ class User {
 }
 
 class AuthenticatedUser: User {
+    
     fileprivate(set) static var current: AuthenticatedUser?
+    static var loggedIn: Bool {
+        return current != nil
+    }
+    
     var email: String?
     
     override init?(json: JSON) {
