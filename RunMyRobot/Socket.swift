@@ -162,16 +162,16 @@ class Socket {
     func chat(_ message: String, robot: Robot) throws {
         guard socket?.engine?.connected == true else { return }
         
-        guard let user = AuthenticatedUser.current else {
-            throw RobotError.notLoggedIn
-        }
+//        guard let user = AuthenticatedUser.current else {
+//            throw RobotError.notLoggedIn
+//        }
         
         let payload = [
             "message": "[\(robot.name)] " + message,
             "robot_name": robot.name,
             "robot_id": robot.id,
-            "secret": Config.shared?.chatSecret ?? "",
-            "username": user.username
+            "secret": Config.shared?.chatSecret ?? ""
+//            "username": user.username
         ] as [String: Any]
         
         socket?.emit("chat_message", payload)

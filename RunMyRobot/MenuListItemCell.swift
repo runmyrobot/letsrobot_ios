@@ -17,6 +17,9 @@ class MenuListItemCell: UITableViewCell {
     func configure(title: String, image: String) {
         itemLabel.setText(title.uppercased())
         iconImageView.image = UIImage(named: image)
+        
+        selectedBackgroundView = UIView()
+        selectedBackgroundView?.backgroundColor = UIColor.black.withAlphaComponent(0.15)
     }
 
 }

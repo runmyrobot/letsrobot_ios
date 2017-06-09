@@ -156,12 +156,12 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="kern">
-                                        <real key="value" value="5"/>
+                                        <real key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evo-yK-SVw">
-                                <rect key="frame" x="8" y="50" width="44" height="44"/>
+                                <rect key="frame" x="16" y="78" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="PeD-zT-lxe"/>
                                     <constraint firstAttribute="width" secondItem="evo-yK-SVw" secondAttribute="height" multiplier="1:1" id="x3q-mD-sNn"/>
@@ -174,7 +174,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-horizontal" translatesAutoresizingMaskIntoConstraints="NO" id="use-6j-deA">
-                                <rect key="frame" x="32" y="62" width="311" height="41"/>
+                                <rect key="frame" x="50" y="72" width="275" height="36.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="use-6j-deA" secondAttribute="height" multiplier="121:16" id="EsI-eP-m15"/>
                                 </constraints>
@@ -183,11 +183,11 @@
                         <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="h8E-uN-3M8" firstAttribute="top" secondItem="use-6j-deA" secondAttribute="bottom" priority="750" constant="32" id="0Lx-TX-75D"/>
-                            <constraint firstItem="evo-yK-SVw" firstAttribute="top" secondItem="LzZ-Y8-WEf" secondAttribute="top" id="18H-Hb-0Kl"/>
-                            <constraint firstAttribute="trailing" secondItem="use-6j-deA" secondAttribute="trailing" constant="32" id="1He-rl-CEg"/>
-                            <constraint firstItem="use-6j-deA" firstAttribute="top" secondItem="XAd-4S-XqI" secondAttribute="bottom" constant="42" id="3hT-c5-beT"/>
-                            <constraint firstItem="use-6j-deA" firstAttribute="leading" secondItem="fvD-vd-lrw" secondAttribute="leading" constant="32" id="79F-G2-hpC"/>
+                            <constraint firstAttribute="trailing" secondItem="use-6j-deA" secondAttribute="trailing" constant="50" id="1He-rl-CEg"/>
+                            <constraint firstItem="use-6j-deA" firstAttribute="top" secondItem="XAd-4S-XqI" secondAttribute="bottom" constant="52" id="3hT-c5-beT"/>
+                            <constraint firstItem="use-6j-deA" firstAttribute="leading" secondItem="fvD-vd-lrw" secondAttribute="leading" constant="50" id="79F-G2-hpC"/>
                             <constraint firstAttribute="trailing" secondItem="h8E-uN-3M8" secondAttribute="trailing" id="97a-GP-JzK"/>
+                            <constraint firstItem="evo-yK-SVw" firstAttribute="centerY" secondItem="LzZ-Y8-WEf" secondAttribute="centerY" id="ESg-am-VGV"/>
                             <constraint firstItem="LzZ-Y8-WEf" firstAttribute="centerX" secondItem="fvD-vd-lrw" secondAttribute="centerX" id="FGi-bC-3IW"/>
                             <constraint firstItem="h8E-uN-3M8" firstAttribute="top" secondItem="g8u-w8-vnD" secondAttribute="bottom" constant="24" id="HDu-3y-NPB"/>
                             <constraint firstAttribute="trailing" secondItem="g8u-w8-vnD" secondAttribute="trailing" constant="24" id="Jmy-Uy-YMb"/>
@@ -196,7 +196,7 @@
                             <constraint firstItem="h8E-uN-3M8" firstAttribute="leading" secondItem="fvD-vd-lrw" secondAttribute="leading" id="UDq-ii-Pe2"/>
                             <constraint firstItem="g8u-w8-vnD" firstAttribute="centerX" secondItem="fvD-vd-lrw" secondAttribute="centerX" id="pJx-ku-19K"/>
                             <constraint firstItem="g8u-w8-vnD" firstAttribute="top" secondItem="LzZ-Y8-WEf" secondAttribute="bottom" constant="24" id="qmD-I6-kgs"/>
-                            <constraint firstItem="evo-yK-SVw" firstAttribute="leading" secondItem="fvD-vd-lrw" secondAttribute="leading" constant="8" id="tZI-ou-y5I"/>
+                            <constraint firstItem="evo-yK-SVw" firstAttribute="leading" secondItem="fvD-vd-lrw" secondAttribute="leading" constant="16" id="tZI-ou-y5I"/>
                             <constraint firstItem="g8u-w8-vnD" firstAttribute="leading" secondItem="fvD-vd-lrw" secondAttribute="leading" constant="24" id="ttP-4H-HjI"/>
                             <constraint firstItem="use-6j-deA" firstAttribute="centerX" secondItem="fvD-vd-lrw" secondAttribute="centerX" id="vPh-Dc-s3X"/>
                         </constraints>
@@ -210,6 +210,8 @@
                         <outlet property="profileImageView" destination="LzZ-Y8-WEf" id="gAM-qH-yvx"/>
                         <outlet property="tableViewToUsernameConstraint" destination="HDu-3y-NPB" id="4Kb-Wq-vL9"/>
                         <outlet property="usernameLabel" destination="g8u-w8-vnD" id="I8h-fu-S7U"/>
+                        <segue destination="wCd-yS-qOa" kind="show" identifier="ShowSettings" id="c1o-JK-GDG"/>
+                        <segue destination="bV6-i5-RPX" kind="show" identifier="ShowLogin" id="Hkt-aK-32s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKv-nC-QlA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -505,6 +507,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y67-co-oVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1678" y="1567"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="I6W-zc-zh4">
+            <objects>
+                <viewController id="bV6-i5-RPX" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YGw-jX-ON5"/>
+                        <viewControllerLayoutGuide type="bottom" id="HlQ-1M-LkV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zhm-7i-rBN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3D0-2c-cs6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2446" y="1567"/>
         </scene>
         <!--Menu Container View Controller-->
         <scene sceneID="x5w-js-lnM">
