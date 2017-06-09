@@ -69,7 +69,7 @@ class LoginView: UIView {
         
         passwordContainer?.layer.borderColor = UIColor.white.cgColor
         
-        User.authenticate(user: username, pass: password) { [weak self] (_, error) in
+        User.authenticate(userString: username, passString: password) { [weak self] (_, error) in
             if let error = error as? RobotError {
                 switch error {
                 case .invalidLoginDetails:

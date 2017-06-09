@@ -8,6 +8,7 @@
 
 import UIKit
 import TTTAttributedLabel
+import SafariServices
 
 class MenuViewController: UIViewController {
     typealias MenuItem = (title: String, imageName: String, action: String)
@@ -70,6 +71,18 @@ class MenuViewController: UIViewController {
     @IBAction func didPressLogout() {
         AuthenticatedUser.current?.logout()
     }
+    
+    func launchWebModule(urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        let viewController = SFSafariViewController(url: url)
+        
+        if #available(iOS 10.0, *) {
+            viewController.preferredBarTintColor = UIColor.black
+            viewController.preferredControlTintColor = UIColor.white
+        }
+        
+        present(viewController, animated: true, completion: nil)
+    }
 }
 
 extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
@@ -97,9 +110,20 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             performSegue(withIdentifier: "ShowLogin", sender: "login")
         case "ShowRegister":
             performSegue(withIdentifier: "ShowLogin", sender: "register")
+        case "ShowDiscord":
+            launchWebModule(urlString: "https://discord.gg/CpxUrk5")
+        case "ShowGitHub":
+            launchWebModule(urlString: "https://github.com/runmyrobot/letsrobot_ios")
+        case "ShowPatreon":
+            launchWebModule(urlString: "https://www.patreon.com/runmyrobot")
+        case "ShowPayPal":
+            launchWebModule(urlString: "https://www.paypal.me/runmyrobot")
+        case "ShowTwitter":
+            launchWebModule(urlString: "https://twitter.com/letsrobot")
+        case "ShowSettings":
+            performSegue(withIdentifier: "ShowSettings", sender: nil)
         default:
             print("❓ Unknown Action: \(item.action)!")
-            break
         }
     }
     

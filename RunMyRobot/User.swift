@@ -45,10 +45,10 @@ class AuthenticatedUser: User {
 
 extension User {
     
-    static func authenticate(user: String, pass: String, callback: @escaping ((User?, Error?) -> Void)) {
+    static func authenticate(userString: String, passString: String, callback: @escaping ((User?, Error?) -> Void)) {
         let loginDetails: Parameters = [
-            "username": user,
-            "password": pass
+            "username": userString,
+            "password": passString
         ]
         
         Alamofire.request("https://runmyrobot.com/api/v1/authenticate", method: .post, parameters: loginDetails).response { response in
@@ -59,7 +59,7 @@ extension User {
             
             if let data = response.data {
                 let json = JSON(data)
-                guard json.type != .null, let user = AuthenticatedUser(json: json) else {
+                guard json.type != .null, let user = AuthenticatedUser(json: json), user.username == userString.lowercased() else {
                     let message = String(data: data, encoding: .utf8)
                     
                     if message == "Unauthorized" {

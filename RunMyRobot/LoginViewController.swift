@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
         guard let username = usernameField.text else { return }
         guard let password = passwordField.text else { return }
         
-        User.authenticate(user: username, pass: password) { _, error in
+        User.authenticate(userString: username, passString: password) { _, error in
             NotificationCenter.default.post(name: NSNotification.Name("LoginStatusChanged"), object: nil)
             
             if error == nil {
