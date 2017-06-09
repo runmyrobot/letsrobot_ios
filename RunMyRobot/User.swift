@@ -37,6 +37,7 @@ class AuthenticatedUser: User {
     
     func logout() {
         Alamofire.request("https://runmyrobot.com/logout").response { _ in
+            AuthenticatedUser.current = nil
             NotificationCenter.default.post(name: NSNotification.Name("LoginStatusChanged"), object: nil)
         }
     }
