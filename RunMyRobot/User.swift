@@ -30,21 +30,15 @@ class User {
 
 class AuthenticatedUser: User {
     
-    fileprivate(set) static var current: AuthenticatedUser?
+    static var current: AuthenticatedUser?
     static var loggedIn: Bool {
         return current != nil
     }
     
-    var email: String?
-    
-    override init?(json: JSON) {
-        super.init(json: json)
-        
-        guard let email = json["user", "email"].string else {
-            return nil
+    func logout() {
+        Alamofire.request("https://runmyrobot.com/logout").response { _ in
+            NotificationCenter.default.post(name: NSNotification.Name("LoginStatusChanged"), object: nil)
         }
-        
-        self.email = email
     }
 }
 

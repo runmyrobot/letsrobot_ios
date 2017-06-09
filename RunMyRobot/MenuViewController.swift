@@ -50,19 +50,25 @@ class MenuViewController: UIViewController {
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 2
         
-        if AuthenticatedUser.loggedIn {
-            usernameLabel.text = AuthenticatedUser.current?.username ?? "Sherlouk"
-            loginLogoImageView.isHidden = true
-        } else {
-            profileImageView.isHidden = true
-            usernameLabel.isHidden = true
-            logoutButton.isHidden = true
-            tableViewToUsernameConstraint.isActive = false
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLoginStatus), name: NSNotification.Name("LoginStatusChanged"), object: nil)
+        
+        updateLoginStatus()
+    }
+    
+    func updateLoginStatus() {
+        usernameLabel.text = AuthenticatedUser.current?.username
+        usernameLabel.isHidden = !AuthenticatedUser.loggedIn
+        
+        loginLogoImageView.isHidden = AuthenticatedUser.loggedIn
+        profileImageView.isHidden = !AuthenticatedUser.loggedIn
+        logoutButton.isHidden = !AuthenticatedUser.loggedIn
+        tableViewToUsernameConstraint.isActive = AuthenticatedUser.loggedIn
+        
+        menuTableView.reloadData()
     }
     
     @IBAction func didPressLogout() {
-        
+        AuthenticatedUser.current?.logout()
     }
 }
 

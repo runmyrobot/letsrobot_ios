@@ -25,9 +25,15 @@ class LoaderViewController: UIViewController {
                 return
             }
             
+            let json = JSON(rawJSON)
             self?.progressLabel.text = "Converting Config"
-            let config = Config(json: JSON(rawJSON))
+            let config = Config(json: json)
             Config.shared = config
+            
+            // If the user is already logged in, then maintain that status
+            if let user = AuthenticatedUser(json: json) {
+                AuthenticatedUser.current = user
+            }
             
             self?.progressLabel.text = "Connecting Socket"
             Socket.shared.start { [weak self] _ in
