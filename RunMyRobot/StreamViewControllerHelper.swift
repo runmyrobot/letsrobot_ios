@@ -15,7 +15,7 @@ struct StreamViewControllerHelper {
     }
     
     struct Sharing {
-        static let url = "https://runmyrobot.com/robot/{robotid}"
+        static let url = "\(Networking.baseUrl)/robot/{robotid}"
         static let message = "Come check out Let's Robot with {robotname}"
     }
     

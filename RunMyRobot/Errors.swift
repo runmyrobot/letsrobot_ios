@@ -11,6 +11,8 @@ import Foundation
 enum RobotError: Error {
     case notLoggedIn
     case invalidLoginDetails
+    case noData
     case parseFailure
+    case inconsistencyException
     case requestFailure(original: Error)
 }

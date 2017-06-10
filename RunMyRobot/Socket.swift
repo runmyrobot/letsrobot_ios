@@ -28,7 +28,7 @@ class Socket {
     }()
     
     func start(callback: @escaping ((Bool) -> Void)) { // swiftlint:disable:this function_body_length cyclomatic_complexity
-        if let url = URL(string: "https://runmyrobot.com:\(Config.shared?.socketPort ?? 8000)") {
+        if let url = URL(string: "\(Networking.baseUrl):\(Config.shared?.socketPort ?? 8000)") {
             socket = SocketIOClient(socketURL: url, config: [.log(false)])
             
             socket?.on(clientEvent: .connect) { (_, _) in

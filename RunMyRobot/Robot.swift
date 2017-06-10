@@ -49,14 +49,14 @@ class Robot {
         if approvedAvatar, let avatarUrl = json["avatar", "medium"].string, let url = URL(string: avatarUrl) {
             self.avatarUrl = url
         } else {
-            let thumbnailTemplate = "https://runmyrobot.com/images/thumbnails/\(id).jpg"
+            let thumbnailTemplate = "\(Networking.baseUrl)/images/thumbnails/\(id).jpg"
             self.avatarUrl = URL(string: thumbnailTemplate)
         }
     }
     
     /// Downloads the full feed of information for this robot, some values are only accessible once the download has happened
     func download(callback: @escaping ((Bool) -> Void)) {
-        Alamofire.request("https://runmyrobot.com/internal/robot/\(id)").validate().responseJSON { [weak self] response in
+        Networking.requestJSON("/internal/robot/\(id)") { [weak self] response in
             guard let rawJSON = response.result.value else {
                 print("Something went wrong!", response.error?.localizedDescription ?? "Unknown error")
                 callback(false)

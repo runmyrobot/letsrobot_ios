@@ -16,10 +16,4 @@ extension UserDefaults {
         set { set(newValue, forKey: #function) }
     }
     
-    /// Returns the current avatar URL, as saved in a previous session
-    var currentAvatarUrl: String? {
-        get { return string(forKey: #function) }
-        set { set(newValue, forKey: #function) }
-    }
-    
 }

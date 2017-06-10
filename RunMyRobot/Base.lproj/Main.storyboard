@@ -136,9 +136,9 @@
                                     <outlet property="delegate" destination="I59-XH-3bB" id="Odm-Ti-vg0"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LzZ-Y8-WEf">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LzZ-Y8-WEf">
                                 <rect key="frame" x="137" y="50" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.65098039220000004" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.21176470588235294" green="0.21176470588235294" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="6jo-6v-a8J"/>
                                     <constraint firstAttribute="width" secondItem="LzZ-Y8-WEf" secondAttribute="height" multiplier="1:1" id="moi-zz-olK"/>

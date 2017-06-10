@@ -33,10 +33,23 @@ class LoaderViewController: UIViewController {
             
             // If the user is already logged in, then maintain that status
             if let user = CurrentUser(json: json) {
-                User.current = user
+                self?.progressLabel.text = "Validating User"
+                
+                // Load and further validate the logged in user
+                user.load { _, error in
+                    // If we have any error, then log the user out - May need to be more specific down the line incase of network timeout error
+                    if error != nil {
+                        self?.progressLabel.text = "Cleaning User"
+                        user.logout {
+                            self?.startSocket()
+                        }
+                    } else {
+                        self?.startSocket()
+                    }
+                }
+            } else {
+                self?.startSocket()
             }
-            
-            self?.startSocket()
         }
     }
     

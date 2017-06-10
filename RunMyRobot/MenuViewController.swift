@@ -9,6 +9,7 @@
 import UIKit
 import TTTAttributedLabel
 import SafariServices
+import Nuke
 
 class MenuViewController: UIViewController {
     typealias MenuItem = (title: String, imageName: String, action: String)
@@ -66,8 +67,14 @@ class MenuViewController: UIViewController {
         logoutButton.isHidden = !CurrentUser.loggedIn
         tableViewToUsernameConstraint.isActive = CurrentUser.loggedIn
         
-        if CurrentUser.loggedIn {
-            // Set profile image
+        if let user = User.current {
+            if let avatarUrl = user.avatarUrl {
+                Nuke.loadImage(with: avatarUrl, into: profileImageView)
+            }
+            
+            if profileImageView.image == nil {
+                profileImageView.image = UIImage(named: "logo")
+            }
         }
         
         menuTableView.reloadData()
