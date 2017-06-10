@@ -43,6 +43,7 @@ class CurrentUser: User {
     
     var email: String?
     var avatarUrl: URL?
+    var subscriptions = [(id: String, name: String)]()
     
     func logout(callback: (() -> Void)? = nil) {
         // Simple GET request to the web's logout page is enough to clear all authentication/cookies
@@ -87,8 +88,14 @@ class CurrentUser: User {
                 self.avatarUrl = URL(string: avatarUrl)
             }
             
-            // subscriptions
             // spendable_robits
+            
+            if let subscriptionsArray = json["subscriptions"].array {
+                for sub in subscriptionsArray {
+                    guard let id = sub["robot_id"].string, let name = sub["robot_name"].string else { continue }
+                    self.subscriptions.append((id, name))
+                }
+            }
             
             // Update the user defaults and singleton reference
             UserDefaults.standard.currentUsername = self.username

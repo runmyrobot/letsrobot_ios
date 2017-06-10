@@ -427,7 +427,7 @@
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOR-Yu-n4d">
                                         <rect key="frame" x="0.0" y="0.0" width="163.5" height="50"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="Settings/icon-user-filled"/>
+                                        <state key="normal" image="Settings/cog"/>
                                         <connections>
                                             <action selector="didPressChangePage:" destination="wCd-yS-qOa" eventType="touchUpInside" id="oJC-IR-wjk"/>
                                         </connections>
@@ -435,7 +435,7 @@
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyt-uB-GcT">
                                         <rect key="frame" x="163.5" y="0.0" width="163.5" height="50"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="Settings/icon-notification-filled"/>
+                                        <state key="normal" image="Settings/subscriptions"/>
                                         <connections>
                                             <action selector="didPressChangePage:" destination="wCd-yS-qOa" eventType="touchUpInside" id="tiE-3k-ZQB"/>
                                         </connections>
@@ -1364,8 +1364,8 @@
     </scenes>
     <resources>
         <image name="Menu/logout" width="25" height="25"/>
-        <image name="Settings/icon-notification-filled" width="25" height="25"/>
-        <image name="Settings/icon-user-filled" width="25" height="25"/>
+        <image name="Settings/cog" width="25" height="25"/>
+        <image name="Settings/subscriptions" width="25" height="25"/>
         <image name="icon-back" width="25" height="25"/>
         <image name="icon-chat" width="25" height="25"/>
         <image name="icon-close" width="50" height="50"/>

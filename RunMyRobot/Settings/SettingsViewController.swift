@@ -90,7 +90,7 @@ extension SettingsViewController: MXPagerViewDataSource, MXPagerViewDelegate {
             case 0:
                 return UserSettingsListProvider()
             case 1:
-                return NotificationSettingsListProvider()
+                return SubscriptionsListProvider()
             default:
                 return nil
             }

@@ -22,11 +22,15 @@ class UserSettingsListProvider: SettingsListViewProvider {
 //    - Robits?
     
     var cellCount: Int {
-        return 5
+        return 7
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
         return [
+            [
+                "title": "Profile Settings",
+                "type": "title"
+            ],
             [
                 "title": "UPDATE AVATAR",
                 "image": User.current?.avatarUrl as Any,
@@ -40,6 +44,10 @@ class UserSettingsListProvider: SettingsListViewProvider {
                 "placeholder": "On a mission to save Pam"
             ],
             [
+                "title": "Notification Settings",
+                "type": "title"
+            ],
+            [
                 "title": "GLOBAL NOTIFICATIONS",
                 "subtitle": "Manual notifications by site administrators when special events begin!",
                 "type": "toggle"
@@ -54,41 +62,34 @@ class UserSettingsListProvider: SettingsListViewProvider {
                 "subtitle": "If one of your robots gets stuck, users can notify you to help it!",
                 "type": "toggle"
             ]
-//            [
-//                "title": "PHONE NUMBER",
-//                "subtitle": "An alternative to push notifications to notify you when one of your favourite robots comes online!",
-//                "type": "textfield",
-//                "keyboard": "phone",
-//                "placeholder": "+1 (555) 555-5555"
-//            ]
         ][index]
     }
 }
 
-class NotificationSettingsListProvider: SettingsListViewProvider {
+class SubscriptionsListProvider: SettingsListViewProvider {
+    
+    var user: CurrentUser? = .current
     
     var cellCount: Int {
-        return 3
+        return (user?.subscriptions.count ?? 0) + 1
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
-        return [
+        guard let subs = user?.subscriptions else { return [:] }
+        
+        var subsMap = subs.flatMap {
             [
-                "title": "GLOBAL NOTIFICATIONS",
-                "subtitle": "Manual notifications by site administrators when special events begin!",
-                "type": "toggle"
-            ],
-            [
-                "title": "GO LIVE NOTIFICATIONS",
-                "subtitle": "You will be notified when a robot you're subscribed to goes live!",
-                "type": "toggle"
-            ],
-            [
-                "title": "STUCK NOTIFICATIONS",
-                "subtitle": "If one of your robots gets stuck, users can notify you to help it!",
-                "type": "toggle"
+                "name": $0.name,
+                "type": "subscription"
             ]
-        ][index]
+        } as [[String: Any]]
+        
+        subsMap.insert([
+            "title": "Your Subscriptions",
+            "type": "title"
+        ], at: 0)
+        
+        return subsMap[index]
     }
     
 }

@@ -38,6 +38,10 @@
 		9823E6BC1EEC419B00619964 /* SettingsListPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9823E6BA1EEC419B00619964 /* SettingsListPictureCell.xib */; };
 		9823E6BF1EEC466000619964 /* SettingsListTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6BD1EEC466000619964 /* SettingsListTextFieldCell.swift */; };
 		9823E6C01EEC466000619964 /* SettingsListTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9823E6BE1EEC466000619964 /* SettingsListTextFieldCell.xib */; };
+		9823E6C31EEC7F2C00619964 /* SettingsListSubscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6C11EEC7F2C00619964 /* SettingsListSubscriptionCell.swift */; };
+		9823E6C41EEC7F2C00619964 /* SettingsListSubscriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9823E6C21EEC7F2C00619964 /* SettingsListSubscriptionCell.xib */; };
+		9823E6C71EEC818900619964 /* SettingsListTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6C51EEC818900619964 /* SettingsListTitleCell.swift */; };
+		9823E6C81EEC818900619964 /* SettingsListTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9823E6C61EEC818900619964 /* SettingsListTitleCell.xib */; };
 		983BCB521EDE29A8007A1247 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB511EDE29A8007A1247 /* Config.swift */; };
 		983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB531EDE9BB0007A1247 /* AngledView.swift */; };
 		983F85B11EE83414001FD90A /* MenuContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983F85B01EE83414001FD90A /* MenuContainerViewController.swift */; };
@@ -95,6 +99,10 @@
 		9823E6BA1EEC419B00619964 /* SettingsListPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListPictureCell.xib; sourceTree = "<group>"; };
 		9823E6BD1EEC466000619964 /* SettingsListTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListTextFieldCell.swift; sourceTree = "<group>"; };
 		9823E6BE1EEC466000619964 /* SettingsListTextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListTextFieldCell.xib; sourceTree = "<group>"; };
+		9823E6C11EEC7F2C00619964 /* SettingsListSubscriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListSubscriptionCell.swift; sourceTree = "<group>"; };
+		9823E6C21EEC7F2C00619964 /* SettingsListSubscriptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListSubscriptionCell.xib; sourceTree = "<group>"; };
+		9823E6C51EEC818900619964 /* SettingsListTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListTitleCell.swift; sourceTree = "<group>"; };
+		9823E6C61EEC818900619964 /* SettingsListTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListTitleCell.xib; sourceTree = "<group>"; };
 		983BCB511EDE29A8007A1247 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		983BCB531EDE9BB0007A1247 /* AngledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngledView.swift; sourceTree = "<group>"; };
 		983F85B01EE83414001FD90A /* MenuContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuContainerViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +290,10 @@
 				9823E6BA1EEC419B00619964 /* SettingsListPictureCell.xib */,
 				9823E6BD1EEC466000619964 /* SettingsListTextFieldCell.swift */,
 				9823E6BE1EEC466000619964 /* SettingsListTextFieldCell.xib */,
+				9823E6C11EEC7F2C00619964 /* SettingsListSubscriptionCell.swift */,
+				9823E6C21EEC7F2C00619964 /* SettingsListSubscriptionCell.xib */,
+				9823E6C51EEC818900619964 /* SettingsListTitleCell.swift */,
+				9823E6C61EEC818900619964 /* SettingsListTitleCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -403,7 +415,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9823E6C41EEC7F2C00619964 /* SettingsListSubscriptionCell.xib in Resources */,
 				9823E6AE1EEC142B00619964 /* Rules.html in Resources */,
+				9823E6C81EEC818900619964 /* SettingsListTitleCell.xib in Resources */,
 				98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */,
 				98DB08091EDC4DF0005BAF18 /* LaunchScreen.storyboard in Resources */,
 				980ADD731EE43F6F00B00B33 /* ChatSettingsView.xib in Resources */,
@@ -511,6 +525,7 @@
 				980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */,
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
 				980ADD841EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift in Sources */,
+				9823E6C71EEC818900619964 /* SettingsListTitleCell.swift in Sources */,
 				980ADD7E1EE47F3800B00B33 /* LoginView.swift in Sources */,
 				980ADD561EE2BFD200B00B33 /* LoaderViewController.swift in Sources */,
 				9823E6B01EEC1DFB00619964 /* UserDefaults.swift in Sources */,
@@ -527,6 +542,7 @@
 				98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */,
 				980ADD671EE3F8DD00B00B33 /* StreamViewController+WebView.swift in Sources */,
 				980ADD651EE3F8CC00B00B33 /* StreamViewController+ChatView.swift in Sources */,
+				9823E6C31EEC7F2C00619964 /* SettingsListSubscriptionCell.swift in Sources */,
 				9823E6BB1EEC419B00619964 /* SettingsListPictureCell.swift in Sources */,
 				98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */,
 				980ADD711EE43F6600B00B33 /* ChatSettingsView.swift in Sources */,

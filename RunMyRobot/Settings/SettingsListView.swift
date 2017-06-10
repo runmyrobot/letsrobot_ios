@@ -19,7 +19,7 @@ class SettingsListView: UIView {
     weak var delegate: SettingsListViewDelegate?
     
     // Private
-    private var tableView: UITableView!
+    fileprivate var tableView: UITableView!
     fileprivate var provider: SettingsListViewProvider!
     
     // Initalisers
@@ -70,6 +70,8 @@ class SettingsListView: UIView {
         tableView.register(UINib(nibName: "SettingsListSwitchCell", bundle: nil), forCellReuseIdentifier: "Switch")
         tableView.register(UINib(nibName: "SettingsListPictureCell", bundle: nil), forCellReuseIdentifier: "Picture")
         tableView.register(UINib(nibName: "SettingsListTextFieldCell", bundle: nil), forCellReuseIdentifier: "TextField")
+        tableView.register(UINib(nibName: "SettingsListSubscriptionCell", bundle: nil), forCellReuseIdentifier: "Subscription")
+        tableView.register(UINib(nibName: "SettingsListTitleCell", bundle: nil), forCellReuseIdentifier: "Title")
     }
 }
 
@@ -85,35 +87,69 @@ extension SettingsListView: UITableViewDataSource {
         
         switch type {
         case "picture":
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath) as? SettingsListPictureCell else {
-                fatalError()
-            }
-            
-            if let title = cellInfo["title"] as? String {
-                cell.setButton(title, cellInfo["image"] as? URL)
-            }
-            
-            return cell
+            return pictureCell(cellInfo, indexPath: indexPath)
         case "textfield":
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextField", for: indexPath) as? SettingsListTextFieldCell else {
-                fatalError()
-            }
-            
-            cell.setInfo(cellInfo)
-            return cell
+            return textCell(cellInfo, indexPath: indexPath)
         case "toggle":
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "Switch", for: indexPath) as? SettingsListSwitchCell else {
-                fatalError()
-            }
-            
-            if let title = cellInfo["title"] as? String, let subtitle = cellInfo["subtitle"] as? String {
-                cell.setText(title, subtitle)
-            }
-            
-            return cell
+            return toggleCell(cellInfo, indexPath: indexPath)
+        case "subscription":
+            return subscriptionCell(cellInfo, indexPath: indexPath)
+        case "title":
+            return titleCell(cellInfo, indexPath: indexPath)
         default:
             fatalError()
         }
+    }
+    
+    func toggleCell(_ info: [String: Any], indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Switch", for: indexPath) as? SettingsListSwitchCell else {
+            fatalError()
+        }
+        
+        if let title = info["title"] as? String, let subtitle = info["subtitle"] as? String {
+            cell.setText(title, subtitle)
+        }
+        
+        return cell
+    }
+    
+    func pictureCell(_ info: [String: Any], indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath) as? SettingsListPictureCell else {
+            fatalError()
+        }
+        
+        if let title = info["title"] as? String, let url = info["image"] as? URL {
+            cell.setButton(title, url)
+        }
+        
+        return cell
+    }
+    
+    func textCell(_ info: [String: Any], indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextField", for: indexPath) as? SettingsListTextFieldCell else {
+            fatalError()
+        }
+        
+        cell.setInfo(info)
+        return cell
+    }
+    
+    func subscriptionCell(_ info: [String: Any], indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Subscription", for: indexPath) as? SettingsListSubscriptionCell else {
+            fatalError()
+        }
+        
+        cell.setInfo(info)
+        return cell
+    }
+    
+    func titleCell(_ info: [String: Any], indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Title", for: indexPath) as? SettingsListTitleCell else {
+            fatalError()
+        }
+        
+        cell.setInfo(info)
+        return cell
     }
     
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wMH-fb-28w" customClass="SettingsListTitleCell" customModule="RunMyRobot" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wMH-fb-28w" id="6gy-1D-XPR">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Subscriptions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8rv-Yu-HSF">
+                        <rect key="frame" x="24" y="16" width="327" height="37.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="8rv-Yu-HSF" firstAttribute="centerY" secondItem="6gy-1D-XPR" secondAttribute="centerY" id="033-oH-v2n"/>
+                    <constraint firstAttribute="trailing" secondItem="8rv-Yu-HSF" secondAttribute="trailing" constant="24" id="HsH-bi-tWa"/>
+                    <constraint firstItem="8rv-Yu-HSF" firstAttribute="top" secondItem="6gy-1D-XPR" secondAttribute="top" constant="16" id="eWs-2V-YR3"/>
+                    <constraint firstItem="8rv-Yu-HSF" firstAttribute="leading" secondItem="6gy-1D-XPR" secondAttribute="leading" constant="24" id="l9O-4j-YNh"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="8rv-Yu-HSF" secondAttribute="bottom" constant="16" id="zxz-a5-N8U"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="sectionTitleLabel" destination="8rv-Yu-HSF" id="Pve-IN-WNg"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </tableViewCell>
+    </objects>
+</document>
