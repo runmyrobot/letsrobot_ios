@@ -22,34 +22,54 @@ class UserSettingsListProvider: SettingsListViewProvider {
 //    - Robits?
     
     var cellCount: Int {
-        return 0
+        return 3
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
         return [
-            ["title": "Description", "subtitle": "Two", "type": "toggle"]
+            [
+                "title": "UPDATE AVATAR",
+                "image": User.current?.avatarUrl as Any,
+                "type": "picture"
+            ],
+            [
+                "title": "DESCRIPTION",
+                "subtitle": "Update your profile description seen be all users!",
+                "type": "textfield",
+                "keyboard": "default",
+                "placeholder": "On a mission to save Pam"
+            ],
+            [
+                "title": "PHONE NUMBER",
+                "subtitle": "An alternative to push notifications to notify you when one of your favourite robots comes online!",
+                "type": "textfield",
+                "keyboard": "phone",
+                "placeholder": "+1 (555) 555-5555"
+            ]
         ][index]
     }
 }
 
 class NotificationSettingsListProvider: SettingsListViewProvider {
-//    NOTIFICATIONS:
-//    - Receive "Go Live" (Toggle)
-//    - Receive "I'm Stuck" (Toggle)
     
     var cellCount: Int {
-        return 2
+        return 3
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
         return [
+            [
+                "title": "GLOBAL NOTIFICATIONS",
+                "subtitle": "Manual notifications by site administrators when special events begin!",
+                "type": "toggle"
+            ],
             [
                 "title": "GO LIVE NOTIFICATIONS",
                 "subtitle": "You will be notified when a robot you're subscribed to goes live!",
                 "type": "toggle"
             ],
             [
-                "title": "I'M STUCK NOTIFICATIONS",
+                "title": "STUCK NOTIFICATIONS",
                 "subtitle": "If one of your robots gets stuck, users can notify you to help it!",
                 "type": "toggle"
             ]
@@ -67,7 +87,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
     }
     
     var cellCount: Int {
-        return 6//11
+        return 7
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
@@ -84,11 +104,10 @@ class RobotSettingsListProvider: SettingsListViewProvider {
 //                "title": "CHANGE ROBOT DESCRIPTION",
 //                "type": "text"
 //            ],
-//            [
-//                "title": "CHANGE ROBOT AVATAR",
-//                "subtitle": "This will update the robots avatar used across the site",
-//                "type": "image"
-//            ],
+            [
+                "title": "CHANGE ROBOT AVATAR",
+                "type": "picture"
+            ],
             [
                 "title": "PUBLIC",
                 "subtitle": "Allows all users to see the robot",

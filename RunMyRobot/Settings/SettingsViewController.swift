@@ -91,8 +91,6 @@ extension SettingsViewController: MXPagerViewDataSource, MXPagerViewDelegate {
                 return UserSettingsListProvider()
             case 1:
                 return NotificationSettingsListProvider()
-            case 2:
-                return RobotSettingsListProvider(robots: ["Roxi"])
             default:
                 return nil
             }

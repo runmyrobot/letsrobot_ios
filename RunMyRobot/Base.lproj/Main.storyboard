@@ -265,8 +265,8 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.023529411764705882" green="0.24313725490196078" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="tintColor" red="0.023529411764705882" green="0.24313725490196078" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.73725490199999999" green="0.35294117650000001" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.73725490199999999" green="0.35294117650000001" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="IJP-B3-Z2z" firstAttribute="leading" secondItem="DgM-AR-ozi" secondAttribute="leading" constant="8" id="6iq-wR-WvZ"/>
                                                         <constraint firstAttribute="bottom" secondItem="IJP-B3-Z2z" secondAttribute="bottom" constant="8" id="LIh-8D-X7k"/>
@@ -275,14 +275,14 @@
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zpj-aD-qcu" customClass="AngledView" customModule="RunMyRobot" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="88.5" width="144" height="20"/>
-                                                    <color key="backgroundColor" red="0.024390243902438991" green="0.25426829268292683" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="tintColor" red="0.023529411760000001" green="0.24313725489999999" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.73725490199999999" green="0.35294117650000001" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.73725490199999999" green="0.35294117650000001" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="GcE-t0-saA"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="angleColor">
-                                                            <color key="value" red="0.023529411764705882" green="0.24313725490196078" blue="0.4823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="value" red="0.73725490196078436" green="0.3529411764705882" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -425,7 +425,7 @@
                                 <rect key="frame" x="24" y="78" width="327" height="50"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOR-Yu-n4d">
-                                        <rect key="frame" x="0.0" y="0.0" width="109" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="163.5" height="50"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="Settings/icon-user-filled"/>
                                         <connections>
@@ -433,19 +433,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyt-uB-GcT">
-                                        <rect key="frame" x="109" y="0.0" width="109" height="50"/>
+                                        <rect key="frame" x="163.5" y="0.0" width="163.5" height="50"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="Settings/icon-notification-filled"/>
                                         <connections>
                                             <action selector="didPressChangePage:" destination="wCd-yS-qOa" eventType="touchUpInside" id="tiE-3k-ZQB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pc7-Jo-IRv">
-                                        <rect key="frame" x="218" y="0.0" width="109" height="50"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="Settings/icon-bot-filled"/>
-                                        <connections>
-                                            <action selector="didPressChangePage:" destination="wCd-yS-qOa" eventType="touchUpInside" id="kl2-b7-82l"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -453,16 +445,16 @@
                                     <constraint firstAttribute="height" constant="50" id="mbI-S7-tMM"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="614-RG-9Qd">
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="614-RG-9Qd">
                                 <rect key="frame" x="24" y="132" width="327" height="1"/>
-                                <color key="backgroundColor" red="0.36862745098039218" green="0.40392156862745099" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="YE5-oB-qXT"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kQ-iD-wWi">
-                                <rect key="frame" x="44" y="128" width="69" height="4"/>
-                                <color key="backgroundColor" red="0.93725490196078431" green="0.65098039215686276" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="44" y="128" width="123.5" height="4"/>
+                                <color key="backgroundColor" red="0.73725490196078436" green="0.3529411764705882" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="oqD-eR-sOy"/>
                                 </constraints>
@@ -476,7 +468,7 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.19607843137254902" green="0.23137254901960785" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="WKt-8q-LLY" firstAttribute="top" secondItem="bb3-Di-JD4" secondAttribute="bottom" constant="16" id="4MF-cX-gIX"/>
                             <constraint firstItem="NEg-QV-vLP" firstAttribute="leading" secondItem="Guc-cK-8JZ" secondAttribute="leading" id="5bV-O4-Qii"/>
@@ -1372,7 +1364,6 @@
     </scenes>
     <resources>
         <image name="Menu/logout" width="25" height="25"/>
-        <image name="Settings/icon-bot-filled" width="25" height="25"/>
         <image name="Settings/icon-notification-filled" width="25" height="25"/>
         <image name="Settings/icon-user-filled" width="25" height="25"/>
         <image name="icon-back" width="25" height="25"/>

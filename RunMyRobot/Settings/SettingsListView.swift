@@ -28,7 +28,6 @@ class SettingsListView: UIView {
         guard provider != nil else { return nil }
         self.init(frame: .zero)
         self.provider = provider
-//        tableView.reloadData()
     }
     
     override init(frame: CGRect) {
@@ -61,7 +60,7 @@ class SettingsListView: UIView {
         tableView.backgroundColor = .clear
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 120
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 24, right: 0)
         tableView.dataSource = self
@@ -70,6 +69,8 @@ class SettingsListView: UIView {
     func registerCells() {
         tableView.register(UINib(nibName: "SettingsListSwitchCell", bundle: nil), forCellReuseIdentifier: "Switch")
         tableView.register(UINib(nibName: "SettingsListRobotPickerCell", bundle: nil), forCellReuseIdentifier: "RobotPicker")
+        tableView.register(UINib(nibName: "SettingsListPictureCell", bundle: nil), forCellReuseIdentifier: "Picture")
+        tableView.register(UINib(nibName: "SettingsListTextFieldCell", bundle: nil), forCellReuseIdentifier: "TextField")
     }
 }
 
@@ -84,6 +85,23 @@ extension SettingsListView: UITableViewDataSource {
         guard let type = cellInfo["type"] as? String else { fatalError() }
         
         switch type {
+        case "picture":
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "Picture", for: indexPath) as? SettingsListPictureCell else {
+                fatalError()
+            }
+            
+            if let title = cellInfo["title"] as? String {
+                cell.setButton(title, cellInfo["image"] as? URL)
+            }
+            
+            return cell
+        case "textfield":
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TextField", for: indexPath) as? SettingsListTextFieldCell else {
+                fatalError()
+            }
+            
+            cell.setInfo(cellInfo)
+            return cell
         case "robotpicker":
             return tableView.dequeueReusableCell(withIdentifier: "RobotPicker", for: indexPath)
         case "toggle":
@@ -99,15 +117,6 @@ extension SettingsListView: UITableViewDataSource {
         default:
             fatalError()
         }
-        
-//        if indexPath.item == 0 {
-//            return tableView.dequeueReusableCell(withIdentifier: "RobotPicker", for: indexPath)
-//        }
-//        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Switch", for: indexPath) as! SettingsListSwitchCell
-//        let entry = fields[indexPath.item]
-//        cell.setText(entry.0, entry.1)
-//        return cell
     }
     
 }
