@@ -18,7 +18,8 @@ class LoaderViewController: UIViewController {
         super.viewDidLoad()
 
         progressLabel.text = "Downloading Config"
-        Alamofire.request("https://runmyrobot.com/internal/").validate().responseJSON { [weak self] response in
+        
+        Networking.requestJSON("/internal") { [weak self] response in
             guard let rawJSON = response.result.value else {
                 self?.progressLabel.text = "Error Downloading Config"
                 print("Something went wrong!")
@@ -31,17 +32,22 @@ class LoaderViewController: UIViewController {
             Config.shared = config
             
             // If the user is already logged in, then maintain that status
-            if let user = AuthenticatedUser(json: json) {
-                AuthenticatedUser.current = user
+            if let user = CurrentUser(json: json) {
+                User.current = user
             }
             
-            self?.progressLabel.text = "Connecting Socket"
-            Socket.shared.start { [weak self] _ in
-                self?.progressLabel.text = "Connected"
-                
-                Threading.run(on: .main, after: 0.3) { [weak self] in
-                    self?.performSegue(withIdentifier: "EnterApp", sender: nil)
-                }
+            self?.startSocket()
+        }
+    }
+    
+    func startSocket() {
+        progressLabel.text = "Connecting Socket"
+        
+        Socket.shared.start { [weak self] _ in
+            self?.progressLabel.text = "Connected"
+            
+            Threading.run(on: .main, after: 0.3) { [weak self] in
+                self?.performSegue(withIdentifier: "EnterApp", sender: nil)
             }
         }
     }

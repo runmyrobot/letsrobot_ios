@@ -26,13 +26,14 @@ class MenuViewController: UIViewController {
             ("Support Us", "Social/patreon", "ShowPatreon"),
             ("Follow Us", "Social/twitter", "ShowTwitter"),
             ("Donate", "Social/paypal", "ShowPayPal"),
-            ("Source Code", "Social/github", "ShowGitHub")
+            ("Source Code", "Social/github", "ShowGitHub"),
+            ("Rules", "Menu/rules", "ShowRules")
         ]
         
-        if !AuthenticatedUser.loggedIn {
+        if !CurrentUser.loggedIn {
             return [
-                ("Login", "Menu/login", "ShowLogin"),
-                ("Register", "Menu/register", "ShowRegister")
+                ("Login", "Menu/login", "ShowLogin")
+//                ("Register", "Menu/register", "ShowRegister")
             ] + shared
         }
         
@@ -57,19 +58,23 @@ class MenuViewController: UIViewController {
     }
     
     func updateLoginStatus() {
-        usernameLabel.text = AuthenticatedUser.current?.username
-        usernameLabel.isHidden = !AuthenticatedUser.loggedIn
+        usernameLabel.text = User.current?.username
+        usernameLabel.isHidden = !CurrentUser.loggedIn
         
-        loginLogoImageView.isHidden = AuthenticatedUser.loggedIn
-        profileImageView.isHidden = !AuthenticatedUser.loggedIn
-        logoutButton.isHidden = !AuthenticatedUser.loggedIn
-        tableViewToUsernameConstraint.isActive = AuthenticatedUser.loggedIn
+        loginLogoImageView.isHidden = CurrentUser.loggedIn
+        profileImageView.isHidden = !CurrentUser.loggedIn
+        logoutButton.isHidden = !CurrentUser.loggedIn
+        tableViewToUsernameConstraint.isActive = CurrentUser.loggedIn
+        
+        if CurrentUser.loggedIn {
+            // Set profile image
+        }
         
         menuTableView.reloadData()
     }
     
     @IBAction func didPressLogout() {
-        AuthenticatedUser.current?.logout()
+        User.current?.logout()
     }
     
     func launchWebModule(urlString: String) {
@@ -122,6 +127,8 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             launchWebModule(urlString: "https://twitter.com/letsrobot")
         case "ShowSettings":
             performSegue(withIdentifier: "ShowSettings", sender: nil)
+        case "ShowRules":
+            performSegue(withIdentifier: "ShowRules", sender: nil)
         default:
             print("❓ Unknown Action: \(item.action)!")
         }

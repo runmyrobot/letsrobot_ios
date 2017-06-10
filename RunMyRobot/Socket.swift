@@ -175,7 +175,7 @@ class Socket {
     func sendDirection(_ command: RobotCommand, robot: Robot, keyPosition: String) throws {
         guard socket?.engine?.connected == true else { return }
         
-        guard let user = AuthenticatedUser.current else {
+        guard let user = User.current else {
             throw RobotError.notLoggedIn
         }
         

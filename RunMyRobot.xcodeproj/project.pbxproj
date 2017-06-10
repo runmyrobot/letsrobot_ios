@@ -29,7 +29,11 @@
 		980ADD801EE490F100B00B33 /* ControlArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD7F1EE490F100B00B33 /* ControlArrowButton.swift */; };
 		980ADD821EE4A19400B00B33 /* StreamViewController+CustomControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD811EE4A19400B00B33 /* StreamViewController+CustomControls.swift */; };
 		980ADD841EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD831EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift */; };
-		9823E6A71EEB375600619964 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6A61EEB375600619964 /* LoginViewController.swift */; };
+		9823E6A91EEBEADD00619964 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6A81EEBEADD00619964 /* LoginViewController.swift */; };
+		9823E6AC1EEC117400619964 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6AB1EEC117400619964 /* RulesViewController.swift */; };
+		9823E6AE1EEC142B00619964 /* Rules.html in Resources */ = {isa = PBXBuildFile; fileRef = 9823E6AD1EEC142B00619964 /* Rules.html */; };
+		9823E6B01EEC1DFB00619964 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6AF1EEC1DFB00619964 /* UserDefaults.swift */; };
+		9823E6B21EEC1F5300619964 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6B11EEC1F5300619964 /* Networking.swift */; };
 		983BCB521EDE29A8007A1247 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB511EDE29A8007A1247 /* Config.swift */; };
 		983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB531EDE9BB0007A1247 /* AngledView.swift */; };
 		983F85B11EE83414001FD90A /* MenuContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983F85B01EE83414001FD90A /* MenuContainerViewController.swift */; };
@@ -80,7 +84,11 @@
 		980ADD7F1EE490F100B00B33 /* ControlArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlArrowButton.swift; sourceTree = "<group>"; };
 		980ADD811EE4A19400B00B33 /* StreamViewController+CustomControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StreamViewController+CustomControls.swift"; sourceTree = "<group>"; };
 		980ADD831EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonCollectionViewCell.swift; sourceTree = "<group>"; };
-		9823E6A61EEB375600619964 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9823E6A81EEBEADD00619964 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9823E6AB1EEC117400619964 /* RulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
+		9823E6AD1EEC142B00619964 /* Rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Rules.html; sourceTree = "<group>"; };
+		9823E6AF1EEC1DFB00619964 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		9823E6B11EEC1F5300619964 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		983BCB511EDE29A8007A1247 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		983BCB531EDE9BB0007A1247 /* AngledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngledView.swift; sourceTree = "<group>"; };
 		983F85B01EE83414001FD90A /* MenuContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuContainerViewController.swift; sourceTree = "<group>"; };
@@ -159,9 +167,11 @@
 			children = (
 				983BCB511EDE29A8007A1247 /* Config.swift */,
 				980ADD761EE46AC100B00B33 /* Errors.swift */,
+				9823E6B11EEC1F5300619964 /* Networking.swift */,
 				980ADD6D1EE43CD300B00B33 /* Robot.swift */,
 				98500C7F1EE0A57B00CFA446 /* Socket.swift */,
 				980ADD741EE465F500B00B33 /* User.swift */,
+				9823E6AF1EEC1DFB00619964 /* UserDefaults.swift */,
 			);
 			name = Business;
 			sourceTree = "<group>";
@@ -225,9 +235,18 @@
 		9823E6A51EEB374000619964 /* Login Page */ = {
 			isa = PBXGroup;
 			children = (
-				9823E6A61EEB375600619964 /* LoginViewController.swift */,
+				9823E6A81EEBEADD00619964 /* LoginViewController.swift */,
 			);
 			name = "Login Page";
+			sourceTree = "<group>";
+		};
+		9823E6AA1EEC116900619964 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				9823E6AD1EEC142B00619964 /* Rules.html */,
+				9823E6AB1EEC117400619964 /* RulesViewController.swift */,
+			);
+			name = Rules;
 			sourceTree = "<group>";
 		};
 		9876F9971EE72933002E7122 /* Settings Page */ = {
@@ -264,6 +283,7 @@
 		987DF3A01EE874F80042539B /* Side Menu */ = {
 			isa = PBXGroup;
 			children = (
+				9823E6AA1EEC116900619964 /* Rules */,
 				983F85B01EE83414001FD90A /* MenuContainerViewController.swift */,
 				983F85B21EE869BF001FD90A /* MenuViewController.swift */,
 				987DF3A11EE875110042539B /* MenuListItemCell.swift */,
@@ -377,6 +397,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9823E6AE1EEC142B00619964 /* Rules.html in Resources */,
 				98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */,
 				98DB08091EDC4DF0005BAF18 /* LaunchScreen.storyboard in Resources */,
 				980ADD731EE43F6F00B00B33 /* ChatSettingsView.xib in Resources */,
@@ -474,10 +495,10 @@
 				987DF3A41EE875EC0042539B /* DictionarySubscript.swift in Sources */,
 				987DF3A21EE875110042539B /* MenuListItemCell.swift in Sources */,
 				98500C801EE0A57B00CFA446 /* Socket.swift in Sources */,
-				9823E6A71EEB375600619964 /* LoginViewController.swift in Sources */,
 				983BCB521EDE29A8007A1247 /* Config.swift in Sources */,
 				980ADD821EE4A19400B00B33 /* StreamViewController+CustomControls.swift in Sources */,
 				983F85B31EE869BF001FD90A /* MenuViewController.swift in Sources */,
+				9823E6AC1EEC117400619964 /* RulesViewController.swift in Sources */,
 				980ADD801EE490F100B00B33 /* ControlArrowButton.swift in Sources */,
 				980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */,
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
@@ -485,6 +506,7 @@
 				980ADD841EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift in Sources */,
 				980ADD7E1EE47F3800B00B33 /* LoginView.swift in Sources */,
 				980ADD561EE2BFD200B00B33 /* LoaderViewController.swift in Sources */,
+				9823E6B01EEC1DFB00619964 /* UserDefaults.swift in Sources */,
 				980ADD6A1EE3FA2A00B00B33 /* StreamViewControllerHelper.swift in Sources */,
 				98DB07FF1EDC4DF0005BAF18 /* AppDelegate.swift in Sources */,
 				980ADD6E1EE43CD300B00B33 /* Robot.swift in Sources */,
@@ -493,6 +515,7 @@
 				98500C7C1EE0892E00CFA446 /* ListViewController.swift in Sources */,
 				980ADD631EE3F86B00B00B33 /* StreamViewController+Actions.swift in Sources */,
 				980ADD5F1EE33E3F00B00B33 /* ListTitleCollectionReusableView.swift in Sources */,
+				9823E6A91EEBEADD00619964 /* LoginViewController.swift in Sources */,
 				980ADD611EE3507000B00B33 /* InterruptableTimer.swift in Sources */,
 				98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */,
 				980ADD671EE3F8DD00B00B33 /* StreamViewController+WebView.swift in Sources */,
@@ -502,6 +525,7 @@
 				983F85B11EE83414001FD90A /* MenuContainerViewController.swift in Sources */,
 				987DF39F1EE871730042539B /* HEXColor.swift in Sources */,
 				98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */,
+				9823E6B21EEC1F5300619964 /* Networking.swift in Sources */,
 				980ADD771EE46AC100B00B33 /* Errors.swift in Sources */,
 				98500C7E1EE08C5300CFA446 /* RobotCollectionViewCell.swift in Sources */,
 				980ADD5B1EE2E0AC00B00B33 /* Regex.swift in Sources */,
