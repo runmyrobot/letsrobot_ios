@@ -68,7 +68,6 @@ class SettingsListView: UIView {
     
     func registerCells() {
         tableView.register(UINib(nibName: "SettingsListSwitchCell", bundle: nil), forCellReuseIdentifier: "Switch")
-        tableView.register(UINib(nibName: "SettingsListRobotPickerCell", bundle: nil), forCellReuseIdentifier: "RobotPicker")
         tableView.register(UINib(nibName: "SettingsListPictureCell", bundle: nil), forCellReuseIdentifier: "Picture")
         tableView.register(UINib(nibName: "SettingsListTextFieldCell", bundle: nil), forCellReuseIdentifier: "TextField")
     }
@@ -102,8 +101,6 @@ extension SettingsListView: UITableViewDataSource {
             
             cell.setInfo(cellInfo)
             return cell
-        case "robotpicker":
-            return tableView.dequeueReusableCell(withIdentifier: "RobotPicker", for: indexPath)
         case "toggle":
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "Switch", for: indexPath) as? SettingsListSwitchCell else {
                 fatalError()

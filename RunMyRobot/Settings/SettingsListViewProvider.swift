@@ -22,7 +22,7 @@ class UserSettingsListProvider: SettingsListViewProvider {
 //    - Robits?
     
     var cellCount: Int {
-        return 3
+        return 5
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
@@ -40,12 +40,27 @@ class UserSettingsListProvider: SettingsListViewProvider {
                 "placeholder": "On a mission to save Pam"
             ],
             [
-                "title": "PHONE NUMBER",
-                "subtitle": "An alternative to push notifications to notify you when one of your favourite robots comes online!",
-                "type": "textfield",
-                "keyboard": "phone",
-                "placeholder": "+1 (555) 555-5555"
+                "title": "GLOBAL NOTIFICATIONS",
+                "subtitle": "Manual notifications by site administrators when special events begin!",
+                "type": "toggle"
+            ],
+            [
+                "title": "GO LIVE NOTIFICATIONS",
+                "subtitle": "You will be notified when a robot you're subscribed to goes live!",
+                "type": "toggle"
+            ],
+            [
+                "title": "STUCK NOTIFICATIONS",
+                "subtitle": "If one of your robots gets stuck, users can notify you to help it!",
+                "type": "toggle"
             ]
+//            [
+//                "title": "PHONE NUMBER",
+//                "subtitle": "An alternative to push notifications to notify you when one of your favourite robots comes online!",
+//                "type": "textfield",
+//                "keyboard": "phone",
+//                "placeholder": "+1 (555) 555-5555"
+//            ]
         ][index]
     }
 }
@@ -93,17 +108,19 @@ class RobotSettingsListProvider: SettingsListViewProvider {
     func cellInfo(for index: Int) -> [String : Any] {
         return [
             [
-                "robots": robots,
-                "type": "robotpicker"
+                "title": "ROBOT NAME",
+                "subtitle": "Update your robot's name as shown to users!",
+                "type": "textfield",
+                "keyboard": "default",
+                "placeholder": "On a mission to save Pam"
             ],
-//            [
-//                "title": "CHANGE ROBOT NAME",
-//                "type": "text"
-//            ],
-//            [
-//                "title": "CHANGE ROBOT DESCRIPTION",
-//                "type": "text"
-//            ],
+            [
+                "title": "ROBOT DESCRIPTION",
+                "subtitle": "Update your robot's description as seen on the robot's profile!",
+                "type": "textfield",
+                "keyboard": "default",
+                "placeholder": "On a mission to save Pam"
+            ],
             [
                 "title": "CHANGE ROBOT AVATAR",
                 "type": "picture"
