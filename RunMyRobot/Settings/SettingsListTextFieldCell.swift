@@ -46,7 +46,7 @@ class SettingsListTextFieldCell: UITableViewCell {
         }
         
         textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
-            NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.8)
+            NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.6)
         ])
     }
     

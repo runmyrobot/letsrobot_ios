@@ -41,9 +41,9 @@ class CurrentUser: User {
         return UserDefaults.standard.currentUsername == current.username
     }
     
-    var email: String?
+    var description: String?
     var avatarUrl: URL?
-    var subscriptions = [(id: String, name: String)]()
+    var subscriptions = [RobotSubscription]()
     
     func logout(callback: (() -> Void)? = nil) {
         // Simple GET request to the web's logout page is enough to clear all authentication/cookies
@@ -59,6 +59,50 @@ class CurrentUser: User {
             
             // Callback for additional functionality
             callback?()
+        }
+    }
+    
+    func subscribe(_ subscribe: Bool, robotId: String, callback: @escaping ((Error?) -> Void)) {
+        // Determine which endpoint to actually hit
+        let endpoint = subscribe ? "subscribe" : "unsubscribe"
+        
+        // POST request to subscribe/unsubscribe endpoint with robot_id parameter
+        Networking.request("/api/v1/accounts/\(endpoint)", method: .post, parameters: ["robot_id": robotId]) { response in
+            // Check that we don't have an error, if we do return immediately
+            if let error = response.error {
+                callback(RobotError.requestFailure(original: error))
+                return
+            }
+            
+            // Check that the response has data in order to turn into JSON
+            guard let data = response.data else {
+                callback(RobotError.noData)
+                return
+            }
+            
+            let json = JSON(data)
+            
+            // Check that the robot_id returned is the same that we passed into it to ensure request consistency
+            guard json.type != .null, json["robot_id"].string == robotId else {
+                callback(RobotError.inconsistencyException)
+                return
+            }
+            
+            if subscribe {
+                guard let subscription = RobotSubscription(json: json) else {
+                    callback(RobotError.parseFailure)
+                    return
+                }
+                
+                self.subscriptions.append(subscription)
+            } else {
+                if let index = self.subscriptions.index(where: { $0.id == robotId }) {
+                    self.subscriptions.remove(at: index)
+                }
+            }
+            
+            // Assume it all worked correctly
+            callback(nil)
         }
     }
     
@@ -79,7 +123,7 @@ class CurrentUser: User {
             let json = JSON(data)
             
             // Check that the web's authenticated user matches the locally known username
-            guard json["username"].string == self.username else {
+            guard json.type != .null, json["username"].string == self.username else {
                 callback(nil, RobotError.inconsistencyException)
                 return
             }
@@ -92,10 +136,12 @@ class CurrentUser: User {
             
             if let subscriptionsArray = json["subscriptions"].array {
                 for sub in subscriptionsArray {
-                    guard let id = sub["robot_id"].string, let name = sub["robot_name"].string else { continue }
-                    self.subscriptions.append((id, name))
+                    guard let subscription = RobotSubscription(json: sub) else { continue }
+                    self.subscriptions.append(subscription)
                 }
             }
+            
+            self.description = json["profile_description"].string
             
             // Update the user defaults and singleton reference
             UserDefaults.standard.currentUsername = self.username
@@ -145,11 +191,25 @@ extension User {
                 return
             }
             
-//            user.email = json["user", "email"].string
-            
             // Load additional information about the user such as profile image and subscriptions
             user.load(callback: callback)
         }
     }
     
+}
+
+struct RobotSubscription {
+    var id: String
+    var name: String
+    var owner: String
+    
+    init?(json: JSON) {
+        guard let id = json["robot_id"].string,
+              let name = json["robot_name"].string,
+              let owner = json["owner"].string else { return nil }
+        
+        self.id = id
+        self.name = name
+        self.owner = owner
+    }
 }
