@@ -86,7 +86,7 @@ extension StreamViewController {
     
     @IBAction func didPressMessageSend(_ sender: UITextField) {
         guard let message = sender.text else { return }
-        try? Socket.shared.chat(message, robot: robot)
+        Socket.shared.chat.sendMessage(message, robot: robot)
         
         // Clear the field
         sender.text = nil

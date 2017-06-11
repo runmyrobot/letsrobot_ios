@@ -28,14 +28,14 @@ class Config {
         }
         
         if let chatJSON = json["chat_messages"].array {
-            var builder: [ChatMessage] = []
+            var builder: [UserChatMessage] = []
             
             for chatMessage in chatJSON {
-                guard let message = ChatMessage(json: chatMessage) else { continue }
+                guard let message = UserChatMessage(chatMessage) else { continue }
                 builder.append(message)
             }
             
-            Socket.shared.chatMessages = builder
+            Socket.shared.chat.messages = builder
         }
         
         socketPort = json["socket_io_messaging_to_web_client_port"].intValue

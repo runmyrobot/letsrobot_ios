@@ -17,8 +17,7 @@ class Socket {
     
     var users = [User]()
     
-    var chatMessages = [ChatMessage]()
-    var chatCallback: ((ChatMessage) -> Void)?
+    lazy var chat = Chat()
     
     var socket: SocketIOClient?
     var formatter: DateFormatter = {
@@ -128,17 +127,7 @@ class Socket {
             
             socket?.on("chat_message_with_name") { (data, _) in
                 guard let data = data.first else { return }
-                guard let message = ChatMessage(json: JSON(data)) else { return }
-                
-                self.chatMessages.append(message)
-                
-                if self.chatMessages.count > 100 {
-                    self.chatMessages.removeFirst()
-                }
-                
-                self.chatCallback?(message)
-                
-                print("💬 [\(message.author) @ \(message.robotName)]: \(message.message) (/\(self.chatMessages.count))")
+                self.chat.didReceiveMessage(JSON(data))
             }
             
             socket?.on("users_list") { (data, _) in
@@ -157,19 +146,6 @@ class Socket {
             
             socket?.connect()
         }
-    }
-    
-    func chat(_ message: String, robot: Robot) throws {
-        guard socket?.engine?.connected == true else { return }
-        
-        let payload = [
-            "message": "[\(robot.name)] " + message,
-            "robot_name": robot.name,
-            "robot_id": robot.id,
-            "secret": Config.shared?.chatSecret ?? ""
-        ] as [String: Any]
-        
-        socket?.emit("chat_message", payload)
     }
     
     func sendDirection(_ command: RobotCommand, robot: Robot, keyPosition: String) throws {
@@ -207,30 +183,4 @@ enum RobotCommand: String {
     case ledFull = "LED_FULL"
     case ledMed = "LED_MED"
     case ledLow = "LED_LOW"
-}
-
-struct ChatMessage {
-    var author: String
-    var message: String
-    var anonymous: Bool
-    var robotName: String
-    
-    init?(json: JSON) {
-        author = json["name"].string ?? json["username"].string ?? "Unknown"
-        anonymous = json["anonymous"].boolValue
-        
-        // Message can come out as an empty string (due to profanity filter)
-        // Currently we just don't render this, which is good, but we should maybe change that.
-        guard let matches = json["message"].stringValue.matches(pattern: "\\[(.*)\\](.*)").first, matches.count == 2 else { return nil }
-        robotName = matches[0].trimmingCharacters(in: .whitespacesAndNewlines)
-        message = matches[1].trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-    
-    var robot: Robot? {
-        return Config.shared?.robots.first(where: { $0.value.name.lowercased() == robotName.lowercased() })?.value
-    }
-    
-    var user: User? {
-        return Socket.shared.users.first(where: { $0.username.lowercased() == author.lowercased() })
-    }
 }

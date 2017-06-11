@@ -42,6 +42,7 @@
 		9823E6C41EEC7F2C00619964 /* SettingsListSubscriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9823E6C21EEC7F2C00619964 /* SettingsListSubscriptionCell.xib */; };
 		9823E6C71EEC818900619964 /* SettingsListTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6C51EEC818900619964 /* SettingsListTitleCell.swift */; };
 		9823E6C81EEC818900619964 /* SettingsListTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9823E6C61EEC818900619964 /* SettingsListTitleCell.xib */; };
+		9823E6CA1EED2CAC00619964 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6C91EED2CAC00619964 /* Chat.swift */; };
 		983BCB521EDE29A8007A1247 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB511EDE29A8007A1247 /* Config.swift */; };
 		983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB531EDE9BB0007A1247 /* AngledView.swift */; };
 		983F85B11EE83414001FD90A /* MenuContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983F85B01EE83414001FD90A /* MenuContainerViewController.swift */; };
@@ -103,6 +104,7 @@
 		9823E6C21EEC7F2C00619964 /* SettingsListSubscriptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListSubscriptionCell.xib; sourceTree = "<group>"; };
 		9823E6C51EEC818900619964 /* SettingsListTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListTitleCell.swift; sourceTree = "<group>"; };
 		9823E6C61EEC818900619964 /* SettingsListTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListTitleCell.xib; sourceTree = "<group>"; };
+		9823E6C91EED2CAC00619964 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		983BCB511EDE29A8007A1247 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		983BCB531EDE9BB0007A1247 /* AngledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngledView.swift; sourceTree = "<group>"; };
 		983F85B01EE83414001FD90A /* MenuContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuContainerViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		980ADD531EE20EBA00B00B33 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				9823E6C91EED2CAC00619964 /* Chat.swift */,
 				983BCB511EDE29A8007A1247 /* Config.swift */,
 				980ADD761EE46AC100B00B33 /* Errors.swift */,
 				9823E6B11EEC1F5300619964 /* Networking.swift */,
@@ -525,6 +528,7 @@
 				980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */,
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
 				980ADD841EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift in Sources */,
+				9823E6CA1EED2CAC00619964 /* Chat.swift in Sources */,
 				9823E6C71EEC818900619964 /* SettingsListTitleCell.swift in Sources */,
 				980ADD7E1EE47F3800B00B33 /* LoginView.swift in Sources */,
 				980ADD561EE2BFD200B00B33 /* LoaderViewController.swift in Sources */,

@@ -88,12 +88,16 @@ class StreamViewController: UIViewController {
     
     /// Returns an array of all the current chat messages to show, taking into account the chat filter control
     var chatMessages: [ChatMessage] {
-        let allMessages = Socket.shared.chatMessages
+        let allMessages = Socket.shared.chat.messages
         
         switch chatFilterMode {
         case 1:
             return allMessages.filter {
-                $0.robotName.lowercased() == robot.name.lowercased()
+                guard let userMessage = $0 as? UserChatMessage else {
+                    return true
+                }
+                
+                return userMessage.robotName.lowercased() == robot.name.lowercased()
             }
         default:
             return allMessages
@@ -206,7 +210,7 @@ class StreamViewController: UIViewController {
             cameraWebView.loadRequest(request)
         }
         
-        Socket.shared.chatCallback = { [weak self] message in
+        Socket.shared.chat.chatCallback = { [weak self] message in
             self?.chatUpdated(message: message)
         }
     }
@@ -218,7 +222,7 @@ class StreamViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        Socket.shared.chatCallback = nil
+        Socket.shared.chat.chatCallback = nil
     }
     
     func setCameraControlsVisible(_ visible: Bool, animated: Bool = true) {

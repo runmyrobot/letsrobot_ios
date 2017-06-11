@@ -22,8 +22,8 @@ class ChatMessageTableViewCell: UITableViewCell {
     }
     @IBOutlet var messageLabel: UILabel!
     
-    func setMessage(_ message: ChatMessage) {
-        let fullMessage = "\(message.author): [\(message.robot?.name ?? message.robotName)] \(message.message)"
+    func setMessage(_ message: UserChatMessage) {
+        let fullMessage = "\(message.name): [\(message.robot?.name ?? message.robotName)] \(message.message)"
         guard let regex = try? NSRegularExpression(pattern: "(\\w*:) \\[(.*)\\] (.*)", options: .caseInsensitive) else { return }
         let matches = regex.matches(in: fullMessage, options: .anchored, range: NSRange(location: 0, length: fullMessage.characters.count)).first
         
@@ -36,7 +36,7 @@ class ChatMessageTableViewCell: UITableViewCell {
         // Range 3 is the actual message
         
         // Author (including colon)
-        let usernameColor = message.anonymous ? ChatColours.grey : color(name: message.author)
+        let usernameColor = message.anonymous ? ChatColours.grey : color(name: message.name)
         attributedString.addAttributes([
             NSForegroundColorAttributeName: usernameColor,
             NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
