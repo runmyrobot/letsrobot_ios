@@ -38,6 +38,11 @@ class SettingsViewController: UIViewController {
         return .lightContent
     }
 
+    @IBAction func didPressSave() {
+        // Temporary Implementatino
+        User.current?.saveProfile()
+    }
+    
     @IBAction func didPressClose() {
         dismiss(animated: true, completion: nil)
     }

@@ -62,6 +62,15 @@ class CurrentUser: User {
         }
     }
     
+    func saveProfile() {
+        var data: Parameters = [:]
+        if let description = description { data["profile_description"] = description }
+        
+        Networking.request("/api/v1/accounts", method: .post, parameters: data) { response in
+            print("\(response)")
+        }
+    }
+    
     func subscribe(_ subscribe: Bool, robotId: String, callback: @escaping ((Error?) -> Void)) {
         // Determine which endpoint to actually hit
         let endpoint = subscribe ? "subscribe" : "unsubscribe"
