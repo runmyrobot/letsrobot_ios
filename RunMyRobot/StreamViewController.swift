@@ -159,10 +159,15 @@ class StreamViewController: UIViewController {
             })
             
             Answers.logContentView(withName: "Viewed Robot Stream", contentType: "robot", contentId: self?.robot.id)
+            
+            Threading.run(on: .main, after: 5, execute: { 
+                self?.sendScreenshot()
+            })
         }
         
         // Add notification listeners
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sendScreenshot), name: .UIApplicationUserDidTakeScreenshot, object: nil)
         
         // Set the tableView delegate to be self, dataSource is done via storyboard
         chatTableView.re.delegate = self
@@ -223,6 +228,10 @@ class StreamViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
         Socket.shared.chat.chatCallback = nil
+    }
+    
+    func sendScreenshot() {
+        performSegue(withIdentifier: "SendScreenshot", sender: nil)
     }
     
     func setCameraControlsVisible(_ visible: Bool, animated: Bool = true) {
@@ -289,6 +298,14 @@ class StreamViewController: UIViewController {
         UIView.animate(withDuration: duration, delay: 0, options: animationCurve, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
+    }
+    
+    // MARK: - Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SendScreenshot", let destination = segue.destination as? SendScreenshotViewController {
+            destination.image = cameraWebView.screengrab
+        }
     }
     
     // MARK: - Status Bar
