@@ -124,8 +124,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "placeholder": "Robotomous Prime",
                 "required": true,
                 "callback": { (value: String?) in
-                    guard self.robot.name != value else { return }
-                    self.robot.name = value ?? ""
+                    self.robot.unsavedChanges[.name] = value
                 }
             ],
             [
@@ -136,8 +135,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "value": robot.description as Any,
                 "placeholder": "01010011 01001111 01010011",
                 "callback": { (value: String?) in
-                    guard self.robot.description != value else { return }
-                    self.robot.description = value
+                    self.robot.unsavedChanges[.description] = value
                 }
             ],
             [
@@ -146,8 +144,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "type": "toggle",
                 "value": robot.isPublic as Any,
                 "callback": { (value: Bool) in
-                    guard self.robot.isPublic != value else { return }
-                    self.robot.isPublic = value
+                    self.robot.unsavedChanges[.isPublic] = value
                 }
             ],
             [
@@ -156,8 +153,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "type": "toggle",
                 "value": robot.isAnonymousControlEnabled as Any,
                 "callback": { (value: Bool) in
-                    guard self.robot.isAnonymousControlEnabled != value else { return }
-                    self.robot.isAnonymousControlEnabled = value
+                    self.robot.unsavedChanges[.isAnonymousControlEnabled] = value
                 }
             ],
             [
@@ -166,8 +162,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "type": "toggle",
                 "value": robot.isProfanityFiltered as Any,
                 "callback": { (value: Bool) in
-                    guard self.robot.isProfanityFiltered != value else { return }
-                    self.robot.isProfanityFiltered = value
+                    self.robot.unsavedChanges[.isProfanityFiltered] = value
                 }
             ],
             [
@@ -176,8 +171,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "type": "toggle",
                 "value": robot.isMuted as Any,
                 "callback": { (value: Bool) in
-                    guard self.robot.isMuted != value else { return }
-                    self.robot.isMuted = value
+                    self.robot.unsavedChanges[.isMuted] = value
                 }
             ],
             [
@@ -186,8 +180,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "type": "toggle",
                 "value": robot.isDevMode as Any,
                 "callback": { (value: Bool) in
-                    guard self.robot.isDevMode != value else { return }
-                    self.robot.isDevMode = value
+                    self.robot.unsavedChanges[.isDevMode] = value
                 }
             ],
             [

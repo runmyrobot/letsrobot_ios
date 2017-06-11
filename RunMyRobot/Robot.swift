@@ -44,7 +44,8 @@ class Robot {
     var isProfanityFiltered: Bool?
     var isAnonymousControlEnabled: Bool?
     var isDevMode: Bool?
-    var hasUnsavedChanges = false
+    
+    var unsavedChanges = [RobotSettings: Any]()
     
     init?(json: JSON) {
         guard let name = json["name"].string ?? json["robot_name"].string,
@@ -106,8 +107,33 @@ class Robot {
     }
     
     func save() {
-        guard hasUnsavedChanges else { return }
-        // WIP
+        guard unsavedChanges.count > 0 else { return }
+        
+        var data = [String: Any]()
+        
+        if let changedValue = unsavedChanges[.isPublic], (changedValue as? Bool) != isPublic {
+            data[RobotSettings.isPublic.rawValue] = "\(changedValue)"
+        }
+        
+        if let changedValue = unsavedChanges[.isMuted], (changedValue as? Bool) != isMuted {
+            data[RobotSettings.isPublic.rawValue] = "\(changedValue)"
+        }
+        
+        if let changedValue = unsavedChanges[.isProfanityFiltered], (changedValue as? Bool) != isProfanityFiltered {
+            data[RobotSettings.isPublic.rawValue] = "\(changedValue)"
+        }
+        
+        if let changedValue = unsavedChanges[.isAnonymousControlEnabled], (changedValue as? Bool) != isAnonymousControlEnabled {
+            data[RobotSettings.isPublic.rawValue] = "\(changedValue)"
+        }
+        
+        if let changedValue = unsavedChanges[.isDevMode], (changedValue as? Bool) != isDevMode {
+            data[RobotSettings.isPublic.rawValue] = "\(changedValue)"
+        }
+        
+        Networking.request("", method: .post, parameters: data) { response in
+            print("\(response)")
+        }
     }
 }
 
@@ -133,4 +159,14 @@ struct ButtonPanel {
             buttons.append(Button(label: label, command: command))
         }
     }
+}
+
+enum RobotSettings: String {
+    case isPublic = "public"
+    case isMuted = "mute"
+    case isProfanityFiltered = "strong_filtering"
+    case isAnonymousControlEnabled = "allow_anonymous_control"
+    case isDevMode = "dev_mode"
+    case name
+    case description
 }

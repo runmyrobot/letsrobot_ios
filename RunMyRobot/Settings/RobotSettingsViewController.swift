@@ -30,12 +30,14 @@ class RobotSettingsViewController: UIViewController {
     }
 
     @IBAction func didPressClose() {
-        let unsavedChanges = robots.first(where: { $0.hasUnsavedChanges })
+        let unsavedChanges = robots.first(where: { $0.unsavedChanges.count > 0 })
         
         if unsavedChanges != nil {
             // A robot has unsaved changes
             // TODO: Show a dialog if they want to save the changes or not
-            return
+            robots.forEach {
+                $0.unsavedChanges.removeAll()
+            }
         }
         
         dismiss(animated: true, completion: nil)
