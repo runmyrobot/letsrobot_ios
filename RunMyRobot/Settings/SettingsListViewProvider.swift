@@ -96,70 +96,80 @@ class SubscriptionsListProvider: SettingsListViewProvider {
 
 class RobotSettingsListProvider: SettingsListViewProvider {
 
-    var robots: [String]
+    var robot: Robot
     
-    init(robots: [String]) {
-        self.robots = robots
+    init(_ robot: Robot) {
+        self.robot = robot
     }
     
     var cellCount: Int {
-        return 7
+        return 9
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
         return [
             [
+                "title": "CHANGE AVATAR",
+                "image": robot.avatarUrl as Any,
+                "type": "picture"
+            ],
+            [
                 "title": "ROBOT NAME",
                 "subtitle": "Update your robot's name as shown to users!",
                 "type": "textfield",
                 "keyboard": "default",
-                "placeholder": "On a mission to save Pam"
+                "value": robot.name,
+                "placeholder": "Robotomous Prime"
             ],
             [
                 "title": "ROBOT DESCRIPTION",
                 "subtitle": "Update your robot's description as seen on the robot's profile!",
                 "type": "textfield",
                 "keyboard": "default",
-                "placeholder": "On a mission to save Pam"
-            ],
-            [
-                "title": "CHANGE ROBOT AVATAR",
-                "type": "picture"
+                "value": robot.description as Any,
+                "placeholder": "01010011 01001111 01010011"
             ],
             [
                 "title": "PUBLIC",
                 "subtitle": "Allows all users to see the robot",
-                "type": "toggle"
+                "type": "toggle",
+                "value": robot.isPublic as Any
             ],
             [
                 "title": "ANONYMOUS CONTROL",
                 "subtitle": "Allows users who are not logged in to control your robot",
-                "type": "toggle"
+                "type": "toggle",
+                "value": robot.isAnonymousControlEnabled as Any
             ],
             [
                 "title": "PROFANITY FILTER",
                 "subtitle": "I don't actually know what this toggle does",
-                "type": "toggle"
+                "type": "toggle",
+                "value": robot.isProfanityFiltered as Any
             ],
             [
                 "title": "MUTE TEXT-TO-SPEECH",
                 "subtitle": "If supported, prevents your robot from vocalising messages sent in chat",
-                "type": "toggle"
+                "type": "toggle",
+                "value": robot.isMuted as Any
             ],
             [
                 "title": "DEV MODE",
                 "subtitle": "Prevents users from being able to interact with the robot whilst you validate it all works!",
-                "type": "toggle"
+                "type": "toggle",
+                "value": robot.isDevMode as Any
+            ],
+            [
+                "title": "CUSTOM PANELS",
+                "subtitle": "Allows you to start using custom panels; a way to change the default controls of your robot",
+                "type": "toggle",
+                "value": false
+            ],
+            [
+                "title": "CHANGE CUSTOM PANELS",
+                "type": "segue",
+                "segue": "ShowCustomPanelEditor"
             ]
-//            [
-//                "title": "CUSTOM PANELS",
-//                "subtitle": "Allows you to start using custom panels; a way to change the default controls of your robot",
-//                "type": "toggle"
-//            ],
-//            [
-//                "title": "CHANGE CUSTOM PANELS",
-//                "type": "button" // Will segue to another screen to actually do the customising
-//            ]
         ][index]
     }
 }

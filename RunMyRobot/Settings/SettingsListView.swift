@@ -110,6 +110,11 @@ extension SettingsListView: UITableViewDataSource {
             cell.setText(title, subtitle)
         }
         
+        if let value = info["value"] as? Bool {
+            cell.switch.isOn = value
+            cell.setState(value)
+        }
+        
         return cell
     }
     

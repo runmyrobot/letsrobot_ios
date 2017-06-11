@@ -45,6 +45,10 @@ class SettingsListTextFieldCell: UITableViewCell {
             textField.keyboardType = .default
         }
         
+        if let value = cellInfo["value"] as? String {
+            textField.text = value
+        }
+        
         textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
             NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.6)
         ])

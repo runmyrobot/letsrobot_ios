@@ -11,6 +11,7 @@ import TTTAttributedLabel
 
 class SettingsListSwitchCell: UITableViewCell {
 
+    @IBOutlet var `switch`: UISwitch!
     @IBOutlet var primaryLabel: TTTAttributedLabel!
     @IBOutlet var secondaryLabel: UILabel!
     var callback: ((Bool) -> Void)?
@@ -26,10 +27,13 @@ class SettingsListSwitchCell: UITableViewCell {
         secondaryLabel.text = secondary
     }
     
+    func setState(_ on: Bool) {
+        primaryLabel.alpha = on ? 0.8 : 0.3
+        secondaryLabel.alpha = on ? 0.8 : 0.3
+    }
     @IBAction func didPressSwitch(_ sender: UISwitch) {
         UIView.animate(withDuration: 0.2) {
-            self.primaryLabel.alpha = sender.isOn ? 0.8 : 0.3
-            self.secondaryLabel.alpha = sender.isOn ? 0.8 : 0.3
+            self.setState(sender.isOn)
         }
         
         callback?(sender.isOn)

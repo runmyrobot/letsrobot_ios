@@ -1,5 +1,6 @@
 disabled_rules:
   - line_length
+  - cyclomatic_complexity
 
 opt_in_rules:
   - force_unwrapping
@@ -17,7 +18,7 @@ file_length:
   warning: 500
   error: 1200
 
-type_body_length:
+function_body_length:
   warning: 500
   error: 1200
 

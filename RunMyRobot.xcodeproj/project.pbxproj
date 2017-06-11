@@ -57,6 +57,7 @@
 		987DF39F1EE871730042539B /* HEXColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987DF39E1EE871730042539B /* HEXColor.swift */; };
 		987DF3A21EE875110042539B /* MenuListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987DF3A11EE875110042539B /* MenuListItemCell.swift */; };
 		987DF3A41EE875EC0042539B /* DictionarySubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987DF3A31EE875EC0042539B /* DictionarySubscript.swift */; };
+		98878FF71EED51E40017B7F5 /* RobotSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98878FF61EED51E40017B7F5 /* RobotSettingsViewController.swift */; };
 		98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */; };
 		98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */; };
 		98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */; };
@@ -119,6 +120,7 @@
 		987DF39E1EE871730042539B /* HEXColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HEXColor.swift; sourceTree = "<group>"; };
 		987DF3A11EE875110042539B /* MenuListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuListItemCell.swift; sourceTree = "<group>"; };
 		987DF3A31EE875EC0042539B /* DictionarySubscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionarySubscript.swift; sourceTree = "<group>"; };
+		98878FF61EED51E40017B7F5 /* RobotSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotSettingsViewController.swift; sourceTree = "<group>"; };
 		98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListSwitchCell.swift; sourceTree = "<group>"; };
 		98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListSwitchCell.xib; sourceTree = "<group>"; };
 		98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewProvider.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			children = (
 				9876F99F1EE731D0002E7122 /* List View */,
 				9876F9981EE72950002E7122 /* SettingsViewController.swift */,
+				98878FF61EED51E40017B7F5 /* RobotSettingsViewController.swift */,
 			);
 			name = "Settings Page";
 			path = Settings;
@@ -529,6 +532,7 @@
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
 				980ADD841EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift in Sources */,
 				9823E6CA1EED2CAC00619964 /* Chat.swift in Sources */,
+				98878FF71EED51E40017B7F5 /* RobotSettingsViewController.swift in Sources */,
 				9823E6C71EEC818900619964 /* SettingsListTitleCell.swift in Sources */,
 				980ADD7E1EE47F3800B00B33 /* LoginView.swift in Sources */,
 				980ADD561EE2BFD200B00B33 /* LoaderViewController.swift in Sources */,

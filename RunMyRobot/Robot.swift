@@ -35,23 +35,37 @@ class Robot {
         return Socket.shared.users.filter { $0.robotName?.lowercased() == name.lowercased() }
     }
     
+    // TODO: Ensure this array is synced as a reverse relationship to the users "subscriptions" array
     var subscribers: [User]?
     
+    // Preferences
+    var isPublic: Bool?
+    var isMuted: Bool?
+    var isProfanityFiltered: Bool?
+    var isAnonymousControlEnabled: Bool?
+    var isDevMode: Bool?
+    
     init?(json: JSON) {
-        guard let name = json["name"].string,
-            let id = json["id"].string else { return nil }
+        guard let name = json["name"].string ?? json["robot_name"].string,
+            let id = json["id"].string ?? json["robot_id"].string else { return nil }
         
         self.name = name
         self.id = id
         self.live = json["status"].string == "online"
         
-        let approvedAvatar = json["avatar_approved"].bool == true
-        if approvedAvatar, let avatarUrl = json["avatar", "medium"].string, let url = URL(string: avatarUrl) {
+//        let approvedAvatar = json["avatar_approved"].bool == true
+        if let avatarUrl = json["avatar", "medium"].string, let url = URL(string: avatarUrl) {
             self.avatarUrl = url
         } else {
             let thumbnailTemplate = "\(Networking.baseUrl)/images/thumbnails/\(id).jpg"
             self.avatarUrl = URL(string: thumbnailTemplate)
         }
+        
+        self.isPublic = json["public"].bool ?? false
+        self.isMuted = json["mute"].bool ?? false
+        self.isProfanityFiltered = json["strong_filtering"].bool ?? false
+        self.isAnonymousControlEnabled = json["allow_anonymous_control"].bool ?? true
+        self.isDevMode = json["dev_mode"].bool ?? false
     }
     
     /// Downloads the full feed of information for this robot, some values are only accessible once the download has happened
@@ -79,6 +93,12 @@ class Robot {
             if let subscribers = json["robot", "subscribers"].arrayObject as? [String] {
                 self?.subscribers = subscribers.map { User(username: $0, robotName: nil) }
             }
+            
+            self?.isPublic = json["robot", "public"].bool ?? false
+            self?.isMuted = json["robot", "mute"].bool ?? false
+            self?.isProfanityFiltered = json["robot", "strong_filtering"].bool ?? false
+            self?.isAnonymousControlEnabled = json["robot", "allow_anonymous_control"].bool ?? true
+            self?.isDevMode = json["robot", "dev_mode"].bool ?? false
             
             callback(true)
         }

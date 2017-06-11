@@ -26,7 +26,7 @@
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allows users who are not logged in to control your robot" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTN-gM-PvJ">
-                        <rect key="frame" x="24" y="40" width="218" height="33.5"/>
+                        <rect key="frame" x="24" y="40" width="218" height="34"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -56,6 +56,7 @@
             <connections>
                 <outlet property="primaryLabel" destination="oWR-A5-BmT" id="fii-mZ-w3C"/>
                 <outlet property="secondaryLabel" destination="QTN-gM-PvJ" id="Ueu-j6-lb5"/>
+                <outlet property="switch" destination="yd6-c0-jtf" id="rA5-u2-Azm"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="54"/>
         </tableViewCell>

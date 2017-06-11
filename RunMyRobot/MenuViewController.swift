@@ -40,7 +40,7 @@ class MenuViewController: UIViewController {
         
         return [
             ("Settings", "Menu/settings", "ShowSettings"),
-            ("My Robots", "Menu/robots", "ShowRobots")
+            ("My Robots", "Menu/robots", "ShowMyRobots")
         ] + shared
     }
     
@@ -73,6 +73,7 @@ class MenuViewController: UIViewController {
             }
             
             if profileImageView.image == nil {
+                // Placeholder image
                 profileImageView.image = UIImage(named: "logo")
             }
         }
@@ -94,6 +95,12 @@ class MenuViewController: UIViewController {
         }
         
         present(viewController, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowRobotSettings", let destination = segue.destination as? RobotSettingsViewController {
+            destination.robots = User.current?.robots ?? []
+        }
     }
 }
 
@@ -136,6 +143,8 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             performSegue(withIdentifier: "ShowSettings", sender: nil)
         case "ShowRules":
             performSegue(withIdentifier: "ShowRules", sender: nil)
+        case "ShowMyRobots":
+            performSegue(withIdentifier: "ShowRobotSettings", sender: nil)
         default:
             print("❓ Unknown Action: \(item.action)!")
         }
