@@ -24,11 +24,16 @@ class ListViewController: UIViewController {
         
         navigationItem.titleView = imageView
         collectionView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 8, right: 0)
+        
+        updateRobots()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRobots), name: NSNotification.Name("RobotsChanged"), object: nil)
+    }
+    
+    func updateRobots() {
         guard let config = Config.shared else { return }
         let robots = Array(config.robots.values)
         self.onlineRobots = robots.filter { $0.live }
         self.offlineRobots = robots.filter { !$0.live }
-        
         self.collectionView.reloadData()
     }
     

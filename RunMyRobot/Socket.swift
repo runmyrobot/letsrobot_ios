@@ -105,6 +105,7 @@ class Socket {
                 for status in statuses {
                     guard let id = status["robot_id"].string else { continue }
                     
+                    // Private robots will not be in this array so will skip them
                     if let robot = Config.shared?.robots[id] {
                         let before = robot.live
                         robot.live = status["status"].string == "online"
@@ -113,15 +114,13 @@ class Socket {
                         if before != after {
                             Config.shared?.robots[id] = robot
                             changes = true
+                            print("🔄 \(robot.name) is now \(after ? "online" : "offline"). Previously: \(before ? "online" : "offline")")
                         }
-                    } else {
-                        // Likely caused by private robots
-//                        print("Unknown robot!", status)
                     }
                 }
                 
                 if changes {
-                    // Update Listing
+                    NotificationCenter.default.post(name: NSNotification.Name("RobotsChanged"), object: nil)
                 }
             }
             
