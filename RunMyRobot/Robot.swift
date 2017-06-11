@@ -44,6 +44,7 @@ class Robot {
     var isProfanityFiltered: Bool?
     var isAnonymousControlEnabled: Bool?
     var isDevMode: Bool?
+    var hasUnsavedChanges = false
     
     init?(json: JSON) {
         guard let name = json["name"].string ?? json["robot_name"].string,
@@ -102,6 +103,11 @@ class Robot {
             
             callback(true)
         }
+    }
+    
+    func save() {
+        guard hasUnsavedChanges else { return }
+        // WIP
     }
 }
 

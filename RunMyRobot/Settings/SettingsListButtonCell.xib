@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kgq-u6-Imi" customClass="SettingsListButtonCell" customModule="RunMyRobot" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kgq-u6-Imi" id="V0x-hM-T4s">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tNW-zI-CJg">
+                        <rect key="frame" x="24" y="14" width="327" height="40"/>
+                        <color key="backgroundColor" red="0.37254901959999998" green="0.47450980390000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="wVm-ZZ-P5D"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="CUSTOMISE PANELS">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="didPressButton" destination="kgq-u6-Imi" eventType="touchUpInside" id="GkJ-pK-EKz"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="tNW-zI-CJg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="V0x-hM-T4s" secondAttribute="top" constant="8" id="11e-kt-net"/>
+                    <constraint firstItem="tNW-zI-CJg" firstAttribute="leading" secondItem="V0x-hM-T4s" secondAttribute="leading" constant="24" id="4B6-t5-bRb"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="tNW-zI-CJg" secondAttribute="bottom" constant="8" id="Bzx-dm-ev9"/>
+                    <constraint firstAttribute="trailing" secondItem="tNW-zI-CJg" secondAttribute="trailing" constant="24" id="mq8-qM-qm8"/>
+                    <constraint firstItem="tNW-zI-CJg" firstAttribute="centerY" secondItem="V0x-hM-T4s" secondAttribute="centerY" id="zWR-6s-x76"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="primaryButton" destination="tNW-zI-CJg" id="ibK-G1-6HG"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="54"/>
+        </tableViewCell>
+    </objects>
+</document>

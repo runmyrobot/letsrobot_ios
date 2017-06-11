@@ -30,15 +30,29 @@ class RobotSettingsViewController: UIViewController {
     }
 
     @IBAction func didPressClose() {
+        let unsavedChanges = robots.first(where: { $0.hasUnsavedChanges })
+        
+        if unsavedChanges != nil {
+            // A robot has unsaved changes
+            // TODO: Show a dialog if they want to save the changes or not
+            return
+        }
+        
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didPressSave() {
-        // Save all robots
+        robots.forEach {
+            $0.save()
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     func showPage(_ index: Int, animate: Bool) {
@@ -66,7 +80,7 @@ extension RobotSettingsViewController: MXPagerViewDataSource, MXPagerViewDelegat
     
     func pagerView(_ pagerView: MXPagerView, viewForPageAt index: Int) -> UIView? {
         if pagerView == self.pagerView {
-            return SettingsListView(provider: RobotSettingsListProvider(robots[index]))
+            return SettingsListView(provider: RobotSettingsListProvider(robots[index], segueController: self))
         }
         
         let label = UILabel()

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Sherlouk. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol SettingsListViewProvider {
     var cellCount: Int { get }
@@ -97,13 +97,15 @@ class SubscriptionsListProvider: SettingsListViewProvider {
 class RobotSettingsListProvider: SettingsListViewProvider {
 
     var robot: Robot
+    var segueController: UIViewController
     
-    init(_ robot: Robot) {
+    init(_ robot: Robot, segueController: UIViewController) {
         self.robot = robot
+        self.segueController = segueController
     }
     
     var cellCount: Int {
-        return 9
+        return 10
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
@@ -119,7 +121,12 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "type": "textfield",
                 "keyboard": "default",
                 "value": robot.name,
-                "placeholder": "Robotomous Prime"
+                "placeholder": "Robotomous Prime",
+                "required": true,
+                "callback": { (value: String?) in
+                    guard self.robot.name != value else { return }
+                    self.robot.name = value ?? ""
+                }
             ],
             [
                 "title": "ROBOT DESCRIPTION",
@@ -127,37 +134,61 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "type": "textfield",
                 "keyboard": "default",
                 "value": robot.description as Any,
-                "placeholder": "01010011 01001111 01010011"
+                "placeholder": "01010011 01001111 01010011",
+                "callback": { (value: String?) in
+                    guard self.robot.description != value else { return }
+                    self.robot.description = value
+                }
             ],
             [
                 "title": "PUBLIC",
                 "subtitle": "Allows all users to see the robot",
                 "type": "toggle",
-                "value": robot.isPublic as Any
+                "value": robot.isPublic as Any,
+                "callback": { (value: Bool) in
+                    guard self.robot.isPublic != value else { return }
+                    self.robot.isPublic = value
+                }
             ],
             [
                 "title": "ANONYMOUS CONTROL",
                 "subtitle": "Allows users who are not logged in to control your robot",
                 "type": "toggle",
-                "value": robot.isAnonymousControlEnabled as Any
+                "value": robot.isAnonymousControlEnabled as Any,
+                "callback": { (value: Bool) in
+                    guard self.robot.isAnonymousControlEnabled != value else { return }
+                    self.robot.isAnonymousControlEnabled = value
+                }
             ],
             [
                 "title": "PROFANITY FILTER",
                 "subtitle": "I don't actually know what this toggle does",
                 "type": "toggle",
-                "value": robot.isProfanityFiltered as Any
+                "value": robot.isProfanityFiltered as Any,
+                "callback": { (value: Bool) in
+                    guard self.robot.isProfanityFiltered != value else { return }
+                    self.robot.isProfanityFiltered = value
+                }
             ],
             [
                 "title": "MUTE TEXT-TO-SPEECH",
                 "subtitle": "If supported, prevents your robot from vocalising messages sent in chat",
                 "type": "toggle",
-                "value": robot.isMuted as Any
+                "value": robot.isMuted as Any,
+                "callback": { (value: Bool) in
+                    guard self.robot.isMuted != value else { return }
+                    self.robot.isMuted = value
+                }
             ],
             [
                 "title": "DEV MODE",
                 "subtitle": "Prevents users from being able to interact with the robot whilst you validate it all works!",
                 "type": "toggle",
-                "value": robot.isDevMode as Any
+                "value": robot.isDevMode as Any,
+                "callback": { (value: Bool) in
+                    guard self.robot.isDevMode != value else { return }
+                    self.robot.isDevMode = value
+                }
             ],
             [
                 "title": "CUSTOM PANELS",
@@ -166,9 +197,11 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "value": false
             ],
             [
-                "title": "CHANGE CUSTOM PANELS",
-                "type": "segue",
-                "segue": "ShowCustomPanelEditor"
+                "title": "CUSTOMISE PANELS",
+                "type": "button",
+                "callback": {
+                    self.segueController.performSegue(withIdentifier: "ShowCustomPanelEditor", sender: nil)
+                }
             ]
         ][index]
     }

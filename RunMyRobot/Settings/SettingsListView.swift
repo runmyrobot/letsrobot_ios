@@ -72,6 +72,7 @@ class SettingsListView: UIView {
         tableView.register(UINib(nibName: "SettingsListTextFieldCell", bundle: nil), forCellReuseIdentifier: "TextField")
         tableView.register(UINib(nibName: "SettingsListSubscriptionCell", bundle: nil), forCellReuseIdentifier: "Subscription")
         tableView.register(UINib(nibName: "SettingsListTitleCell", bundle: nil), forCellReuseIdentifier: "Title")
+        tableView.register(UINib(nibName: "SettingsListButtonCell", bundle: nil), forCellReuseIdentifier: "Button")
     }
 }
 
@@ -96,6 +97,8 @@ extension SettingsListView: UITableViewDataSource {
             return subscriptionCell(cellInfo, indexPath: indexPath)
         case "title":
             return titleCell(cellInfo, indexPath: indexPath)
+        case "button":
+            return buttonCell(cellInfo, indexPath: indexPath)
         default:
             fatalError()
         }
@@ -111,8 +114,12 @@ extension SettingsListView: UITableViewDataSource {
         }
         
         if let value = info["value"] as? Bool {
-            cell.switch.isOn = value
+            cell.toggleSwitch.isOn = value
             cell.setState(value)
+        }
+        
+        if let callback = info["callback"] as? ((Bool) -> Void) {
+            cell.callback = callback
         }
         
         return cell
@@ -150,6 +157,15 @@ extension SettingsListView: UITableViewDataSource {
     
     func titleCell(_ info: [String: Any], indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Title", for: indexPath) as? SettingsListTitleCell else {
+            fatalError()
+        }
+        
+        cell.setInfo(info)
+        return cell
+    }
+    
+    func buttonCell(_ info: [String: Any], indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Button", for: indexPath) as? SettingsListButtonCell else {
             fatalError()
         }
         
