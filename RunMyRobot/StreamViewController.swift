@@ -160,10 +160,6 @@ class StreamViewController: UIViewController {
             })
             
             Answers.logContentView(withName: "Viewed Robot Stream", contentType: "robot", contentId: self?.robot.id)
-            
-            Threading.run(on: .main, after: 5, execute: { 
-                self?.sendScreenshot()
-            })
         }
         
         // Add notification listeners
@@ -232,7 +228,13 @@ class StreamViewController: UIViewController {
     }
     
     func sendScreenshot() {
-//        performSegue(withIdentifier: "SendScreenshot", sender: nil)
+        let vc = SendScreenshotViewController.create()
+        vc.robot = robot
+        vc.image = cameraWebView.screengrab
+        vc.messageViewController = self
+        
+        let popup = PopupDialog(viewController: vc, transitionStyle: .zoomIn)
+        present(popup, animated: true, completion: nil)
     }
     
     func setCameraControlsVisible(_ visible: Bool, animated: Bool = true) {
@@ -299,14 +301,6 @@ class StreamViewController: UIViewController {
         UIView.animate(withDuration: duration, delay: 0, options: animationCurve, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
-    }
-    
-    // MARK: - Segue
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SendScreenshot", let destination = segue.destination as? SendScreenshotViewController {
-            destination.image = cameraWebView.screengrab
-        }
     }
     
     // MARK: - Status Bar

@@ -82,7 +82,8 @@ class Socket {
                     return
                 }
                 
-                print(event.event)
+                // new_snapshot
+                print("❓ UNHANDLED EVENT: \(event.event)")
             }
             
             socket?.on("news") { (data, _) in

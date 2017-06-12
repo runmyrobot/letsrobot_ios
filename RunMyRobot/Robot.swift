@@ -107,6 +107,47 @@ class Robot {
             callback(true)
         }
     }
+    
+    func sendScreenshot(_ image: UIImage, caption: String?, callback: @escaping ((Error?) -> Void)) {
+        guard let user = User.current else { return }
+        
+        var rawCaption: String = caption?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "No Caption"
+        
+        if rawCaption == "" {
+            rawCaption = "No Caption"
+        }
+        
+        guard let imageData = UIImageJPEGRepresentation(image, 1) else { return }
+        
+        let data: Parameters = [
+            "image": "data:image/jpeg;base64," + imageData.base64EncodedString(),
+            "robot_id": id,
+            "robot_name": name,
+            "username": user.username,
+            "caption": rawCaption
+        ]
+        
+        Networking.request("/api/v1/snapshots", method: .post, parameters: data) { response in
+            if let error = response.error {
+                callback(RobotError.requestFailure(original: error))
+                return
+            }
+            
+            guard let data = response.data else {
+                callback(RobotError.noData)
+                return
+            }
+            
+            let json = JSON(data)
+            
+            if json["caption"].string != rawCaption {
+                callback(RobotError.inconsistencyException)
+                return
+            }
+            
+            callback(nil)
+        }
+    }
 }
 
 struct ButtonPanel {
@@ -117,7 +158,7 @@ struct ButtonPanel {
     
     var title: String
     var buttons: [Button]
-    
+ 
     init?(json: JSON) {
         title = json["button_panel_label"].stringValue
         
