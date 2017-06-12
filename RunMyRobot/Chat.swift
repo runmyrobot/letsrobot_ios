@@ -17,11 +17,12 @@ class UserChatMessage: ChatMessage {
     var message: String
     var robotName: String
     
-    init?(_ json: JSON) {
+    // TODO: Store the time of when the message was sent
+    
+    override init?(_ json: JSON) {
         guard let anonymous = json["anonymous"].bool,
               let name = json["name"].string ?? json["username"].string,
               let fullMessage = json["message"].string else { return nil }
-        
         self.anonymous = anonymous
         self.name = name
         
@@ -32,7 +33,7 @@ class UserChatMessage: ChatMessage {
         self.message = match[1].trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    var description: String {
+    override var description: String {
         return "\(name): [\(robotName)] \(message)"
     }
     
@@ -50,9 +51,9 @@ class UserChatMessage: ChatMessage {
 }
 
 class WootChatMessage: ChatMessage {
-    let sender: String
-    let robotOwner: String
-    let wootValue: Int
+    var sender: String
+    var robotOwner: String
+    var wootValue: Int
     
     init?(_ json: JSON) {
         guard json["name"].string == "LetsBot",
@@ -72,20 +73,35 @@ class WootChatMessage: ChatMessage {
     }
 }
 
+class DefaultChatMessage: ChatMessage {
+    var name: String
+    var message: String
+    
+    /*
+     {
+        "name" : "AdminBot",
+        "message" : "shedderrich [TheoBlaster] has been timed out for 5 minute"
+     }
+     */
+    
+    init?(_ json: JSON) {
+        guard let name = json["name"].string,
+              let message = json["message"].string else { return nil }
+        
+        self.name = name
+        self.message = message
+    }
+    
+    var description: String {
+        return "\(name): \(message)"
+    }
+}
+
 class Chat {
     
     var messages = [ChatMessage]()
     var chatCallback: ((ChatMessage) -> Void)?
     
-    
-    /*
- 
-     {
-     "name" : "AdminBot",
-     "message" : "shedderrich [TheoBlaster] has been timed out for 5 minute"
-     }
-     
-     */
     func didReceiveMessage(_ json: JSON) {
         guard let message = parseMessage(json) else {
             print("Failed to parse: \(json)")
@@ -103,8 +119,12 @@ class Chat {
     }
     
     func parseMessage(_ json: JSON) -> ChatMessage? {
+        // Attempt to convert the JSON into known objects and extract more information from it
         if let message = UserChatMessage(json) { return message }
         if let message = WootChatMessage(json) { return message }
+        
+        // Message hasn't matched any known objects, so try and at least get the basic message
+        if let message = DefaultChatMessage(json) { return message }
         return nil
     }
     
