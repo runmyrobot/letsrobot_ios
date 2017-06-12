@@ -18,12 +18,10 @@ target 'RunMyRobot' do
   pod 'GSMessages'
   pod 'TTTAttributedLabel'
   pod 'SlideMenuControllerSwift'
+  pod 'PopupDialog', '~> 0.5'
 
   # Code Analysis & Standards
   pod 'SwiftLint'
-
-  # React
-  pod 'Bond'
 
   # Analytics, Crash Reporting
   pod 'Fabric'

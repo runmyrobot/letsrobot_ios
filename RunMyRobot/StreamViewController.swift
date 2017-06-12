@@ -9,6 +9,7 @@
 import UIKit
 import ReverseExtension
 import Crashlytics
+import PopupDialog
 
 class StreamViewController: UIViewController {
 
@@ -231,7 +232,7 @@ class StreamViewController: UIViewController {
     }
     
     func sendScreenshot() {
-        performSegue(withIdentifier: "SendScreenshot", sender: nil)
+//        performSegue(withIdentifier: "SendScreenshot", sender: nil)
     }
     
     func setCameraControlsVisible(_ visible: Bool, animated: Bool = true) {

@@ -9,6 +9,7 @@
 import UIKit
 import MXPagerView
 import GSMessages
+import PopupDialog
 
 class RobotSettingsViewController: UIViewController {
 
@@ -34,6 +35,7 @@ class RobotSettingsViewController: UIViewController {
     }
 
     @IBAction func didPressClose() {
+        view.endEditing(true)
         let unsavedChanges = robots.filter { $0.unsavedChanges.count > 0 }
         
         if unsavedChanges.count == 0 {
@@ -41,21 +43,19 @@ class RobotSettingsViewController: UIViewController {
             return
         }
         
-        let alert = UIAlertController(title: "Are you sure?", message: "One or more of your robots have unsaved changes!", preferredStyle: .alert)
+        let popup = PopupDialog(title: "Are you sure?", message: "One or more of your robots have unsaved changes!", transitionStyle: .zoomIn)
         
-        alert.addAction(UIAlertAction(title: "Revert Changes", style: .destructive, handler: { _ in
+        let cancel = CancelButton(title: "Cancel", action: nil)
+        let revert = DestructiveButton(title: "Revert Changes") {
             self.robots.forEach {
                 $0.unsavedChanges.removeAll()
             }
             
             self.dismiss(animated: true, completion: nil)
-        }))
+        }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        
-        present(alert, animated: true, completion: nil)
+        popup.addButtons([revert, cancel])
+        present(popup, animated: true, completion: nil)
     }
     
     @IBAction func didPressSave() {

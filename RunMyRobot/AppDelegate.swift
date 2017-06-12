@@ -9,6 +9,7 @@
 import UIKit
 import Fabric
 import Crashlytics
+import PopupDialog
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         Fabric.with([Crashlytics.self])
+        
+        // Some things can be done on background thread as to not lock up the launching
+        Threading.run(on: .background, after: 0) { 
+            self.setupDefaultAlert()
+        }
+        
         return true
     }
 
@@ -44,4 +51,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func setupDefaultAlert() {
+        let ov = PopupDialogOverlayView.appearance()
+        ov.blurEnabled = false
+        
+        let pcv = PopupDialogContainerView.appearance()
+        pcv.backgroundColor = UIColor(red:0.23, green:0.23, blue:0.27, alpha:1.00)
+        pcv.cornerRadius    = 2
+        pcv.shadowEnabled   = true
+        pcv.shadowColor     = UIColor.black
+        
+        let pv = PopupDialogDefaultView.appearance()
+        pv.titleFont    = pv.titleFont.withSize(18)
+        pv.titleColor   = UIColor.white
+        pv.messageFont  = pv.messageFont.withSize(16)
+        pv.messageColor = UIColor(white: 0.8, alpha: 1)
+
+        let db = DefaultButton.appearance()
+        db.titleColor     = UIColor.white
+        db.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
+        db.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+        
+        let cb = CancelButton.appearance()
+        cb.titleColor     = UIColor(white: 0.6, alpha: 1)
+        cb.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
+        cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+        
+        let db2 = DestructiveButton.appearance()
+        db2.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
+        db2.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+    }
 }

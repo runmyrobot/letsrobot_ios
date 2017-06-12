@@ -90,13 +90,11 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Bond/Bond.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Diff/Diff.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GSMessages/GSMessages.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MXPagerView/MXPagerView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Popover/Popover.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/ReactiveKit/ReactiveKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PopupDialog/PopupDialog.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReverseExtension/ReverseExtension.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SlideMenuControllerSwift/SlideMenuControllerSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
@@ -107,13 +105,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Alamofire/Alamofire.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Bond/Bond.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/Diff/Diff.framework"
   install_framework "$BUILT_PRODUCTS_DIR/GSMessages/GSMessages.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MXPagerView/MXPagerView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Popover/Popover.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/ReactiveKit/ReactiveKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PopupDialog/PopupDialog.framework"
   install_framework "$BUILT_PRODUCTS_DIR/ReverseExtension/ReverseExtension.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SlideMenuControllerSwift/SlideMenuControllerSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"

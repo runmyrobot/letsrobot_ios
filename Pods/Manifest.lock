@@ -1,17 +1,13 @@
 PODS:
   - Alamofire (4.4.0)
-  - Bond (6.2.6):
-    - Diff (~> 0.4)
-    - ReactiveKit (~> 3.5.3)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
-  - Diff (0.5.3)
   - Fabric (1.6.11)
   - GSMessages (1.3.4)
   - MXPagerView (0.2.1)
   - Nuke (5.1)
   - Popover (1.0.5)
-  - ReactiveKit (3.5.4)
+  - PopupDialog (0.5.4)
   - ReverseExtension (0.4.8)
   - SlideMenuControllerSwift (3.0.1)
   - SnapKit (3.2.0)
@@ -23,13 +19,13 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
-  - Bond
   - Crashlytics
   - Fabric
   - GSMessages
   - MXPagerView
   - Nuke (~> 5.0)
   - Popover
+  - PopupDialog (~> 0.5)
   - ReverseExtension
   - SlideMenuControllerSwift
   - SnapKit (~> 3.2.0)
@@ -41,15 +37,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  Bond: 0d7a52e9aec644c3b4985ceeb224a402b1efd691
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
-  Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   GSMessages: b26e37bb6017b11d61f2708684179d5e9495c063
   MXPagerView: ede184b5191b2ed689ccf05a750a9978cce42414
   Nuke: 8ab71e77f6a54ff5fb697f93537c35f419bb01f7
   Popover: f31b0ef6f43192256e6fcf13a0ce10f01c803159
-  ReactiveKit: 4fc2a23db33777358abe93453ece3a69011adeec
+  PopupDialog: 75cf955693590b0cb2fdde00223fb65d99c57247
   ReverseExtension: 78dcc8414c4efb6115d787694649d9f4f020324a
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
@@ -59,6 +53,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UIImageColors: ba833ce88773453e0a1065f29cde333a97865607
 
-PODFILE CHECKSUM: ea69e5c90cd6e17a63f8e8977b9472d476b6547c
+PODFILE CHECKSUM: 751c15ff9509946c66cb40675d66fb0a77e49c8c
 
 COCOAPODS: 1.2.0
