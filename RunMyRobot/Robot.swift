@@ -63,11 +63,13 @@ class Robot {
             self.avatarUrl = URL(string: thumbnailTemplate)
         }
         
+        // The following information is only in certain APIs, for example the `/api/v1/accounts` (user robots)
         self.isPublic = json["public"].bool ?? false
         self.isMuted = json["mute"].bool ?? false
         self.isProfanityFiltered = json["strong_filtering"].bool ?? false
         self.isAnonymousControlEnabled = json["allow_anonymous_control"].bool ?? true
         self.isDevMode = json["dev_mode"].bool ?? false
+        self.owner = json["owner"].string
     }
     
     /// Downloads the full feed of information for this robot, some values are only accessible once the download has happened
@@ -105,36 +107,6 @@ class Robot {
             callback(true)
         }
     }
-    
-    func save() {
-        guard unsavedChanges.count > 0 else { return }
-        
-        var data = [String: Any]()
-        
-        if let changedValue = unsavedChanges[.isPublic], (changedValue as? Bool) != isPublic {
-            data[RobotSettings.isPublic.rawValue] = "\(changedValue)"
-        }
-        
-        if let changedValue = unsavedChanges[.isMuted], (changedValue as? Bool) != isMuted {
-            data[RobotSettings.isPublic.rawValue] = "\(changedValue)"
-        }
-        
-        if let changedValue = unsavedChanges[.isProfanityFiltered], (changedValue as? Bool) != isProfanityFiltered {
-            data[RobotSettings.isPublic.rawValue] = "\(changedValue)"
-        }
-        
-        if let changedValue = unsavedChanges[.isAnonymousControlEnabled], (changedValue as? Bool) != isAnonymousControlEnabled {
-            data[RobotSettings.isPublic.rawValue] = "\(changedValue)"
-        }
-        
-        if let changedValue = unsavedChanges[.isDevMode], (changedValue as? Bool) != isDevMode {
-            data[RobotSettings.isPublic.rawValue] = "\(changedValue)"
-        }
-        
-        Networking.request("", method: .post, parameters: data) { response in
-            print("\(response)")
-        }
-    }
 }
 
 struct ButtonPanel {
@@ -167,6 +139,6 @@ enum RobotSettings: String {
     case isProfanityFiltered = "strong_filtering"
     case isAnonymousControlEnabled = "allow_anonymous_control"
     case isDevMode = "dev_mode"
-    case name
-    case description
+    case name = "robot_name"
+    case description = "robot_description"
 }

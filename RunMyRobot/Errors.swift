@@ -12,6 +12,7 @@ enum RobotError: Error {
     case notLoggedIn
     case invalidLoginDetails
     case noData
+    case apiFailure
     case parseFailure
     case inconsistencyException
     case requestFailure(original: Error)

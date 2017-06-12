@@ -99,10 +99,12 @@ class RobotSettingsListProvider: SettingsListViewProvider {
 
     var robot: Robot
     var segueController: UIViewController
+    var changeCallback: (() -> Void)
     
-    init(_ robot: Robot, segueController: UIViewController) {
+    init(_ robot: Robot, segueController: UIViewController, changeCallback: @escaping (() -> Void)) {
         self.robot = robot
         self.segueController = segueController
+        self.changeCallback = changeCallback
     }
     
     var cellCount: Int {
@@ -126,6 +128,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "required": true,
                 "callback": { (value: String?) in
                     self.robot.unsavedChanges[.name] = value
+                    self.changeCallback()
                 }
             ],
             [
@@ -137,6 +140,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "placeholder": "01010011 01001111 01010011",
                 "callback": { (value: String?) in
                     self.robot.unsavedChanges[.description] = value
+                    self.changeCallback()
                 }
             ],
             [
@@ -146,6 +150,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "value": robot.isPublic as Any,
                 "callback": { (value: Bool) in
                     self.robot.unsavedChanges[.isPublic] = value
+                    self.changeCallback()
                 }
             ],
             [
@@ -155,6 +160,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "value": robot.isAnonymousControlEnabled as Any,
                 "callback": { (value: Bool) in
                     self.robot.unsavedChanges[.isAnonymousControlEnabled] = value
+                    self.changeCallback()
                 }
             ],
             [
@@ -164,6 +170,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "value": robot.isProfanityFiltered as Any,
                 "callback": { (value: Bool) in
                     self.robot.unsavedChanges[.isProfanityFiltered] = value
+                    self.changeCallback()
                 }
             ],
             [
@@ -173,6 +180,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "value": robot.isMuted as Any,
                 "callback": { (value: Bool) in
                     self.robot.unsavedChanges[.isMuted] = value
+                    self.changeCallback()
                 }
             ],
             [
@@ -182,6 +190,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 "value": robot.isDevMode as Any,
                 "callback": { (value: Bool) in
                     self.robot.unsavedChanges[.isDevMode] = value
+                    self.changeCallback()
                 }
             ],
             [

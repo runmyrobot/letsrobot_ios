@@ -8,9 +8,12 @@
 
 import UIKit
 import MXPagerView
+import GSMessages
 
 class RobotSettingsViewController: UIViewController {
 
+    @IBOutlet var saveRobotsIndicator: UIActivityIndicatorView!
+    @IBOutlet var saveRobotsButton: UIButton!
     @IBOutlet var pageRightButton: UIButton!
     @IBOutlet var pageLeftButton: UIButton!
     @IBOutlet var robotPickerPagerView: MXPagerView!
@@ -22,6 +25,7 @@ class RobotSettingsViewController: UIViewController {
 
         robotPickerPagerView.isScrollEnabled = false
         pagerView.isScrollEnabled = false
+        saveRobotsButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,8 +48,23 @@ class RobotSettingsViewController: UIViewController {
     }
     
     @IBAction func didPressSave() {
-        robots.forEach {
-            $0.save()
+        view.endEditing(true)
+        
+        saveRobotsButton.isHidden = true
+        saveRobotsIndicator.startAnimating()
+        
+        User.current?.saveRobots { error in
+            self.saveRobotsButton.isHidden = false
+            self.saveRobotsIndicator.stopAnimating()
+            
+            if error != nil {
+                self.saveRobotsButton.isEnabled = true
+                self.showMessage("Something went wrong!", type: .error)
+                return
+            }
+            
+            self.saveRobotsButton.isEnabled = false
+            self.showMessage("All Robots Saved!", type: .success)
         }
     }
     
@@ -82,7 +101,11 @@ extension RobotSettingsViewController: MXPagerViewDataSource, MXPagerViewDelegat
     
     func pagerView(_ pagerView: MXPagerView, viewForPageAt index: Int) -> UIView? {
         if pagerView == self.pagerView {
-            return SettingsListView(provider: RobotSettingsListProvider(robots[index], segueController: self))
+            let provider = RobotSettingsListProvider(robots[index], segueController: self, changeCallback: {
+                self.saveRobotsButton.isEnabled = true
+            })
+            
+            return SettingsListView(provider: provider)
         }
         
         let label = UILabel()

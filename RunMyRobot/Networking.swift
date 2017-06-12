@@ -29,8 +29,20 @@ class Networking {
         ).validate().response(completionHandler: completion)
     }
     
-    static func requestJSON(_ url: String, completion: @escaping ((DataResponse<Any>) -> Void)) {
-        Alamofire.request(baseUrl + url).validate().responseJSON(completionHandler: completion)
+    static func requestJSON(_ url: String,
+                            method: HTTPMethod = .get,
+                            parameters: Parameters? = nil,
+                            encoding: ParameterEncoding = URLEncoding.default,
+                            headers: HTTPHeaders? = nil,
+                            completion: @escaping ((DataResponse<Any>) -> Void)) {
+        
+        Alamofire.request(
+            baseUrl + url,
+            method: method,
+            parameters: parameters,
+            encoding: encoding,
+            headers: headers
+        ).responseJSON(completionHandler: completion)
     }
     
 }

@@ -600,6 +600,9 @@
                                     <action selector="didPressChangePage:" destination="NUF-0C-cNy" eventType="touchUpInside" id="vPE-E7-uzy"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ZL4-sh-9UE">
+                                <rect key="frame" x="331" y="41" width="20" height="20"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQA-GW-mLo">
                                 <rect key="frame" x="319" y="29" width="44" height="44"/>
                                 <constraints>
@@ -625,6 +628,7 @@
                             <constraint firstItem="aCv-ku-Azi" firstAttribute="width" secondItem="aCv-ku-Azi" secondAttribute="height" multiplier="1:1" id="Kc3-vR-Edm"/>
                             <constraint firstItem="Rh4-MX-Lu2" firstAttribute="trailing" secondItem="fQz-sa-Rsv" secondAttribute="trailing" constant="-24" id="L2I-Hx-V6u"/>
                             <constraint firstItem="aCv-ku-Azi" firstAttribute="centerY" secondItem="2j6-Fr-SJQ" secondAttribute="centerY" id="Mh0-0H-WZ0"/>
+                            <constraint firstItem="ZL4-sh-9UE" firstAttribute="centerX" secondItem="wQA-GW-mLo" secondAttribute="centerX" id="Ofl-E0-ypy"/>
                             <constraint firstItem="Rh4-MX-Lu2" firstAttribute="centerY" secondItem="fQz-sa-Rsv" secondAttribute="centerY" id="Tnj-fW-lDV"/>
                             <constraint firstItem="wQA-GW-mLo" firstAttribute="width" secondItem="wQA-GW-mLo" secondAttribute="height" multiplier="1:1" id="Uls-3G-DJn"/>
                             <constraint firstItem="aCv-ku-Azi" firstAttribute="leading" secondItem="PQv-Rt-Jdu" secondAttribute="leading" constant="8" id="YnY-oc-cXr"/>
@@ -632,6 +636,7 @@
                             <constraint firstItem="j5u-tB-tSu" firstAttribute="top" secondItem="L4W-rp-UxB" secondAttribute="bottom" id="ag7-Dw-Vpg"/>
                             <constraint firstItem="iI9-La-mfZ" firstAttribute="leading" secondItem="fQz-sa-Rsv" secondAttribute="leading" constant="24" id="ct4-rO-xB4"/>
                             <constraint firstItem="fQz-sa-Rsv" firstAttribute="top" secondItem="2j6-Fr-SJQ" secondAttribute="bottom" constant="16" id="dH5-zK-loY"/>
+                            <constraint firstItem="ZL4-sh-9UE" firstAttribute="centerY" secondItem="wQA-GW-mLo" secondAttribute="centerY" id="djD-rQ-GDA"/>
                             <constraint firstItem="wQA-GW-mLo" firstAttribute="centerY" secondItem="2j6-Fr-SJQ" secondAttribute="centerY" id="jSS-r0-IP3"/>
                             <constraint firstItem="fQz-sa-Rsv" firstAttribute="leading" secondItem="PQv-Rt-Jdu" secondAttribute="leading" id="kpA-aT-2nk"/>
                             <constraint firstItem="iI9-La-mfZ" firstAttribute="trailing" secondItem="fQz-sa-Rsv" secondAttribute="trailing" constant="-24" id="q3I-A5-0sl"/>
@@ -646,6 +651,8 @@
                         <outlet property="pageRightButton" destination="Rh4-MX-Lu2" id="izM-oc-tC7"/>
                         <outlet property="pagerView" destination="L4W-rp-UxB" id="huP-4M-G7Q"/>
                         <outlet property="robotPickerPagerView" destination="fQz-sa-Rsv" id="Xk4-7v-yRk"/>
+                        <outlet property="saveRobotsButton" destination="wQA-GW-mLo" id="46U-dZ-DgE"/>
+                        <outlet property="saveRobotsIndicator" destination="ZL4-sh-9UE" id="aw3-1h-fhp"/>
                         <segue destination="31G-Y7-IhJ" kind="show" identifier="ShowCustomPanelEditor" id="WHV-3p-5Hk"/>
                     </connections>
                 </viewController>

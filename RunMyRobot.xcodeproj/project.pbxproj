@@ -63,6 +63,8 @@
 		98878FFD1EED8EC20017B7F5 /* Screengrab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98878FFC1EED8EC20017B7F5 /* Screengrab.swift */; };
 		98878FFF1EED90220017B7F5 /* SendScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98878FFE1EED90220017B7F5 /* SendScreenshotViewController.swift */; };
 		988790011EEEA79E0017B7F5 /* ColorManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988790001EEEA79E0017B7F5 /* ColorManipulation.swift */; };
+		988790031EEEE6490017B7F5 /* User+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988790021EEEE6490017B7F5 /* User+Authentication.swift */; };
+		988790051EEEE67A0017B7F5 /* User+SyncRobots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */; };
 		98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */; };
 		98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */; };
 		98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */; };
@@ -131,6 +133,8 @@
 		98878FFC1EED8EC20017B7F5 /* Screengrab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screengrab.swift; sourceTree = "<group>"; };
 		98878FFE1EED90220017B7F5 /* SendScreenshotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendScreenshotViewController.swift; sourceTree = "<group>"; };
 		988790001EEEA79E0017B7F5 /* ColorManipulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManipulation.swift; sourceTree = "<group>"; };
+		988790021EEEE6490017B7F5 /* User+Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Authentication.swift"; sourceTree = "<group>"; };
+		988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SyncRobots.swift"; sourceTree = "<group>"; };
 		98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListSwitchCell.swift; sourceTree = "<group>"; };
 		98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListSwitchCell.xib; sourceTree = "<group>"; };
 		98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewProvider.swift; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 				980ADD6D1EE43CD300B00B33 /* Robot.swift */,
 				98500C7F1EE0A57B00CFA446 /* Socket.swift */,
 				980ADD741EE465F500B00B33 /* User.swift */,
+				988790021EEEE6490017B7F5 /* User+Authentication.swift */,
+				988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */,
 				9823E6AF1EEC1DFB00619964 /* UserDefaults.swift */,
 			);
 			name = Business;
@@ -544,6 +550,7 @@
 				98878FFF1EED90220017B7F5 /* SendScreenshotViewController.swift in Sources */,
 				983F85B31EE869BF001FD90A /* MenuViewController.swift in Sources */,
 				9823E6AC1EEC117400619964 /* RulesViewController.swift in Sources */,
+				988790051EEEE67A0017B7F5 /* User+SyncRobots.swift in Sources */,
 				980ADD801EE490F100B00B33 /* ControlArrowButton.swift in Sources */,
 				980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */,
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
@@ -580,6 +587,7 @@
 				9823E6B21EEC1F5300619964 /* Networking.swift in Sources */,
 				980ADD771EE46AC100B00B33 /* Errors.swift in Sources */,
 				98500C7E1EE08C5300CFA446 /* RobotCollectionViewCell.swift in Sources */,
+				988790031EEEE6490017B7F5 /* User+Authentication.swift in Sources */,
 				980ADD5B1EE2E0AC00B00B33 /* Regex.swift in Sources */,
 				987DF39D1EE870090042539B /* Concatenate.swift in Sources */,
 				980ADD751EE465F500B00B33 /* User.swift in Sources */,
