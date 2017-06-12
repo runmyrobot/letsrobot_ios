@@ -24,8 +24,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOk-mx-XbT">
-                        <rect key="frame" x="248" y="16" width="103" height="37.5"/>
+                        <rect key="frame" x="241" y="22" width="110" height="26"/>
                         <color key="backgroundColor" red="0.37254901960784315" green="0.47450980392156861" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="110" id="ZbU-Vo-1nU"/>
+                        </constraints>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
                         <state key="normal" title="Unsubscribe">
@@ -40,19 +43,26 @@
                             <action selector="didPressUnsubscribe" destination="pt2-HY-ctb" eventType="touchUpInside" id="Ccx-ub-09J"/>
                         </connections>
                     </button>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Zn6-Ma-6xa">
+                        <rect key="frame" x="286" y="25" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="MOk-mx-XbT" firstAttribute="top" secondItem="6Mx-EM-eln" secondAttribute="top" constant="16" id="07e-Bp-sdg"/>
+                    <constraint firstItem="MOk-mx-XbT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Mx-EM-eln" secondAttribute="top" constant="16" id="07e-Bp-sdg"/>
+                    <constraint firstItem="Zn6-Ma-6xa" firstAttribute="centerX" secondItem="MOk-mx-XbT" secondAttribute="centerX" id="9m2-FV-fe7"/>
                     <constraint firstItem="E9E-GZ-2D8" firstAttribute="centerY" secondItem="6Mx-EM-eln" secondAttribute="centerY" id="DPq-ao-WO4"/>
                     <constraint firstItem="E9E-GZ-2D8" firstAttribute="leading" secondItem="6Mx-EM-eln" secondAttribute="leading" constant="24" id="IE7-kc-fxi"/>
                     <constraint firstItem="MOk-mx-XbT" firstAttribute="centerY" secondItem="6Mx-EM-eln" secondAttribute="centerY" id="X7y-9p-fIA"/>
                     <constraint firstAttribute="trailing" secondItem="MOk-mx-XbT" secondAttribute="trailing" constant="24" id="dGg-as-VYK"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MOk-mx-XbT" secondAttribute="bottom" constant="16" id="h6y-Zg-sMV"/>
+                    <constraint firstItem="Zn6-Ma-6xa" firstAttribute="centerY" secondItem="MOk-mx-XbT" secondAttribute="centerY" id="hZQ-2t-xCd"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="activityIndicator" destination="Zn6-Ma-6xa" id="Ogu-6L-SXr"/>
+                <outlet property="primaryButton" destination="MOk-mx-XbT" id="nbb-bJ-o9C"/>
                 <outlet property="robotTitleLabel" destination="E9E-GZ-2D8" id="bES-fF-Y2a"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="54"/>

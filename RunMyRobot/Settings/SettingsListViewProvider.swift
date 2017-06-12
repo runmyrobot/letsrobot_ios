@@ -80,6 +80,7 @@ class SubscriptionsListProvider: SettingsListViewProvider {
         var subsMap = subs.flatMap {
             [
                 "name": $0.name,
+                "robot_id": $0.id,
                 "type": "subscription"
             ]
         } as [[String: Any]]

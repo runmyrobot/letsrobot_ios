@@ -33,5 +33,6 @@ class SendScreenshotViewController: UIViewController {
     }
 
     @IBAction func didPressSend() {
+        dismiss(animated: true, completion: nil)
     }
 }

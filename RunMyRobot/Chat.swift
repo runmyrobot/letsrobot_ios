@@ -77,6 +77,15 @@ class Chat {
     var messages = [ChatMessage]()
     var chatCallback: ((ChatMessage) -> Void)?
     
+    
+    /*
+ 
+     {
+     "name" : "AdminBot",
+     "message" : "shedderrich [TheoBlaster] has been timed out for 5 minute"
+     }
+     
+     */
     func didReceiveMessage(_ json: JSON) {
         guard let message = parseMessage(json) else {
             print("Failed to parse: \(json)")

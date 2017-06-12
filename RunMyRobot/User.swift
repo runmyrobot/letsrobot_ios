@@ -72,6 +72,10 @@ class CurrentUser: User {
         }
     }
     
+    func isSubscribed(to robotId: String) -> Bool {
+        return subscriptions.first(where: { $0.id == robotId }) != nil
+    }
+    
     func subscribe(_ subscribe: Bool, robotId: String, callback: @escaping ((Error?) -> Void)) {
         // Determine which endpoint to actually hit
         let endpoint = subscribe ? "subscribe" : "unsubscribe"
