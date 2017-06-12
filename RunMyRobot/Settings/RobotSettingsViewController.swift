@@ -34,17 +34,28 @@ class RobotSettingsViewController: UIViewController {
     }
 
     @IBAction func didPressClose() {
-        let unsavedChanges = robots.first(where: { $0.unsavedChanges.count > 0 })
+        let unsavedChanges = robots.filter { $0.unsavedChanges.count > 0 }
         
-        if unsavedChanges != nil {
-            // A robot has unsaved changes
-            // TODO: Show a dialog if they want to save the changes or not
-            robots.forEach {
-                $0.unsavedChanges.removeAll()
-            }
+        if unsavedChanges.count == 0 {
+            dismiss(animated: true, completion: nil)
+            return
         }
         
-        dismiss(animated: true, completion: nil)
+        let alert = UIAlertController(title: "Are you sure?", message: "One or more of your robots have unsaved changes!", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Revert Changes", style: .destructive, handler: { _ in
+            self.robots.forEach {
+                $0.unsavedChanges.removeAll()
+            }
+            
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func didPressSave() {
