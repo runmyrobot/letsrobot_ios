@@ -35,6 +35,7 @@ class SendScreenshotViewController: UIViewController {
         super.viewDidLoad()
         
         previewImageView.image = image
+        descriptionLabel.text = "Share this picture of \(robot.name) with other users!"
         setupTextField()
     }
     
