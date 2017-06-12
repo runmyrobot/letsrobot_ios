@@ -62,6 +62,7 @@
 		98878FFB1EED78E70017B7F5 /* SettingsListButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98878FF91EED78E70017B7F5 /* SettingsListButtonCell.xib */; };
 		98878FFD1EED8EC20017B7F5 /* Screengrab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98878FFC1EED8EC20017B7F5 /* Screengrab.swift */; };
 		98878FFF1EED90220017B7F5 /* SendScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98878FFE1EED90220017B7F5 /* SendScreenshotViewController.swift */; };
+		988790011EEEA79E0017B7F5 /* ColorManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988790001EEEA79E0017B7F5 /* ColorManipulation.swift */; };
 		98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */; };
 		98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */; };
 		98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */; };
@@ -129,6 +130,7 @@
 		98878FF91EED78E70017B7F5 /* SettingsListButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListButtonCell.xib; sourceTree = "<group>"; };
 		98878FFC1EED8EC20017B7F5 /* Screengrab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screengrab.swift; sourceTree = "<group>"; };
 		98878FFE1EED90220017B7F5 /* SendScreenshotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendScreenshotViewController.swift; sourceTree = "<group>"; };
+		988790001EEEA79E0017B7F5 /* ColorManipulation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManipulation.swift; sourceTree = "<group>"; };
 		98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListSwitchCell.swift; sourceTree = "<group>"; };
 		98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListSwitchCell.xib; sourceTree = "<group>"; };
 		98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewProvider.swift; sourceTree = "<group>"; };
@@ -216,14 +218,15 @@
 		980ADD571EE2C2BE00B00B33 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				988790001EEEA79E0017B7F5 /* ColorManipulation.swift */,
+				987DF39C1EE870090042539B /* Concatenate.swift */,
+				987DF3A31EE875EC0042539B /* DictionarySubscript.swift */,
+				987DF39E1EE871730042539B /* HEXColor.swift */,
 				980ADD601EE3507000B00B33 /* InterruptableTimer.swift */,
 				980ADD5A1EE2E0AC00B00B33 /* Regex.swift */,
-				980ADD581EE2C2D100B00B33 /* Threading.swift */,
-				980ADD6B1EE3FAE300B00B33 /* Templating.swift */,
-				987DF39C1EE870090042539B /* Concatenate.swift */,
-				987DF39E1EE871730042539B /* HEXColor.swift */,
-				987DF3A31EE875EC0042539B /* DictionarySubscript.swift */,
 				98878FFC1EED8EC20017B7F5 /* Screengrab.swift */,
+				980ADD6B1EE3FAE300B00B33 /* Templating.swift */,
+				980ADD581EE2C2D100B00B33 /* Threading.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				980ADD611EE3507000B00B33 /* InterruptableTimer.swift in Sources */,
 				98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */,
 				980ADD671EE3F8DD00B00B33 /* StreamViewController+WebView.swift in Sources */,
+				988790011EEEA79E0017B7F5 /* ColorManipulation.swift in Sources */,
 				980ADD651EE3F8CC00B00B33 /* StreamViewController+ChatView.swift in Sources */,
 				9823E6C31EEC7F2C00619964 /* SettingsListSubscriptionCell.swift in Sources */,
 				9823E6BB1EEC419B00619964 /* SettingsListPictureCell.swift in Sources */,

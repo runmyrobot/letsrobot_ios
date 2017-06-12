@@ -118,7 +118,7 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
         let columns: CGFloat = 2
         let usableWidth = collectionView.bounds.width - (24 * 2) // 24 padding on left and right
         let interitemPadding = (columns - 1) * 16
-        return CGSize(width: (usableWidth - interitemPadding) / columns, height: 175)
+        return CGSize(width: (usableWidth - interitemPadding) / columns, height: 185)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

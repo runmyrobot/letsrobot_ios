@@ -19,7 +19,7 @@ class UserChatMessage: ChatMessage {
     
     // TODO: Store the time of when the message was sent
     
-    override init?(_ json: JSON) {
+    init?(_ json: JSON) {
         guard let anonymous = json["anonymous"].bool,
               let name = json["name"].string ?? json["username"].string,
               let fullMessage = json["message"].string else { return nil }
@@ -33,7 +33,7 @@ class UserChatMessage: ChatMessage {
         self.message = match[1].trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    override var description: String {
+    var description: String {
         return "\(name): [\(robotName)] \(message)"
     }
     

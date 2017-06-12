@@ -250,18 +250,24 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="do4-f1-SwB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="108.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="144" height="108"/>
                                                     <color key="backgroundColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="do4-f1-SwB" secondAttribute="height" multiplier="4:3" id="HQS-py-AaS"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DgM-AR-ozi">
-                                                    <rect key="frame" x="0.0" y="108.5" width="144" height="55.5"/>
+                                                    <rect key="frame" x="0.0" y="108" width="144" height="56"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TRUMPBOT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IJP-B3-Z2z">
-                                                            <rect key="frame" x="8" y="23.5" width="128" height="24"/>
+                                                            <rect key="frame" x="8" y="11" width="128" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner: Jill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9G-9a-RYe">
+                                                            <rect key="frame" x="8" y="35" width="128" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -270,12 +276,15 @@
                                                     <color key="tintColor" red="0.73725490199999999" green="0.35294117650000001" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="IJP-B3-Z2z" firstAttribute="leading" secondItem="DgM-AR-ozi" secondAttribute="leading" constant="8" id="6iq-wR-WvZ"/>
-                                                        <constraint firstAttribute="bottom" secondItem="IJP-B3-Z2z" secondAttribute="bottom" constant="8" id="LIh-8D-X7k"/>
+                                                        <constraint firstItem="F9G-9a-RYe" firstAttribute="top" secondItem="IJP-B3-Z2z" secondAttribute="bottom" id="7qh-vK-Rs8"/>
+                                                        <constraint firstItem="F9G-9a-RYe" firstAttribute="leading" secondItem="IJP-B3-Z2z" secondAttribute="leading" id="UfT-Wu-b0S"/>
                                                         <constraint firstAttribute="trailing" secondItem="IJP-B3-Z2z" secondAttribute="trailing" constant="8" id="XHl-Iz-x7I"/>
+                                                        <constraint firstAttribute="bottom" secondItem="F9G-9a-RYe" secondAttribute="bottom" constant="4" id="gcI-tL-OaJ"/>
+                                                        <constraint firstItem="F9G-9a-RYe" firstAttribute="trailing" secondItem="IJP-B3-Z2z" secondAttribute="trailing" id="u79-vT-7d7"/>
                                                     </constraints>
                                                 </view>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zpj-aD-qcu" customClass="AngledView" customModule="RunMyRobot" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="88.5" width="144" height="20"/>
+                                                    <rect key="frame" x="0.0" y="88" width="144" height="20"/>
                                                     <color key="backgroundColor" red="0.73725490199999999" green="0.35294117650000001" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="tintColor" red="0.73725490199999999" green="0.35294117650000001" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
@@ -316,6 +325,7 @@
                                             <outlet property="angledOverlayView" destination="Zpj-aD-qcu" id="jot-OH-FbX"/>
                                             <outlet property="colorOverlayView" destination="DgM-AR-ozi" id="xzA-gP-k9h"/>
                                             <outlet property="loadingActivityIndicator" destination="lhZ-Aa-RVj" id="IAM-rb-LgE"/>
+                                            <outlet property="ownerNameLabel" destination="F9G-9a-RYe" id="u46-4L-r9T"/>
                                             <outlet property="robotNameLabel" destination="IJP-B3-Z2z" id="hty-sf-fzb"/>
                                             <outlet property="robotThumbnailImageView" destination="do4-f1-SwB" id="f9B-SN-eiV"/>
                                         </connections>
