@@ -44,6 +44,7 @@ class Robot {
     var isProfanityFiltered: Bool?
     var isAnonymousControlEnabled: Bool?
     var isDevMode: Bool?
+    var isGlobalChat: Bool?
     
     var unsavedChanges = [RobotSettings: Any]()
     
@@ -69,6 +70,7 @@ class Robot {
         self.isProfanityFiltered = json["strong_filtering"].bool ?? false
         self.isAnonymousControlEnabled = json["allow_anonymous_control"].bool ?? true
         self.isDevMode = json["dev_mode"].bool ?? false
+        self.isGlobalChat = json["non_global_chat"].bool ?? false
         self.owner = json["owner"].string
     }
     
@@ -103,6 +105,7 @@ class Robot {
             self?.isProfanityFiltered = json["robot", "strong_filtering"].bool ?? false
             self?.isAnonymousControlEnabled = json["robot", "allow_anonymous_control"].bool ?? true
             self?.isDevMode = json["robot", "dev_mode"].bool ?? false
+            self?.isGlobalChat = json["robot", "non_global_chat"].bool ?? false
             
             callback(true)
         }
@@ -180,6 +183,7 @@ enum RobotSettings: String {
     case isProfanityFiltered = "strong_filtering"
     case isAnonymousControlEnabled = "allow_anonymous_control"
     case isDevMode = "dev_mode"
+    case isGlobalChat = "non_global_chat"
     case name = "robot_name"
     case description = "robot_description"
 }

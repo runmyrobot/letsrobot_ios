@@ -174,6 +174,16 @@ class RobotSettingsListProvider: SettingsListViewProvider {
                 }
             ],
             [
+                "title": "GLOBAL CHAT MODE",
+                "subtitle": "If enabled, chat messages will be seen by all active users. Otherwise, only people in one of your bots will see it.",
+                "type": "toggle",
+                "value": robot.isGlobalChat as Any,
+                "callback": { (value: Bool) in
+                    self.robot.unsavedChanges[.isGlobalChat] = value
+                    self.changeCallback()
+                }
+            ],
+            [
                 "title": "MUTE TEXT-TO-SPEECH",
                 "subtitle": "If supported, prevents your robot from vocalising messages sent in chat",
                 "type": "toggle",

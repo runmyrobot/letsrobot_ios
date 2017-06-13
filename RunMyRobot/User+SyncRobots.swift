@@ -71,6 +71,10 @@ extension CurrentUser {
                         if let value = $0.value as? Bool {
                             robot.isAnonymousControlEnabled = value
                         }
+                    case .isGlobalChat:
+                        if let value = $0.value as? Bool {
+                            robot.isGlobalChat = value
+                        }
                     }
                 }
                 
@@ -114,6 +118,10 @@ extension CurrentUser {
         
         if let isMuted = (robot.unsavedChanges[.isMuted] as? Bool) ?? robot.isMuted {
             payload["mute"] = isMuted
+        }
+        
+        if let isGlobalChat = (robot.unsavedChanges[.isGlobalChat] as? Bool) ?? robot.isGlobalChat {
+            payload["non_global_chat"] = isGlobalChat
         }
         
 //        payload["custom_panels"] = false
