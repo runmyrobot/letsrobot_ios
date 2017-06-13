@@ -87,6 +87,9 @@ class StreamViewController: UIViewController {
         return gradientLayer
     }()
     
+    /// Stores the amount of chat messages in order to realise if we need to reset the last cell to a new message
+    var previousChatCount: Int = 0
+    
     /// Returns an array of all the current chat messages to show, taking into account the chat filter control
     var chatMessages: [ChatMessage] {
         let allMessages = Socket.shared.chat.messages
@@ -102,8 +105,7 @@ class StreamViewController: UIViewController {
                 return true
             }
             
-            // return userMessage.robotName.lowercased() == robot.name.lowercased()
-            return true
+            return userMessage.room == robot.owner
         }
     }
     
@@ -255,12 +257,12 @@ class StreamViewController: UIViewController {
     
     func chatUpdated(message: ChatMessage) {
         chatTableView.beginUpdates()
-        let count = chatMessages.count
         
-        if count == 100 {
+        if previousChatCount == Chat.messageCountCap {
             chatTableView.re.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         }
         
+        let count = chatMessages.count
         chatTableView.re.insertRows(at: [IndexPath(row: count - 1, section: 0)], with: .automatic)
         chatTableView.endUpdates()
     }

@@ -11,7 +11,8 @@ import UIKit
 extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return chatMessages.count
+        previousChatCount = chatMessages.count
+        return previousChatCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -21,7 +22,7 @@ extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
         
         let count = chatMessages.count - 1 - indexPath.row
         
-        if let message = chatMessages[count] as? UserChatMessage {
+        if count > 0, let message = chatMessages[count] as? UserChatMessage {
             cell.setMessage(message)
         }
         

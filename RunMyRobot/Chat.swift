@@ -16,8 +16,8 @@ class UserChatMessage: ChatMessage {
     var name: String
     var message: String
     var robotName: String
-    
-    // TODO: Store the time of when the message was sent
+    var room: String?
+    var date: Date
     
     init?(_ json: JSON) {
         guard let anonymous = json["anonymous"].bool,
@@ -31,6 +31,20 @@ class UserChatMessage: ChatMessage {
         
         self.robotName = match[0].trimmingCharacters(in: .whitespacesAndNewlines)
         self.message = match[1].trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if let _ = json["time_string"].string {
+            // This one will need to convert the /internal timestamp into an actual date
+            // Seems to use relative time of "x [minutes/seconds] ago"
+            self.date = Date()
+        } else {
+            self.date = Date()
+        }
+        
+        if let room = json["room"].string {
+            self.room = room
+        } else {
+            self.room = robot?.owner
+        }
     }
     
     var description: String {
@@ -99,6 +113,8 @@ class DefaultChatMessage: ChatMessage {
 
 class Chat {
     
+    static let messageCountCap = 100
+    
     var messages = [ChatMessage]()
     var chatCallback: ((ChatMessage) -> Void)?
     
@@ -108,12 +124,9 @@ class Chat {
             return
         }
         
-        print("💬 \(message)")
         messages.append(message)
-        
-        if messages.count > 100 {
-            messages.removeFirst()
-        }
+        messages = Array(messages.suffix(Chat.messageCountCap))
+        print("💬 \(message) (\(messages.count)/\(Chat.messageCountCap))")
         
         chatCallback?(message)
     }
