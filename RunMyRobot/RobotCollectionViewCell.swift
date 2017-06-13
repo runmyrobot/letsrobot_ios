@@ -65,6 +65,7 @@ class RobotCollectionViewCell: UICollectionViewCell {
         robotNameLabel.text = robot.name.uppercased()
         robotThumbnailImageView.image = nil
         alpha = robot.live ? 1 : 0.7
+        ownerNameLabel.text = "Owner: \(robot.owner ?? "Unknown")"
         
         if let imageURL = robot.avatarUrl {
             loadingActivityIndicator.startAnimating()
@@ -95,6 +96,6 @@ class RobotCollectionViewCell: UICollectionViewCell {
         angledOverlayView.shadowColor = colors.primaryColor.withAlphaComponent(0.6)
         angledOverlayView.angleColor = colors.backgroundColor.darker(by: 5)
         robotNameLabel.textColor = colors.primaryColor
-        ownerNameLabel.textColor = colors.secondaryColor
+        ownerNameLabel.textColor = colors.primaryColor
     }
 }
