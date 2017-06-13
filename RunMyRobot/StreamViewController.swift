@@ -24,6 +24,7 @@ class StreamViewController: UIViewController {
     @IBOutlet var chatTextField: UITextField!
     @IBOutlet var chatTableView: UITableView!
     @IBOutlet var chatPageButton: UIButton!
+    @IBOutlet var chatFilterLabel: UILabel!
     
     // Controls
     @IBOutlet var controlContainerView: UIView!
@@ -145,6 +146,8 @@ class StreamViewController: UIViewController {
             }, completion: { _ in
                 self?.setCameraControlsVisible(true, animated: false)
             })
+            
+            self?.chatFilterLabel.text = self?.robot.isGlobalChat == true ? "Global Chat" : "Room Chat: \(self?.robot.owner ?? "Unknown")"
             
             Answers.logContentView(withName: "Viewed Robot Stream", contentType: "robot", contentId: self?.robot.id)
         }

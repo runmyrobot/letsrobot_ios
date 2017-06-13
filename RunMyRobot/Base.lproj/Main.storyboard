@@ -401,7 +401,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pV-fL-Y07">
-                                <rect key="frame" x="8" y="29.5" width="44" height="44"/>
+                                <rect key="frame" x="8" y="29" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3pV-fL-Y07" secondAttribute="height" multiplier="1:1" id="Ef8-hi-UVo"/>
                                     <constraint firstAttribute="width" constant="44" id="wKI-5E-ii6"/>
@@ -425,7 +425,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6V-L9-O5B">
-                                <rect key="frame" x="319" y="29.5" width="44" height="44"/>
+                                <rect key="frame" x="319" y="29" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="d6V-L9-O5B" secondAttribute="height" multiplier="1:1" id="Agz-3P-ZsJ"/>
                                     <constraint firstAttribute="width" constant="44" id="JAI-5k-x4Y"/>
@@ -685,7 +685,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CUSTOM PANELS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-QV-1CA" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="115" y="40" width="146" height="22"/>
+                                <rect key="frame" x="114.5" y="40" width="146" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1262,14 +1262,22 @@
                                             <action selector="didPressSubscribe" destination="s8K-cS-TTW" eventType="touchUpInside" id="e5R-Tc-F5z"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Global Chat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0d-sA-Fer">
+                                        <rect key="frame" x="269.5" y="11.5" width="89.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="J1Q-ff-Yof" firstAttribute="centerY" secondItem="qGk-oq-HIj" secondAttribute="centerY" id="AET-Nu-esb"/>
+                                    <constraint firstAttribute="trailing" secondItem="i0d-sA-Fer" secondAttribute="trailing" constant="16" id="F0D-Hb-2XP"/>
                                     <constraint firstItem="J5p-6d-wgn" firstAttribute="leading" secondItem="J1Q-ff-Yof" secondAttribute="trailing" constant="-2" id="fDj-EH-ldn"/>
                                     <constraint firstItem="J5p-6d-wgn" firstAttribute="height" secondItem="J1Q-ff-Yof" secondAttribute="height" id="kHv-XT-EZV"/>
                                     <constraint firstItem="J1Q-ff-Yof" firstAttribute="leading" secondItem="qGk-oq-HIj" secondAttribute="leading" constant="8" id="mSi-BX-Ppy"/>
                                     <constraint firstAttribute="height" constant="44" id="osm-xR-1qf"/>
+                                    <constraint firstItem="i0d-sA-Fer" firstAttribute="centerY" secondItem="qGk-oq-HIj" secondAttribute="centerY" id="rc5-1f-7yH"/>
                                     <constraint firstItem="J5p-6d-wgn" firstAttribute="centerY" secondItem="J1Q-ff-Yof" secondAttribute="centerY" id="uEM-v6-z3s"/>
                                 </constraints>
                             </view>
@@ -1538,6 +1546,7 @@
                         <outlet property="cameraOverlayView" destination="XZq-qu-Er1" id="Qxz-N2-Rhh"/>
                         <outlet property="cameraWebView" destination="f1H-pu-IfF" id="pM0-3m-oJk"/>
                         <outlet property="chatBoxTrailingConstraint" destination="tgg-hc-hoc" id="QoV-JF-fdN"/>
+                        <outlet property="chatFilterLabel" destination="i0d-sA-Fer" id="kJ0-Jg-XEr"/>
                         <outlet property="chatPageButton" destination="V5K-8x-LJA" id="d2g-v3-MZu"/>
                         <outlet property="chatTableView" destination="lHz-LG-Jou" id="9NW-Wh-jwx"/>
                         <outlet property="chatTextField" destination="NaL-eS-xAd" id="Y3W-0z-YpE"/>
