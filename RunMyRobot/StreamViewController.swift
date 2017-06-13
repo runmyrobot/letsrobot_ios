@@ -94,7 +94,6 @@ class StreamViewController: UIViewController {
     var chatMessages: [ChatMessage] {
         let allMessages = Socket.shared.chat.messages
         
-        
         if robot.isGlobalChat == true {
             return allMessages
         }
