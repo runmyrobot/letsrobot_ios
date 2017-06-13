@@ -148,22 +148,21 @@ class Socket {
         }
     }
     
-    func sendDirection(_ command: RobotCommand, robot: Robot, keyPosition: String) throws {
+    func sendDirection(_ command: RobotCommand, robot: Robot, keyPosition: String) {
         guard socket?.engine?.connected == true else { return }
         
-        guard let user = User.current else {
-            throw RobotError.notLoggedIn
-        }
-        
-        let dict = [
+        var dict = [
             "command": command.rawValue,
             "_id": robot.id,
             "key_position": keyPosition,
             "timestamp": formatter.string(from: Date()),
             "robot_id": robot.id,
-            "robot_name": robot.name,
-            "user": user.username
+            "robot_name": robot.name
         ] as [String : Any]
+        
+        if let user = User.current {
+            dict["user"] = user.username
+        }
         
         socket?.emit("command_to_robot", dict)
     }

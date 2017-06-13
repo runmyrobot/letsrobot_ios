@@ -123,7 +123,7 @@ extension StreamViewController {
         touchDownDirection = direction
         touchDownTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(didHoldDirection), userInfo: nil, repeats: true)
         
-        try? Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
+        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
     }
     
     @IBAction func didReleaseDirection(_ sender: UIButton) {
@@ -134,12 +134,12 @@ extension StreamViewController {
         touchDownTimer = nil
         touchDownDirection = nil
         
-        try? Socket.shared.sendDirection(direction, robot: robot, keyPosition: "up")
+        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "up")
     }
     
     func didHoldDirection() {
         guard let direction = touchDownDirection else { return }
-        try? Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
+        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
     }
     
     func didTapCamera() {
