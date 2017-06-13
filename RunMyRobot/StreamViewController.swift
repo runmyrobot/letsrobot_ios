@@ -259,6 +259,12 @@ class StreamViewController: UIViewController {
     }
     
     func chatUpdated(message: ChatMessage) {
+        if let userChatMessage = message as? UserChatMessage {
+            if robot.isGlobalChat == false && userChatMessage.room != robot.owner {
+                return
+            }
+        }
+        
         chatTableView.beginUpdates()
         
         if previousChatCount == Chat.messageCountCap {
