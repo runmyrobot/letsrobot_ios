@@ -17,7 +17,29 @@ extension StreamViewController {
     }
     
     @IBAction func didPressSubscribe() {
+        guard let user = User.current else { return }
         
+        let robotId = robot.id
+        subscribeButton.setTitle(nil, for: .normal)
+        subscribeIndicator.startAnimating()
+        
+        let isSubscribed = user.isSubscribed(to: robotId)
+        user.subscribe(!isSubscribed, robotId: robotId) { error in
+            if let error = error as? RobotError {
+                print("\(error)")
+                return
+            }
+            
+            self.subscribeIndicator.stopAnimating()
+            
+            if user.isSubscribed(to: robotId) {
+                self.subscribeButton.setTitle("unsubscribe", for: .normal)
+            } else {
+                self.subscribeButton.setTitle("subscribe", for: .normal)
+            }
+            
+            self.subscriberCountLabel.text = String(self.robot.subscribers?.count ?? 0)
+        }
     }
     
     @IBAction func didPressViewerCount() {

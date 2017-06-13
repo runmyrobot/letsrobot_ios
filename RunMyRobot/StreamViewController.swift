@@ -42,6 +42,7 @@ class StreamViewController: UIViewController {
     @IBOutlet var subscribeButton: UIButton!
     @IBOutlet var subscriberCountLabel: UILabel!
     @IBOutlet var subscriberCountContainerView: UIView!
+    @IBOutlet var subscribeIndicator: UIActivityIndicatorView!
     
     // Constraints
     @IBOutlet var gameIconTrailingConstraint: NSLayoutConstraint!

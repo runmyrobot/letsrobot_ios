@@ -102,6 +102,8 @@ class CurrentUser: User {
                 return
             }
             
+            let robot = Config.shared?.robots[robotId]
+            
             if subscribe {
                 guard let subscription = RobotSubscription(json: json) else {
                     callback(RobotError.parseFailure)
@@ -109,9 +111,17 @@ class CurrentUser: User {
                 }
                 
                 self.subscriptions.append(subscription)
+                
+                if robot?.subscribers?.contains(where: { $0.username == self.username }) == false {
+                    robot?.subscribers?.append(self)
+                }
             } else {
                 if let index = self.subscriptions.index(where: { $0.id == robotId }) {
                     self.subscriptions.remove(at: index)
+                }
+                
+                if let index = robot?.subscribers?.index(where: { $0.username == self.username }) {
+                    robot?.subscribers?.remove(at: index)
                 }
             }
             
