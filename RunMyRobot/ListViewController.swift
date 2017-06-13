@@ -12,8 +12,27 @@ import Popover
 class ListViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
+    var myRobots: [Robot]?
     var onlineRobots: [Robot]?
     var offlineRobots: [Robot]?
+    
+    var robotList: [(String, [Robot])] {
+        var builder = [(String, [Robot])]()
+        
+        if let myRobots = myRobots, myRobots.count > 0 {
+            builder.append(("MY ROBOTS", myRobots))
+        }
+        
+        if let onlineRobots = onlineRobots, onlineRobots.count > 0 {
+            builder.append(("ONLINE ROBOTS", onlineRobots))
+        }
+        
+        if let offlineRobots = offlineRobots, offlineRobots.count > 0 {
+            builder.append(("OFFLINE ROBOTS", offlineRobots))
+        }
+        
+        return builder
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +51,18 @@ class ListViewController: UIViewController {
     func updateRobots() {
         guard let config = Config.shared else { return }
         let robots = Array(config.robots.values)
-        self.onlineRobots = robots.filter { $0.live }
-        self.offlineRobots = robots.filter { !$0.live }
+        self.myRobots = User.current?.robots
+        
+        let notMyRobot: ((Robot) -> Bool) = { robot in
+            if let owner = robot.owner {
+                return owner != User.current?.username
+            }
+            
+            return true
+        }
+        
+        self.onlineRobots = robots.filter { $0.live && notMyRobot($0) }
+        self.offlineRobots = robots.filter { !$0.live && notMyRobot($0) }
         self.collectionView.reloadData()
     }
     
@@ -45,14 +74,6 @@ class ListViewController: UIViewController {
         if segue.identifier == "ShowRobot", let destination = segue.destination as? StreamViewController {
             destination.robot = sender as? Robot
         }
-    }
-    
-    func robotForIndexPath(_ indexPath: IndexPath) -> Robot? {
-        if indexPath.section == 0 {
-            return onlineRobots?[indexPath.item]
-        }
-        
-        return offlineRobots?[indexPath.item]
     }
     
     @IBAction func didPressUser() {
@@ -83,17 +104,11 @@ class ListViewController: UIViewController {
 extension ListViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return robotList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
-            // Online
-            return onlineRobots?.count ?? 0
-        }
-        
-        // Offline
-        return offlineRobots?.count ?? 0
+        return robotList[section].1.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -101,9 +116,8 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
             fatalError()
         }
         
-        if let robot = robotForIndexPath(indexPath) {
-            cell.setRobot(Config.shared?.robots[robot.id] ?? robot)
-        }
+        let robot = robotList[indexPath.section].1[indexPath.item]
+        cell.setRobot(Config.shared?.robots[robot.id] ?? robot)
         
         return cell
     }
@@ -111,7 +125,8 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
         
-        performSegue(withIdentifier: "ShowRobot", sender: robotForIndexPath(indexPath))
+        let robot = robotList[indexPath.section].1[indexPath.item]
+        performSegue(withIdentifier: "ShowRobot", sender: robot)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -126,7 +141,7 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
             fatalError()
         }
         
-        view.titleLabel.text = indexPath.section == 0 ? "ONLINE ROBOTS" : "OFFLINE ROBOTS"
+        view.titleLabel.text = robotList[indexPath.section].0.uppercased()
         return view
     }
     

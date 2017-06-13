@@ -110,6 +110,7 @@ extension CurrentUser {
         
         if let isAnonymousControlEnabled = (robot.unsavedChanges[.isAnonymousControlEnabled] as? Bool) ?? robot.isAnonymousControlEnabled {
             payload["allow_anonymous_control"] = isAnonymousControlEnabled
+            
         }
         
         if let isProfanityFiltered = (robot.unsavedChanges[.isProfanityFiltered] as? Bool) ?? robot.isProfanityFiltered {
@@ -121,7 +122,7 @@ extension CurrentUser {
         }
         
         if let isGlobalChat = (robot.unsavedChanges[.isGlobalChat] as? Bool) ?? robot.isGlobalChat {
-            payload["non_global_chat"] = isGlobalChat
+            payload["non_global_chat"] = !isGlobalChat
         }
         
 //        payload["custom_panels"] = false
