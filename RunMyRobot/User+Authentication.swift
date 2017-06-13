@@ -8,6 +8,7 @@
 
 import Alamofire
 import SwiftyJSON
+import Crashlytics
 
 extension User {
     
@@ -21,12 +22,18 @@ extension User {
         Networking.request("/api/v1/authenticate", method: .post, parameters: loginDetails) { response in
             // Check for Alamofire error, and return that immediately
             if let error = response.error {
+                Answers.logLogin(withMethod: "App", success: false, customAttributes: [
+                    "error": "Alamofire: \(error.localizedDescription)"
+                ])
                 callback(nil, RobotError.requestFailure(original: error))
                 return
             }
             
             // Ensure the response has some data
             guard let data = response.data else {
+                Answers.logLogin(withMethod: "App", success: false, customAttributes: [
+                    "error": "No Response Data"
+                ])
                 callback(nil, RobotError.noData)
                 return
             }
@@ -41,13 +48,21 @@ extension User {
                 let message = String(data: data, encoding: .utf8)
                 
                 if message == "Unauthorized" {
+                    Answers.logLogin(withMethod: "App", success: false, customAttributes: [
+                        "error": "Invalid Details"
+                    ])
                     callback(nil, RobotError.invalidLoginDetails)
                 } else {
+                    Answers.logLogin(withMethod: "App", success: false, customAttributes: [
+                        "error": "Parse Failure"
+                    ])
                     callback(nil, RobotError.parseFailure)
                 }
                 
                 return
             }
+            
+            Answers.logLogin(withMethod: "App", success: true, customAttributes: nil)
             
             // Load additional information about the user such as profile image and subscriptions
             user.load(callback: callback)
