@@ -37,15 +37,3 @@ extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
 }
-
-extension StreamViewController: ChatSettingsDelegate {
-    
-    func didChangeChatFilter(_ selected: Int) {
-        chatFilterMode = selected
-    }
-    
-    func didChangeProfanityFilter(_ enabled: Bool) {
-        // Incomplete
-    }
-    
-}

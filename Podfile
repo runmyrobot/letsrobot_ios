@@ -12,7 +12,6 @@ target 'RunMyRobot' do
   pod 'Nuke', '~> 5.0'
   pod 'UIImageColors'
   pod 'ReverseExtension'
-  pod 'Popover'
   pod 'MXPagerView'
   pod 'SnapKit', '~> 3.2.0'
   pod 'GSMessages'

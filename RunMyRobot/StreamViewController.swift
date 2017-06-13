@@ -91,33 +91,19 @@ class StreamViewController: UIViewController {
     var chatMessages: [ChatMessage] {
         let allMessages = Socket.shared.chat.messages
         
-        switch chatFilterMode {
-        case 1:
-            return allMessages.filter {
-                guard let userMessage = $0 as? UserChatMessage else {
-                    return true
-                }
-                
-                return userMessage.robotName.lowercased() == robot.name.lowercased()
-            }
-        default:
+        
+        if robot.isGlobalChat == true {
             return allMessages
         }
-    }
-    
-    /// Reference to the setting views presented via a popover, necessary to set frame to fix bug within library
-    var settingsView: ChatSettingsView?
-    
-    /// Current mode of the chat filter, 0 is all chat, 1 is this robot.
-    var chatFilterMode: Int = 0 {
-        didSet {
-            chatTableView.reloadData()
-        }
-    }
-    
-    var profanityFilterEnabled: Bool = true {
-        didSet {
-            chatTableView.reloadData()
+        
+        return allMessages.filter {
+            // Allow all non-user chat messages (system message)
+            guard let userMessage = $0 as? UserChatMessage else {
+                return true
+            }
+            
+            // return userMessage.robotName.lowercased() == robot.name.lowercased()
+            return true
         }
     }
     
@@ -183,10 +169,6 @@ class StreamViewController: UIViewController {
         // Add border to subscriber count container view
         subscriberCountContainerView.layer.borderColor = UIColor.white.withAlphaComponent(0.4).cgColor
         subscriberCountContainerView.layer.borderWidth = 1
-        
-        // Add long tap gesture to chat button for chat settings
-        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(didHoldChatButton(_:)))
-        chatPageButton.addGestureRecognizer(longGesture)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

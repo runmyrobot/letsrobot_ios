@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         // Some things can be done on background thread as to not lock up the launching
-        Threading.run(on: .background, after: 0) { 
+        Threading.run(on: .background, after: 0) {
             self.setupDefaultAlert()
         }
         

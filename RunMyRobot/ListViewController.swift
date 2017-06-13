@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Popover
 
 class ListViewController: UIViewController {
 
@@ -74,26 +73,6 @@ class ListViewController: UIViewController {
         if segue.identifier == "ShowRobot", let destination = segue.destination as? StreamViewController {
             destination.robot = sender as? Robot
         }
-    }
-    
-    @IBAction func didPressUser() {
-        let popover = Popover(options: [
-            .blackOverlayColor(UIColor(white: 0.0, alpha: 0.6)),
-            .color(UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1))
-        ])
-        
-        let loginView = LoginView.createView()
-        loginView.frame = CGRect(x: 0, y: 0, width: view.bounds.width - 50, height: 350)
-        
-        popover.willShowHandler = {
-            loginView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width - 50, height: 350)
-        }
-        
-        loginView.success = {
-            popover.dismiss()
-        }
-        
-        popover.showAsDialog(loginView)
     }
     
     @IBAction func didPressOpenMenu() {

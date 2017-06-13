@@ -8,7 +8,6 @@
 
 import UIKit
 import Nuke
-import Popover
 import Crashlytics
 
 extension StreamViewController {
@@ -123,29 +122,5 @@ extension StreamViewController {
     
     func didTapCamera() {
         setCameraControlsVisible(!controlsVisible)
-    }
-    
-    func didHoldChatButton(_ gesture: UILongPressGestureRecognizer) {
-        guard gesture.state == .began else { return }
-        
-        settingsView = ChatSettingsView.createView()
-        settingsView?.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 140)
-        settingsView?.delegate = self
-        settingsView?.chatFilterControl.selectedSegmentIndex = chatFilterMode
-        settingsView?.profanityFilterSwitch.isOn = profanityFilterEnabled
-        
-        let popover = Popover(options: [
-            .type(.up),
-            .blackOverlayColor(UIColor(white: 0.0, alpha: 0.6)),
-            .cornerRadius(0)
-        ])
-        
-        popover.willShowHandler = {
-            self.settingsView?.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 140)
-        }
-        
-        if let settingsView = settingsView {
-            popover.show(settingsView, fromView: chatPageButton)
-        }
     }
 }

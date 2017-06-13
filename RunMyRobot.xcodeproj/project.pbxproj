@@ -20,12 +20,8 @@
 		980ADD6A1EE3FA2A00B00B33 /* StreamViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD691EE3FA2A00B00B33 /* StreamViewControllerHelper.swift */; };
 		980ADD6C1EE3FAE300B00B33 /* Templating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD6B1EE3FAE300B00B33 /* Templating.swift */; };
 		980ADD6E1EE43CD300B00B33 /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD6D1EE43CD300B00B33 /* Robot.swift */; };
-		980ADD711EE43F6600B00B33 /* ChatSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD701EE43F6600B00B33 /* ChatSettingsView.swift */; };
-		980ADD731EE43F6F00B00B33 /* ChatSettingsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980ADD721EE43F6F00B00B33 /* ChatSettingsView.xib */; };
 		980ADD751EE465F500B00B33 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD741EE465F500B00B33 /* User.swift */; };
 		980ADD771EE46AC100B00B33 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD761EE46AC100B00B33 /* Errors.swift */; };
-		980ADD7C1EE47F2D00B00B33 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980ADD7B1EE47F2D00B00B33 /* LoginView.xib */; };
-		980ADD7E1EE47F3800B00B33 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD7D1EE47F3800B00B33 /* LoginView.swift */; };
 		980ADD801EE490F100B00B33 /* ControlArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD7F1EE490F100B00B33 /* ControlArrowButton.swift */; };
 		980ADD821EE4A19400B00B33 /* StreamViewController+CustomControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD811EE4A19400B00B33 /* StreamViewController+CustomControls.swift */; };
 		980ADD841EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD831EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift */; };
@@ -91,12 +87,8 @@
 		980ADD691EE3FA2A00B00B33 /* StreamViewControllerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamViewControllerHelper.swift; sourceTree = "<group>"; };
 		980ADD6B1EE3FAE300B00B33 /* Templating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Templating.swift; sourceTree = "<group>"; };
 		980ADD6D1EE43CD300B00B33 /* Robot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
-		980ADD701EE43F6600B00B33 /* ChatSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatSettingsView.swift; sourceTree = "<group>"; };
-		980ADD721EE43F6F00B00B33 /* ChatSettingsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatSettingsView.xib; sourceTree = "<group>"; };
 		980ADD741EE465F500B00B33 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		980ADD761EE46AC100B00B33 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		980ADD7B1EE47F2D00B00B33 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
-		980ADD7D1EE47F3800B00B33 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		980ADD7F1EE490F100B00B33 /* ControlArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlArrowButton.swift; sourceTree = "<group>"; };
 		980ADD811EE4A19400B00B33 /* StreamViewController+CustomControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StreamViewController+CustomControls.swift"; sourceTree = "<group>"; };
 		980ADD831EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButtonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -188,8 +180,6 @@
 				980ADD831EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift */,
 				980ADD5E1EE33E3F00B00B33 /* ListTitleCollectionReusableView.swift */,
 				98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */,
-				980ADD6F1EE43F4700B00B33 /* Chat Settings */,
-				980ADD7A1EE47F2300B00B33 /* Login Form */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -249,24 +239,6 @@
 				980ADD691EE3FA2A00B00B33 /* StreamViewControllerHelper.swift */,
 			);
 			name = "Stream VC";
-			sourceTree = "<group>";
-		};
-		980ADD6F1EE43F4700B00B33 /* Chat Settings */ = {
-			isa = PBXGroup;
-			children = (
-				980ADD701EE43F6600B00B33 /* ChatSettingsView.swift */,
-				980ADD721EE43F6F00B00B33 /* ChatSettingsView.xib */,
-			);
-			name = "Chat Settings";
-			sourceTree = "<group>";
-		};
-		980ADD7A1EE47F2300B00B33 /* Login Form */ = {
-			isa = PBXGroup;
-			children = (
-				980ADD7D1EE47F3800B00B33 /* LoginView.swift */,
-				980ADD7B1EE47F2D00B00B33 /* LoginView.xib */,
-			);
-			name = "Login Form";
 			sourceTree = "<group>";
 		};
 		9823E6A51EEB374000619964 /* Login Page */ = {
@@ -459,9 +431,7 @@
 				98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */,
 				98878FFB1EED78E70017B7F5 /* SettingsListButtonCell.xib in Resources */,
 				98DB08091EDC4DF0005BAF18 /* LaunchScreen.storyboard in Resources */,
-				980ADD731EE43F6F00B00B33 /* ChatSettingsView.xib in Resources */,
 				98DB08061EDC4DF0005BAF18 /* Assets.xcassets in Resources */,
-				980ADD7C1EE47F2D00B00B33 /* LoginView.xib in Resources */,
 				9887900A1EEF29D50017B7F5 /* Modals.storyboard in Resources */,
 				9823E6BC1EEC419B00619964 /* SettingsListPictureCell.xib in Resources */,
 				98DB08041EDC4DF0005BAF18 /* Main.storyboard in Resources */,
@@ -570,7 +540,6 @@
 				9823E6CA1EED2CAC00619964 /* Chat.swift in Sources */,
 				98878FF71EED51E40017B7F5 /* RobotSettingsViewController.swift in Sources */,
 				9823E6C71EEC818900619964 /* SettingsListTitleCell.swift in Sources */,
-				980ADD7E1EE47F3800B00B33 /* LoginView.swift in Sources */,
 				980ADD561EE2BFD200B00B33 /* LoaderViewController.swift in Sources */,
 				9823E6B01EEC1DFB00619964 /* UserDefaults.swift in Sources */,
 				980ADD6A1EE3FA2A00B00B33 /* StreamViewControllerHelper.swift in Sources */,
@@ -592,7 +561,6 @@
 				9823E6C31EEC7F2C00619964 /* SettingsListSubscriptionCell.swift in Sources */,
 				9823E6BB1EEC419B00619964 /* SettingsListPictureCell.swift in Sources */,
 				98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */,
-				980ADD711EE43F6600B00B33 /* ChatSettingsView.swift in Sources */,
 				983F85B11EE83414001FD90A /* MenuContainerViewController.swift in Sources */,
 				987DF39F1EE871730042539B /* HEXColor.swift in Sources */,
 				98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */,
