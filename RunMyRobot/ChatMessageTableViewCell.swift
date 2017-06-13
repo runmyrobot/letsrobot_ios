@@ -134,7 +134,7 @@ class ChatMessageTableViewCell: UITableViewCell {
             for match in matches {
                 guard let nameMatch = match.first else { continue }
                 let name = rawNSString.substring(with: nameMatch)
-                // TODO: Validate that the name is actually a user and not some random phrase
+                guard Socket.shared.users.first(where: { $0.username == name }) != nil else { continue }
                 guard let url = URL(string: "letsrobot://user/\(name)") else { continue }
                 
                 messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: nameMatch, url: url), attributes: [

@@ -24,9 +24,8 @@ class MenuViewController: UIViewController {
     var menuItems: [MenuItem] {
         let shared = [
             ("Join Discord", "Social/discord", "ShowDiscord"),
-            ("Support Us", "Social/patreon", "ShowPatreon"),
             ("Follow Us", "Social/twitter", "ShowTwitter"),
-            ("Donate", "Social/paypal", "ShowPayPal"),
+            ("Reddit", "Social/reddit", "ShowReddit"),
             ("Source Code", "Social/github", "ShowGitHub"),
             ("Rules", "Menu/rules", "ShowRules")
         ]
@@ -39,8 +38,8 @@ class MenuViewController: UIViewController {
         }
         
         return [
-            ("Settings", "Menu/settings", "ShowSettings"),
-            ("My Robots", "Menu/robots", "ShowMyRobots")
+            ("Settings", "Settings/cog", "ShowSettings"),
+            ("My Robots", "Settings/bot", "ShowMyRobots")
         ] + shared
     }
     
@@ -133,10 +132,8 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             launchWebModule(urlString: "https://discord.gg/CpxUrk5")
         case "ShowGitHub":
             launchWebModule(urlString: "https://github.com/runmyrobot/letsrobot_ios")
-        case "ShowPatreon":
-            launchWebModule(urlString: "https://www.patreon.com/runmyrobot")
-        case "ShowPayPal":
-            launchWebModule(urlString: "https://www.paypal.me/runmyrobot")
+        case "ShowReddit":
+            launchWebModule(urlString: "https://www.reddit.com/r/letsRobot/")
         case "ShowTwitter":
             launchWebModule(urlString: "https://twitter.com/letsrobot")
         case "ShowSettings":
