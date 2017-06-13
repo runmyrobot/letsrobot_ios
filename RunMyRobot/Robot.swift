@@ -151,6 +151,19 @@ class Robot {
             callback(nil)
         }
     }
+    
+    /// Searches multiple arrays of robots to try and find a robot with the name provided. This will search public and known private robots.
+    class func get(name: String) -> Robot? {
+        if let robot = Config.shared?.robots.first(where: { $0.value.name == name }) {
+            return robot.value
+        }
+        
+        if let robot = User.current?.robots.first(where: { $0.name == name }) {
+            return robot
+        }
+        
+        return nil
+    }
 }
 
 struct ButtonPanel {

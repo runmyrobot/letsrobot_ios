@@ -22,8 +22,8 @@ extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
         
         let count = chatMessages.count - 1 - indexPath.row
         
-        if count > 0, let message = chatMessages[count] as? UserChatMessage {
-            cell.setMessage(message)
+        if count >= 0 {
+            cell.setNewMessage(chatMessages[count])
         }
         
         return cell

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TTTAttributedLabel
 
 class ChatMessageTableViewCell: UITableViewCell {
 
@@ -20,41 +21,12 @@ class ChatMessageTableViewCell: UITableViewCell {
         static let pink = UIColor(red: 241/255, green: 107/255, blue: 116/255, alpha: 1)
         static let violet = UIColor(red: 166/255, green: 82/255, blue: 175/255, alpha: 1)
     }
-    @IBOutlet var messageLabel: UILabel!
     
-    func setMessage(_ message: UserChatMessage) {
-        let fullMessage = "\(message.name): [\(message.robot?.name ?? message.robotName)] \(message.message)"
-        guard let regex = try? NSRegularExpression(pattern: "(\\w*:) \\[(.*)\\] (.*)", options: .caseInsensitive) else { return }
-        let matches = regex.matches(in: fullMessage, options: .anchored, range: NSRange(location: 0, length: fullMessage.characters.count)).first
-        
-        let attributedString = NSMutableAttributedString(string: fullMessage, attributes: [
-            NSForegroundColorAttributeName: UIColor.white
-        ])
-        
-        guard let authorRange = matches?.rangeAt(1) else { return }
-        guard let robotRange = matches?.rangeAt(2) else { return }
-        // Range 3 is the actual message
-        
-        // Author (including colon)
-        let usernameColor = message.anonymous ? ChatColours.grey : color(name: message.name)
-        attributedString.addAttributes([
-            NSForegroundColorAttributeName: usernameColor,
-            NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
-        ], range: authorRange)
-        
-        // Robot (not including square brackets)
-        let robotName = (fullMessage as NSString).substring(with: robotRange)
-        let robot = Config.shared?.robots.first(where: { $0.value.name.lowercased() == robotName.lowercased() })
-        let robotColor = robot?.value.colors?.primaryColor
-        attributedString.addAttributes([
-            // Idea was to use the robotColor here, but this can sometimes conflict with the background color.
-            // For now we will keep it white but bold it to stand out from the rest of the text!
-            // Plan is to make this tappable to allow the user to switch to the robot
-            NSForegroundColorAttributeName: UIColor.white,
-            NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: robotColor == nil ? UIFontWeightMedium : UIFontWeightSemibold)
-        ], range: robotRange)
-        
-        messageLabel.attributedText = attributedString
+    @IBOutlet var messageLabel: TTTAttributedLabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        messageLabel.delegate = self
     }
     
     func hash(name: NSString) -> Int {
@@ -95,4 +67,89 @@ class ChatMessageTableViewCell: UITableViewCell {
         }
     }
 
+    // v2
+    
+    func setNewMessage(_ message: ChatMessage) {
+        
+        // UserChatMessage
+        // WootChatMessage
+        // DefaultChatMessage - Mostly System Messages
+        
+        let attString = NSMutableAttributedString()
+        
+        if let userMessage = message as? UserChatMessage {
+            let usernameColor = userMessage.anonymous ? ChatColours.grey : color(name: userMessage.name)
+            let username = NSAttributedString(string: "\(userMessage.name): ", attributes: [
+                NSForegroundColorAttributeName: usernameColor,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
+            ])
+            
+            let robot = NSAttributedString(string: "[\(userMessage.robotName)] ", attributes: [
+                NSForegroundColorAttributeName: UIColor.white,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: userMessage.robot == nil ? UIFontWeightMedium : UIFontWeightSemibold)
+            ])
+            
+            let text = NSAttributedString(string: userMessage.message, attributes: [
+                NSForegroundColorAttributeName: UIColor.white,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightLight)
+            ])
+            
+            attString.append(username)
+            attString.append(robot)
+            attString.append(text)
+        } else {
+            let text = NSAttributedString(string: message.description, attributes: [
+                NSForegroundColorAttributeName: UIColor.white,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightLight)
+            ])
+            
+            attString.append(text)
+        }
+        
+        messageLabel.setText(attString)
+        messageLabel.linkAttributes = [
+            NSForegroundColorAttributeName: UIColor.white,
+            NSUnderlineStyleAttributeName: NSUnderlineStyle.styleNone.rawValue
+        ]
+        
+        if let userMessage = message as? UserChatMessage {
+            let rawString = messageLabel.attributedText.string
+            let rawNSString = rawString as NSString
+            
+            let robotRange = rawNSString.range(of: "[\(userMessage.robotName)]")
+            if robotRange.location != NSNotFound, let url = URL(string: "letsrobot://robot/\(userMessage.robotName)") {
+                messageLabel.addLink(to: url, with: robotRange)
+            }
+            
+            let senderRange = rawNSString.range(of: "\(userMessage.name):")
+            if senderRange.location != NSNotFound, let url = URL(string: "letsrobot://user/\(userMessage.name)") {
+                let usernameColor = userMessage.anonymous ? ChatColours.grey : color(name: userMessage.name)
+                messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: senderRange, url: url), attributes: [
+                    NSForegroundColorAttributeName: usernameColor,
+                    NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
+                ])
+            }
+            
+            let matches = rawString.rangesMatching(pattern: "\\@(\\w+)")
+            for match in matches {
+                guard let nameMatch = match.first else { continue }
+                let name = rawNSString.substring(with: nameMatch)
+                // TODO: Validate that the name is actually a user and not some random phrase
+                guard let url = URL(string: "letsrobot://user/\(name)") else { continue }
+                
+                messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: nameMatch, url: url), attributes: [
+                    NSForegroundColorAttributeName: UIColor.white,
+                    NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
+                ])
+            }
+        }
+    }
+}
+
+extension ChatMessageTableViewCell: TTTAttributedLabelDelegate {
+    
+    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+        print("Pressed URL! \(url.absoluteString)")
+    }
+    
 }
