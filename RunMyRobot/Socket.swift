@@ -74,7 +74,7 @@ class Socket {
                 let ignore = [
                     "pip", "robot_command_has_hit_webserver", "aggregate_color_change", "exclusive_control_status", // Incomplete
                     "connect", "disconnect", "error", "reconnect", "reconnectAttempt", "statusChange", // Client Events
-                    "news", "num_viewers", "robot_statuses", "chat_message_with_name", "users_list", // Implemented
+                    "news", "num_viewers", "robot_statuses", "chat_message_with_name", "users_list", "subscription_state_change", // Implemented
                     "charge_state" // No Purpose
                 ]
                 
@@ -82,6 +82,7 @@ class Socket {
                     return
                 }
                 
+                // subscription_state_change
                 // new_snapshot
                 print("❓ UNHANDLED EVENT: \(event.event)")
             }
@@ -142,6 +143,27 @@ class Socket {
                 }
                 
                 self.users = builder
+            }
+            
+            socket?.on("subscription_state_change") { (data, _) in
+                guard let data = data.first else { return }
+                let json = JSON(data)
+                guard let robot = Config.shared?.robots[json["robot_id"].stringValue] else { return }
+                guard let user = self.users.first(where: { $0.username == json["username"].stringValue }) else { return }
+                
+                if json["subscribed"].boolValue {
+                    if robot.subscribers?.contains(where: { $0.username == user.username }) == false {
+                        if robot.subscribers == nil {
+                            robot.subscribers = [User]()
+                        }
+                        
+                        robot.subscribers?.append(user)
+                    }
+                } else {
+                    if let index = robot.subscribers?.index(where: { $0.username == user.username }) {
+                        robot.subscribers?.remove(at: index)
+                    }
+                }
             }
             
             socket?.connect()
