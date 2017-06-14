@@ -8,6 +8,7 @@
 
 import UIKit
 import TTTAttributedLabel
+import PopupDialog
 
 class ChatMessageTableViewCell: UITableViewCell {
 
@@ -23,6 +24,7 @@ class ChatMessageTableViewCell: UITableViewCell {
     }
     
     @IBOutlet var messageLabel: TTTAttributedLabel!
+    weak var parentViewController: UIViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -150,6 +152,20 @@ extension ChatMessageTableViewCell: TTTAttributedLabelDelegate {
     
     func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
         print("Pressed URL! \(url.absoluteString)")
+        
+        let components = url.absoluteString.components(separatedBy: "/")
+        guard components.first == "letsrobot:" else { return }
+        
+        if components.count == 4, components[2] == "robot" {
+            let robotName = components[3]
+            guard let robot = Robot.get(name: robotName) else { return }
+            
+            let modal = RobotModalViewController.create()
+            modal.robot = robot
+            
+            let popup = PopupDialog(viewController: modal, transitionStyle: .zoomIn)
+            parentViewController?.present(popup, animated: true, completion: nil)
+        }
     }
     
 }

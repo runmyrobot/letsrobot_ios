@@ -62,6 +62,7 @@
 		988790031EEEE6490017B7F5 /* User+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988790021EEEE6490017B7F5 /* User+Authentication.swift */; };
 		988790051EEEE67A0017B7F5 /* User+SyncRobots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */; };
 		9887900A1EEF29D50017B7F5 /* Modals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988790091EEF29D50017B7F5 /* Modals.storyboard */; };
+		98B73C191EF157B000577D39 /* RobotModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C181EF157B000577D39 /* RobotModalViewController.swift */; };
 		98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */; };
 		98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */; };
 		98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */; };
@@ -129,6 +130,7 @@
 		988790021EEEE6490017B7F5 /* User+Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Authentication.swift"; sourceTree = "<group>"; };
 		988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SyncRobots.swift"; sourceTree = "<group>"; };
 		988790091EEF29D50017B7F5 /* Modals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modals.storyboard; sourceTree = "<group>"; };
+		98B73C181EF157B000577D39 /* RobotModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotModalViewController.swift; sourceTree = "<group>"; };
 		98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListSwitchCell.swift; sourceTree = "<group>"; };
 		98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListSwitchCell.xib; sourceTree = "<group>"; };
 		98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewProvider.swift; sourceTree = "<group>"; };
@@ -312,8 +314,9 @@
 		988790061EEF292D0017B7F5 /* Modals */ = {
 			isa = PBXGroup;
 			children = (
-				98878FFE1EED90220017B7F5 /* SendScreenshotViewController.swift */,
 				988790091EEF29D50017B7F5 /* Modals.storyboard */,
+				98B73C181EF157B000577D39 /* RobotModalViewController.swift */,
+				98878FFE1EED90220017B7F5 /* SendScreenshotViewController.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				98500C7A1EDF59C400CFA446 /* StreamViewController.swift in Sources */,
 				980ADD671EE3F8DD00B00B33 /* StreamViewController+WebView.swift in Sources */,
 				988790011EEEA79E0017B7F5 /* ColorManipulation.swift in Sources */,
+				98B73C191EF157B000577D39 /* RobotModalViewController.swift in Sources */,
 				980ADD651EE3F8CC00B00B33 /* StreamViewController+ChatView.swift in Sources */,
 				9823E6C31EEC7F2C00619964 /* SettingsListSubscriptionCell.swift in Sources */,
 				9823E6BB1EEC419B00619964 /* SettingsListPictureCell.swift in Sources */,

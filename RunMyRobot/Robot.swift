@@ -46,6 +46,7 @@ class Robot {
     var isDevMode: Bool?
     var isGlobalChat: Bool?
     
+    var downloaded = false
     var unsavedChanges = [RobotSettings: Any]()
     
     init?(json: JSON) {
@@ -107,6 +108,7 @@ class Robot {
             self?.isDevMode = json["robot", "dev_mode"].bool ?? false
             self?.isGlobalChat = !(json["robot", "non_global_chat"].bool ?? false)
             
+            self?.downloaded = true
             callback(true)
         }
     }

@@ -26,6 +26,7 @@ extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
             cell.setNewMessage(chatMessages[count])
         }
         
+        cell.parentViewController = self
         return cell
     }
     
