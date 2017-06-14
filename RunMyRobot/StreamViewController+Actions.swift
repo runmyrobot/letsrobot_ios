@@ -109,33 +109,6 @@ extension StreamViewController {
         sender.text = nil
     }
     
-    @IBAction func didPressDirection(_ sender: UIButton) {
-        guard let direction = command(from: sender.tag) else { return }
-        
-        // Setup a timer which will be used to send out continous direction requests via the socket
-        // This allows the user to hold down a direction and continue moving
-        touchDownDirection = direction
-        touchDownTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(didHoldDirection), userInfo: nil, repeats: true)
-        
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
-    }
-    
-    @IBAction func didReleaseDirection(_ sender: UIButton) {
-        guard let direction = command(from: sender.tag) else { return }
-        
-        // Clean up the timer and cancel any future runs
-        touchDownTimer?.invalidate()
-        touchDownTimer = nil
-        touchDownDirection = nil
-        
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "up")
-    }
-    
-    func didHoldDirection() {
-        guard let direction = touchDownDirection else { return }
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
-    }
-    
     func didTapCamera() {
         setCameraControlsVisible(!controlsVisible)
     }

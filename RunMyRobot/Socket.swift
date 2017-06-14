@@ -98,6 +98,7 @@ class Socket {
                 let count = json["users"].dictionaryObject?.count ?? 0
                 guard let command = json["command"].string else { return }
                 robot.pips[command] = count
+                robot.updateControls?()
             }
             
             /// Website adds a 5px white border to the given command button
@@ -105,13 +106,18 @@ class Socket {
                 guard let data = data.first else { return }
                 let json = JSON(data)
                 
-//                print("\(json)")
+                guard let robotId = json["robot_id"].string else { return }
+                guard let robot = Robot.get(id: robotId) else { return }
+                
+                let command = json["command"].string
+                robot.currentCommand = command == "stop" ? nil : command
+                robot.updateControls?()
                 
                 /*
                  On the provided robot, only the given command should be highlighted. All others should not be highlighted.
                  
                  {
-                    "command" : "R",
+                    "command" : "R", - Can also be "stop"
                     "robot_id" : "11467183"
                  }
                 */

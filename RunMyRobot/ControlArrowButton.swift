@@ -13,7 +13,6 @@ class ControlArrowButton: UIButton {
     var arrowDirection: String?
     
     override func draw(_ rect: CGRect) { // swiftlint:disable:this function_body_length
-        
         let path = UIBezierPath()
         path.lineCapStyle = .round
         path.lineJoinStyle = .round

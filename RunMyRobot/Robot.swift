@@ -38,6 +38,8 @@ class Robot {
     // TODO: Ensure this array is synced as a reverse relationship to the users "subscriptions" array
     var subscribers: [User]?
     var pips = [String: Int]()
+    var currentCommand: String?
+    var updateControls: (() -> Void)?
     
     // Preferences
     var isPublic: Bool?

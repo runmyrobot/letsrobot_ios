@@ -31,7 +31,6 @@ class StreamViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var backButton: UIButton!
     @IBOutlet var ownerLabel: UILabel!
-    @IBOutlet var customControlsCollectionView: UICollectionView!
     
     // Loading View
     @IBOutlet var loadingViewContainer: UIView!
@@ -48,12 +47,6 @@ class StreamViewController: UIViewController {
     @IBOutlet var chatBoxTrailingConstraint: NSLayoutConstraint!
     @IBOutlet var viewSwapperBottomConstraint: NSLayoutConstraint!
     @IBOutlet var titleVerticalConstraint: NSLayoutConstraint!
-    
-    /// Timer used to send out continous socket messages when holding down a direction
-    var touchDownTimer: Timer?
-    
-    /// Last direction touched down on, used in conjuction with the timer to send out continous socket messages.
-    var touchDownDirection: RobotCommand?
     
     /// Current robot, as set from the Robot Chooser segue
     var robot: Robot!
@@ -135,19 +128,17 @@ class StreamViewController: UIViewController {
                 self?.titleVerticalConstraint.constant = -6
             }
             
-            if let panels = self?.robot.panels, panels.count > 0 {
-                self?.customControlsCollectionView.reloadData()
-            } else {
-                self?.customControlsCollectionView.isHidden = true
+            if let controlsView = self?.controlContainerView, let robot = self?.robot {
+                RobotControls.create(for: robot).embed(in: controlsView)
             }
+            
+            self?.chatFilterLabel.text = self?.robot.isGlobalChat == true ? "Global Chat" : "Room Chat: \(self?.robot.owner ?? "Unknown")"
             
             UIView.animate(withDuration: 0.3, animations: {
                 self?.loadingViewContainer.alpha = 0
             }, completion: { _ in
                 self?.setCameraControlsVisible(true, animated: false)
             })
-            
-            self?.chatFilterLabel.text = self?.robot.isGlobalChat == true ? "Global Chat" : "Room Chat: \(self?.robot.owner ?? "Unknown")"
             
             Answers.logContentView(withName: "Viewed Robot Stream", contentType: "robot", contentId: self?.robot.id)
         }
@@ -235,21 +226,6 @@ class StreamViewController: UIViewController {
             
             self.backButton.alpha = alpha
             self.controlsGradientLayer.opacity = Float(alpha)
-        }
-    }
-    
-    func command(from tag: Int) -> RobotCommand? {
-        switch tag {
-        case 1:
-            return .forward
-        case 2:
-            return .backward
-        case 3:
-            return .left
-        case 4:
-            return .right
-        default:
-            return nil
         }
     }
     
