@@ -37,6 +37,7 @@ class Robot {
     
     // TODO: Ensure this array is synced as a reverse relationship to the users "subscriptions" array
     var subscribers: [User]?
+    var pips = [String: Int]()
     
     // Preferences
     var isPublic: Bool?
@@ -161,6 +162,18 @@ class Robot {
         }
         
         if let robot = User.current?.robots.first(where: { $0.name == name }) {
+            return robot
+        }
+        
+        return nil
+    }
+    
+    class func get(id: String) -> Robot? {
+        if let robot = Config.shared?.robots[id] {
+            return robot
+        }
+        
+        if let robot = User.current?.robots.first(where: { $0.id == id }) {
             return robot
         }
         

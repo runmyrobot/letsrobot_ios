@@ -72,9 +72,10 @@ class Socket {
             
             socket?.onAny { (event) in
                 let ignore = [
-                    "pip", "robot_command_has_hit_webserver", "aggregate_color_change", "exclusive_control_status", // Incomplete
+                    "robot_command_has_hit_webserver", "aggregate_color_change", "exclusive_control_status", // Incomplete
                     "connect", "disconnect", "error", "reconnect", "reconnectAttempt", "statusChange", // Client Events
                     "news", "num_viewers", "robot_statuses", "chat_message_with_name", "users_list", "subscription_state_change", // Implemented
+                    "pip", // Implemented
                     "charge_state" // No Purpose
                 ]
                 
@@ -82,9 +83,20 @@ class Socket {
                     return
                 }
                 
-                // subscription_state_change
                 // new_snapshot
                 print("❓ UNHANDLED EVENT: \(event.event)")
+            }
+            
+            socket?.on("pip") { (data, _) in
+                guard let data = data.first else { return }
+                let json = JSON(data)
+                
+                guard let robotId = json["robot_id"].string else { return }
+                guard let robot = Robot.get(id: robotId) else { return }
+                
+                let count = json["users"].dictionaryObject?.count ?? 0
+                guard let command = json["command"].string else { return }
+                robot.pips[command] = count
             }
             
             socket?.on("news") { (data, _) in
