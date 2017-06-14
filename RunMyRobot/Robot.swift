@@ -40,6 +40,7 @@ class Robot {
     var pips = [String: Int]()
     var currentCommand: String?
     var updateControls: (() -> Void)?
+    weak var controls: RobotControls?
     
     // Preferences
     var isPublic: Bool?
@@ -60,7 +61,6 @@ class Robot {
         self.id = id
         self.live = json["status"].string == "online"
         
-//        let approvedAvatar = json["avatar_approved"].bool == true
         if let avatarUrl = json["avatar", "medium"].string, let url = URL(string: avatarUrl) {
             self.avatarUrl = url
         } else {

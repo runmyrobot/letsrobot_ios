@@ -10,6 +10,8 @@ import UIKit
 
 class ControlArrowButton: UIButton {
     
+    var useSelectedColor = false
+    var useWhiteBorder = false
     var arrowDirection: String?
     
     override func draw(_ rect: CGRect) { // swiftlint:disable:this function_body_length
@@ -70,10 +72,16 @@ class ControlArrowButton: UIButton {
         
         path.close()
         
-        UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1).setFill()
+        let fill = UIColor(hex: useSelectedColor ? "#BC5A9C" : "#323232")
+        fill.setFill()
         path.fill()
         
-        UIColor(red: 60/255, green: 60/255, blue: 60/255, alpha: 1).setStroke()
+        if useWhiteBorder {
+            UIColor.white.setStroke()
+        } else {
+            fill.darker(by: 5).setStroke()
+        }
+        
         path.lineWidth = 5
         path.stroke()
     }

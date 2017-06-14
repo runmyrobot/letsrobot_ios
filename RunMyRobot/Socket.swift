@@ -128,7 +128,11 @@ class Socket {
                 guard let data = data.first else { return }
                 let json = JSON(data)
                 
-//                print("\(json)")
+                guard let command = json["command"].string else { return }
+                guard let robotId = json["robot_id"].string else { return }
+                guard let robot = Robot.get(id: robotId) else { return }
+                
+                robot.controls?.flashCommand(command)
                 
                 /*
                  Probably only want to flash the button if the user is me?

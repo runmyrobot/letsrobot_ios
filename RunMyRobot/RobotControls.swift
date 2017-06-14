@@ -33,6 +33,7 @@ class RobotControls: UIView {
             view.backgroundColor = .clear
         }
         
+        robot.controls = controls
         return controls
     }
     
@@ -52,22 +53,49 @@ class RobotControls: UIView {
     
     func updateControls() {
         for view in subviews {
-            guard view is ControlArrowButton else { continue }
+            guard let arrow = view as? ControlArrowButton else { continue }
             guard let buttonCommand = command(from: view.tag) else { continue }
-            view.layer.borderColor = UIColor.white.cgColor
             
             switch buttonCommand {
             case .forward:
-                view.layer.borderWidth = robot.currentCommand == RobotCommand.forward.rawValue ? 2 : 0
+                arrow.useWhiteBorder = robot.currentCommand == RobotCommand.forward.rawValue
             case .backward:
-                view.layer.borderWidth = robot.currentCommand == RobotCommand.backward.rawValue ? 2 : 0
+                arrow.useWhiteBorder = robot.currentCommand == RobotCommand.backward.rawValue
             case .left:
-                view.layer.borderWidth = robot.currentCommand == RobotCommand.left.rawValue ? 2 : 0
+                arrow.useWhiteBorder = robot.currentCommand == RobotCommand.left.rawValue
             case .right:
-                view.layer.borderWidth = robot.currentCommand == RobotCommand.right.rawValue ? 2 : 0
+                arrow.useWhiteBorder = robot.currentCommand == RobotCommand.right.rawValue
             default:
                 break
             }
+            
+            arrow.setNeedsDisplay()
+        }
+    }
+    
+    func flashCommand(_ command: String) {
+        let tag: Int = {
+            switch command {
+            case "F":
+                return 1
+            case "B":
+                return 2
+            case "L":
+                return 3
+            case "R":
+                return 4
+            default:
+                return 0
+            }
+        }()
+        
+        guard let arrow = viewWithTag(tag) as? ControlArrowButton else { return }
+        arrow.useSelectedColor = true
+        arrow.setNeedsDisplay()
+        
+        Threading.run(on: .main, after: 0.1) {
+            arrow.useSelectedColor = false
+            arrow.setNeedsDisplay()
         }
     }
     
