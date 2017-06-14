@@ -93,12 +93,15 @@ class Socket {
                 let json = JSON(data)
                 
                 guard let robotId = json["robot_id"].string else { return }
-                guard let robot = Robot.get(id: robotId) else { return }
                 
-                let count = json["users"].dictionaryObject?.count ?? 0
-                guard let command = json["command"].string else { return }
-                robot.pips[command] = count
-                robot.updateControls?()
+                Robot.get(id: robotId) { (robot: inout Robot, success) in
+                    guard success else { return }
+                    
+                    let count = json["users"].dictionaryObject?.count ?? 0
+                    guard let command = json["command"].string else { return }
+                    robot.pips[command] = count
+                    robot.updateControls?()
+                }
             }
             
             /// Website adds a 5px white border to the given command button
@@ -107,11 +110,14 @@ class Socket {
                 let json = JSON(data)
                 
                 guard let robotId = json["robot_id"].string else { return }
-                guard let robot = Robot.get(id: robotId) else { return }
                 
-                let command = json["command"].string
-                robot.currentCommand = command == "stop" ? nil : command
-                robot.updateControls?()
+                Robot.get(id: robotId) { (robot: inout Robot, success) in
+                    guard success else { return }
+                    
+                    let command = json["command"].string
+                    robot.currentCommand = command == "stop" ? nil : command
+                    robot.updateControls?()
+                }
                 
                 /*
                  On the provided robot, only the given command should be highlighted. All others should not be highlighted.
@@ -130,9 +136,12 @@ class Socket {
                 
                 guard let command = json["command"].string else { return }
                 guard let robotId = json["robot_id"].string else { return }
-                guard let robot = Robot.get(id: robotId) else { return }
                 
-                robot.controls?.flashCommand(command)
+                Robot.get(id: robotId) { (robot: inout Robot, success) in
+                    guard success else { return }
+                    
+                    robot.controls?.flashCommand(command)
+                }
                 
                 /*
                  Probably only want to flash the button if the user is me?
@@ -169,16 +178,21 @@ class Socket {
                 for status in statuses {
                     guard let id = status["robot_id"].string else { continue }
                     
-                    // Private robots will not be in this array so will skip them
-                    if let robot = Config.shared?.robots[id] {
+                    Robot.get(id: id) { (robot: inout Robot, success) in
+                        guard success else { return }
+                        
                         let before = robot.live
                         robot.live = status["status"].string == "online"
                         let after = robot.live
                         
                         if before != after {
-                            Config.shared?.robots[id] = robot
                             changes = true
                             print("🔄 \(robot.name) is now \(after ? "online" : "offline"). Previously: \(before ? "online" : "offline")")
+                            
+                            NotificationCenter.default.post(name: NSNotification.Name("RobotStateChanged"), object: nil, userInfo: [
+                                "robot_id": robot.id,
+                                "online": after
+                            ])
                         }
                     }
                 }

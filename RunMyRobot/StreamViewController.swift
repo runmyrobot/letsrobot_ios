@@ -146,6 +146,7 @@ class StreamViewController: UIViewController {
         // Add notification listeners
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendScreenshot), name: .UIApplicationUserDidTakeScreenshot, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(streamStateChanged(_:)), name: NSNotification.Name("RobotStateChanged"), object: nil)
         
         // Set the tableView delegate to be self, dataSource is done via storyboard
         chatTableView.re.delegate = self
@@ -212,6 +213,13 @@ class StreamViewController: UIViewController {
         
         let popup = PopupDialog(viewController: vc, transitionStyle: .zoomIn)
         present(popup, animated: true, completion: nil)
+    }
+    
+    func streamStateChanged(_ notification: NSNotification) {
+        guard let robotId = notification.userInfo?["robot_id"] as? String else { return }
+        guard robotId == robot.id else { return }
+        
+        showMessage("\(robot.name) just went \(robot.live ? "online" : "offline")!", type: .info)
     }
     
     func setCameraControlsVisible(_ visible: Bool, animated: Bool = true) {

@@ -53,6 +53,12 @@ class Robot {
     var downloaded = false
     var unsavedChanges = [RobotSettings: Any]()
     
+    init() {
+        name = ""
+        id = ""
+        live = false
+    }
+    
     init?(json: JSON) {
         guard let name = json["name"].string ?? json["robot_name"].string,
             let id = json["id"].string ?? json["robot_id"].string else { return nil }
@@ -170,16 +176,17 @@ class Robot {
         return nil
     }
     
-    class func get(id: String) -> Robot? {
-        if let robot = Config.shared?.robots[id] {
-            return robot
+    class func get(id: String, callback: ((inout Robot, Bool) -> Void)) {
+        if var robot = Config.shared?.robots[id] {
+            return callback(&robot, true)
         }
         
-        if let robot = User.current?.robots.first(where: { $0.id == id }) {
-            return robot
+        if var robot = User.current?.robots.first(where: { $0.id == id }) {
+            return callback(&robot, true)
         }
         
-        return nil
+        var robot = Robot()
+        callback(&robot, false)
     }
 }
 
