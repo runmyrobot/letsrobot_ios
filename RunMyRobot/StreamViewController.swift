@@ -29,7 +29,6 @@ class StreamViewController: UIViewController {
     // Controls
     @IBOutlet var controlContainerView: UIView!
     @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var viewCountLabel: UILabel!
     @IBOutlet var backButton: UIButton!
     @IBOutlet var ownerLabel: UILabel!
     @IBOutlet var customControlsCollectionView: UICollectionView!

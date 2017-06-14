@@ -42,13 +42,7 @@ extension StreamViewController {
         }
     }
     
-    @IBAction func didPressViewerCount() {
-        
-    }
-    
     @IBAction func didPressShare(_ sender: UIButton) {
-        sendScreenshot()
-        return
         var url = StreamViewControllerHelper.Sharing.url
         var message = StreamViewControllerHelper.Sharing.message
         

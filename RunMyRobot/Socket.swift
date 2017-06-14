@@ -72,10 +72,10 @@ class Socket {
             
             socket?.onAny { (event) in
                 let ignore = [
-                    "robot_command_has_hit_webserver", "aggregate_color_change", "exclusive_control_status", // Incomplete
+                    "robot_command_has_hit_webserver", "exclusive_control_status", // Incomplete
                     "connect", "disconnect", "error", "reconnect", "reconnectAttempt", "statusChange", // Client Events
                     "news", "num_viewers", "robot_statuses", "chat_message_with_name", "users_list", "subscription_state_change", // Implemented
-                    "pip", // Implemented
+                    "pip", "aggregate_color_change", "robot_command_has_hit_webserver", // Implemented
                     "charge_state" // No Purpose
                 ]
                 
@@ -87,6 +87,7 @@ class Socket {
                 print("❓ UNHANDLED EVENT: \(event.event)")
             }
             
+            /// Website adds a little dot with the provided colour to the given command button
             socket?.on("pip") { (data, _) in
                 guard let data = data.first else { return }
                 let json = JSON(data)
@@ -97,6 +98,45 @@ class Socket {
                 let count = json["users"].dictionaryObject?.count ?? 0
                 guard let command = json["command"].string else { return }
                 robot.pips[command] = count
+            }
+            
+            /// Website adds a 5px white border to the given command button
+            socket?.on("aggregate_color_change") { (data, _) in
+                guard let data = data.first else { return }
+                let json = JSON(data)
+                
+//                print("\(json)")
+                
+                /*
+                 On the provided robot, only the given command should be highlighted. All others should not be highlighted.
+                 
+                 {
+                    "command" : "R",
+                    "robot_id" : "11467183"
+                 }
+                */
+            }
+            
+            /// Website flashes the button for 200ms
+            socket?.on("robot_command_has_hit_webserver") { (data, _) in
+                guard let data = data.first else { return }
+                let json = JSON(data)
+                
+//                print("\(json)")
+                
+                /*
+                 Probably only want to flash the button if the user is me?
+                 
+                 {
+                     "key_position" : "down",
+                     "robot_id" : "11467183",
+                     "_id" : "11467183",
+                     "user" : "Sherlouk",
+                     "robot_name" : "PonyBot",
+                     "command" : "R",
+                     "timestamp" : "2017-06-14T14:15:24.873Z"
+                 }
+                 */
             }
             
             socket?.on("news") { (data, _) in
