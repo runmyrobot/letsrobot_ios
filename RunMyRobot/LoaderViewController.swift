@@ -104,6 +104,7 @@ class LoaderViewController: UIViewController {
                             self?.startSocket()
                         }
                     } else {
+                        user.updateRoles(json)
                         self?.startSocket()
                     }
                 }

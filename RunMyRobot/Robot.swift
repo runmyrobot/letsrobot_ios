@@ -89,6 +89,8 @@ class Robot {
             }
             
             let json = JSON(rawJSON)
+            User.current?.updateRoles(json) // Always keep user roles up to date
+            
             self?.owner = json["robot", "owner"].string
             self?.description = json["robot", "robot_description"].string?.trimmingCharacters(in: .whitespacesAndNewlines)
             

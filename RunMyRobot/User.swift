@@ -85,7 +85,50 @@ class CurrentUser: User {
     var subscriptions: [Robot] {
         return Config.shared?.robots.values.filter({ $0.subscribers.contains(self.username) }) ?? []
     }
+    
     var robots = [Robot]()
+    
+    var isStaff = false
+    var isGlobalModerator = false
+    private var moderatesFor = [String]()
+    
+    func isModerator(for robot: Robot) -> Bool {
+        guard let owner = robot.owner else { return false }
+        return moderatesFor.contains(owner)
+    }
+    
+    func isSubscriber(for robot: Robot) -> Bool {
+        return robot.subscribers.contains(username)
+    }
+    
+    func isSubscribed(to robotId: String) -> Bool {
+        return subscriptions.first(where: { $0.id == robotId }) != nil
+    }
+    
+    func isOwner(of robot: Robot) -> Bool {
+        guard let owner = robot.owner else { return false }
+        return username == owner
+    }
+    
+    func role(for robot: Robot) -> UserRole {
+        if isStaff {
+            return .staff
+        }
+        
+        if isGlobalModerator {
+            return .globalModerator
+        }
+        
+        if isModerator(for: robot) {
+            return .moderator
+        }
+        
+        if isSubscriber(for: robot) {
+            return .subscriber
+        }
+        
+        return .user
+    }
     
     func logout(callback: (() -> Void)? = nil) {
         // Simple GET request to the web's logout page is enough to clear all authentication/cookies
@@ -113,8 +156,10 @@ class CurrentUser: User {
         }
     }
     
-    func isSubscribed(to robotId: String) -> Bool {
-        return subscriptions.first(where: { $0.id == robotId }) != nil
+    func updateRoles(_ json: JSON) {
+        isStaff = json["superuser"].bool ?? false
+        isGlobalModerator = json["user", "moderator"].bool ?? false
+        moderatesFor = json["user", "moderates_for"].arrayObject as? [String] ?? []
     }
     
     func subscribe(_ subscribe: Bool, robotId: String, callback: @escaping ((Error?) -> Void)) {
@@ -204,4 +249,12 @@ class CurrentUser: User {
             callback(self, nil)
         }
     }
+}
+
+enum UserRole {
+    case staff
+    case globalModerator
+    case moderator
+    case subscriber
+    case user
 }
