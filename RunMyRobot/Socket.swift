@@ -75,7 +75,7 @@ class Socket {
                     "robot_command_has_hit_webserver", "exclusive_control_status", // Incomplete
                     "connect", "disconnect", "error", "reconnect", "reconnectAttempt", "statusChange", // Client Events
                     "news", "num_viewers", "robot_statuses", "chat_message_with_name", "users_list", "subscription_state_change", // Implemented
-                    "pip", "aggregate_color_change", "robot_command_has_hit_webserver", // Implemented
+                    "pip", "aggregate_color_change", "robot_command_has_hit_webserver", "new_snapshot", // Implemented
                     "charge_state" // No Purpose
                 ]
                 
@@ -83,7 +83,6 @@ class Socket {
                     return
                 }
                 
-                // new_snapshot
                 print("❓ UNHANDLED EVENT: \(event.event)")
             }
             
@@ -169,6 +168,11 @@ class Socket {
             socket?.on("num_viewers") { (data, _) in
                 guard let data = data.first as? Int else { return }
                 print("🎲 [VIEWER COUNT] \(data) (User Count: \(self.users.count))")
+            }
+            
+            socket?.on("new_snapshot") { (data, _) in
+                guard let data = data.first else { return }
+//                self.chat.didReceiveMessage(JSON(data))
             }
             
             socket?.on("robot_statuses") { (data, _) in

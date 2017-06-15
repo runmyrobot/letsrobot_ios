@@ -94,6 +94,32 @@ class WootChatMessage: ChatMessage {
     }
 }
 
+class SnapshotMessage: ChatMessage {
+    var sender: String
+    var robotId: String
+    var robotName: String
+    var caption: String
+    var image: URL?
+    // "image" is currently an object, soon to be a URL
+    
+    init?(_ json: JSON) {
+        let snapshot = json["snapshot"]
+        guard let sender = snapshot["username"].string,
+              let robotId = snapshot["robot_id"].string,
+              let robotName = snapshot["robot_name"].string,
+              let caption = snapshot["caption"].string else { return nil }
+        
+        self.sender = sender
+        self.robotId = robotId
+        self.robotName = robotName
+        self.caption = caption
+    }
+    
+    var description: String {
+        return "\(sender) submitted a new screenshot of \(robotName)!"
+    }
+}
+
 class DefaultChatMessage: ChatMessage {
     var name: String
     var message: String
@@ -142,6 +168,7 @@ class Chat {
         // Attempt to convert the JSON into known objects and extract more information from it
         if let message = UserChatMessage(json) { return message }
         if let message = WootChatMessage(json) { return message }
+        if let message = SnapshotMessage(json) { return message }
         
         // Message hasn't matched any known objects, so try and at least get the basic message
         if let message = DefaultChatMessage(json) { return message }
