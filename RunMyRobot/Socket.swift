@@ -239,6 +239,8 @@ class Socket {
                         robot.subscribers.remove(at: index)
                     }
                 }
+                
+                robot.updateSubscribers?()
             }
             
             socket?.connect()

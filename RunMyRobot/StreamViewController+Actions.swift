@@ -33,9 +33,9 @@ extension StreamViewController {
             self.subscribeIndicator.stopAnimating()
             
             if user.isSubscribed(to: robotId) {
-                self.subscribeButton.setTitle("unsubscribe", for: .normal)
+                self.subscribeButton.setTitle("unfollow", for: .normal)
             } else {
-                self.subscribeButton.setTitle("subscribe", for: .normal)
+                self.subscribeButton.setTitle("follow", for: .normal)
             }
             
             self.subscriberCountLabel.text = String(self.robot.subscribers.count)

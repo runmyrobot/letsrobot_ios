@@ -32,6 +32,7 @@ class Robot {
     var panels: [ButtonPanel]?
     
     var subscribers = [String]()
+    var updateSubscribers: (() -> Void)?
     var pips = [String: Int]()
     var currentCommand: String?
     var updateControls: (() -> Void)?

@@ -95,28 +95,15 @@ class WootChatMessage: ChatMessage {
 }
 
 class SnapshotMessage: ChatMessage {
-    var sender: String
-    var robotId: String
-    var robotName: String
-    var caption: String
-    var image: URL?
-    // "image" is currently an object, soon to be a URL
+    var snapshot: Snapshot
     
     init?(_ json: JSON) {
-        let snapshot = json["snapshot"]
-        guard let sender = snapshot["username"].string,
-              let robotId = snapshot["robot_id"].string,
-              let robotName = snapshot["robot_name"].string,
-              let caption = snapshot["caption"].string else { return nil }
-        
-        self.sender = sender
-        self.robotId = robotId
-        self.robotName = robotName
-        self.caption = caption
+        guard let snapshot = Snapshot(json["snapshot"]) else { return nil }
+        self.snapshot = snapshot
     }
     
     var description: String {
-        return "\(sender) submitted a new screenshot of \(robotName)!"
+        return "\(snapshot.sender) submitted a new screenshot of \(snapshot.robotName)!"
     }
 }
 
