@@ -75,7 +75,7 @@ class Robot {
         }
         
         // The following information is only in certain APIs, for example the `/api/v1/accounts` (user robots)
-        self.isPublic = json["public"].bool ?? false
+        self.isPublic = json["public"].bool ?? true
         self.isMuted = json["mute"].bool ?? false
         self.isProfanityFiltered = json["strong_filtering"].bool ?? false
         self.isAnonymousControlEnabled = json["allow_anonymous_control"].bool ?? true
@@ -110,7 +110,7 @@ class Robot {
                 self?.subscribers = subscribers.map { User(username: $0, robotName: nil) }
             }
             
-            self?.isPublic = json["robot", "public"].bool ?? false
+            self?.isPublic = json["robot", "public"].bool ?? true
             self?.isMuted = json["robot", "mute"].bool ?? false
             self?.isProfanityFiltered = json["robot", "strong_filtering"].bool ?? false
             self?.isAnonymousControlEnabled = json["robot", "allow_anonymous_control"].bool ?? true
