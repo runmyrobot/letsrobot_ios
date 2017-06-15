@@ -40,8 +40,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdD-t3-KHQ">
                         <rect key="frame" x="121.5" y="0.0" width="229.5" height="71.5"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFT-eG-KnB">
-                                <rect key="frame" x="53.5" y="16" width="123" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RFT-eG-KnB">
+                                <rect key="frame" x="51.5" y="16" width="127" height="40"/>
                                 <color key="backgroundColor" red="0.97254901959999995" green="0.66666666669999997" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5NH-3z-7fL"/>
@@ -52,6 +52,7 @@
                                 <state key="normal" title="Change Avatar">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled" title="COMING SOON"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="4"/>
