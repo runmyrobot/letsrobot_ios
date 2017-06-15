@@ -11,17 +11,6 @@ import TTTAttributedLabel
 import PopupDialog
 
 class ChatMessageTableViewCell: UITableViewCell {
-
-    struct ChatColours {
-        static let grey = UIColor(red: 99/255, green: 99/255, blue: 99/255, alpha: 1)
-        static let blue = UIColor(red: 33/255, green: 188/255, blue: 229/255, alpha: 1)
-        static let green = UIColor(red: 151/255, green: 224/255, blue: 98/255, alpha: 1)
-        static let yellow = UIColor(red: 243/255, green: 235/255, blue: 72/255, alpha: 1)
-        static let purple = UIColor(red: 95/255, green: 121/255, blue: 255/255, alpha: 1)
-        static let orange = UIColor(red: 249/255, green: 170/255, blue: 103/255, alpha: 1)
-        static let pink = UIColor(red: 241/255, green: 107/255, blue: 116/255, alpha: 1)
-        static let violet = UIColor(red: 166/255, green: 82/255, blue: 175/255, alpha: 1)
-    }
     
     @IBOutlet var messageLabel: TTTAttributedLabel!
     weak var parentViewController: UIViewController?
@@ -31,58 +20,12 @@ class ChatMessageTableViewCell: UITableViewCell {
         messageLabel.delegate = self
     }
     
-    func hash(name: NSString) -> Int {
-        var hash: Int = 0
-        
-        for i in 0 ..< name.length {
-            if i > 7 {
-                return hash
-            }
-            
-            let char = Int(name.character(at: i))
-            hash = char + ((hash << 5) - hash)
-        }
-        
-        return hash
-    }
-    
-    func color(name: String) -> UIColor {
-        let nameHash = hash(name: name as NSString)
-        
-        switch nameHash % 7 {
-        case 0:
-            return ChatColours.blue // 21BCE5
-        case 1:
-            return ChatColours.grey // 97E062
-        case 2:
-            return ChatColours.yellow // F3EB48
-        case 3:
-            return ChatColours.purple // 5F79FF
-        case 4:
-            return ChatColours.orange // F9AA67
-        case 5:
-            return ChatColours.pink // F16B74
-        case 6:
-            return ChatColours.violet // A652Af
-        default:
-            return ChatColours.blue // 21BCE5
-        }
-    }
-
-    // v2
-    
     func setNewMessage(_ message: ChatMessage) {
-        
-        // UserChatMessage
-        // WootChatMessage
-        // DefaultChatMessage - Mostly System Messages
-        
         let attString = NSMutableAttributedString()
         
         if let userMessage = message as? UserChatMessage {
-            let usernameColor = userMessage.anonymous ? ChatColours.grey : color(name: userMessage.name)
             let username = NSAttributedString(string: "\(userMessage.name): ", attributes: [
-                NSForegroundColorAttributeName: usernameColor,
+                NSForegroundColorAttributeName: userMessage.color,
                 NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
             ])
             
@@ -114,6 +57,11 @@ class ChatMessageTableViewCell: UITableViewCell {
             NSUnderlineStyleAttributeName: NSUnderlineStyle.styleNone.rawValue
         ]
         
+        messageLabel.activeLinkAttributes = [
+            NSForegroundColorAttributeName: UIColor(hex: "#cccccc"),
+            NSUnderlineStyleAttributeName: NSUnderlineStyle.styleNone.rawValue
+        ]
+        
         if let userMessage = message as? UserChatMessage {
             let rawString = messageLabel.attributedText.string
             let rawNSString = rawString as NSString
@@ -125,9 +73,8 @@ class ChatMessageTableViewCell: UITableViewCell {
             
             let senderRange = rawNSString.range(of: "\(userMessage.name):")
             if senderRange.location != NSNotFound, let url = URL(string: "letsrobot://user/\(userMessage.name)") {
-                let usernameColor = userMessage.anonymous ? ChatColours.grey : color(name: userMessage.name)
                 messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: senderRange, url: url), attributes: [
-                    NSForegroundColorAttributeName: usernameColor,
+                    NSForegroundColorAttributeName: userMessage.color,
                     NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
                 ])
             }

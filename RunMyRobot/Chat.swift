@@ -18,6 +18,7 @@ class UserChatMessage: ChatMessage {
     var robotName: String
     var room: String?
     var date: Date
+    var color: UIColor
     
     init?(_ json: JSON) {
         guard let anonymous = json["anonymous"].bool,
@@ -31,6 +32,12 @@ class UserChatMessage: ChatMessage {
         
         self.robotName = match[0].trimmingCharacters(in: .whitespacesAndNewlines)
         self.message = match[1].trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if !anonymous, let colorString = json["username_color"].string {
+            self.color = UIColor(hex: colorString)
+        } else {
+            self.color = UIColor(hex: "#636363")
+        }
         
         if let _ = json["time_string"].string {
             // This one will need to convert the /internal timestamp into an actual date
