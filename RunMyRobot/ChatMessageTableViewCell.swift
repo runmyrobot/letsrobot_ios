@@ -72,7 +72,7 @@ class ChatMessageTableViewCell: UITableViewCell {
             }
             
             let senderRange = rawNSString.range(of: "\(userMessage.name):")
-            if senderRange.location != NSNotFound, let url = URL(string: "letsrobot://user/\(userMessage.name)") {
+            if senderRange.location != NSNotFound, !userMessage.anonymous, let url = URL(string: "letsrobot://user/\(userMessage.name)") {
                 messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: senderRange, url: url), attributes: [
                     NSForegroundColorAttributeName: userMessage.color,
                     NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
@@ -83,8 +83,8 @@ class ChatMessageTableViewCell: UITableViewCell {
             for match in matches {
                 guard let nameMatch = match.first else { continue }
                 let name = rawNSString.substring(with: nameMatch)
-                guard Socket.shared.users.first(where: { $0.username == name }) != nil else { continue }
-                guard !userMessage.anonymous else { continue }
+                guard let user = User.get(name: name) else { continue }
+                guard !user.username.hasPrefix("anon") else { continue }
                 guard let url = URL(string: "letsrobot://user/\(name)") else { continue }
                 
                 messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: nameMatch, url: url), attributes: [
@@ -115,7 +115,7 @@ extension ChatMessageTableViewCell: TTTAttributedLabelDelegate {
             parentViewController?.present(popup, animated: true, completion: nil)
         } else if components.count == 4, components[2] == "user" {
             let userName = components[3]
-            guard let user = Socket.shared.users.first(where: { $0.username == userName }) else { return }
+            guard let user = User.get(name: userName) else { return }
             
             let modal = UserModalViewController.create()
             modal.user = user

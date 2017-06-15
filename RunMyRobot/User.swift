@@ -58,6 +58,18 @@ class User {
             callback(nil)
         }
     }
+    
+    class func get(name: String) -> User? {
+        if let user = Socket.shared.users.first(where: { $0.username == name }) {
+            return user
+        }
+        
+        if let current = User.current, current.username == name {
+            return current
+        }
+        
+        return nil
+    }
 }
 
 class CurrentUser: User {
