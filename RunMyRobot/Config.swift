@@ -16,7 +16,6 @@ class Config {
     var chatSecret: String
     var socketPort: Int
     var robots = [String: Robot]()
-    var user: User?
     
     init(json: JSON) {
         if let robotsJSON = json["robots"].array {
@@ -40,10 +39,6 @@ class Config {
         
         socketPort = json["socket_io_messaging_to_web_client_port"].intValue
         chatSecret = json["chat_secret"].stringValue
-        
-        if let username = json["user", "username"].string {
-            user = User(username: username, robotName: nil)
-        }
     }
     
 }

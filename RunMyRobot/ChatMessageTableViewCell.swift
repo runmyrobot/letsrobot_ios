@@ -84,6 +84,7 @@ class ChatMessageTableViewCell: UITableViewCell {
                 guard let nameMatch = match.first else { continue }
                 let name = rawNSString.substring(with: nameMatch)
                 guard Socket.shared.users.first(where: { $0.username == name }) != nil else { continue }
+                guard !userMessage.anonymous else { continue }
                 guard let url = URL(string: "letsrobot://user/\(name)") else { continue }
                 
                 messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: nameMatch, url: url), attributes: [
@@ -109,6 +110,15 @@ extension ChatMessageTableViewCell: TTTAttributedLabelDelegate {
             
             let modal = RobotModalViewController.create()
             modal.robot = robot
+            
+            let popup = PopupDialog(viewController: modal, transitionStyle: .zoomIn)
+            parentViewController?.present(popup, animated: true, completion: nil)
+        } else if components.count == 4, components[2] == "user" {
+            let userName = components[3]
+            guard let user = Socket.shared.users.first(where: { $0.username == userName }) else { return }
+            
+            let modal = UserModalViewController.create()
+            modal.user = user
             
             let popup = PopupDialog(viewController: modal, transitionStyle: .zoomIn)
             parentViewController?.present(popup, animated: true, completion: nil)

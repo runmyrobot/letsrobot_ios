@@ -31,10 +31,6 @@ class Robot {
     /// Array of custom button panels (Requires download; still may be nil if they use default panels)
     var panels: [ButtonPanel]?
     
-    var users: [User] {
-        return Socket.shared.users.filter { $0.robotName?.lowercased() == name.lowercased() }
-    }
-    
     var subscribers = [String]()
     var pips = [String: Int]()
     var currentCommand: String?

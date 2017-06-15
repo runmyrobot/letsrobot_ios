@@ -15,11 +15,15 @@ class User {
     static var current: CurrentUser?
     
     var username: String
-    var robotName: String?
+    var description: String?
+    var downloaded = false
+    var avatarUrl: URL?
+    var publicRobots: [Robot] {
+        return Config.shared?.robots.values.filter({ $0.owner == username }) ?? []
+    }
     
-    init(username: String, robotName: String? = nil) {
+    init(username: String) {
         self.username = username
-        self.robotName = robotName
     }
     
     init?(json: JSON) {
@@ -28,6 +32,31 @@ class User {
         }
         
         self.username = name
+    }
+    
+    func loadPublic(callback: @escaping ((Error?) -> Void)) {
+        Networking.requestJSON("/api/v1/accounts/\(username)") { response in
+            if let error = response.error {
+                callback(RobotError.requestFailure(original: error))
+                return
+            }
+            
+            guard let data = response.data else {
+                callback(RobotError.noData)
+                return
+            }
+            
+            self.downloaded = true
+            
+            let json = JSON(data)
+            self.description = json["profile_description"].string
+            
+            if let avatarUrl = json["avatar", "medium"].string {
+                self.avatarUrl = URL(string: avatarUrl)
+            }
+            
+            callback(nil)
+        }
     }
 }
 
@@ -41,8 +70,6 @@ class CurrentUser: User {
         return UserDefaults.standard.currentUsername == current.username
     }
     
-    var description: String?
-    var avatarUrl: URL?
     var subscriptions: [Robot] {
         return Config.shared?.robots.values.filter({ $0.subscribers.contains(self.username) }) ?? []
     }

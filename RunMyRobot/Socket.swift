@@ -213,8 +213,7 @@ class Socket {
                 var builder = [User]()
                 for userJSON in Array(userJSON.values) {
                     let username = userJSON["user", "username"].stringValue
-                    let robotName = userJSON["robot_id"].stringValue
-                    let user = User(username: username, robotName: robotName)
+                    let user = User(username: username)
                     builder.append(user)
                 }
                 

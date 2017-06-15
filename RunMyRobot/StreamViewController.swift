@@ -119,7 +119,7 @@ class StreamViewController: UIViewController {
             self?.titleLabel.text = self?.robot.name
             self?.subscriberCountLabel.text = String(describing: self?.robot.subscribers.count ?? 0)
             
-            if let username = Config.shared?.user?.username, self?.robot.subscribers.contains(username) == true {
+            if let username = User.current?.username, self?.robot.subscribers.contains(username) == true {
                 self?.subscribeButton.setTitle("unsubscribe", for: .normal)
             }
             

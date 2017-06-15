@@ -65,6 +65,7 @@
 		98B73C191EF157B000577D39 /* RobotModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C181EF157B000577D39 /* RobotModalViewController.swift */; };
 		98B73C1C1EF177B800577D39 /* RobotControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B73C1B1EF177B800577D39 /* RobotControls.xib */; };
 		98B73C1E1EF178AC00577D39 /* RobotControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C1D1EF178AC00577D39 /* RobotControls.swift */; };
+		98B73C201EF293B100577D39 /* UserModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C1F1EF293B100577D39 /* UserModalViewController.swift */; };
 		98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */; };
 		98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */; };
 		98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */; };
@@ -135,6 +136,7 @@
 		98B73C181EF157B000577D39 /* RobotModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotModalViewController.swift; sourceTree = "<group>"; };
 		98B73C1B1EF177B800577D39 /* RobotControls.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RobotControls.xib; sourceTree = "<group>"; };
 		98B73C1D1EF178AC00577D39 /* RobotControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotControls.swift; sourceTree = "<group>"; };
+		98B73C1F1EF293B100577D39 /* UserModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModalViewController.swift; sourceTree = "<group>"; };
 		98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListSwitchCell.swift; sourceTree = "<group>"; };
 		98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListSwitchCell.xib; sourceTree = "<group>"; };
 		98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewProvider.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				988790091EEF29D50017B7F5 /* Modals.storyboard */,
 				98B73C181EF157B000577D39 /* RobotModalViewController.swift */,
 				98878FFE1EED90220017B7F5 /* SendScreenshotViewController.swift */,
+				98B73C1F1EF293B100577D39 /* UserModalViewController.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				987DF3A21EE875110042539B /* MenuListItemCell.swift in Sources */,
 				98500C801EE0A57B00CFA446 /* Socket.swift in Sources */,
 				983BCB521EDE29A8007A1247 /* Config.swift in Sources */,
+				98B73C201EF293B100577D39 /* UserModalViewController.swift in Sources */,
 				9823E6BF1EEC466000619964 /* SettingsListTextFieldCell.swift in Sources */,
 				980ADD821EE4A19400B00B33 /* StreamViewController+CustomControls.swift in Sources */,
 				98878FFF1EED90220017B7F5 /* SendScreenshotViewController.swift in Sources */,
