@@ -48,6 +48,8 @@ class Robot {
     
     var downloaded = false
     var unsavedChanges = [RobotSettings: Any]()
+    var snapshots = [Snapshot]()
+    var snapshotsFetched = false
     
     init() {
         name = ""
@@ -63,7 +65,7 @@ class Robot {
         self.id = id
         self.live = json["status"].string == "online"
         
-        if let avatarUrl = json["avatar", "medium"].string, let url = URL(string: avatarUrl) {
+        if let avatarUrl = json["avatar", "large"].string, let url = URL(string: avatarUrl) {
             self.avatarUrl = url
         } else {
             let thumbnailTemplate = "\(Networking.baseUrl)/images/thumbnails/\(id).jpg"
@@ -117,6 +119,30 @@ class Robot {
             
             self?.downloaded = true
             callback(true)
+        }
+    }
+    
+    func fetchSnapshots(callback: @escaping ((Error?) -> Void)) {
+        Networking.requestJSON("/api/v1/snapshots") { [weak self] response in
+            if let error = response.error {
+                callback(RobotError.requestFailure(original: error))
+                return
+            }
+            
+            guard let data = response.data else {
+                callback(RobotError.noData)
+                return
+            }
+            
+            if let json = JSON(data)["snapshots"].array {
+                for snapshotJson in json {
+                    guard let snapshot = Snapshot(snapshotJson) else { continue }
+                    self?.snapshots.append(snapshot)
+                }
+            }
+            
+            self?.snapshotsFetched = true
+            callback(nil)
         }
     }
     

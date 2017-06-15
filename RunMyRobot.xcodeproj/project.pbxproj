@@ -68,6 +68,8 @@
 		98B73C201EF293B100577D39 /* UserModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C1F1EF293B100577D39 /* UserModalViewController.swift */; };
 		98B73C221EF2DB4700577D39 /* PreviewScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C211EF2DB4700577D39 /* PreviewScreenshotViewController.swift */; };
 		98B73C241EF2DB8900577D39 /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C231EF2DB8900577D39 /* Snapshot.swift */; };
+		98B73C261EF3135D00577D39 /* RobotProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C251EF3135D00577D39 /* RobotProfileViewController.swift */; };
+		98B73C281EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C271EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift */; };
 		98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */; };
 		98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */; };
 		98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */; };
@@ -141,6 +143,8 @@
 		98B73C1F1EF293B100577D39 /* UserModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModalViewController.swift; sourceTree = "<group>"; };
 		98B73C211EF2DB4700577D39 /* PreviewScreenshotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewScreenshotViewController.swift; sourceTree = "<group>"; };
 		98B73C231EF2DB8900577D39 /* Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
+		98B73C251EF3135D00577D39 /* RobotProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotProfileViewController.swift; sourceTree = "<group>"; };
+		98B73C271EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListSwitchCell.swift; sourceTree = "<group>"; };
 		98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListSwitchCell.xib; sourceTree = "<group>"; };
 		98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewProvider.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				98500C7B1EE0892E00CFA446 /* ListViewController.swift */,
 				980ADD551EE2BFD200B00B33 /* LoaderViewController.swift */,
 				980ADD681EE3F8F500B00B33 /* Stream VC */,
+				98B73C251EF3135D00577D39 /* RobotProfileViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				980ADD831EE4A4D500B00B33 /* CustomButtonCollectionViewCell.swift */,
 				980ADD5E1EE33E3F00B00B33 /* ListTitleCollectionReusableView.swift */,
 				98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */,
+				98B73C271EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 				983BCB521EDE29A8007A1247 /* Config.swift in Sources */,
 				98B73C201EF293B100577D39 /* UserModalViewController.swift in Sources */,
 				9823E6BF1EEC466000619964 /* SettingsListTextFieldCell.swift in Sources */,
+				98B73C281EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift in Sources */,
 				980ADD821EE4A19400B00B33 /* StreamViewController+CustomControls.swift in Sources */,
 				98878FFF1EED90220017B7F5 /* SendScreenshotViewController.swift in Sources */,
 				983F85B31EE869BF001FD90A /* MenuViewController.swift in Sources */,
@@ -599,6 +606,7 @@
 				9823E6B21EEC1F5300619964 /* Networking.swift in Sources */,
 				980ADD771EE46AC100B00B33 /* Errors.swift in Sources */,
 				98500C7E1EE08C5300CFA446 /* RobotCollectionViewCell.swift in Sources */,
+				98B73C261EF3135D00577D39 /* RobotProfileViewController.swift in Sources */,
 				988790031EEEE6490017B7F5 /* User+Authentication.swift in Sources */,
 				980ADD5B1EE2E0AC00B00B33 /* Regex.swift in Sources */,
 				987DF39D1EE870090042539B /* Concatenate.swift in Sources */,

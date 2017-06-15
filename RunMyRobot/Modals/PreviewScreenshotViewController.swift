@@ -18,6 +18,16 @@ class PreviewScreenshotViewController: UIViewController {
     
     var snapshot: Snapshot!
     
+    class func create() -> PreviewScreenshotViewController {
+        let storyboard = UIStoryboard(name: "Modals", bundle: nil)
+        
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "PreviewScreenshot") as? PreviewScreenshotViewController else {
+            fatalError()
+        }
+        
+        return vc
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,8 +40,4 @@ class PreviewScreenshotViewController: UIViewController {
         }
     }
     
-    @IBAction func didPressVisitRobot() {
-        guard let robot = Robot.get(name: snapshot.robotName) else { return }
-        print("Show \(robot.name)")
-    }
 }

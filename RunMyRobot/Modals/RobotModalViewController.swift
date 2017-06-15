@@ -77,6 +77,13 @@ class RobotModalViewController: UIViewController {
     }
     
     @IBAction func didPressViewRobot() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "RobotProfile") as? RobotProfileViewController else {
+            fatalError()
+        }
+        
+        vc.robot = robot
+        present(vc, animated: true, completion: nil)
     }
 }

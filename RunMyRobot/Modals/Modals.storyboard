@@ -172,7 +172,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am the robot's description, or probably clear since very few people actually set this" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aU6-Ki-sja">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am the robot's description, or probably clear since very few people actually set this" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aU6-Ki-sja">
                                         <rect key="frame" x="24" y="208" width="292" height="57.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -184,7 +184,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8U-el-OHy">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8U-el-OHy">
                                         <rect key="frame" x="24" y="398.5" width="292" height="40"/>
                                         <color key="backgroundColor" red="0.37254901959999998" green="0.47450980390000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -357,7 +357,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am the user's description, or probably clear since very few people actually set this" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jY6-YV-o6N">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am the user's description, or probably clear since very few people actually set this" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jY6-YV-o6N">
                                         <rect key="frame" x="24" y="208" width="292" height="57.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -531,44 +531,21 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWN-oT-njh">
-                                        <rect key="frame" x="24" y="385.5" width="292" height="40"/>
-                                        <color key="backgroundColor" red="0.37254901959999998" green="0.47450980390000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="eIM-V6-bKb"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="VISIT ROBOT"/>
-                                        <state key="disabled" title="PROFILES COMING SOON"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="didPressSend" destination="gLe-Bc-e7x" eventType="touchUpInside" id="Rcw-Je-V7R"/>
-                                            <action selector="didPressVisitRobot" destination="zWs-KO-mjp" eventType="touchUpInside" id="XhO-Ay-bdE"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="bG7-jG-8Qc" firstAttribute="trailing" secondItem="i9I-2z-ETZ" secondAttribute="trailing" id="0W2-Xm-59D"/>
                                     <constraint firstItem="bG7-jG-8Qc" firstAttribute="top" secondItem="i9I-2z-ETZ" secondAttribute="bottom" constant="16" id="2kv-5U-1g4"/>
                                     <constraint firstItem="bG7-jG-8Qc" firstAttribute="leading" secondItem="i9I-2z-ETZ" secondAttribute="leading" id="5Fu-8I-WFO"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NWN-oT-njh" secondAttribute="bottom" constant="24" id="6dB-t5-hLZ"/>
                                     <constraint firstItem="i9I-2z-ETZ" firstAttribute="trailing" secondItem="bFB-hf-Xwz" secondAttribute="trailing" id="BQN-jQ-VOZ"/>
-                                    <constraint firstItem="NWN-oT-njh" firstAttribute="top" secondItem="bG7-jG-8Qc" secondAttribute="bottom" constant="24" id="EzM-3A-iL3"/>
                                     <constraint firstItem="ekM-rE-iXd" firstAttribute="top" secondItem="iHE-og-zUD" secondAttribute="top" id="GFf-SL-ihN"/>
                                     <constraint firstItem="i9I-2z-ETZ" firstAttribute="top" secondItem="bFB-hf-Xwz" secondAttribute="bottom" constant="16" id="MIB-VR-ZN2"/>
                                     <constraint firstItem="bFB-hf-Xwz" firstAttribute="leading" secondItem="iHE-og-zUD" secondAttribute="leading" constant="24" id="NW4-wV-VDt"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bG7-jG-8Qc" secondAttribute="bottom" constant="24" id="Z6n-Xi-sZM"/>
                                     <constraint firstAttribute="trailing" secondItem="ekM-rE-iXd" secondAttribute="trailing" id="a0s-yP-KJF"/>
                                     <constraint firstItem="ekM-rE-iXd" firstAttribute="leading" secondItem="iHE-og-zUD" secondAttribute="leading" id="gID-u5-nJx"/>
                                     <constraint firstItem="i9I-2z-ETZ" firstAttribute="leading" secondItem="bFB-hf-Xwz" secondAttribute="leading" id="hiZ-zQ-vJm"/>
-                                    <constraint firstItem="NWN-oT-njh" firstAttribute="trailing" secondItem="bG7-jG-8Qc" secondAttribute="trailing" id="lGE-Rw-W2i"/>
                                     <constraint firstAttribute="trailing" secondItem="bFB-hf-Xwz" secondAttribute="trailing" constant="24" id="meX-sG-h2e"/>
-                                    <constraint firstItem="NWN-oT-njh" firstAttribute="leading" secondItem="bG7-jG-8Qc" secondAttribute="leading" id="r6p-rr-Yqn"/>
                                     <constraint firstItem="bFB-hf-Xwz" firstAttribute="top" secondItem="ekM-rE-iXd" secondAttribute="bottom" constant="16" id="sqD-Rl-Vu0"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -591,7 +568,6 @@
                     <size key="freeformSize" width="340" height="500"/>
                     <connections>
                         <outlet property="captionLabel" destination="i9I-2z-ETZ" id="rKA-AD-tGE"/>
-                        <outlet property="descriptionLabel" destination="i9I-2z-ETZ" id="lHO-co-j3S"/>
                         <outlet property="previewImageView" destination="ekM-rE-iXd" id="vZA-X5-16j"/>
                         <outlet property="submittedLabel" destination="bG7-jG-8Qc" id="ESA-IJ-oL2"/>
                         <outlet property="titleLabel" destination="bFB-hf-Xwz" id="NzY-VL-qVg"/>

@@ -11,20 +11,24 @@ import SwiftyJSON
 
 class Snapshot {
     
+    var id: String
     var sender: String
     var robotName: String
     var caption: String
     var image: URL?
     
     init?(_ json: JSON) {
-        guard let sender = json["username"].string,
+        guard let id = json["snapshot_id"].string,
+              let sender = json["username"].string,
               let robotName = json["robot_name"].string,
-              let caption = json["caption"].string else { return nil }
+              let caption = json["caption"].string,
+              let url = json["url"].url else { return nil }
         
+        self.id = id
         self.sender = sender
         self.robotName = robotName
         self.caption = caption
-        self.image = URL(string: "")
+        self.image = url
     }
     
 }
