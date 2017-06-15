@@ -43,7 +43,9 @@ class CurrentUser: User {
     
     var description: String?
     var avatarUrl: URL?
-    var subscriptions = [RobotSubscription]()
+    var subscriptions: [Robot] {
+        return Config.shared?.robots.values.filter({ $0.subscribers.contains(self.username) }) ?? []
+    }
     var robots = [Robot]()
     
     func logout(callback: (() -> Void)? = nil) {
@@ -105,23 +107,12 @@ class CurrentUser: User {
             let robot = Config.shared?.robots[robotId]
             
             if subscribe {
-                guard let subscription = RobotSubscription(json: json) else {
-                    callback(RobotError.parseFailure)
-                    return
-                }
-                
-                self.subscriptions.append(subscription)
-                
-                if robot?.subscribers?.contains(where: { $0.username == self.username }) == false {
-                    robot?.subscribers?.append(self)
+                if robot?.subscribers.contains(self.username) == false {
+                    robot?.subscribers.append(self.username)
                 }
             } else {
-                if let index = self.subscriptions.index(where: { $0.id == robotId }) {
-                    self.subscriptions.remove(at: index)
-                }
-                
-                if let index = robot?.subscribers?.index(where: { $0.username == self.username }) {
-                    robot?.subscribers?.remove(at: index)
+                if let index = robot?.subscribers.index(of: self.username) {
+                    robot?.subscribers.remove(at: index)
                 }
             }
             
@@ -158,13 +149,6 @@ class CurrentUser: User {
             
             // spendable_robits
             
-            if let subscriptionsArray = json["subscriptions"].array {
-                for sub in subscriptionsArray {
-                    guard let subscription = RobotSubscription(json: sub) else { continue }
-                    self.subscriptions.append(subscription)
-                }
-            }
-            
             self.description = json["profile_description"].string
             
             if let robots = json["robots"].array {
@@ -180,21 +164,5 @@ class CurrentUser: User {
             User.current = self
             callback(self, nil)
         }
-    }
-}
-
-struct RobotSubscription {
-    var id: String
-    var name: String
-    var owner: String
-    
-    init?(json: JSON) {
-        guard let id = json["robot_id"].string,
-              let name = json["robot_name"].string,
-              let owner = json["owner"].string else { return nil }
-        
-        self.id = id
-        self.name = name
-        self.owner = owner
     }
 }

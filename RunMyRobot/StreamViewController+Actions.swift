@@ -38,7 +38,7 @@ extension StreamViewController {
                 self.subscribeButton.setTitle("subscribe", for: .normal)
             }
             
-            self.subscriberCountLabel.text = String(self.robot.subscribers?.count ?? 0)
+            self.subscriberCountLabel.text = String(self.robot.subscribers.count)
         }
     }
     

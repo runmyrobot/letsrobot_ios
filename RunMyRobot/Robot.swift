@@ -35,8 +35,7 @@ class Robot {
         return Socket.shared.users.filter { $0.robotName?.lowercased() == name.lowercased() }
     }
     
-    // TODO: Ensure this array is synced as a reverse relationship to the users "subscriptions" array
-    var subscribers: [User]?
+    var subscribers = [String]()
     var pips = [String: Int]()
     var currentCommand: String?
     var updateControls: (() -> Void)?
@@ -107,7 +106,7 @@ class Robot {
             }
             
             if let subscribers = json["robot", "subscribers"].arrayObject as? [String] {
-                self?.subscribers = subscribers.map { User(username: $0, robotName: nil) }
+                self?.subscribers = subscribers
             }
             
             self?.isPublic = json["robot", "public"].bool ?? true

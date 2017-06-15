@@ -63,7 +63,7 @@ class RobotModalViewController: UIViewController {
         
         nameLabel.text = robot.name
         descriptionLabel.text = robot.description ?? "No Robot Description"
-        subscriberCountLabel.text = String(robot.subscribers?.count ?? 0)
+        subscriberCountLabel.text = String(robot.subscribers.count)
         
         if let owner = robot.owner {
             ownerLabel.text = "Owner: \(owner)"

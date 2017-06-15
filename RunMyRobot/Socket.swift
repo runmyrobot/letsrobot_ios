@@ -225,19 +225,15 @@ class Socket {
                 guard let data = data.first else { return }
                 let json = JSON(data)
                 guard let robot = Config.shared?.robots[json["robot_id"].stringValue] else { return }
-                guard let user = self.users.first(where: { $0.username == json["username"].stringValue }) else { return }
+                guard let username = json["username"].string else { return }
                 
                 if json["subscribed"].boolValue {
-                    if robot.subscribers?.contains(where: { $0.username == user.username }) == false {
-                        if robot.subscribers == nil {
-                            robot.subscribers = [User]()
-                        }
-                        
-                        robot.subscribers?.append(user)
+                    if robot.subscribers.contains(username) == false {
+                        robot.subscribers.append(username)
                     }
                 } else {
-                    if let index = robot.subscribers?.index(where: { $0.username == user.username }) {
-                        robot.subscribers?.remove(at: index)
+                    if let index = robot.subscribers.index(of: username ) {
+                        robot.subscribers.remove(at: index)
                     }
                 }
             }
