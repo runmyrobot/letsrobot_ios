@@ -193,25 +193,31 @@ class Robot {
         }
     }
     
+    // MARK: - Getters
+    
+    class func all() -> [Robot] {
+        var builder = [Robot]()
+        
+        if let robots = Config.shared?.robots.values {
+            builder.append(contentsOf: robots)
+        }
+        
+        if let robots = User.current?.robots {
+            builder.append(contentsOf: robots)
+        }
+        
+        return builder
+    }
+    
     /// Searches multiple arrays of robots to try and find a robot with the name provided. This will search public and known private robots.
     class func get(name: String) -> Robot? {
-        if let robot = Config.shared?.robots.first(where: { $0.value.name == name }) {
-            return robot.value
-        }
-        
-        if let robot = User.current?.robots.first(where: { $0.name == name }) {
-            return robot
-        }
-        
-        return nil
+        return all().first(where: {
+            $0.name == name
+        })
     }
     
     class func get(id: String, callback: ((inout Robot, Bool) -> Void)) {
-        if var robot = Config.shared?.robots[id] {
-            return callback(&robot, true)
-        }
-        
-        if var robot = User.current?.robots.first(where: { $0.id == id }) {
+        if var robot = all().first(where: { $0.id == id }) {
             return callback(&robot, true)
         }
         

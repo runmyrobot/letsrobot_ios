@@ -17,7 +17,7 @@ class UserChatMessage: ChatMessage {
     var message: String
     var robotName: String
     var room: String?
-    var date: Date
+//    var date: Date
     var color: UIColor
     
     init?(_ json: JSON) {
@@ -39,13 +39,13 @@ class UserChatMessage: ChatMessage {
             self.color = UIColor(hex: "#636363")
         }
         
-        if let _ = json["time_string"].string {
-            // This one will need to convert the /internal timestamp into an actual date
-            // Seems to use relative time of "x [minutes/seconds] ago"
-            self.date = Date()
-        } else {
-            self.date = Date()
-        }
+//        if let _ = json["time_string"].string {
+//            // This one will need to convert the /internal timestamp into an actual date
+//            // Seems to use relative time of "x [minutes/seconds] ago"
+//            self.date = Date()
+//        } else {
+//            self.date = Date()
+//        }
         
         if let room = json["room"].string {
             self.room = room

@@ -83,7 +83,7 @@ class CurrentUser: User {
     }
     
     var subscriptions: [Robot] {
-        return Config.shared?.robots.values.filter({ $0.subscribers.contains(self.username) }) ?? []
+        return Robot.all().filter({ $0.subscribers.contains(self.username) })
     }
     
     var robots = [Robot]()
@@ -246,6 +246,16 @@ class CurrentUser: User {
             // Update the user defaults and singleton reference
             UserDefaults.standard.currentUsername = self.username
             User.current = self
+            
+            // Intentionally calling this after User.current so that Robot.get can get all robots
+            if let subscriptions = json["subscriptions"].array {
+                for subscriptionJson in subscriptions {
+                    if let robot = Robot.get(name: subscriptionJson["robot_name"].stringValue) {
+                        robot.subscribers.append(self.username)
+                    }
+                }
+            }
+            
             callback(self, nil)
         }
     }
