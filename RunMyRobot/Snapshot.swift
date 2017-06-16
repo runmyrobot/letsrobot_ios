@@ -11,6 +11,8 @@ import SwiftyJSON
 
 class Snapshot {
     
+    static var all = [String: Snapshot]()
+    
     var id: String
     var sender: String
     var robotName: String?
@@ -27,6 +29,12 @@ class Snapshot {
         self.sender = sender
         self.caption = caption
         self.image = url
+        
+        if let name = json["robot_name"].string {
+            self.robotName = name
+        }
+        
+        Snapshot.all[id] = self
     }
     
 }

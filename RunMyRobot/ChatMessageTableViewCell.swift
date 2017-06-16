@@ -62,10 +62,11 @@ class ChatMessageTableViewCell: UITableViewCell {
             NSUnderlineStyleAttributeName: NSUnderlineStyle.styleNone.rawValue
         ]
         
+        let rawString = messageLabel.attributedText.string
+        let rawNSString = rawString as NSString
+        let rangeOfEntireString = NSRange(location: 0, length: rawNSString.length)
+        
         if let userMessage = message as? UserChatMessage {
-            let rawString = messageLabel.attributedText.string
-            let rawNSString = rawString as NSString
-            
             let robotRange = rawNSString.range(of: "[\(userMessage.robotName)]")
             if robotRange.location != NSNotFound, let url = URL(string: "letsrobot://robot/\(userMessage.robotName)") {
                 messageLabel.addLink(to: url, with: robotRange)
@@ -92,6 +93,9 @@ class ChatMessageTableViewCell: UITableViewCell {
                     NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
                 ])
             }
+        } else if let snapshotMessage = message as? SnapshotMessage {
+            guard let url = URL(string: "letsrobot://snapshot/\(snapshotMessage.snapshot.id)") else { return }
+            messageLabel.addLink(to: url, with: rangeOfEntireString)
         }
     }
 }
@@ -119,6 +123,15 @@ extension ChatMessageTableViewCell: TTTAttributedLabelDelegate {
             
             let modal = UserModalViewController.create()
             modal.user = user
+            
+            let popup = PopupDialog(viewController: modal, transitionStyle: .zoomIn)
+            parentViewController?.present(popup, animated: true, completion: nil)
+        } else if components.count == 4, components[2] == "snapshot" {
+            let snapshotId = components[3]
+            guard let snapshot = Snapshot.all[snapshotId] else { return }
+            
+            let modal = PreviewScreenshotViewController.create()
+            modal.snapshot = snapshot
             
             let popup = PopupDialog(viewController: modal, transitionStyle: .zoomIn)
             parentViewController?.present(popup, animated: true, completion: nil)

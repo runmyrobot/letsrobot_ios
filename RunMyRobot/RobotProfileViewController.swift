@@ -68,7 +68,7 @@ extension RobotProfileViewController: UICollectionViewDataSource, UICollectionVi
             snapshotLabel.isHidden = true
         }
         
-        return robot.snapshots.count
+        return min(robot.snapshots.count, 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

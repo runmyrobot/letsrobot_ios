@@ -172,7 +172,7 @@ class Socket {
             
             socket?.on("new_snapshot") { (data, _) in
                 guard let data = data.first else { return }
-//                self.chat.didReceiveMessage(JSON(data))
+                self.chat.didReceiveMessage(JSON(data))
             }
             
             socket?.on("robot_statuses") { (data, _) in

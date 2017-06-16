@@ -99,11 +99,16 @@ class SnapshotMessage: ChatMessage {
     
     init?(_ json: JSON) {
         guard let snapshot = Snapshot(json["snapshot"]) else { return nil }
+        
+        if let name = snapshot.robotName, let robot = Robot.get(name: name) {
+            robot.snapshots.append(snapshot)
+        }
+        
         self.snapshot = snapshot
     }
     
     var description: String {
-        return "\(snapshot.sender) submitted a new screenshot of \(snapshot.robotName)!"
+        return "\(snapshot.sender) submitted a new screenshot of \(snapshot.robotName ?? "unknown")!"
     }
 }
 
