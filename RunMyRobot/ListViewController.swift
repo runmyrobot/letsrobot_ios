@@ -45,10 +45,6 @@ class ListViewController: UIViewController {
         
         updateRobots()
         NotificationCenter.default.addObserver(self, selector: #selector(updateRobots), name: NSNotification.Name("RobotsChanged"), object: nil)
-        
-        User.current?.displayPaymentDropIn(self) { error in
-            print("\(error)")
-        }
     }
     
     func updateRobots() {

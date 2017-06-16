@@ -29,7 +29,7 @@
 			<string>BrainTree Payments</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>uk.sherlo.runmyrobot.payments</string>
+				<string>uk.sherlo.letsrobot.payments</string>
 			</array>
 		</dict>
 	</array>

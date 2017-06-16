@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        BTAppSwitch.setReturnURLScheme("uk.sherlo.runmyrobot.payments")
+        BTAppSwitch.setReturnURLScheme("uk.sherlo.letsrobot.payments")
         Fabric.with([Crashlytics.self])
         
         // Some things can be done on background thread as to not lock up the launching
@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        if url.scheme?.localizedCaseInsensitiveCompare("uk.sherlo.runmyrobot.payments") == .orderedSame {
+        if url.scheme?.localizedCaseInsensitiveCompare("uk.sherlo.letsrobot.payments") == .orderedSame {
             return BTAppSwitch.handleOpen(url, options: options)
         }
         

@@ -62,12 +62,24 @@ extension User {
     /// Creates and attempts to return a BTDropInController with the provided client payment token
     private func getPaymentDropIn(token: String, handler: @escaping BTDropInControllerHandler) -> BTDropInController? {
         let request = BTDropInRequest()
+        request.amount = "1.40"
+        
         return BTDropInController(authorization: token, request: request, handler: handler)
     }
     
     func displayPaymentDropIn(_ viewController: UIViewController, callback: @escaping ((Error?) -> Void)) {
         let controllerHandler: BTDropInControllerHandler = { (controller, result, error) in
             print("oops something went wrong")
+            if let error = error {
+                print("ERROR", error.localizedDescription)
+            } else if result?.isCancelled == true {
+                print("CANCELLED")
+            } else if let result = result {
+                print("RESULT", result)
+                print("nonce", result.paymentMethod?.nonce)
+            }
+            
+            controller.dismiss(animated: true, completion: nil)
         }
         
         getPaymentDropIn(handler: controllerHandler) { (controller, error) in
@@ -81,7 +93,9 @@ extension User {
                 return
             }
             
-            viewController.present(controller, animated: true, completion: nil)
+            Threading.run(on: .main) {
+                viewController.present(controller, animated: true, completion: nil)
+            }
         }
     }
 }
