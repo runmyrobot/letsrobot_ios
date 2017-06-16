@@ -41,6 +41,7 @@ class PurchaseRobitsViewController: UIViewController {
         }
         
         let product: Payment.Product = sender.tag == 1 ? .robits100 : .robits500
+        let robitCount = sender.tag == 1 ? 100 : 500
         
         sender.backgroundColor = sender.tintColor
         let indicator = sender.superview?.viewWithTag(5) as? UIActivityIndicatorView
@@ -56,12 +57,15 @@ class PurchaseRobitsViewController: UIViewController {
                 case .userCancelled:
                     break
                 default:
-                    print("\(error)")
+                    print(error)
+                    self.view.showMessage("Something went wrong!", type: .error)
                 }
                 return
             }
             
-            print("success")
+            self.view.showMessage("\(robitCount) robits purchased successfully!", type: .success)
+            user.spendableRobits += robitCount
+            self.currentRobitCountLabel.text = "You currently have \(user.spendableRobits) robits!"
         }
     }
     
