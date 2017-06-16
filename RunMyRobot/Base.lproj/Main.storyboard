@@ -175,7 +175,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-horizontal" translatesAutoresizingMaskIntoConstraints="NO" id="use-6j-deA">
-                                <rect key="frame" x="50" y="72" width="275" height="36"/>
+                                <rect key="frame" x="50" y="72" width="275" height="36.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="use-6j-deA" secondAttribute="height" multiplier="121:16" id="EsI-eP-m15"/>
                                 </constraints>
@@ -402,7 +402,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pV-fL-Y07">
-                                <rect key="frame" x="8" y="30" width="44" height="44"/>
+                                <rect key="frame" x="8" y="29.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3pV-fL-Y07" secondAttribute="height" multiplier="1:1" id="Ef8-hi-UVo"/>
                                     <constraint firstAttribute="width" constant="44" id="wKI-5E-ii6"/>
@@ -426,7 +426,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6V-L9-O5B">
-                                <rect key="frame" x="319" y="30" width="44" height="44"/>
+                                <rect key="frame" x="319" y="29.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="d6V-L9-O5B" secondAttribute="height" multiplier="1:1" id="Agz-3P-ZsJ"/>
                                     <constraint firstAttribute="width" constant="44" id="JAI-5k-x4Y"/>
@@ -440,7 +440,7 @@
                                 <rect key="frame" x="24" y="78" width="327" height="50"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOR-Yu-n4d">
-                                        <rect key="frame" x="0.0" y="0.0" width="164" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="163.5" height="50"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="Settings/cog"/>
                                         <connections>
@@ -448,7 +448,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyt-uB-GcT">
-                                        <rect key="frame" x="164" y="0.0" width="163" height="50"/>
+                                        <rect key="frame" x="163.5" y="0.0" width="163.5" height="50"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="Settings/subscriptions"/>
                                         <connections>
@@ -468,7 +468,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kQ-iD-wWi">
-                                <rect key="frame" x="44" y="128" width="124" height="4"/>
+                                <rect key="frame" x="44" y="128" width="123.5" height="4"/>
                                 <color key="backgroundColor" red="0.73725490196078436" green="0.3529411764705882" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="oqD-eR-sOy"/>
@@ -541,7 +541,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY ROBOTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j6-Fr-SJQ" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="137" y="40" width="101" height="22"/>
+                                <rect key="frame" x="136.5" y="40" width="102" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -686,7 +686,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CUSTOM PANELS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-QV-1CA" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="116" y="40" width="144" height="22"/>
+                                <rect key="frame" x="115" y="40" width="146" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1246,11 +1246,25 @@
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="blp-uA-Xcy">
                                         <rect key="frame" x="53" y="12" width="20" height="20"/>
                                     </activityIndicatorView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Xt-r0-ebL">
+                                        <rect key="frame" x="164" y="0.5" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="0Xt-r0-ebL" secondAttribute="height" multiplier="1:1" id="vEC-bm-jZq"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="icon-gift"/>
+                                        <connections>
+                                            <action selector="didPressGift" destination="s8K-cS-TTW" eventType="touchUpInside" id="QCZ-tT-ykR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="blp-uA-Xcy" firstAttribute="centerX" secondItem="J1Q-ff-Yof" secondAttribute="centerX" id="60x-iY-hVe"/>
+                                    <constraint firstItem="0Xt-r0-ebL" firstAttribute="centerY" secondItem="i0d-sA-Fer" secondAttribute="centerY" id="6Ad-An-Thy"/>
                                     <constraint firstItem="J1Q-ff-Yof" firstAttribute="centerY" secondItem="qGk-oq-HIj" secondAttribute="centerY" id="AET-Nu-esb"/>
+                                    <constraint firstItem="0Xt-r0-ebL" firstAttribute="height" secondItem="qGk-oq-HIj" secondAttribute="height" id="EJU-0H-s4c"/>
+                                    <constraint firstItem="0Xt-r0-ebL" firstAttribute="leading" secondItem="J5p-6d-wgn" secondAttribute="trailing" constant="16" id="Eqx-El-71g"/>
                                     <constraint firstAttribute="trailing" secondItem="i0d-sA-Fer" secondAttribute="trailing" constant="16" id="F0D-Hb-2XP"/>
                                     <constraint firstItem="blp-uA-Xcy" firstAttribute="centerY" secondItem="J1Q-ff-Yof" secondAttribute="centerY" id="MWF-cb-HqP"/>
                                     <constraint firstItem="J5p-6d-wgn" firstAttribute="leading" secondItem="J1Q-ff-Yof" secondAttribute="trailing" constant="-2" id="fDj-EH-ldn"/>
@@ -1273,7 +1287,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sherlouk: [TrumpBot] Generic Message" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPn-s9-XdG" customClass="TTTAttributedLabel">
-                                                    <rect key="frame" x="16" y="8" width="286" height="20"/>
+                                                    <rect key="frame" x="16" y="8" width="287" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -1678,6 +1692,7 @@
         <image name="icon-chat" width="25" height="25"/>
         <image name="icon-close" width="50" height="50"/>
         <image name="icon-game" width="25" height="25"/>
+        <image name="icon-gift" width="25" height="25"/>
         <image name="icon-left" width="25" height="25"/>
         <image name="icon-menu" width="25" height="25"/>
         <image name="icon-right" width="25" height="25"/>
