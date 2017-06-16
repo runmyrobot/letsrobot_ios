@@ -70,6 +70,7 @@
 		98B73C241EF2DB8900577D39 /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C231EF2DB8900577D39 /* Snapshot.swift */; };
 		98B73C261EF3135D00577D39 /* RobotProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C251EF3135D00577D39 /* RobotProfileViewController.swift */; };
 		98B73C281EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C271EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift */; };
+		98B73C2A1EF4103A00577D39 /* User+Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C291EF4103A00577D39 /* User+Payments.swift */; };
 		98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */; };
 		98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */; };
 		98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */; };
@@ -145,6 +146,7 @@
 		98B73C231EF2DB8900577D39 /* Snapshot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
 		98B73C251EF3135D00577D39 /* RobotProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotProfileViewController.swift; sourceTree = "<group>"; };
 		98B73C271EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		98B73C291EF4103A00577D39 /* User+Payments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Payments.swift"; sourceTree = "<group>"; };
 		98BB51611EE73E0200177A32 /* SettingsListSwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListSwitchCell.swift; sourceTree = "<group>"; };
 		98BB51621EE73E0200177A32 /* SettingsListSwitchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListSwitchCell.xib; sourceTree = "<group>"; };
 		98BB51691EE756DE00177A32 /* SettingsListViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListViewProvider.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				98500C7F1EE0A57B00CFA446 /* Socket.swift */,
 				980ADD741EE465F500B00B33 /* User.swift */,
 				988790021EEEE6490017B7F5 /* User+Authentication.swift */,
+				98B73C291EF4103A00577D39 /* User+Payments.swift */,
 				988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */,
 				9823E6AF1EEC1DFB00619964 /* UserDefaults.swift */,
 			);
@@ -600,6 +603,7 @@
 				9823E6BB1EEC419B00619964 /* SettingsListPictureCell.swift in Sources */,
 				98B73C221EF2DB4700577D39 /* PreviewScreenshotViewController.swift in Sources */,
 				98BB51631EE73E0200177A32 /* SettingsListSwitchCell.swift in Sources */,
+				98B73C2A1EF4103A00577D39 /* User+Payments.swift in Sources */,
 				983F85B11EE83414001FD90A /* MenuContainerViewController.swift in Sources */,
 				987DF39F1EE871730042539B /* HEXColor.swift in Sources */,
 				98BB516A1EE756DE00177A32 /* SettingsListViewProvider.swift in Sources */,
