@@ -15,5 +15,9 @@ enum RobotError: Error {
     case apiFailure
     case parseFailure
     case inconsistencyException
+    case noCurrentPayment
+    case existingPayment
+    case userCancelled
+    case noPaymentNonce
     case requestFailure(original: Error)
 }

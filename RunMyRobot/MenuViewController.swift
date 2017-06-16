@@ -39,7 +39,8 @@ class MenuViewController: UIViewController {
         
         return [
             ("Settings", "Settings/cog", "ShowSettings"),
-            ("My Robots", "Settings/bot", "ShowMyRobots")
+            ("My Robots", "Settings/bot", "ShowMyRobots"),
+            ("Test Payment", "Settings/money", "ShowPayment")
         ] + shared
     }
     
@@ -140,6 +141,10 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             performSegue(withIdentifier: "ShowSettings", sender: nil)
         case "ShowRules":
             performSegue(withIdentifier: "ShowRules", sender: nil)
+        case "ShowPayment":
+            User.current?.displayPaymentUI(for: .robits100, viewController: self) { error in
+                print("\(error)")
+            }
         case "ShowMyRobots":
             performSegue(withIdentifier: "ShowRobotSettings", sender: nil)
         default:

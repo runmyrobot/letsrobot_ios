@@ -86,6 +86,7 @@ class CurrentUser: User {
         return Robot.all().filter({ $0.subscribers.contains(self.username) })
     }
     
+    var currentPayment: Payment?
     var robots = [Robot]()
     
     var isStaff = false

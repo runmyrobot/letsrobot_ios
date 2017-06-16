@@ -11,7 +11,7 @@ import SwiftyJSON
 import Braintree
 import BraintreeDropIn
 
-extension User {
+extension CurrentUser {
     
     /// Requests a new BrainTree client token for payments
     private func getClientPaymentToken(callback: @escaping ((String?, Error?) -> Void)) {
@@ -34,6 +34,40 @@ extension User {
             }
             
             callback(token, nil)
+        }
+    }
+    
+    private func postNonce(_ nonce: String, callback: @escaping ((Error?) -> Void)) {
+        guard let payment = currentPayment else {
+            callback(RobotError.noCurrentPayment)
+            return
+        }
+        
+        var payload: Parameters = [
+            "amount": payment.product.price,
+            "nonce": nonce
+        ]
+        
+        if case let Payment.Product.xcontrol(robotId) = payment.product {
+            payload["robot_id"] = robotId
+        }
+        
+        Networking.request(payment.product.nonceEndpoint, method: .post, parameters: payload) { response in
+            if let error = response.error {
+                callback(RobotError.requestFailure(original: error))
+                return
+            }
+            
+            guard let data = response.data else {
+                callback(RobotError.noData)
+                return
+            }
+            
+            let json = JSON(data)
+            
+            // End of the chain!
+            // If this returns nil, then it is classified as a successful payment
+            callback(nil)
         }
     }
     
@@ -62,21 +96,23 @@ extension User {
     /// Creates and attempts to return a BTDropInController with the provided client payment token
     private func getPaymentDropIn(token: String, handler: @escaping BTDropInControllerHandler) -> BTDropInController? {
         let request = BTDropInRequest()
-        request.amount = "1.40"
+        request.amount = currentPayment?.product.price
         
         return BTDropInController(authorization: token, request: request, handler: handler)
     }
     
-    func displayPaymentDropIn(_ viewController: UIViewController, callback: @escaping ((Error?) -> Void)) {
+    private func displayPaymentDropIn(_ viewController: UIViewController, callback: @escaping ((Error?) -> Void)) {
         let controllerHandler: BTDropInControllerHandler = { (controller, result, error) in
-            print("oops something went wrong")
             if let error = error {
-                print("ERROR", error.localizedDescription)
+                callback(RobotError.requestFailure(original: error))
             } else if result?.isCancelled == true {
-                print("CANCELLED")
+                callback(RobotError.userCancelled)
             } else if let result = result {
-                print("RESULT", result)
-                print("nonce", result.paymentMethod?.nonce)
+                if let nonce = result.paymentMethod?.nonce {
+                    self.postNonce(nonce, callback: callback)
+                } else {
+                    callback(RobotError.noPaymentNonce)
+                }
             }
             
             controller.dismiss(animated: true, completion: nil)
@@ -97,5 +133,15 @@ extension User {
                 viewController.present(controller, animated: true, completion: nil)
             }
         }
+    }
+    
+    func displayPaymentUI(for product: Payment.Product, viewController: UIViewController, callback: @escaping ((Error?) -> Void)) {
+        if currentPayment != nil {
+            callback(RobotError.existingPayment)
+            return
+        }
+        
+        currentPayment = Payment(product: product)
+        displayPaymentDropIn(viewController, callback: callback)
     }
 }

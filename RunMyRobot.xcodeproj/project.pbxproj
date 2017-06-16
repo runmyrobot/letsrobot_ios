@@ -62,6 +62,7 @@
 		988790031EEEE6490017B7F5 /* User+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988790021EEEE6490017B7F5 /* User+Authentication.swift */; };
 		988790051EEEE67A0017B7F5 /* User+SyncRobots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */; };
 		9887900A1EEF29D50017B7F5 /* Modals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988790091EEF29D50017B7F5 /* Modals.storyboard */; };
+		98B047861EF4244400D260FE /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B047851EF4244400D260FE /* Payment.swift */; };
 		98B73C191EF157B000577D39 /* RobotModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C181EF157B000577D39 /* RobotModalViewController.swift */; };
 		98B73C1C1EF177B800577D39 /* RobotControls.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98B73C1B1EF177B800577D39 /* RobotControls.xib */; };
 		98B73C1E1EF178AC00577D39 /* RobotControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B73C1D1EF178AC00577D39 /* RobotControls.swift */; };
@@ -138,6 +139,7 @@
 		988790021EEEE6490017B7F5 /* User+Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Authentication.swift"; sourceTree = "<group>"; };
 		988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SyncRobots.swift"; sourceTree = "<group>"; };
 		988790091EEF29D50017B7F5 /* Modals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modals.storyboard; sourceTree = "<group>"; };
+		98B047851EF4244400D260FE /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		98B73C181EF157B000577D39 /* RobotModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotModalViewController.swift; sourceTree = "<group>"; };
 		98B73C1B1EF177B800577D39 /* RobotControls.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RobotControls.xib; sourceTree = "<group>"; };
 		98B73C1D1EF178AC00577D39 /* RobotControls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotControls.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				983BCB511EDE29A8007A1247 /* Config.swift */,
 				980ADD761EE46AC100B00B33 /* Errors.swift */,
 				9823E6B11EEC1F5300619964 /* Networking.swift */,
+				98B047851EF4244400D260FE /* Payment.swift */,
 				980ADD6D1EE43CD300B00B33 /* Robot.swift */,
 				98B73C231EF2DB8900577D39 /* Snapshot.swift */,
 				98500C7F1EE0A57B00CFA446 /* Socket.swift */,
@@ -615,6 +618,7 @@
 				988790031EEEE6490017B7F5 /* User+Authentication.swift in Sources */,
 				980ADD5B1EE2E0AC00B00B33 /* Regex.swift in Sources */,
 				987DF39D1EE870090042539B /* Concatenate.swift in Sources */,
+				98B047861EF4244400D260FE /* Payment.swift in Sources */,
 				980ADD751EE465F500B00B33 /* User.swift in Sources */,
 				9876F9991EE72950002E7122 /* SettingsViewController.swift in Sources */,
 			);
