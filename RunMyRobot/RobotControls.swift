@@ -45,7 +45,7 @@ class RobotControls: UIView {
         }
         
         robot.updateControls = { [weak self] in
-            Threading.run(on: .main) {
+            Threading.run(on: .main) { [weak self] in
                 self?.updateControls()
             }
         }

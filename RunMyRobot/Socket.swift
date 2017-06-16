@@ -71,30 +71,31 @@ class Socket {
             }
             
             socket?.onAny { (event) in
-                let ignore = [
-                    "robot_command_has_hit_webserver", "exclusive_control_status", // Incomplete
-                    "connect", "disconnect", "error", "reconnect", "reconnectAttempt", "statusChange", // Client Events
-                    "news", "num_viewers", "robot_statuses", "chat_message_with_name", "users_list", "subscription_state_change", // Implemented
-                    "pip", "aggregate_color_change", "robot_command_has_hit_webserver", "new_snapshot", // Implemented
-                    "charge_state" // No Purpose
-                ]
-                
-                if ignore.contains(event.event) {
-                    return
+                Threading.run(on: .background) {
+                    let ignore = [
+                        "robot_command_has_hit_webserver", "exclusive_control_status", // Incomplete
+                        "connect", "disconnect", "error", "reconnect", "reconnectAttempt", "statusChange", // Client Events
+                        "news", "num_viewers", "robot_statuses", "chat_message_with_name", "users_list", "subscription_state_change", // Implemented
+                        "pip", "aggregate_color_change", "robot_command_has_hit_webserver", "new_snapshot", // Implemented
+                        "charge_state" // No Purpose
+                    ]
+                    
+                    if ignore.contains(event.event) {
+                        return
+                    }
+                    
+                    print("❓ UNHANDLED EVENT: \(event.event)")
                 }
-                
-                print("❓ UNHANDLED EVENT: \(event.event)")
             }
             
             /// Website adds a little dot with the provided colour to the given command button
             socket?.on("pip") { (data, _) in
-                guard let data = data.first else { return }
-                let json = JSON(data)
-                
-                guard let robotId = json["robot_id"].string else { return }
-                
-                Robot.get(id: robotId) { (robot: inout Robot, success) in
-                    guard success else { return }
+                Threading.run(on: .background) {
+                    guard let data = data.first else { return }
+                    let json = JSON(data)
+                    
+                    guard let robotId = json["robot_id"].string else { return }
+                    guard let robot = Robot.get(id: robotId) else { return }
                     
                     let count = json["users"].dictionaryObject?.count ?? 0
                     guard let command = json["command"].string else { return }
@@ -105,14 +106,13 @@ class Socket {
             
             /// Website adds a 5px white border to the given command button
             socket?.on("aggregate_color_change") { (data, _) in
-                guard let data = data.first else { return }
-                let json = JSON(data)
-                
-                guard let robotId = json["robot_id"].string else { return }
-                
-                Robot.get(id: robotId) { (robot: inout Robot, success) in
-                    guard success else { return }
+                Threading.run(on: .background) {
+                    guard let data = data.first else { return }
+                    let json = JSON(data)
                     
+                    guard let robotId = json["robot_id"].string else { return }
+                    guard let robot = Robot.get(id: robotId) else { return }
+                        
                     let command = json["command"].string
                     robot.currentCommand = command == "stop" ? nil : command
                     robot.updateControls?()
@@ -130,16 +130,17 @@ class Socket {
             
             /// Website flashes the button for 200ms
             socket?.on("robot_command_has_hit_webserver") { (data, _) in
-                guard let data = data.first else { return }
-                let json = JSON(data)
-                
-                guard let command = json["command"].string else { return }
-                guard let robotId = json["robot_id"].string else { return }
-                
-                Robot.get(id: robotId) { (robot: inout Robot, success) in
-                    guard success else { return }
+                Threading.run(on: .background) {
+                    guard let data = data.first else { return }
+                    let json = JSON(data)
                     
-                    robot.controls?.flashCommand(command)
+                    guard let command = json["command"].string else { return }
+                    guard let robotId = json["robot_id"].string else { return }
+                    guard let robot = Robot.get(id: robotId) else { return }
+                    
+                    Threading.run(on: .main) {
+                        robot.controls?.flashCommand(command)
+                    }
                 }
                 
                 /*
@@ -158,21 +159,27 @@ class Socket {
             }
             
             socket?.on("news") { (data, _) in
-                guard let data = data.first as? [String: String] else { return }
-                
-                for item in data {
-                    print("📰 [NEWS]", item.key, item.value)
+                Threading.run(on: .background) {
+                    guard let data = data.first as? [String: String] else { return }
+                    
+                    for item in data {
+                        print("📰 [NEWS]", item.key, item.value)
+                    }
                 }
             }
             
             socket?.on("num_viewers") { (data, _) in
-                guard let data = data.first as? Int else { return }
-                print("🎲 [VIEWER COUNT] \(data) (User Count: \(self.users.count))")
+                Threading.run(on: .background) {
+                    guard let data = data.first as? Int else { return }
+                    print("🎲 [VIEWER COUNT] \(data) (User Count: \(self.users.count))")
+                }
             }
             
             socket?.on("new_snapshot") { (data, _) in
-                guard let data = data.first else { return }
-                self.chat.didReceiveMessage(JSON(data))
+                Threading.run(on: .background) {
+                    guard let data = data.first else { return }
+                    self.chat.didReceiveMessage(JSON(data))
+                }
             }
             
             socket?.on("robot_statuses") { (data, _) in
@@ -207,8 +214,10 @@ class Socket {
             }
             
             socket?.on("chat_message_with_name") { (data, _) in
-                guard let data = data.first else { return }
-                self.chat.didReceiveMessage(JSON(data))
+                Threading.run(on: .background) {
+                    guard let data = data.first else { return }
+                    self.chat.didReceiveMessage(JSON(data))
+                }
             }
             
             socket?.on("users_list") { (data, _) in

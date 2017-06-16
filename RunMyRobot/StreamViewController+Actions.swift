@@ -14,7 +14,9 @@ import PopupDialog
 extension StreamViewController {
     
     @IBAction func didPressBack() {
-        _ = navigationController?.popViewController(animated: true)
+        Threading.run(on: .main) {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func didPressGift() {

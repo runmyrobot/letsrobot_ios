@@ -153,7 +153,9 @@ class Chat {
         messages = Array(messages.suffix(Chat.messageCountCap))
         print("💬 \(message) (\(messages.count)/\(Chat.messageCountCap))")
         
-        chatCallback?(message)
+        Threading.run(on: .main) {
+            self.chatCallback?(message)
+        }
     }
     
     func parseMessage(_ json: JSON) -> ChatMessage? {

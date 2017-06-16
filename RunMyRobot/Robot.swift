@@ -216,6 +216,12 @@ class Robot {
         })
     }
     
+    class func get(id: String) -> Robot? {
+        return all().first(where: {
+            $0.id == id
+        })
+    }
+    
     class func get(id: String, callback: ((inout Robot, Bool) -> Void)) {
         if var robot = all().first(where: { $0.id == id }) {
             return callback(&robot, true)
