@@ -1,8 +1,29 @@
 PODS:
   - Alamofire (4.4.0)
+  - Braintree (4.8.3):
+    - Braintree/Card (= 4.8.3)
+    - Braintree/Core (= 4.8.3)
+    - Braintree/PayPal (= 4.8.3)
+    - Braintree/UI (= 4.8.3)
+  - Braintree/Apple-Pay (4.8.3):
+    - Braintree/Core
   - Braintree/Card (4.8.3):
     - Braintree/Core
   - Braintree/Core (4.8.3)
+  - Braintree/PayPal (4.8.3):
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.8.3):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.8.3):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.8.3)
+  - Braintree/UI (4.8.3):
+    - Braintree/Card
+    - Braintree/Core
   - Braintree/UnionPay (4.8.3):
     - Braintree/Card
     - Braintree/Core
@@ -32,6 +53,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - Braintree
+  - Braintree/Apple-Pay
   - BraintreeDropIn
   - Crashlytics
   - Fabric
@@ -67,6 +90,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UIImageColors: ba833ce88773453e0a1065f29cde333a97865607
 
-PODFILE CHECKSUM: 7ed45f60d961f11d587282da5b783d1abbac482b
+PODFILE CHECKSUM: 907ab38ce14d61834f4cd7c83d09a443f89cd21f
 
 COCOAPODS: 1.2.0
