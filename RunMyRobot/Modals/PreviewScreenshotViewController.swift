@@ -31,7 +31,12 @@ class PreviewScreenshotViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleLabel.text = "Snapshot of \(snapshot.robotName)"
+        if let name = snapshot.robotName {
+            titleLabel.text = "Snapshot of \(name)"
+        } else {
+            titleLabel.text = "Snapshot"
+        }
+        
         captionLabel.text = snapshot.caption
         submittedLabel.text = "Submitted by \(snapshot.sender)"
         

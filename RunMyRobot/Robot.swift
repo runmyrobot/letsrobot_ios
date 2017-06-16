@@ -123,7 +123,7 @@ class Robot {
     }
     
     func fetchSnapshots(callback: @escaping ((Error?) -> Void)) {
-        Networking.requestJSON("/api/v1/snapshots") { [weak self] response in
+        Networking.requestJSON("/api/v1/snapshots/robot/\(id)") { [weak self] response in
             if let error = response.error {
                 callback(RobotError.requestFailure(original: error))
                 return
@@ -137,6 +137,7 @@ class Robot {
             if let json = JSON(data)["snapshots"].array {
                 for snapshotJson in json {
                     guard let snapshot = Snapshot(snapshotJson) else { continue }
+                    snapshot.robotName = self?.name
                     self?.snapshots.append(snapshot)
                 }
             }
