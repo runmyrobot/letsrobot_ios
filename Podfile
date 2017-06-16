@@ -26,4 +26,6 @@ target 'RunMyRobot' do
   pod 'Fabric'
   pod 'Crashlytics'
 
+  # Payment
+  pod 'BraintreeDropIn'
 end

@@ -1,5 +1,19 @@
 PODS:
   - Alamofire (4.4.0)
+  - Braintree/Card (4.8.3):
+    - Braintree/Core
+  - Braintree/Core (4.8.3)
+  - Braintree/UnionPay (4.8.3):
+    - Braintree/Card
+    - Braintree/Core
+  - BraintreeDropIn (5.2.0):
+    - BraintreeDropIn/DropIn (= 5.2.0)
+  - BraintreeDropIn/DropIn (5.2.0):
+    - Braintree/Card (~> 4.0)
+    - Braintree/Core (~> 4.0)
+    - Braintree/UnionPay (~> 4.0)
+    - BraintreeDropIn/UIKit
+  - BraintreeDropIn/UIKit (5.2.0)
   - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
@@ -18,6 +32,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - BraintreeDropIn
   - Crashlytics
   - Fabric
   - GSMessages
@@ -35,6 +50,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Braintree: e91ccdfb26365d342ee4c42d668aa3cb57a6fb18
+  BraintreeDropIn: f4278c4eafc1395d06ce79652fa1658d2b5ab815
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   GSMessages: b26e37bb6017b11d61f2708684179d5e9495c063
@@ -50,6 +67,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UIImageColors: ba833ce88773453e0a1065f29cde333a97865607
 
-PODFILE CHECKSUM: fd2ba850041cb2fe9c0b8d25ad0b0a0bc8d3af4b
+PODFILE CHECKSUM: 7ed45f60d961f11d587282da5b783d1abbac482b
 
 COCOAPODS: 1.2.0
