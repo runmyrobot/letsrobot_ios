@@ -27,7 +27,7 @@ class UserChatMessage: ChatMessage {
         self.anonymous = anonymous
         self.name = name
         
-        let matches = fullMessage.matches(pattern: "\\[(.*)\\] ?(.*)")
+        let matches = fullMessage.matches(pattern: "\\[(.*?)\\] ?(.*)")
         guard let match = matches.first, match.count == 2 else { return nil }
         
         self.robotName = match[0].trimmingCharacters(in: .whitespacesAndNewlines)
