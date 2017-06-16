@@ -17,7 +17,7 @@ class Payment {
         
         var price: String {
             switch self {
-            case .xcontrol(_):
+            case .xcontrol:
                 return "0.50"
             case .robits100:
                 return "1.40"
@@ -28,7 +28,7 @@ class Payment {
         
         var nonceEndpoint: String {
             switch self {
-            case .xcontrol(_):
+            case .xcontrol:
                 return "/internal/braintree/xcontrol/nonce"
             case .robits100:
                 return "/internal/braintree/robits100/nonce"
