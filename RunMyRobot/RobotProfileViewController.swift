@@ -61,6 +61,13 @@ class RobotProfileViewController: UIViewController {
 extension RobotProfileViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if robot.snapshotsFetched, robot.snapshots.count == 0 {
+            snapshotLabel.text = "No Snapshots Found"
+            snapshotLabel.isHidden = false
+        } else if robot.snapshots.count > 0 {
+            snapshotLabel.isHidden = true
+        }
+        
         return robot.snapshots.count
     }
     

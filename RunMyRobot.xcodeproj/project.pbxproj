@@ -182,8 +182,8 @@
 			children = (
 				98500C7B1EE0892E00CFA446 /* ListViewController.swift */,
 				980ADD551EE2BFD200B00B33 /* LoaderViewController.swift */,
-				980ADD681EE3F8F500B00B33 /* Stream VC */,
 				98B73C251EF3135D00577D39 /* RobotProfileViewController.swift */,
+				980ADD681EE3F8F500B00B33 /* Stream VC */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
