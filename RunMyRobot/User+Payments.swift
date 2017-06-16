@@ -52,7 +52,11 @@ extension CurrentUser {
             payload["robot_id"] = robotId
         }
         
-        Networking.request(payment.product.nonceEndpoint, method: .post, parameters: payload) { response in
+        let data: Parameters = [
+            "payload": payload
+        ]
+        
+        Networking.request(payment.product.nonceEndpoint, method: .post, parameters: data) { response in
             if let error = response.error {
                 callback(RobotError.requestFailure(original: error))
                 return
@@ -63,7 +67,7 @@ extension CurrentUser {
                 return
             }
             
-            let json = JSON(data)
+//            let json = JSON(data)
             
             // End of the chain!
             // If this returns nil, then it is classified as a successful payment
