@@ -17,6 +17,11 @@ class SnapshotPreviewCollectionViewCell: UICollectionViewCell {
     var snapshot: Snapshot!
     weak var parentViewController: UIViewController?
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        previewImageView.image = nil
+    }
+    
     func setup(_ snapshot: Snapshot) {
         self.snapshot = snapshot
         

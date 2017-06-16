@@ -108,7 +108,7 @@ class RobotSettingsListProvider: SettingsListViewProvider {
     }
     
     var cellCount: Int {
-        return 10
+        return 9
     }
     
     func cellInfo(for index: Int) -> [String : Any] {

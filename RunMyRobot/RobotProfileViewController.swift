@@ -46,6 +46,18 @@ class RobotProfileViewController: UIViewController {
             snapshotIndicator.stopAnimating()
             snapshotLabel.isHidden = true
         }
+        
+        if robot.live {
+            lastActivityLabel.text = "Last Activity: \(robot.name) is live!"
+        } else if let date = robot.lastActivity {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d 'at' h:mma"
+            
+            let dateString = dateFormatter.string(from: date)
+            lastActivityLabel.text = "Last Activity: \(dateString)"
+        } else {
+            lastActivityLabel.text = "Last Activity: Unknown"
+        }
     }
     
     @IBAction func didPressClose() {

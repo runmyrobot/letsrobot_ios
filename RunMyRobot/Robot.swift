@@ -36,6 +36,7 @@ class Robot {
     var pips = [String: Int]()
     var currentCommand: String?
     var updateControls: (() -> Void)?
+    var lastActivity: Date?
     weak var controls: RobotControls?
     
     // Preferences
@@ -116,6 +117,10 @@ class Robot {
             self?.isAnonymousControlEnabled = json["robot", "allow_anonymous_control"].bool ?? true
             self?.isDevMode = json["robot", "dev_mode"].bool ?? false
             self?.isGlobalChat = !(json["robot", "non_global_chat"].bool ?? false)
+            
+            if let lastActiveString = json["robot", "ffmpeg_process_exists_timestamp"].string {
+                self?.lastActivity = Socket.shared.formatter.date(from: lastActiveString)
+            }
             
             self?.downloaded = true
             callback(true)
