@@ -402,7 +402,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pV-fL-Y07">
-                                <rect key="frame" x="8" y="29.5" width="44" height="44"/>
+                                <rect key="frame" x="8" y="29" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3pV-fL-Y07" secondAttribute="height" multiplier="1:1" id="Ef8-hi-UVo"/>
                                     <constraint firstAttribute="width" constant="44" id="wKI-5E-ii6"/>
@@ -425,8 +425,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="BvD-h8-Pub">
+                                <rect key="frame" x="331" y="41" width="20" height="20"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6V-L9-O5B">
-                                <rect key="frame" x="319" y="29.5" width="44" height="44"/>
+                                <rect key="frame" x="319" y="29" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="d6V-L9-O5B" secondAttribute="height" multiplier="1:1" id="Agz-3P-ZsJ"/>
                                     <constraint firstAttribute="width" constant="44" id="JAI-5k-x4Y"/>
@@ -490,6 +493,7 @@
                             <constraint firstItem="bb3-Di-JD4" firstAttribute="centerY" secondItem="3pV-fL-Y07" secondAttribute="centerY" id="Ai4-Gj-Bps"/>
                             <constraint firstItem="614-RG-9Qd" firstAttribute="trailing" secondItem="WKt-8q-LLY" secondAttribute="trailing" id="CJK-nF-6oN"/>
                             <constraint firstItem="9kQ-iD-wWi" firstAttribute="width" secondItem="dOR-Yu-n4d" secondAttribute="width" constant="-40" id="DhS-yB-kFF"/>
+                            <constraint firstItem="BvD-h8-Pub" firstAttribute="centerY" secondItem="d6V-L9-O5B" secondAttribute="centerY" id="EUk-Bx-qND"/>
                             <constraint firstItem="NEg-QV-vLP" firstAttribute="top" secondItem="614-RG-9Qd" secondAttribute="bottom" id="LHh-RC-quu"/>
                             <constraint firstItem="614-RG-9Qd" firstAttribute="top" secondItem="9kQ-iD-wWi" secondAttribute="bottom" id="OV3-A0-fZt"/>
                             <constraint firstItem="d6V-L9-O5B" firstAttribute="centerY" secondItem="bb3-Di-JD4" secondAttribute="centerY" id="ViN-el-yyP"/>
@@ -497,6 +501,7 @@
                             <constraint firstAttribute="trailing" secondItem="d6V-L9-O5B" secondAttribute="trailing" constant="12" id="Zwa-iS-0NW"/>
                             <constraint firstAttribute="trailing" secondItem="WKt-8q-LLY" secondAttribute="trailing" constant="24" id="cTh-LW-tIl"/>
                             <constraint firstItem="bb3-Di-JD4" firstAttribute="centerX" secondItem="Guc-cK-8JZ" secondAttribute="centerX" id="fGZ-eb-cIw"/>
+                            <constraint firstItem="BvD-h8-Pub" firstAttribute="centerX" secondItem="d6V-L9-O5B" secondAttribute="centerX" id="g3c-Xq-BpL"/>
                             <constraint firstItem="WKt-8q-LLY" firstAttribute="leading" secondItem="Guc-cK-8JZ" secondAttribute="leading" constant="24" id="gjI-5m-Wf7"/>
                             <constraint firstItem="9kQ-iD-wWi" firstAttribute="centerX" secondItem="dOR-Yu-n4d" secondAttribute="centerX" placeholder="YES" id="m7V-X6-Mj6"/>
                             <constraint firstItem="614-RG-9Qd" firstAttribute="leading" secondItem="WKt-8q-LLY" secondAttribute="leading" id="nLa-RZ-61h"/>
@@ -510,6 +515,8 @@
                         <outlet property="navigationIndicatorView" destination="9kQ-iD-wWi" id="kNK-3r-7jc"/>
                         <outlet property="navigationStackView" destination="WKt-8q-LLY" id="8Ez-Cq-qCF"/>
                         <outlet property="pagerView" destination="NEg-QV-vLP" id="tKX-4h-M7f"/>
+                        <outlet property="saveUserButton" destination="d6V-L9-O5B" id="Ytn-G8-Fvt"/>
+                        <outlet property="saveUserIndicator" destination="BvD-h8-Pub" id="P2r-T7-1ab"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y67-co-oVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -686,7 +693,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CUSTOM PANELS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-QV-1CA" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="115" y="40" width="146" height="22"/>
+                                <rect key="frame" x="114.5" y="40" width="146" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>

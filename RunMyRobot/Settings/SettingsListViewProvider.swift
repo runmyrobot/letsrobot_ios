@@ -19,10 +19,15 @@ class UserSettingsListProvider: SettingsListViewProvider {
 //    - Phone Number (Text; different keyboard)
 //    - Profile Picture (Image)
 //    - Moderators? (Rich Editor)
-//    - Robits?
+
+    var changeCallback: (() -> Void)
+    
+    init(changeCallback: @escaping (() -> Void)) {
+        self.changeCallback = changeCallback
+    }
     
     var cellCount: Int {
-        return 7
+        return 6
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
@@ -41,7 +46,12 @@ class UserSettingsListProvider: SettingsListViewProvider {
                 "subtitle": "Update your profile description seen be all users!",
                 "type": "textfield",
                 "keyboard": "default",
-                "placeholder": "On a mission to save Pam"
+                "placeholder": "On a mission to save Pam",
+                "value": User.current?.description as Any,
+                "callback": { (value: String?) in
+                    User.current?.unsavedChanges["profile_description"] = value
+                    self.changeCallback()
+                }
             ],
             [
                 "title": "Notification Settings",
@@ -56,12 +66,12 @@ class UserSettingsListProvider: SettingsListViewProvider {
                 "title": "GO LIVE NOTIFICATIONS",
                 "subtitle": "You will be notified when a robot you're subscribed to goes live!",
                 "type": "toggle"
-            ],
-            [
-                "title": "STUCK NOTIFICATIONS",
-                "subtitle": "If one of your robots gets stuck, users can notify you to help it!",
-                "type": "toggle"
             ]
+//            [
+//                "title": "STUCK NOTIFICATIONS",
+//                "subtitle": "If one of your robots gets stuck, users can notify you to help it!",
+//                "type": "toggle"
+//            ]
         ][index]
     }
 }

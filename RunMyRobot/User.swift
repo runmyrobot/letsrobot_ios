@@ -89,6 +89,7 @@ class CurrentUser: User {
     var spendableRobits = 0
     var currentPayment: Payment?
     var robots = [Robot]()
+    var unsavedChanges = [String: Any]()
     
     var isStaff = false
     var isGlobalModerator = false
@@ -149,12 +150,47 @@ class CurrentUser: User {
         }
     }
     
-    func saveProfile() {
+    func saveProfile(callback: @escaping ((Error?) -> Void)) {
         var data: Parameters = [:]
-        if let description = description { data["profile_description"] = description }
+        data["profile_description"] = unsavedChanges["profile_description"] ?? description
         
-        Networking.request("/api/v1/accounts", method: .post, parameters: data) { response in
-            print("\(response)")
+        Networking.request("/api/v1/accounts/\(username)", method: .post, parameters: data) { response in
+            // Check network had no errors
+            if let error = response.error {
+                callback(RobotError.requestFailure(original: error))
+                return
+            }
+            
+            guard let data = response.data else {
+                callback(RobotError.noData)
+                return
+            }
+            
+            let json = JSON(data)
+            
+            // Check API had no errors
+            if json["error"].string != nil {
+                callback(RobotError.apiFailure)
+                return
+            }
+            
+            // Sync Changes
+            self.unsavedChanges.forEach { (key, value) in
+                switch key {
+                case "profile_description":
+                    if let value = value as? String {
+                        self.description = value
+                    }
+                default:
+                    break
+                }
+            }
+            
+            // Remove them
+            self.unsavedChanges.removeAll()
+            
+            // Return no error
+            callback(nil)
         }
     }
     

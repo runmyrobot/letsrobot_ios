@@ -8,24 +8,21 @@
 
 import UIKit
 import MXPagerView
-
-struct SettingsStyle {
-    struct Nav {
-        static let buttonColorActive = UIColor.white
-        static let buttonColorInactive = UIColor.white
-        static let buttonColorSelected = UIColor.red
-    }
-}
+import PopupDialog
 
 class SettingsViewController: UIViewController {
 
+    @IBOutlet var saveUserIndicator: UIActivityIndicatorView!
+    @IBOutlet var saveUserButton: UIButton!
     @IBOutlet var pagerView: MXPagerView!
     @IBOutlet var navigationStackView: UIStackView!
     @IBOutlet var navigationIndicatorView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         pagerView.isScrollEnabled = false
+        saveUserButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,12 +36,45 @@ class SettingsViewController: UIViewController {
     }
 
     @IBAction func didPressSave() {
-        // Temporary Implementatino
-        User.current?.saveProfile()
+        view.endEditing(true)
+        
+        saveUserButton.isHidden = true
+        saveUserIndicator.startAnimating()
+        
+        User.current?.saveProfile { error in
+            self.saveUserButton.isHidden = false
+            self.saveUserIndicator.stopAnimating()
+            
+            if error != nil {
+                self.saveUserButton.isEnabled = true
+                self.showMessage("Something went wrong!", type: .error)
+                return
+            }
+            
+            self.saveUserButton.isEnabled = false
+            self.showMessage("All Robots Saved!", type: .success)
+        }
     }
     
     @IBAction func didPressClose() {
-        dismiss(animated: true, completion: nil)
+        view.endEditing(true)
+        
+        if (User.current?.unsavedChanges.count ?? 0) > 0 {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        let popup = PopupDialog(title: "Are you sure?", message: "Your profile has unsaved changes!", transitionStyle: .zoomIn)
+        
+        let cancel = CancelButton(title: "Cancel", action: nil)
+        let revert = DestructiveButton(title: "Revert Changes") {
+            User.current?.unsavedChanges.removeAll()
+            
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        popup.addButtons([revert, cancel])
+        present(popup, animated: true, completion: nil)
     }
 }
 
@@ -93,7 +123,9 @@ extension SettingsViewController: MXPagerViewDataSource, MXPagerViewDelegate {
         let provider: SettingsListViewProvider? = {
             switch index {
             case 0:
-                return UserSettingsListProvider()
+                return UserSettingsListProvider(changeCallback: {
+                    self.saveUserButton.isEnabled = true
+                })
             case 1:
                 return SubscriptionsListProvider()
             default:
