@@ -9,11 +9,21 @@
 import UIKit
 import Nuke
 import Crashlytics
+import PopupDialog
 
 extension StreamViewController {
     
     @IBAction func didPressBack() {
-        _ = navigationController?.popViewController(animated: true)
+        Threading.run(on: .main) {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @IBAction func didPressGift() {
+        let modal = PurchaseRobitsViewController.create()
+        
+        let popup = PopupDialog(viewController: modal, transitionStyle: .zoomIn)
+        present(popup, animated: true, completion: nil)
     }
     
     @IBAction func didPressSubscribe() {

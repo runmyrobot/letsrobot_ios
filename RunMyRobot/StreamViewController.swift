@@ -183,13 +183,14 @@ class StreamViewController: UIViewController {
             NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.8)
         ])
         
-        if let cameraURL = URL(string: "\(Networking.baseUrl)/fullview/\(robot.id)") {
+        if let cameraURL = URL(string: "https://www.runmyrobot.com/") {
+//            if let cameraURL = URL(string: "\(Networking.baseUrl)/fullview/\(robot.id)") {
             // Turn off interaction as there is nothing to interact with, and this prevents scrolling/bouncing and zooming.
             cameraWebView.isUserInteractionEnabled = false
             
             // Delegate is set to fix the video feed from being partly cut off
             cameraWebView.delegate = self
-            
+
             let request = URLRequest(url: cameraURL)
             cameraWebView.loadRequest(request)
         }
@@ -207,6 +208,12 @@ class StreamViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
         Socket.shared.chat.chatCallback = nil
+        robot.updateSubscribers = nil
+        robot.updateControls = nil
+        robot.controls = nil
+        cameraWebView.stopLoading()
+        cameraWebView.delegate = nil
+        cameraWebView.removeFromSuperview()
     }
     
     func sendScreenshot() {

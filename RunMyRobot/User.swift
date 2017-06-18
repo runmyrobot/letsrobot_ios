@@ -86,6 +86,8 @@ class CurrentUser: User {
         return Robot.all().filter({ $0.subscribers.contains(self.username) })
     }
     
+    var spendableRobits = 0
+    var currentPayment: Payment?
     var robots = [Robot]()
     
     var isStaff = false
@@ -231,8 +233,7 @@ class CurrentUser: User {
                 self.avatarUrl = URL(string: avatarUrl)
             }
             
-            // spendable_robits
-            
+            self.spendableRobits = json["spendable_robits"].int ?? 0
             self.description = json["profile_description"].string
             
             if let robots = json["robots"].array {

@@ -1246,11 +1246,25 @@
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="blp-uA-Xcy">
                                         <rect key="frame" x="53" y="12" width="20" height="20"/>
                                     </activityIndicatorView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Xt-r0-ebL">
+                                        <rect key="frame" x="164" y="0.5" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="0Xt-r0-ebL" secondAttribute="height" multiplier="1:1" id="vEC-bm-jZq"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" image="icon-gift"/>
+                                        <connections>
+                                            <action selector="didPressGift" destination="s8K-cS-TTW" eventType="touchUpInside" id="QCZ-tT-ykR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="blp-uA-Xcy" firstAttribute="centerX" secondItem="J1Q-ff-Yof" secondAttribute="centerX" id="60x-iY-hVe"/>
+                                    <constraint firstItem="0Xt-r0-ebL" firstAttribute="centerY" secondItem="i0d-sA-Fer" secondAttribute="centerY" id="6Ad-An-Thy"/>
                                     <constraint firstItem="J1Q-ff-Yof" firstAttribute="centerY" secondItem="qGk-oq-HIj" secondAttribute="centerY" id="AET-Nu-esb"/>
+                                    <constraint firstItem="0Xt-r0-ebL" firstAttribute="height" secondItem="qGk-oq-HIj" secondAttribute="height" id="EJU-0H-s4c"/>
+                                    <constraint firstItem="0Xt-r0-ebL" firstAttribute="leading" secondItem="J5p-6d-wgn" secondAttribute="trailing" constant="16" id="Eqx-El-71g"/>
                                     <constraint firstAttribute="trailing" secondItem="i0d-sA-Fer" secondAttribute="trailing" constant="16" id="F0D-Hb-2XP"/>
                                     <constraint firstItem="blp-uA-Xcy" firstAttribute="centerY" secondItem="J1Q-ff-Yof" secondAttribute="centerY" id="MWF-cb-HqP"/>
                                     <constraint firstItem="J5p-6d-wgn" firstAttribute="leading" secondItem="J1Q-ff-Yof" secondAttribute="trailing" constant="-2" id="fDj-EH-ldn"/>
@@ -1678,6 +1692,7 @@
         <image name="icon-chat" width="25" height="25"/>
         <image name="icon-close" width="50" height="50"/>
         <image name="icon-game" width="25" height="25"/>
+        <image name="icon-gift" width="25" height="25"/>
         <image name="icon-left" width="25" height="25"/>
         <image name="icon-menu" width="25" height="25"/>
         <image name="icon-right" width="25" height="25"/>

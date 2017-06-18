@@ -39,7 +39,7 @@ class MenuViewController: UIViewController {
         
         return [
             ("Settings", "Settings/cog", "ShowSettings"),
-            ("My Robots", "Settings/bot", "ShowMyRobots")
+            ("My Robots", "Settings/bot", "ShowMyRobots"),
         ] + shared
     }
     

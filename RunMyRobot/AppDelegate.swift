@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import PopupDialog
+import Braintree
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,8 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
+        BTAppSwitch.setReturnURLScheme("uk.sherlo.letsrobot.payments")
         Fabric.with([Crashlytics.self])
         
         // Some things can be done on background thread as to not lock up the launching
@@ -27,6 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if url.scheme?.localizedCaseInsensitiveCompare("uk.sherlo.letsrobot.payments") == .orderedSame {
+            return BTAppSwitch.handleOpen(url, options: options)
+        }
+        
+        return false
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

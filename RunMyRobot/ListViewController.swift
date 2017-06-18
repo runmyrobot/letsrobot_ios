@@ -105,7 +105,10 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
         collectionView.deselectItem(at: indexPath, animated: false)
         
         let robot = robotList[indexPath.section].1[indexPath.item]
-        performSegue(withIdentifier: "ShowRobot", sender: robot)
+        
+        Threading.run(on: .main) {
+            self.performSegue(withIdentifier: "ShowRobot", sender: robot)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
