@@ -45,6 +45,7 @@ class ListViewController: UIViewController {
         
         updateRobots()
         NotificationCenter.default.addObserver(self, selector: #selector(updateRobots), name: NSNotification.Name("RobotsChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRobots), name: NSNotification.Name("LoginStatusChanged"), object: nil)
     }
     
     func updateRobots() {
