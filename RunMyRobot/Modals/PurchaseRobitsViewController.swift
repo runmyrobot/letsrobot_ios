@@ -10,8 +10,14 @@ import UIKit
 
 class PurchaseRobitsViewController: UIViewController {
 
+    @IBOutlet var paymentTwoAmountLabel: UILabel!
+    @IBOutlet var paymentTwoPriceLabel: UILabel!
+    @IBOutlet var paymentOneAmountLabel: UILabel!
+    @IBOutlet var paymentOnePriceLabel: UILabel!
     @IBOutlet var loginView: UIView!
     @IBOutlet var currentRobitCountLabel: UILabel!
+    
+    var products = [Product]()
     
     class func create() -> PurchaseRobitsViewController {
         let storyboard = UIStoryboard(name: "Modals", bundle: nil)
@@ -26,12 +32,36 @@ class PurchaseRobitsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLoginStatus), name: NSNotification.Name("LoginStatusChanged"), object: nil)
+        updateLoginStatus()
+        
+        var robitProducts = Product.all.values.filter({ $0.type.lowercased() == "robits" }).prefix(2)
+        if let product = robitProducts.popFirst() { products.append(product) }
+        if let product = robitProducts.popFirst() { products.append(product) }
+        
+        updateProducts()
+    }
+    
+    func updateLoginStatus() {
         if let user = User.current {
             loginView.isHidden = true
             currentRobitCountLabel.text = "You currently have \(user.spendableRobits) robits!"
         } else {
+            loginView.isHidden = false
             currentRobitCountLabel.text = ""
         }
+    }
+    
+    func updateProducts() {
+        guard products.count == 2 else { return }
+        
+        let productOne = products[0]
+        paymentOnePriceLabel.text = "$\(productOne.price)"
+        paymentOneAmountLabel.text = "Buy \(productOne.robitCount ?? 0) Robits"
+        
+        let productTwo = products[1]
+        paymentTwoPriceLabel.text = "$\(productTwo.price)"
+        paymentTwoAmountLabel.text = "Buy \(productTwo.robitCount ?? 0) Robits"
     }
     
     @IBAction func didPressPurchase(_ sender: UIButton) {
@@ -40,8 +70,13 @@ class PurchaseRobitsViewController: UIViewController {
             return
         }
         
-        let product: Payment.Product = sender.tag == 1 ? .robits100 : .robits500
-        let robitCount = sender.tag == 1 ? 100 : 500
+        guard products.count == 2 else {
+            view.showMessage("Something went wrong!", type: .error)
+            return
+        }
+        
+        let product = products[sender.tag - 1]
+        let robitCount = product.robitCount ?? 0
         
         sender.backgroundColor = sender.tintColor
         let indicator = sender.superview?.viewWithTag(5) as? UIActivityIndicatorView
@@ -64,12 +99,11 @@ class PurchaseRobitsViewController: UIViewController {
             }
             
             self.view.showMessage("\(robitCount) robits purchased successfully!", type: .success)
-            user.spendableRobits += robitCount
             self.currentRobitCountLabel.text = "You currently have \(user.spendableRobits) robits!"
         }
     }
     
     @IBAction func didPressLogin() {
-        
+        performSegue(withIdentifier: "ShowLogin", sender: nil)
     }
 }

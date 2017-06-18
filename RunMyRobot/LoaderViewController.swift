@@ -91,29 +91,52 @@ class LoaderViewController: UIViewController {
             let config = Config(json: json)
             Config.shared = config
             
-            // If the user is already logged in, then maintain that status
-            if let user = CurrentUser(json: json) {
-                self?.progressLabel.text = "Validating User"
+            self?.progressLabel.text = "Loading Products"
+            Networking.requestJSON("/api/v1/products") { [weak self] response in
+                guard let rawProductJSON = response.result.value else {
+                    self?.progressLabel.text = "Error Downloading Products"
+                    print("Something went wrong!")
+                    return
+                }
                 
-                // Load and further validate the logged in user
-                user.load { _, error in
-                    // If we have any error, then log the user out - May need to be more specific down the line incase of network timeout error
-                    if error != nil {
-                        self?.progressLabel.text = "Cleaning User"
-                        user.logout {
-                            self?.startSocket()
-                        }
-                    } else {
-                        user.updateRoles(json)
-                        self?.startSocket()
+                self?.progressLabel.text = "Converting Products"
+                if let productsJson = JSON(rawProductJSON).array {
+                    for productJson in productsJson {
+                        _ = Product(productJson)
                     }
                 }
-            } else {
-                self?.startSocket()
+                
+                self?.validateUser(json)
             }
         }
     }
     
+    // Set the current logged in user if already authenticated, otherwise ensure they're logged out
+    // Continues the waterfall chain and start's the socket
+    private func validateUser(_ json: JSON) {
+        // If the user is already logged in, then maintain that status
+        if let user = CurrentUser(json: json) {
+            progressLabel.text = "Validating User"
+            
+            // Load and further validate the logged in user
+            user.load { [weak self] _, error in
+                // If we have any error, then log the user out - May need to be more specific down the line incase of network timeout error
+                if error != nil {
+                    self?.progressLabel.text = "Cleaning User"
+                    user.logout {
+                        self?.startSocket()
+                    }
+                } else {
+                    user.updateRoles(json)
+                    self?.startSocket()
+                }
+            }
+        } else {
+            startSocket()
+        }
+    }
+    
+    // Attempts to connect to the websocket
     private func startSocket() {
         progressLabel.text = "Connecting Socket"
         
@@ -126,11 +149,15 @@ class LoaderViewController: UIViewController {
         }
     }
     
+    // MARK: - Helper
+    
     private func needsUpdate(version: String) -> Bool {
         guard let current = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return false }
         return current.compare(version, options: .numeric) == .orderedAscending
     }
 
+    // MARK: - Status Bar
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }

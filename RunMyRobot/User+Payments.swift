@@ -48,7 +48,7 @@ extension CurrentUser {
             "nonce": nonce
         ]
         
-        if case let Payment.Product.xcontrol(robotId) = payment.product {
+        if let robotId = payment.robotId {
             payload["robot_id"] = robotId
         }
         
@@ -67,7 +67,13 @@ extension CurrentUser {
                 return
             }
             
-//            let json = JSON(data)
+            let json = JSON(data)
+            
+            if let current = User.current, current.username == json["username"].string {
+                if let spendableRobits = json["spendable_robits"].int {
+                    current.spendableRobits = spendableRobits
+                }
+            }
             
             // End of the chain!
             // If this returns nil, then it is classified as a successful payment
@@ -139,7 +145,7 @@ extension CurrentUser {
         }
     }
     
-    func displayPaymentUI(for product: Payment.Product, viewController: UIViewController, callback: @escaping ((Error?) -> Void)) {
+    func displayPaymentUI(for product: Product, viewController: UIViewController, callback: @escaping ((Error?) -> Void)) {
         if currentPayment != nil {
             callback(RobotError.existingPayment)
             return

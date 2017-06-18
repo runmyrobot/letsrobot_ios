@@ -6,41 +6,48 @@
 //  Copyright © 2017 Sherlouk. All rights reserved.
 //
 
-import Foundation
+import SwiftyJSON
+
+class Product {
+    static var all = [String: Product]()
+    static let priceToDollarMultiplier = 0.01
+    
+    var name: String
+    private var priceRaw: Double
+    var type: String
+    var robitCount: Int?
+    
+    var price: String {
+        let raw = priceRaw * Product.priceToDollarMultiplier
+        return String(format: "%.2f", raw)
+    }
+    
+    init?(_ json: JSON) {
+        guard let name = json["name"].string,
+            let price = json["price"].double,
+            let type = json["type"].string else { return nil }
+        
+        self.name = name
+        self.priceRaw = price
+        self.type = type
+        self.robitCount = json["amount_of_robits"].int
+        Product.all[name] = self
+    }
+    
+    var nonceEndpoint: String {
+        return "/internal/braintree/\(name)/nonce"
+    }
+    
+}
 
 class Payment {
     
-    enum Product {
-        case xcontrol(String)
-        case robits100
-        case robits500
-        
-        var price: String {
-            switch self {
-            case .xcontrol:
-                return "0.50"
-            case .robits100:
-                return "1.40"
-            case .robits500:
-                return "7.00"
-            }
-        }
-        
-        var nonceEndpoint: String {
-            switch self {
-            case .xcontrol:
-                return "/internal/braintree/xcontrol/nonce"
-            case .robits100:
-                return "/internal/braintree/robits100/nonce"
-            case .robits500:
-                return "/internal/braintree/robits500/nonce"
-            }
-        }
-    }
-    
     var product: Product
     
-    init(product: Product) {
+    // Used for xcontrol purchases
+    var robotId: String?
+    
+    init(product: Product, robotId: String? = nil) {
         self.product = product
     }
     

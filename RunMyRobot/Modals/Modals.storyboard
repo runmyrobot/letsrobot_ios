@@ -809,11 +809,24 @@
                     <connections>
                         <outlet property="currentRobitCountLabel" destination="Pwu-2n-MaY" id="cC9-2e-SvY"/>
                         <outlet property="loginView" destination="y4l-pr-9ws" id="S2Y-jN-WTw"/>
+                        <outlet property="paymentOneAmountLabel" destination="Vjd-jB-eSa" id="642-Yp-hpp"/>
+                        <outlet property="paymentOnePriceLabel" destination="g3V-Zu-MaM" id="0xz-x6-bk3"/>
+                        <outlet property="paymentTwoAmountLabel" destination="TGM-KX-SPW" id="kzs-r8-rWi"/>
+                        <outlet property="paymentTwoPriceLabel" destination="QUC-Zp-cXh" id="kgH-3W-ArG"/>
+                        <segue destination="JAf-tA-Cv0" kind="show" identifier="ShowLogin" id="Yg8-Bb-dfN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kV-Wm-hi3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1806" y="622"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="0C6-FQ-6cl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="Login" id="JAf-tA-Cv0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sjf-3Z-1ba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1806" y="944"/>
         </scene>
     </scenes>
 </document>
