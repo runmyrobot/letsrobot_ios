@@ -28,10 +28,13 @@ class UserChatMessage: ChatMessage {
         self.name = name
         
         let matches = fullMessage.matches(pattern: "\\[(.*?)\\] ?(.*)")
-        guard let match = matches.first, match.count == 2 else { return nil }
-        
-        self.robotName = match[0].trimmingCharacters(in: .whitespacesAndNewlines)
-        self.message = match[1].trimmingCharacters(in: .whitespacesAndNewlines)
+        if let match = matches.first, match.count == 2 {
+            self.robotName = match[0].trimmingCharacters(in: .whitespacesAndNewlines)
+            self.message = match[1].trimmingCharacters(in: .whitespacesAndNewlines)
+        } else {
+            self.robotName = "Unknown"
+            self.message = fullMessage
+        }
         
         if !anonymous, let colorString = json["username_color"].string {
             self.color = UIColor(hex: colorString)
