@@ -34,6 +34,10 @@ class SettingsViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 
     @IBAction func didPressSave() {
         view.endEditing(true)
@@ -52,14 +56,14 @@ class SettingsViewController: UIViewController {
             }
             
             self.saveUserButton.isEnabled = false
-            self.showMessage("All Robots Saved!", type: .success)
+            self.showMessage("Account Saved!", type: .success)
         }
     }
     
     @IBAction func didPressClose() {
         view.endEditing(true)
         
-        if (User.current?.unsavedChanges.count ?? 0) > 0 {
+        if (User.current?.unsavedChanges.count ?? 0) == 0 {
             dismiss(animated: true, completion: nil)
             return
         }

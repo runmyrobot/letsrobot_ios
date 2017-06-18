@@ -183,8 +183,8 @@ class StreamViewController: UIViewController {
             NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.8)
         ])
         
-        if let cameraURL = URL(string: "https://www.runmyrobot.com/") {
-//            if let cameraURL = URL(string: "\(Networking.baseUrl)/fullview/\(robot.id)") {
+//        if let cameraURL = URL(string: "https://www.runmyrobot.com/") {
+            if let cameraURL = URL(string: "\(Networking.baseUrl)/fullview/\(robot.id)") {
             // Turn off interaction as there is nothing to interact with, and this prevents scrolling/bouncing and zooming.
             cameraWebView.isUserInteractionEnabled = false
             
