@@ -16,6 +16,7 @@ class User {
     
     var username: String
     var description: String?
+    var currentRobotId: String?
     var downloaded = false
     var avatarUrl: URL?
     var publicRobots: [Robot] {
@@ -69,6 +70,10 @@ class User {
         }
         
         return nil
+    }
+    
+    class func all(watching robotId: String) -> [User] {
+        return Socket.shared.users.filter({ $0.currentRobotId == robotId })
     }
 }
 

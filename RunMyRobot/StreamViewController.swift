@@ -145,12 +145,17 @@ class StreamViewController: UIViewController {
             })
             
             Answers.logContentView(withName: "Viewed Robot Stream", contentType: "robot", contentId: self?.robot.id)
+            
+            if let robot = self?.robot {
+                Socket.shared.selectRobot(robot)
+            }
         }
         
         // Add notification listeners
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sendScreenshot), name: .UIApplicationUserDidTakeScreenshot, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(streamStateChanged(_:)), name: NSNotification.Name("RobotStateChanged"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateActiveUsers), name: NSNotification.Name("UpdateActiveUsers"), object: nil)
         
         // Set the tableView delegate to be self, dataSource is done via storyboard
         chatTableView.re.delegate = self
@@ -214,6 +219,10 @@ class StreamViewController: UIViewController {
         cameraWebView.stopLoading()
         cameraWebView.delegate = nil
         cameraWebView.removeFromSuperview()
+    }
+    
+    func updateActiveUsers() {
+        
     }
     
     func sendScreenshot() {

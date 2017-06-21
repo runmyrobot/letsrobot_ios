@@ -74,6 +74,9 @@ class RobotSettingsViewController: UIViewController {
                 return
             }
             
+            // Updates the list view
+            NotificationCenter.default.post(name: NSNotification.Name("RobotsChanged"), object: nil)
+            
             self.saveRobotsButton.isEnabled = false
             self.showMessage("All Robots Saved!", type: .success)
         }

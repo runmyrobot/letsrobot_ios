@@ -226,11 +226,15 @@ class Socket {
                 var builder = [User]()
                 for userJSON in Array(userJSON.values) {
                     let username = userJSON["user", "username"].stringValue
+                    
                     let user = User(username: username)
+                    user.currentRobotId = userJSON["robot_id"].string
+                    
                     builder.append(user)
                 }
                 
                 self.users = builder
+                NotificationCenter.default.post(name: NSNotification.Name("UpdateActiveUsers"), object: nil)
             }
             
             socket?.on("subscription_state_change") { (data, _) in
@@ -273,6 +277,14 @@ class Socket {
         }
         
         socket?.emit("command_to_robot", dict)
+    }
+    
+    func selectRobot(_ robot: Robot) {
+        let dict = [
+            "robot_id": robot.id
+        ] as [String : Any]
+        
+        socket?.emit("select_robot", dict)
     }
     
 }
