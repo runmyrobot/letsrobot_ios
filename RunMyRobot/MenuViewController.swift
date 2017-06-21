@@ -31,10 +31,8 @@ class MenuViewController: UIViewController {
         ]
         
         if !CurrentUser.loggedIn {
-            return [
-                ("Login", "Menu/login", "ShowLogin")
-//                ("Register", "Menu/register", "ShowRegister")
-            ] + shared
+            let arr = [("Login", "Menu/login", "ShowLogin")] as [MenuItem]
+            return arr + shared
         }
         
         return [

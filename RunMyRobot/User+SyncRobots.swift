@@ -96,10 +96,10 @@ extension CurrentUser {
         payload["owner"] = robot.owner
         payload["robot_name"] = robot.unsavedChanges[.name] ?? robot.name
         
-        if let description = robot.unsavedChanges[.description] ?? robot.description {
+        if let description = (robot.unsavedChanges[.description] ?? robot.description as Any) as? String {
             payload["robot_description"] = description
         }
-        
+    
         if let isPublic = (robot.unsavedChanges[.isPublic] as? Bool) ?? robot.isPublic {
             payload["public"] = isPublic
         }
