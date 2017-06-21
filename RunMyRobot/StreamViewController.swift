@@ -31,6 +31,7 @@ class StreamViewController: UIViewController {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var backButton: UIButton!
     @IBOutlet var ownerLabel: UILabel!
+    @IBOutlet var userCountLabel: UILabel!
     
     // Loading View
     @IBOutlet var loadingViewContainer: UIView!
@@ -149,6 +150,8 @@ class StreamViewController: UIViewController {
             if let robot = self?.robot {
                 Socket.shared.selectRobot(robot)
             }
+            
+            self?.updateActiveUsers()
         }
         
         // Add notification listeners
@@ -222,7 +225,8 @@ class StreamViewController: UIViewController {
     }
     
     func updateActiveUsers() {
-        
+        let currentUsers = User.all(watching: robot.id)
+        userCountLabel.text = String(describing: currentUsers.count)
     }
     
     func sendScreenshot() {
@@ -268,15 +272,15 @@ class StreamViewController: UIViewController {
             }
         }
         
-        chatTableView.beginUpdates()
-        
-        if previousChatCount == Chat.messageCountCap {
-            chatTableView.re.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-        }
-        
-        let count = chatMessages.count
-        chatTableView.re.insertRows(at: [IndexPath(row: count - 1, section: 0)], with: .automatic)
-        chatTableView.endUpdates()
+//        chatTableView.beginUpdates()
+//        
+//        if previousChatCount == Chat.messageCountCap {
+//            chatTableView.re.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+//        }
+//        
+//        let count = chatMessages.count
+//        chatTableView.re.insertRows(at: [IndexPath(row: count - 1, section: 0)], with: .automatic)
+//        chatTableView.endUpdates()
     }
     
     // MARK: - Notifications

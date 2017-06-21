@@ -122,4 +122,8 @@ extension StreamViewController {
     func didTapCamera() {
         setCameraControlsVisible(!controlsVisible)
     }
+    
+    @IBAction func didPressUserCount() {
+        
+    }
 }
