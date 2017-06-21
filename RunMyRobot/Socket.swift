@@ -229,6 +229,7 @@ class Socket {
                     
                     let user = User(username: username)
                     user.currentRobotId = userJSON["robot_id"].string
+                    user.anonymous = userJSON["user", "anonymous"].bool ?? false
                     
                     builder.append(user)
                 }

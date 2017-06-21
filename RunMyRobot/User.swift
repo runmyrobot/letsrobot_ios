@@ -18,6 +18,7 @@ class User {
     var description: String?
     var currentRobotId: String?
     var downloaded = false
+    var anonymous = false
     var avatarUrl: URL?
     var publicRobots: [Robot] {
         return Config.shared?.robots.values.filter({ $0.owner == username }) ?? []

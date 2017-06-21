@@ -85,7 +85,7 @@ class ChatMessageTableViewCell: UITableViewCell {
                 guard let nameMatch = match.first else { continue }
                 let name = rawNSString.substring(with: nameMatch)
                 guard let user = User.get(name: name) else { continue }
-                guard !user.username.hasPrefix("anon") else { continue }
+                guard !user.anonymous else { continue }
                 guard let url = URL(string: "letsrobot://user/\(name)") else { continue }
                 
                 messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: nameMatch, url: url), attributes: [
