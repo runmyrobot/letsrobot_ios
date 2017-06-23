@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import GMStepper
 
 class PurchaseRobitsViewController: UIViewController {
 
+    @IBOutlet var pagePicker: UISegmentedControl!
+    @IBOutlet var robitStepper: GMStepper!
+    @IBOutlet var pageLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var paymentTwoAmountLabel: UILabel!
     @IBOutlet var paymentTwoPriceLabel: UILabel!
     @IBOutlet var paymentOneAmountLabel: UILabel!
@@ -40,12 +44,20 @@ class PurchaseRobitsViewController: UIViewController {
         if let product = robitProducts.popFirst() { products.append(product) }
         
         updateProducts()
+        
+        if (User.current?.spendableRobits ?? 0) > 0 {
+            pageLeadingConstraint.isActive = false
+        } else {
+            pagePicker.selectedSegmentIndex = 1
+        }
     }
     
     func updateLoginStatus() {
         if let user = User.current {
             loginView.isHidden = true
             currentRobitCountLabel.text = "You currently have \(user.spendableRobits) robits!"
+            robitStepper.value = Double(min(10, user.spendableRobits))
+            robitStepper.maximumValue = Double(user.spendableRobits)
         } else {
             loginView.isHidden = false
             currentRobitCountLabel.text = ""
@@ -100,7 +112,22 @@ class PurchaseRobitsViewController: UIViewController {
             
             self.view.showMessage("\(robitCount) robits purchased successfully!", type: .success)
             self.currentRobitCountLabel.text = "You currently have \(user.spendableRobits) robits!"
+            self.robitStepper.value = Double(min(10, user.spendableRobits))
+            self.robitStepper.maximumValue = Double(user.spendableRobits)
         }
+    }
+    
+    @IBAction func didChangePage(_ sender: UISegmentedControl) {
+        guard User.current != nil else { return }
+        pageLeadingConstraint.isActive = sender.selectedSegmentIndex != 0
+        
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func didPressSend() {
+        
     }
     
     @IBAction func didPressLogin() {

@@ -281,7 +281,14 @@ class StreamViewController: UIViewController {
         }
         
         let count = chatMessages.count
-        chatTableView.re.insertRows(at: [IndexPath(row: count - 1, section: 0)], with: .automatic)
+        let diff = max(previousChatCount - count, 1)
+        var builder = [IndexPath]()
+        
+        for i in 1...diff {
+            builder.append(IndexPath(row: count - i, section: 0))
+        }
+        
+        chatTableView.re.insertRows(at: builder, with: .automatic)
         chatTableView.endUpdates()
     }
     
