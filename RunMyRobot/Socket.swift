@@ -77,7 +77,8 @@ class Socket {
                         "connect", "disconnect", "error", "reconnect", "reconnectAttempt", "statusChange", // Client Events
                         "news", "num_viewers", "robot_statuses", "chat_message_with_name", "users_list", "subscription_state_change", // Implemented
                         "pip", "aggregate_color_change", "robot_command_has_hit_webserver", "new_snapshot", // Implemented
-                        "charge_state" // No Purpose
+                        "charge_state", // No Purpose
+                        "global_users_list", "channel_users_list" // WIP
                     ]
                     
                     if ignore.contains(event.event) {
@@ -220,7 +221,7 @@ class Socket {
                 }
             }
             
-            socket?.on("users_list") { (data, _) in
+            socket?.on("global_users_list") { (data, _) in
                 guard let data = data.first, let userJSON = JSON(data).dictionary else { return }
                 
                 var builder = [User]()
@@ -230,6 +231,10 @@ class Socket {
                     let user = User(username: username)
                     user.currentRobotId = userJSON["robot_id"].string
                     user.anonymous = userJSON["user", "anonymous"].bool ?? false
+                    
+                    if let avatar = userJSON["user", "avatar", "thumbnail"].string {
+                        user.avatarUrl = URL(string: avatar)
+                    }
                     
                     builder.append(user)
                 }

@@ -38,6 +38,13 @@ class Robot {
     var updateControls: (() -> Void)?
     var lastActivity: Date?
     weak var controls: RobotControls?
+    var room: String {
+        if isGlobalChat == false {
+            return owner ?? "global"
+        }
+        
+        return "global"
+    }
     
     // Preferences
     var isPublic: Bool?

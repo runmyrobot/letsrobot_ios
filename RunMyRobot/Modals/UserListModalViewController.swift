@@ -31,6 +31,8 @@ class UserListModalViewController: UIViewController {
         
         // Cache list in case it changes and causes issues
         list = User.all(for: robot)
+        listTableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        titleLabel.text = "Room: \(robot.room)"
     }
 }
 
@@ -40,8 +42,11 @@ extension UserListModalViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath)
-        cell.textLabel?.text = list[indexPath.item].username
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as? UserListTableViewCell else {
+            fatalError()
+        }
+        
+        cell.loadUser(list[indexPath.item])
         return cell
     }
 }

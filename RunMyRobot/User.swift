@@ -27,12 +27,7 @@ class User {
     
     var room: String {
         guard let robot = Robot.all().first(where: { $0.name == currentRobotId }) else { return "global" }
-        
-        if robot.isGlobalChat == false {
-            return robot.owner ?? "global"
-        }
-        
-        return "global"
+        return robot.room
     }
     
     init(username: String) {
@@ -85,15 +80,7 @@ class User {
     }
     
     class func all(for robot: Robot) -> [User] {
-        let room: String = {
-            if robot.isGlobalChat == false {
-                return robot.owner ?? "global"
-            }
-            
-            return "global"
-        }()
-        
-        return all(for: room)
+        return all(for: robot.room)
     }
     
     class func all(for room: String) -> [User] {

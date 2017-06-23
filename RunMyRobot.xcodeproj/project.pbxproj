@@ -48,6 +48,7 @@
 		98500C7C1EE0892E00CFA446 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C7B1EE0892E00CFA446 /* ListViewController.swift */; };
 		98500C7E1EE08C5300CFA446 /* RobotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */; };
 		98500C801EE0A57B00CFA446 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98500C7F1EE0A57B00CFA446 /* Socket.swift */; };
+		98680FCA1EFD8912000F09A4 /* UserListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98680FC91EFD8912000F09A4 /* UserListTableViewCell.swift */; };
 		9876F9991EE72950002E7122 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9876F9981EE72950002E7122 /* SettingsViewController.swift */; };
 		9876F9A31EE731E9002E7122 /* SettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9876F9A21EE731E9002E7122 /* SettingsListView.swift */; };
 		987DF39D1EE870090042539B /* Concatenate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987DF39C1EE870090042539B /* Concatenate.swift */; };
@@ -127,6 +128,7 @@
 		98500C7B1EE0892E00CFA446 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotCollectionViewCell.swift; sourceTree = "<group>"; };
 		98500C7F1EE0A57B00CFA446 /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
+		98680FC91EFD8912000F09A4 /* UserListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListTableViewCell.swift; sourceTree = "<group>"; };
 		9876F9981EE72950002E7122 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9876F9A21EE731E9002E7122 /* SettingsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListView.swift; sourceTree = "<group>"; };
 		987DF39C1EE870090042539B /* Concatenate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Concatenate.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				980ADD5E1EE33E3F00B00B33 /* ListTitleCollectionReusableView.swift */,
 				98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */,
 				98B73C271EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift */,
+				98680FC91EFD8912000F09A4 /* UserListTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				98878FFA1EED78E70017B7F5 /* SettingsListButtonCell.swift in Sources */,
 				980ADD6C1EE3FAE300B00B33 /* Templating.swift in Sources */,
 				98500C7C1EE0892E00CFA446 /* ListViewController.swift in Sources */,
+				98680FCA1EFD8912000F09A4 /* UserListTableViewCell.swift in Sources */,
 				980ADD631EE3F86B00B00B33 /* StreamViewController+Actions.swift in Sources */,
 				980ADD5F1EE33E3F00B00B33 /* ListTitleCollectionReusableView.swift in Sources */,
 				9823E6A91EEBEADD00619964 /* LoginViewController.swift in Sources */,
