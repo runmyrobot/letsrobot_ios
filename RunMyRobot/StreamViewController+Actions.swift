@@ -21,6 +21,7 @@ extension StreamViewController {
     
     @IBAction func didPressGift() {
         let modal = PurchaseRobitsViewController.create()
+        modal.robot = robot
         
         let popup = PopupDialog(viewController: modal, transitionStyle: .zoomIn)
         present(popup, animated: true, completion: nil)

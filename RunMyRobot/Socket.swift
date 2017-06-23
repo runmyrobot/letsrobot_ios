@@ -78,7 +78,7 @@ class Socket {
                         "news", "num_viewers", "robot_statuses", "chat_message_with_name", "users_list", "subscription_state_change", // Implemented
                         "pip", "aggregate_color_change", "robot_command_has_hit_webserver", "new_snapshot", // Implemented
                         "charge_state", // No Purpose
-                        "global_users_list", "channel_users_list" // WIP
+                        "global_users_list", "channel_users_list", "account_robits" // WIP
                     ]
                     
                     if ignore.contains(event.event) {
@@ -127,6 +127,10 @@ class Socket {
                     "robot_id" : "11467183"
                  }
                 */
+            }
+            
+            socket?.on("account_robits") { (data, _) in
+                print(data)
             }
             
             /// Website flashes the button for 200ms

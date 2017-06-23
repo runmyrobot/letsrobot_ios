@@ -21,6 +21,7 @@ class PurchaseRobitsViewController: UIViewController {
     @IBOutlet var loginView: UIView!
     @IBOutlet var currentRobitCountLabel: UILabel!
     
+    var robot: Robot!
     var products = [Product]()
     
     class func create() -> PurchaseRobitsViewController {
@@ -127,7 +128,13 @@ class PurchaseRobitsViewController: UIViewController {
     }
     
     @IBAction func didPressSend() {
+        guard robitStepper.value > 0 else {
+            view.showMessage("You can't send 0 woots!", type: .error)
+            return
+        }
         
+        Socket.shared.chat.sendMessage("woot\(Int(robitStepper.value))", robot: robot)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func didPressLogin() {
