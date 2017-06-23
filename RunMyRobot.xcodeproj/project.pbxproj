@@ -39,6 +39,7 @@
 		9823E6C71EEC818900619964 /* SettingsListTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6C51EEC818900619964 /* SettingsListTitleCell.swift */; };
 		9823E6C81EEC818900619964 /* SettingsListTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9823E6C61EEC818900619964 /* SettingsListTitleCell.xib */; };
 		9823E6CA1EED2CAC00619964 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6C91EED2CAC00619964 /* Chat.swift */; };
+		9828DDD31EFD7DF0004DDD62 /* UserListModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828DDD21EFD7DF0004DDD62 /* UserListModalViewController.swift */; };
 		983BCB521EDE29A8007A1247 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB511EDE29A8007A1247 /* Config.swift */; };
 		983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB531EDE9BB0007A1247 /* AngledView.swift */; };
 		983F85B11EE83414001FD90A /* MenuContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983F85B01EE83414001FD90A /* MenuContainerViewController.swift */; };
@@ -117,6 +118,7 @@
 		9823E6C51EEC818900619964 /* SettingsListTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListTitleCell.swift; sourceTree = "<group>"; };
 		9823E6C61EEC818900619964 /* SettingsListTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListTitleCell.xib; sourceTree = "<group>"; };
 		9823E6C91EED2CAC00619964 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		9828DDD21EFD7DF0004DDD62 /* UserListModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListModalViewController.swift; sourceTree = "<group>"; };
 		983BCB511EDE29A8007A1247 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		983BCB531EDE9BB0007A1247 /* AngledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngledView.swift; sourceTree = "<group>"; };
 		983F85B01EE83414001FD90A /* MenuContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuContainerViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				98B73C181EF157B000577D39 /* RobotModalViewController.swift */,
 				98878FFE1EED90220017B7F5 /* SendScreenshotViewController.swift */,
 				98B73C1F1EF293B100577D39 /* UserModalViewController.swift */,
+				9828DDD21EFD7DF0004DDD62 /* UserListModalViewController.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				98B73C261EF3135D00577D39 /* RobotProfileViewController.swift in Sources */,
 				988790031EEEE6490017B7F5 /* User+Authentication.swift in Sources */,
 				980ADD5B1EE2E0AC00B00B33 /* Regex.swift in Sources */,
+				9828DDD31EFD7DF0004DDD62 /* UserListModalViewController.swift in Sources */,
 				987DF39D1EE870090042539B /* Concatenate.swift in Sources */,
 				98B047861EF4244400D260FE /* Payment.swift in Sources */,
 				980ADD751EE465F500B00B33 /* User.swift in Sources */,

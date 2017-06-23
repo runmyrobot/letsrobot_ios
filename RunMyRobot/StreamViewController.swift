@@ -32,6 +32,7 @@ class StreamViewController: UIViewController {
     @IBOutlet var backButton: UIButton!
     @IBOutlet var ownerLabel: UILabel!
     @IBOutlet var userCountLabel: UILabel!
+    @IBOutlet var userListButton: UIButton!
     
     // Loading View
     @IBOutlet var loadingViewContainer: UIView!
@@ -191,8 +192,7 @@ class StreamViewController: UIViewController {
             NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.8)
         ])
         
-//        if let cameraURL = URL(string: "https://www.runmyrobot.com/") {
-            if let cameraURL = URL(string: "\(Networking.baseUrl)/fullview/\(robot.id)") {
+        if let cameraURL = URL(string: "\(Networking.baseUrl)/fullview_audio/\(robot.id)") {
             // Turn off interaction as there is nothing to interact with, and this prevents scrolling/bouncing and zooming.
             cameraWebView.isUserInteractionEnabled = false
             
@@ -225,8 +225,10 @@ class StreamViewController: UIViewController {
     }
     
     func updateActiveUsers() {
-        let currentUsers = User.all(watching: robot.id)
-        userCountLabel.text = String(describing: currentUsers.count)
+        userListButton.imageView?.contentMode = .scaleAspectFit
+        
+        let currentUsers = User.all(for: robot)
+        userListButton.setTitle(String(describing: currentUsers.count), for: .normal)
     }
     
     func sendScreenshot() {
@@ -272,15 +274,15 @@ class StreamViewController: UIViewController {
             }
         }
         
-//        chatTableView.beginUpdates()
-//        
-//        if previousChatCount == Chat.messageCountCap {
-//            chatTableView.re.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-//        }
-//        
-//        let count = chatMessages.count
-//        chatTableView.re.insertRows(at: [IndexPath(row: count - 1, section: 0)], with: .automatic)
-//        chatTableView.endUpdates()
+        chatTableView.beginUpdates()
+        
+        if previousChatCount == Chat.messageCountCap {
+            chatTableView.re.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        }
+        
+        let count = chatMessages.count
+        chatTableView.re.insertRows(at: [IndexPath(row: count - 1, section: 0)], with: .automatic)
+        chatTableView.endUpdates()
     }
     
     // MARK: - Notifications

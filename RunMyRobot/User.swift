@@ -20,8 +20,19 @@ class User {
     var downloaded = false
     var anonymous = false
     var avatarUrl: URL?
+    
     var publicRobots: [Robot] {
         return Config.shared?.robots.values.filter({ $0.owner == username }) ?? []
+    }
+    
+    var room: String {
+        guard let robot = Robot.all().first(where: { $0.name == currentRobotId }) else { return "global" }
+        
+        if robot.isGlobalChat == false {
+            return robot.owner ?? "global"
+        }
+        
+        return "global"
     }
     
     init(username: String) {
@@ -73,8 +84,20 @@ class User {
         return nil
     }
     
-    class func all(watching robotId: String) -> [User] {
-        return Socket.shared.users.filter({ $0.currentRobotId == robotId })
+    class func all(for robot: Robot) -> [User] {
+        let room: String = {
+            if robot.isGlobalChat == false {
+                return robot.owner ?? "global"
+            }
+            
+            return "global"
+        }()
+        
+        return all(for: room)
+    }
+    
+    class func all(for room: String) -> [User] {
+        return Socket.shared.users.filter({ $0.room == room })
     }
 }
 

@@ -124,6 +124,10 @@ extension StreamViewController {
     }
     
     @IBAction func didPressUserCount() {
+        let modal = UserListModalViewController.create()
+        modal.robot = robot
         
+        let popup = PopupDialog(viewController: modal, transitionStyle: .zoomIn)
+        present(popup, animated: true, completion: nil)
     }
 }
