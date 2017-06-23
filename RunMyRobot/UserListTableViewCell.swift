@@ -19,6 +19,8 @@ class UserListTableViewCell: UITableViewCell {
         
         if let url = user.avatarUrl {
             Nuke.loadImage(with: url, into: userImageView)
+        } else  {
+            userImageView.image = nil
         }
     }
 }
