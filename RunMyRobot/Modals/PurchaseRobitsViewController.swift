@@ -11,6 +11,7 @@ import GMStepper
 
 class PurchaseRobitsViewController: UIViewController {
 
+    @IBOutlet var sendWootsButton: UIButton!
     @IBOutlet var pagePicker: UISegmentedControl!
     @IBOutlet var robitStepper: GMStepper!
     @IBOutlet var pageLeadingConstraint: NSLayoutConstraint!
@@ -23,6 +24,7 @@ class PurchaseRobitsViewController: UIViewController {
     
     var robot: Robot!
     var products = [Product]()
+    var pendingTransaction: Int?
     
     class func create() -> PurchaseRobitsViewController {
         let storyboard = UIStoryboard(name: "Modals", bundle: nil)
@@ -51,6 +53,31 @@ class PurchaseRobitsViewController: UIViewController {
         } else {
             pagePicker.selectedSegmentIndex = 1
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        User.current?.updateRobits = { [weak self] in
+            guard let user = User.current else { return }
+            
+            if let amount = self?.pendingTransaction {
+                let pluralise = amount > 1 ? "woots" : "woot"
+                self?.view.showMessage("\(amount) \(pluralise) sent successfully!", type: .success)
+                self?.pendingTransaction = nil
+                self?.sendWootsButton.isEnabled = true
+            }
+            
+            self?.currentRobitCountLabel.text = "You currently have \(user.spendableRobits) robits!"
+            
+            let current = self?.robitStepper.value ?? 10
+            self?.robitStepper.value = min(current, Double(user.spendableRobits))
+            self?.robitStepper.maximumValue = Double(user.spendableRobits)
+        }
+    }
+    
+    deinit {
+        User.current?.updateRobits = nil
     }
     
     func updateLoginStatus() {
@@ -112,9 +139,6 @@ class PurchaseRobitsViewController: UIViewController {
             }
             
             self.view.showMessage("\(robitCount) robits purchased successfully!", type: .success)
-            self.currentRobitCountLabel.text = "You currently have \(user.spendableRobits) robits!"
-            self.robitStepper.value = Double(min(10, user.spendableRobits))
-            self.robitStepper.maximumValue = Double(user.spendableRobits)
         }
     }
     
@@ -133,8 +157,11 @@ class PurchaseRobitsViewController: UIViewController {
             return
         }
         
-        Socket.shared.chat.sendMessage("woot\(Int(robitStepper.value))", robot: robot)
-        dismiss(animated: true, completion: nil)
+        let robits = Int(robitStepper.value)
+        pendingTransaction = robits
+        
+        Socket.shared.chat.sendMessage("woot\(robits)", robot: robot)
+        sendWootsButton.isEnabled = false
     }
     
     @IBAction func didPressLogin() {

@@ -130,7 +130,17 @@ class Socket {
             }
             
             socket?.on("account_robits") { (data, _) in
-                print(data)
+                Threading.run(on: .background) {
+                    guard let data = data.first else { return }
+                    let json = JSON(data)
+                    guard json["username"].string == User.current?.username else { return }
+                    guard let robits = json["spendable_robits"].int else { return }
+                    User.current?.spendableRobits = robits
+                    
+                    Threading.run(on: .main) {
+                        User.current?.updateRobits?()
+                    }
+                }
             }
             
             /// Website flashes the button for 200ms

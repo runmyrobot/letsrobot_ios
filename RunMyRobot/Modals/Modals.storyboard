@@ -1268,6 +1268,7 @@
                         <outlet property="paymentTwoAmountLabel" destination="bxD-Qh-B5B" id="d5C-cq-tIP"/>
                         <outlet property="paymentTwoPriceLabel" destination="Kzo-yD-Pw7" id="3jM-g2-h0p"/>
                         <outlet property="robitStepper" destination="PZV-hF-002" id="yHz-uV-4Zp"/>
+                        <outlet property="sendWootsButton" destination="o23-Ap-PfC" id="Ewb-Q0-JOK"/>
                         <segue destination="JAf-tA-Cv0" kind="show" identifier="ShowLogin" id="U8h-rw-XUb"/>
                     </connections>
                 </viewController>

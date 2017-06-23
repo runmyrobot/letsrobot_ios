@@ -103,6 +103,8 @@ class CurrentUser: User {
     }
     
     var spendableRobits = 0
+    var updateRobits: (() -> Void)?
+    
     var currentPayment: Payment?
     var robots = [Robot]()
     var unsavedChanges = [String: Any]()
