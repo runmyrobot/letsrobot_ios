@@ -26,6 +26,17 @@ class Socket {
         return formatter
     }()
     
+    var showConnectionMessages = false
+    var viewController: UIViewController? {
+        guard var top = UIApplication.shared.keyWindow?.rootViewController else { return nil }
+        
+        while let presented = top.presentedViewController {
+            top = presented
+        }
+        
+        return top
+    }
+    
     func start(callback: @escaping ((Bool) -> Void)) { // swiftlint:disable:this function_body_length cyclomatic_complexity
         if let url = URL(string: "\(Networking.baseUrl):\(Config.shared?.socketPort ?? 8000)") {
             socket = SocketIOClient(socketURL: url, config: [.log(false)])
@@ -33,22 +44,41 @@ class Socket {
             socket?.on(clientEvent: .connect) { (_, _) in
                 print("✅ [SOCKET] Connected")
                 callback(true)
+                if self.showConnectionMessages {
+                    self.viewController?.showMessage("Connected", type: .success)
+                }
             }
             
             socket?.on(clientEvent: .disconnect) { (_, _) in
                 print("⛔️ [SOCKET] Disconnected")
+                
+                if self.showConnectionMessages {
+                    self.viewController?.showMessage("Disconnected", type: .error)
+                }
             }
             
             socket?.on(clientEvent: .error) { (data, ack) in
                 print("‼️ [SOCKET] Error", data, ack)
+                
+                if self.showConnectionMessages {
+                    self.viewController?.showMessage("Socket Error", type: .error)
+                }
             }
             
             socket?.on(clientEvent: .reconnect) { (data, ack) in
                 print("♻︎ [SOCKET] Reconnect", data, ack)
+                
+                if self.showConnectionMessages {
+                    self.viewController?.showMessage("Socket Reconnecting", type: .info)
+                }
             }
             
             socket?.on(clientEvent: .reconnectAttempt) { (data, ack) in
                 print("♻︎ [SOCKET] Reconnect Attempt", data, ack)
+                
+                if self.showConnectionMessages {
+                    self.viewController?.showMessage("Socket Reconnecting", type: .info)
+                }
             }
             
             socket?.on(clientEvent: .statusChange) { (data, _) in
