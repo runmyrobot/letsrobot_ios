@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4EA176B31F348803F66E4C7C /* Pods_RunMyRobot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC487CD756551459CEE4F0A /* Pods_RunMyRobot.framework */; };
+		980976971EFE991D00DC9040 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980976961EFE991D00DC9040 /* LoginForm.swift */; };
+		980976991EFE992900DC9040 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 980976981EFE992900DC9040 /* LoginView.xib */; };
+		9809769B1EFEB52000DC9040 /* RegisterForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809769A1EFEB52000DC9040 /* RegisterForm.swift */; };
+		9809769D1EFEB52800DC9040 /* ForgottenPasswordForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9809769C1EFEB52800DC9040 /* ForgottenPasswordForm.swift */; };
 		980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD4F1EE186CC00B00B33 /* ChatMessageTableViewCell.swift */; };
 		980ADD561EE2BFD200B00B33 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD551EE2BFD200B00B33 /* LoaderViewController.swift */; };
 		980ADD591EE2C2D100B00B33 /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD581EE2C2D100B00B33 /* Threading.swift */; };
@@ -88,6 +92,10 @@
 		1CC487CD756551459CEE4F0A /* Pods_RunMyRobot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunMyRobot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A83AC29B03929204B65F130 /* Pods-RunMyRobot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunMyRobot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunMyRobot/Pods-RunMyRobot.debug.xcconfig"; sourceTree = "<group>"; };
 		735CEECD8205A7235D37850D /* Pods-RunMyRobot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunMyRobot.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunMyRobot/Pods-RunMyRobot.release.xcconfig"; sourceTree = "<group>"; };
+		980976961EFE991D00DC9040 /* LoginForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
+		980976981EFE992900DC9040 /* LoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		9809769A1EFEB52000DC9040 /* RegisterForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterForm.swift; sourceTree = "<group>"; };
+		9809769C1EFEB52800DC9040 /* ForgottenPasswordForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgottenPasswordForm.swift; sourceTree = "<group>"; };
 		980ADD4F1EE186CC00B00B33 /* ChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageTableViewCell.swift; sourceTree = "<group>"; };
 		980ADD551EE2BFD200B00B33 /* LoaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
 		980ADD581EE2C2D100B00B33 /* Threading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threading.swift; sourceTree = "<group>"; };
@@ -276,7 +284,11 @@
 		9823E6A51EEB374000619964 /* Login Page */ = {
 			isa = PBXGroup;
 			children = (
+				9809769C1EFEB52800DC9040 /* ForgottenPasswordForm.swift */,
+				980976961EFE991D00DC9040 /* LoginForm.swift */,
+				980976981EFE992900DC9040 /* LoginView.xib */,
 				9823E6A81EEBEADD00619964 /* LoginViewController.swift */,
+				9809769A1EFEB52000DC9040 /* RegisterForm.swift */,
 			);
 			name = "Login Page";
 			sourceTree = "<group>";
@@ -475,6 +487,7 @@
 			files = (
 				9823E6C41EEC7F2C00619964 /* SettingsListSubscriptionCell.xib in Resources */,
 				9823E6AE1EEC142B00619964 /* Rules.html in Resources */,
+				980976991EFE992900DC9040 /* LoginView.xib in Resources */,
 				9823E6C81EEC818900619964 /* SettingsListTitleCell.xib in Resources */,
 				98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */,
 				98B73C1C1EF177B800577D39 /* RobotControls.xib in Resources */,
@@ -577,9 +590,11 @@
 				987DF3A21EE875110042539B /* MenuListItemCell.swift in Sources */,
 				98500C801EE0A57B00CFA446 /* Socket.swift in Sources */,
 				983BCB521EDE29A8007A1247 /* Config.swift in Sources */,
+				9809769B1EFEB52000DC9040 /* RegisterForm.swift in Sources */,
 				98B73C201EF293B100577D39 /* UserModalViewController.swift in Sources */,
 				9823E6BF1EEC466000619964 /* SettingsListTextFieldCell.swift in Sources */,
 				98B73C281EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift in Sources */,
+				9809769D1EFEB52800DC9040 /* ForgottenPasswordForm.swift in Sources */,
 				980ADD821EE4A19400B00B33 /* StreamViewController+CustomControls.swift in Sources */,
 				98878FFF1EED90220017B7F5 /* SendScreenshotViewController.swift in Sources */,
 				983F85B31EE869BF001FD90A /* MenuViewController.swift in Sources */,
@@ -628,6 +643,7 @@
 				988790031EEEE6490017B7F5 /* User+Authentication.swift in Sources */,
 				980ADD5B1EE2E0AC00B00B33 /* Regex.swift in Sources */,
 				9828DDD31EFD7DF0004DDD62 /* UserListModalViewController.swift in Sources */,
+				980976971EFE991D00DC9040 /* LoginForm.swift in Sources */,
 				987DF39D1EE870090042539B /* Concatenate.swift in Sources */,
 				98B047861EF4244400D260FE /* Payment.swift in Sources */,
 				980ADD751EE465F500B00B33 /* User.swift in Sources */,

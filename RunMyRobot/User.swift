@@ -91,11 +91,7 @@ class User {
 class CurrentUser: User {
     
     static var loggedIn: Bool {
-        // Check that we have a current user
-        guard let current = User.current else { return false }
-        
-        // Validate that the user default matches the current user (minor safety check)
-        return UserDefaults.standard.currentUsername == current.username
+        return User.current != nil
     }
     
     var subscriptions: [Robot] {
@@ -154,9 +150,6 @@ class CurrentUser: User {
     func logout(callback: (() -> Void)? = nil) {
         // Simple GET request to the web's logout page is enough to clear all authentication/cookies
         Networking.request("/logout") { _ in
-            // Cleanup User Defaults
-            UserDefaults.standard.currentUsername = nil
-            
             // Remove current user instance
             User.current = nil
             
@@ -298,8 +291,7 @@ class CurrentUser: User {
                 }
             }
             
-            // Update the user defaults and singleton reference
-            UserDefaults.standard.currentUsername = self.username
+            // Update the singleton reference
             User.current = self
             
             // Intentionally calling this after User.current so that Robot.get can get all robots

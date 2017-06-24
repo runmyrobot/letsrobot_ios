@@ -31,7 +31,10 @@ class MenuViewController: UIViewController {
         ]
         
         if !CurrentUser.loggedIn {
-            let arr = [("Login", "Menu/login", "ShowLogin")] as [MenuItem]
+            let arr = [
+                ("Login", "Menu/login", "ShowLogin"),
+                ("Register", "Menu/register", "ShowRegister")
+            ] as [MenuItem]
             return arr + shared
         }
         
@@ -97,6 +100,8 @@ class MenuViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowRobotSettings", let destination = segue.destination as? RobotSettingsViewController {
             destination.robots = User.current?.robots ?? []
+        } else if segue.identifier == "ShowLogin", let destination = segue.destination as? LoginViewController {
+            destination.startPage = (sender as? String) == "register" ? 1 : 0
         }
     }
 }

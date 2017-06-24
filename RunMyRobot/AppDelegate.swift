@@ -48,10 +48,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        UserDefaults.standard.lastActive = Date().timeIntervalSince1970
+        Crashlytics.sharedInstance().setFloatValue(Float(UserDefaults.standard.lastActive), forKey: "lastActive")
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        
+        let lastActive = Date(timeIntervalSince1970: UserDefaults.standard.lastActive)
+        let checkDate = Date(timeIntervalSinceNow: -3600) // An hour ago (3600 seconds)
+        
+        if lastActive < checkDate {
+            fabricLog("Force Bootloader")
+            
+            if let window = window {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                window.rootViewController = storyboard.instantiateInitialViewController()
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -92,4 +107,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         db2.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
         db2.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
     }
+}
+
+func fabricLog(_ message: String) {
+    CLSLogv("%@", getVaList([message]))
 }

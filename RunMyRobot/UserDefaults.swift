@@ -10,9 +10,9 @@ import Foundation
 
 extension UserDefaults {
     
-    /// Returns the current username if they have previously logged in - used to validate same session
-    var currentUsername: String? {
-        get { return string(forKey: #function) }
+    /// Stores the epoch date when the app last went to background
+    var lastActive: Double {
+        get { return double(forKey: #function) }
         set { set(newValue, forKey: #function) }
     }
     

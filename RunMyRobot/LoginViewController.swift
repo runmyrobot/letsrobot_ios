@@ -8,160 +8,84 @@
 
 import UIKit
 import GSMessages
+import MXPagerView
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet var usernameLabelCenterYConstraint: NSLayoutConstraint!
-    @IBOutlet var usernameField: UITextField!
-    @IBOutlet var usernameLabel: UILabel!
-    @IBOutlet var usernameIndicator: UIView!
-    
-    @IBOutlet var passwordLabelCenterYConstraint: NSLayoutConstraint!
-    @IBOutlet var passwordField: UITextField!
-    @IBOutlet var passwordLabel: UILabel!
-    @IBOutlet var passwordIndicator: UIView!
-    
-    @IBOutlet var loginButton: UIButton!
-    @IBOutlet var loginIndicator: UIActivityIndicatorView!
-    let errorColour = UIColor(hex: "#DB241B")
+    @IBOutlet var returnButton: UIButton!
+    @IBOutlet var forgottenButton: UIButton!
+    @IBOutlet var newHereButton: UIButton!
+    @IBOutlet var notNewButton: UIButton!
+    @IBOutlet var pagerView: MXPagerView!
+    @IBOutlet var titleLabel: UIButton! // Using a UIButton as it gives a nice fade animation when changing titles
+    var startPage = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        GSMessage.errorBackgroundColor = errorColour
+        
+        pagerView.isScrollEnabled = false
+        changePage(startPage, animated: false)
     }
     
     @IBAction func didPressClose() {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func didPressLogin() {
-        guard let username = fieldValue(for: usernameField) else {
-            UIView.animate(withDuration: 0.3) {
-                self.usernameLabel.textColor = self.errorColour
-                self.usernameIndicator.backgroundColor = self.errorColour
-                self.usernameLabel.alpha = 1
-                self.usernameIndicator.alpha = 1
-            }
-            
-            showMessage("The username field is mandatory!", type: .error)
-            return
-        }
-        
-        clearError(field: usernameField)
-        
-        guard let password = fieldValue(for: passwordField) else {
-            UIView.animate(withDuration: 0.3) {
-                self.passwordLabel.textColor = self.errorColour
-                self.passwordIndicator.backgroundColor = self.errorColour
-                self.passwordLabel.alpha = 1
-                self.passwordIndicator.alpha = 1
-            }
-            
-            showMessage("The password field is mandatory!", type: .error)
-            return
-        }
-        
-        clearError(field: passwordField)
-        
-        view.endEditing(true)
-        loginButton.setTitle(nil, for: .normal)
-        loginButton.isUserInteractionEnabled = false
-        loginIndicator.startAnimating()
-        
-        User.authenticate(userString: username, passString: password) { _, error in
-            self.loginIndicator.stopAnimating()
-            
-            if let error = error as? RobotError {
-                self.loginButton.setTitle("Log In", for: .normal)
-                self.loginButton.isUserInteractionEnabled = true
-                switch error {
-                case .invalidLoginDetails:
-                    self.showMessage("Incorrect login details, try again.", type: .error)
-                default:
-                    self.showMessage("Something went wrong, try again later.", type: .error)
-                }
-                return
-            }
-            
-            self.loginButton.setTitle("Completed", for: .normal)
-            
-            NotificationCenter.default.post(name: NSNotification.Name("LoginStatusChanged"), object: nil)
-            self.showMessage("Successful Login!", type: .success)
-            
-            Threading.run(on: .main, after: 0.2) {
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
+    @IBAction func didPressPageButton(_ sender: UIButton) {
+        changePage(sender.tag, animated: true)
     }
     
-    @IBAction func didStartEditingField(_ sender: UITextField) {
-        select(field: sender)
-    }
-    
-    func clearError(field: UITextField) {
-        let isUsername = field.tag == 1
+    func changePage(_ index: Int, animated: Bool) {
+        pagerView.showPage(at: index, animated: animated)
+        
+        let titles = ["Login", "Register", "Forgotten Password"]
+        titleLabel.setTitle(titles[index], for: .disabled)
         
         UIView.animate(withDuration: 0.3) {
-            if isUsername {
-                self.usernameLabel.textColor = .white
-                self.usernameIndicator.backgroundColor = .white
-            } else {
-                self.passwordLabel.textColor = .white
-                self.passwordIndicator.backgroundColor = .white
+            switch index {
+            case 0:
+                self.returnButton.alpha = 0
+                self.forgottenButton.alpha = 1
+                self.newHereButton.alpha = 1
+                self.notNewButton.alpha = 0
+            case 1:
+                self.returnButton.alpha = 0
+                self.forgottenButton.alpha = 1
+                self.newHereButton.alpha = 0
+                self.notNewButton.alpha = 1
+            case 2:
+                self.returnButton.alpha = 1
+                self.forgottenButton.alpha = 0
+                self.newHereButton.alpha = 1
+                self.notNewButton.alpha = 0
+            default:
+                break
             }
         }
-    }
-    
-    func select(field: UITextField) {
-        let isUsername = field.tag == 1
-        
-        if isUsername {
-            usernameLabelCenterYConstraint.isActive = false
-            if fieldValue(for: passwordField) == nil {
-                passwordLabelCenterYConstraint.isActive = true
-            }
-            
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
-                self.usernameLabel.alpha = 1
-                self.usernameIndicator.alpha = 1
-                
-                if self.fieldValue(for: self.passwordField) == nil && self.passwordLabel.textColor != self.errorColour {
-                    self.passwordLabel.alpha = 0.3
-                    self.passwordIndicator.alpha = 0.3
-                }
-            }
-        } else {
-            passwordLabelCenterYConstraint.isActive = false
-            if fieldValue(for: usernameField) == nil {
-                usernameLabelCenterYConstraint.isActive = true
-            }
-            
-            UIView.animate(withDuration: 0.3) {
-                self.view.layoutIfNeeded()
-                self.passwordLabel.alpha = 1
-                self.passwordIndicator.alpha = 1
-                
-                if self.fieldValue(for: self.usernameField) == nil && self.usernameLabel.textColor != self.errorColour {
-                    self.usernameLabel.alpha = 0.3
-                    self.usernameIndicator.alpha = 0.3
-                }
-            }
-        }
-    }
-    
-    func fieldValue(for field: UITextField) -> String? {
-        let rawText = field.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        if rawText == "" {
-            return nil
-        }
-        
-        return rawText
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+}
+
+extension LoginViewController: MXPagerViewDataSource, MXPagerViewDelegate {
+    
+    func numberOfPages(in pagerView: MXPagerView) -> Int {
+        return 3
+    }
+    
+    func pagerView(_ pagerView: MXPagerView, viewForPageAt index: Int) -> UIView? {
+        switch index {
+        case 0:
+            return LoginForm.create()
+        case 1:
+            return RegisterForm.create()
+        case 2:
+            return ForgottenPasswordForm.create()
+        default:
+            return nil
+        }
+    }
+    
 }
