@@ -93,7 +93,7 @@ class WootChatMessage: ChatMessage {
     }
     
     var description: String {
-        return "WOOT: \(sender) sent \(wootValue) to \(robotOwner)'s device"
+        return "\(sender) sent \(wootValue) woots to \(robotOwner)'s device"
     }
 }
 

@@ -58,12 +58,17 @@ class PurchaseRobitsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        User.current?.updateRobits = { [weak self] in
+        User.current?.updateRobits = { [weak self] diff in
             guard let user = User.current else { return }
             
             if let amount = self?.pendingTransaction {
-                let pluralise = amount > 1 ? "woots" : "woot"
-                self?.view.showMessage("\(amount) \(pluralise) sent successfully!", type: .success)
+                if amount == diff {
+                    let pluralise = amount > 1 ? "woots" : "woot"
+                    self?.view.showMessage("\(amount) \(pluralise) sent successfully!", type: .success)
+                } else {
+                    self?.view.showMessage("Something went wrong!", type: .error)
+                }
+                
                 self?.pendingTransaction = nil
                 self?.sendWootsButton.isEnabled = true
             }
@@ -158,9 +163,21 @@ class PurchaseRobitsViewController: UIViewController {
         }
         
         let robits = Int(robitStepper.value)
+        
+        guard let owner = robot.owner else {
+            view.showMessage("Something went wrong!", type: .error)
+            return
+        }
+        
+        guard robits <= (User.current?.spendableRobits ?? 0) else {
+            view.showMessage("You don't have enough robits!", type: .error)
+            return
+        }
+        
         pendingTransaction = robits
         
-        Socket.shared.chat.sendMessage("woot\(robits)", robot: robot)
+//        Socket.shared.chat.sendMessage("woot\(robits)", robot: robot)
+        Socket.shared.sendRobits(amount: robits, recipient: owner)
         sendWootsButton.isEnabled = false
     }
     

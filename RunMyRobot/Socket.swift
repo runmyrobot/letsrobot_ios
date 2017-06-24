@@ -163,12 +163,31 @@ class Socket {
                 Threading.run(on: .background) {
                     guard let data = data.first else { return }
                     let json = JSON(data)
-                    guard json["username"].string == User.current?.username else { return }
+                    
+                    guard let user = User.current else { return }
+                    guard json["username"].string == user.username else { return }
                     guard let robits = json["spendable_robits"].int else { return }
-                    User.current?.spendableRobits = robits
+                    
+                    let previous = user.spendableRobits
+                    user.spendableRobits = robits
+                    let diff = robits - previous
                     
                     Threading.run(on: .main) {
-                        User.current?.updateRobits?()
+                        User.current?.updateRobits?(diff)
+                    }
+                }
+            }
+            
+            socket?.on("not_enough_robits") { (data, _) in
+                Threading.run(on: .background) {
+                    guard let data = data.first else { return }
+                    let json = JSON(data)
+                    
+                    guard let user = User.current else { return }
+                    guard json["username"].string == user.username else { return }
+                    
+                    Threading.run(on: .main) {
+                        User.current?.updateRobits?(0)
                     }
                 }
             }
@@ -335,6 +354,15 @@ class Socket {
         ] as [String : Any]
         
         socket?.emit("select_robot", dict)
+    }
+    
+    func sendRobits(amount: Int, recipient: String) {
+        let dict = [
+            "amount": amount,
+            "recipient": recipient
+        ] as [String: Any]
+        
+        socket?.emit("send_robits", dict)
     }
     
 }

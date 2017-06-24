@@ -11,6 +11,7 @@ import Fabric
 import Crashlytics
 import PopupDialog
 import Braintree
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         BTAppSwitch.setReturnURLScheme("uk.sherlo.letsrobot.payments")
         Fabric.with([Crashlytics.self])
+        
+        try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         
         // Some things can be done on background thread as to not lock up the launching
         Threading.run(on: .background, after: 0) {

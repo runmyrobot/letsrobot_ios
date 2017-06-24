@@ -103,7 +103,7 @@ class CurrentUser: User {
     }
     
     var spendableRobits = 0
-    var updateRobits: (() -> Void)?
+    var updateRobits: ((Int) -> Void)?
     
     var currentPayment: Payment?
     var robots = [Robot]()

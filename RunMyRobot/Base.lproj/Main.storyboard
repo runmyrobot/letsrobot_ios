@@ -415,7 +415,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SETTINGS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bb3-Di-JD4" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="146" y="40" width="83" height="22"/>
+                                <rect key="frame" x="146" y="40" width="83" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -440,7 +440,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WKt-8q-LLY" userLabel="Page Selector">
-                                <rect key="frame" x="24" y="78" width="327" height="50"/>
+                                <rect key="frame" x="24" y="77.5" width="327" height="50"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOR-Yu-n4d">
                                         <rect key="frame" x="0.0" y="0.0" width="163.5" height="50"/>
@@ -464,21 +464,21 @@
                                 </constraints>
                             </stackView>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="614-RG-9Qd">
-                                <rect key="frame" x="24" y="132" width="327" height="1"/>
+                                <rect key="frame" x="24" y="131.5" width="327" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="YE5-oB-qXT"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kQ-iD-wWi">
-                                <rect key="frame" x="44" y="128" width="123.5" height="4"/>
+                                <rect key="frame" x="44" y="127.5" width="123.5" height="4"/>
                                 <color key="backgroundColor" red="0.73725490196078436" green="0.3529411764705882" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="4" id="oqD-eR-sOy"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NEg-QV-vLP" customClass="MXPagerView">
-                                <rect key="frame" x="0.0" y="133" width="375" height="534"/>
+                                <rect key="frame" x="0.0" y="132.5" width="375" height="534.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="wCd-yS-qOa" id="P4C-Wj-CRu"/>
@@ -548,7 +548,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY ROBOTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2j6-Fr-SJQ" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="136.5" y="40" width="102" height="22"/>
+                                <rect key="frame" x="137" y="40" width="101" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -693,7 +693,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CUSTOM PANELS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-QV-1CA" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="114.5" y="40" width="146" height="22"/>
+                                <rect key="frame" x="116" y="40" width="143.5" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1049,7 +1049,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQa-lO-eeO" userLabel="Camera Zone">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
                                 <subviews>
-                                    <webView opaque="NO" contentMode="scaleAspectFit" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f1H-pu-IfF">
+                                    <webView opaque="NO" contentMode="scaleAspectFit" scalesPageToFit="YES" mediaPlaybackRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1H-pu-IfF">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <dataDetectorType key="dataDetectorTypes"/>
@@ -1310,7 +1310,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sherlouk: [TrumpBot] Generic Message" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPn-s9-XdG" customClass="TTTAttributedLabel">
-                                                    <rect key="frame" x="16" y="8" width="287" height="20"/>
+                                                    <rect key="frame" x="16" y="8" width="286" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
