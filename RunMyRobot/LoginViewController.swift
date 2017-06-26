@@ -78,11 +78,11 @@ extension LoginViewController: MXPagerViewDataSource, MXPagerViewDelegate {
     func pagerView(_ pagerView: MXPagerView, viewForPageAt index: Int) -> UIView? {
         switch index {
         case 0:
-            return LoginForm.create()
+            return LoginForm.create(parent: self)
         case 1:
-            return RegisterForm.create()
+            return RegisterForm.create(parent: self)
         case 2:
-            return ForgottenPasswordForm.create()
+            return ForgottenPasswordForm.create(parent: self)
         default:
             return nil
         }

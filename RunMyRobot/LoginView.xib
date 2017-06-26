@@ -266,6 +266,9 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="didStartEditingField:" destination="fmV-89-Ya6" eventType="editingDidBegin" id="ptG-XG-kFs"/>
+                    </connections>
                 </textField>
                 <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ft-IF-ngc">
                     <rect key="frame" x="24" y="64" width="327" height="1"/>
@@ -290,6 +293,9 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                    <connections>
+                        <action selector="didStartEditingField:" destination="fmV-89-Ya6" eventType="editingDidBegin" id="F8s-2J-AUB"/>
+                    </connections>
                 </textField>
                 <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nIf-FW-ZDW">
                     <rect key="frame" x="24" y="137" width="327" height="1"/>
@@ -321,6 +327,9 @@
                             <integer key="value" value="4"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didPressLogin" destination="fmV-89-Ya6" eventType="touchUpInside" id="eQi-S4-cqR"/>
+                    </connections>
                 </button>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Qqp-Ie-5uZ">
                     <rect key="frame" x="178" y="177" width="20" height="20"/>

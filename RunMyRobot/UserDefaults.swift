@@ -16,4 +16,10 @@ extension UserDefaults {
         set { set(newValue, forKey: #function) }
     }
     
+    /// Stores the epoch date when the app last went to background
+    var sendCrashReports: Bool {
+        get { return !bool(forKey: #function) }
+        set { set(!newValue, forKey: #function) }
+    }
+    
 }

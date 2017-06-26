@@ -14,12 +14,14 @@ import Braintree
 import AVFoundation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         BTAppSwitch.setReturnURLScheme("uk.sherlo.letsrobot.payments")
+        
+        Crashlytics.sharedInstance().delegate = self
         Fabric.with([Crashlytics.self])
         
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -106,6 +108,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let db2 = DestructiveButton.appearance()
         db2.buttonColor    = UIColor(red:0.25, green:0.25, blue:0.29, alpha:1.00)
         db2.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
+    }
+    
+    func crashlyticsDidDetectReport(forLastExecution report: CLSReport, completionHandler: @escaping (Bool) -> Void) {
+        completionHandler(UserDefaults.standard.sendCrashReports)
     }
 }
 

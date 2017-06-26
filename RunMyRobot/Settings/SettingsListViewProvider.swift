@@ -27,7 +27,7 @@ class UserSettingsListProvider: SettingsListViewProvider {
     }
     
     var cellCount: Int {
-        return 6
+        return 8
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
@@ -66,12 +66,20 @@ class UserSettingsListProvider: SettingsListViewProvider {
                 "title": "GO LIVE NOTIFICATIONS",
                 "subtitle": "You will be notified when a robot you're subscribed to goes live!",
                 "type": "toggle"
+            ],
+            [
+                "title": "Privacy",
+                "type": "title"
+            ],
+            [
+                "title": "SEND CRASH REPORTS",
+                "subtitle": "We use anonymised crash reports in order to identify and ultimately fix crashes!",
+                "type": "toggle",
+                "value": UserDefaults.standard.sendCrashReports,
+                "callback": { (value: Bool) in
+                    UserDefaults.standard.sendCrashReports = value
+                }
             ]
-//            [
-//                "title": "STUCK NOTIFICATIONS",
-//                "subtitle": "If one of your robots gets stuck, users can notify you to help it!",
-//                "type": "toggle"
-//            ]
         ][index]
     }
 }

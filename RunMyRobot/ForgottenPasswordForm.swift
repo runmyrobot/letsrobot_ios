@@ -10,7 +10,9 @@ import UIKit
 
 class ForgottenPasswordForm: UIView {
 
-    class func create() -> ForgottenPasswordForm {
+    weak var parent: UIViewController?
+    
+    class func create(parent: UIViewController) -> ForgottenPasswordForm {
         let views = UINib(nibName: "LoginView", bundle: nil).instantiate(withOwner: self, options: nil) as? [UIView]
         
         guard let view = views?.first(where: { $0 is ForgottenPasswordForm }) as? ForgottenPasswordForm else {
@@ -18,6 +20,7 @@ class ForgottenPasswordForm: UIView {
         }
         
         view.backgroundColor = .clear
+        view.parent = parent
         return view
     }
 

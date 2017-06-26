@@ -24,10 +24,10 @@ class LoginForm: UIView {
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var loginIndicator: UIActivityIndicatorView!
     
-    var parent: UIViewController?
+    weak var parent: UIViewController?
     let errorColour = GSMessage.errorBackgroundColor
     
-    class func create() -> LoginForm {
+    class func create(parent: UIViewController) -> LoginForm {
         let views = UINib(nibName: "LoginView", bundle: nil).instantiate(withOwner: self, options: nil) as? [UIView]
         
         guard let view = views?.first(where: { $0 is LoginForm }) as? LoginForm else {
@@ -35,6 +35,7 @@ class LoginForm: UIView {
         }
         
         view.backgroundColor = .clear
+        view.parent = parent
         return view
     }
     
@@ -47,7 +48,7 @@ class LoginForm: UIView {
                 self.usernameIndicator.alpha = 1
             }
             
-            showMessage("The username field is mandatory!", type: .error)
+            parent?.showMessage("The username field is mandatory!", type: .error)
             return
         }
         
@@ -61,7 +62,7 @@ class LoginForm: UIView {
                 self.passwordIndicator.alpha = 1
             }
             
-            showMessage("The password field is mandatory!", type: .error)
+            parent?.showMessage("The password field is mandatory!", type: .error)
             return
         }
         
@@ -80,9 +81,9 @@ class LoginForm: UIView {
                 self.loginButton.isUserInteractionEnabled = true
                 switch error {
                 case .invalidLoginDetails:
-                    self.showMessage("Incorrect login details, try again.", type: .error)
+                    self.parent?.showMessage("Incorrect login details, try again.", type: .error)
                 default:
-                    self.showMessage("Something went wrong, try again later.", type: .error)
+                    self.parent?.showMessage("Something went wrong, try again later.", type: .error)
                 }
                 return
             }
@@ -90,7 +91,7 @@ class LoginForm: UIView {
             self.loginButton.setTitle("Completed", for: .normal)
             
             NotificationCenter.default.post(name: NSNotification.Name("LoginStatusChanged"), object: nil)
-            self.showMessage("Successful Login!", type: .success)
+            self.parent?.showMessage("Successful Login!", type: .success)
             
             Threading.run(on: .main, after: 0.2) {
                 self.parent?.dismiss(animated: true, completion: nil)

@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Crashlytics
 
 class User {
     /// Current signed in user
@@ -152,6 +153,7 @@ class CurrentUser: User {
         Networking.request("/logout") { _ in
             // Remove current user instance
             User.current = nil
+            Crashlytics.sharedInstance().setBoolValue(false, forKey: "logged_in")
             
             // Update UI
             NotificationCenter.default.post(name: NSNotification.Name("LoginStatusChanged"), object: nil)
@@ -293,6 +295,7 @@ class CurrentUser: User {
             
             // Update the singleton reference
             User.current = self
+            Crashlytics.sharedInstance().setBoolValue(true, forKey: "logged_in")
             
             // Intentionally calling this after User.current so that Robot.get can get all robots
             if let subscriptions = json["subscriptions"].array {
