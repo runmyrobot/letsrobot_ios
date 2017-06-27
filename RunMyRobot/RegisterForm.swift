@@ -55,7 +55,7 @@ class RegisterForm: UIView {
                 self.usernameIndicator.alpha = 1
             }
             
-            parent?.showMessage(usernameError, type: .error)
+            parent?.showMessage(usernameError, type: .error, options: [.textNumberOfLines(0)])
             return
         }
         
@@ -71,7 +71,7 @@ class RegisterForm: UIView {
                 self.passwordIndicator.alpha = 1
             }
             
-            parent?.showMessage(passwordError, type: .error)
+            parent?.showMessage(passwordError, type: .error, options: [.textNumberOfLines(0)])
             return
         }
         
@@ -87,7 +87,7 @@ class RegisterForm: UIView {
                 self.emailIndicator.alpha = 1
             }
             
-            parent?.showMessage(emailError, type: .error)
+            parent?.showMessage(emailError, type: .error, options: [.textNumberOfLines(0)])
             return
         }
         
@@ -108,7 +108,7 @@ class RegisterForm: UIView {
             if let error = error as? RobotError {
                 self?.registerButton.setTitle("Register", for: .normal)
                 self?.registerButton.isUserInteractionEnabled = true
-                self?.parent?.showMessage(error.localizedDescription, type: .error)
+                self?.parent?.showMessage(error.localizedDescription, type: .error, options: [.textNumberOfLines(0)])
                 return
             }
             
@@ -249,17 +249,33 @@ class RegisterForm: UIView {
     func validateUsername(_ username: String?) -> String? {
         guard let username = username else { return "Username field is mandatory!" }
         
+        guard (username.matches(pattern: "^([a-zA-Z0-9_-]{3,15})$").first?.count ?? 0) > 0 else {
+            return "Username must be between 3 and 15 characters, and only contain letters and numbers!"
+        }
+        
+        guard (username.matches(pattern: "(faggot|nigger|cunt|fuck)").first?.count ?? 0) == 0 else {
+            return "Username must not contain profanity!"
+        }
+        
         return nil
     }
     
     func validatePassword(_ password: String?) -> String? {
         guard let password = password else { return "Password field is mandatory!" }
         
+        guard (password.matches(pattern: "^((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,})$").first?.count ?? 0) > 0 else {
+            return "Password must contain at least 8 characters: Must contain at least 1 uppercase, 1 lowercase and 1 number!"
+        }
+        
         return nil
     }
     
     func validateEmail(_ email: String?) -> String? {
         guard let email = email else { return "Email field is mandatory!" }
+        
+        guard (email.matches(pattern: "(\\b[\\w\\.-]+@[\\w\\.-]+\\.\\w{2,4}\\b)").first?.count ?? 0) > 0 else {
+            return "Email is not in a valid format!"
+        }
         
         return nil
     }
