@@ -74,13 +74,16 @@ class RegisterForm: UIView {
     }
     
     func select(field: UITextField) {
-        let isUsername = field.tag == 1
-        
         switch field.tag {
         case 1:
             usernameLabelCenterYConstraint.isActive = false
+            
             if fieldValue(for: passwordField) == nil {
                 passwordLabelCenterYConstraint.isActive = true
+            }
+            
+            if fieldValue(for: emailField) == nil {
+                emailLabelCenterYConstraint.isActive = true
             }
             
             UIView.animate(withDuration: 0.3) {
@@ -92,12 +95,22 @@ class RegisterForm: UIView {
                     self.passwordLabel.alpha = 0.3
                     self.passwordIndicator.alpha = 0.3
                 }
+                
+                if self.fieldValue(for: self.emailField) == nil && self.emailLabel.textColor != self.errorColour {
+                    self.emailLabel.alpha = 0.3
+                    self.emailIndicator.alpha = 0.3
+                }
             }
             break
         case 2:
             passwordLabelCenterYConstraint.isActive = false
+            
             if fieldValue(for: usernameField) == nil {
                 usernameLabelCenterYConstraint.isActive = true
+            }
+            
+            if fieldValue(for: emailField) == nil {
+                emailLabelCenterYConstraint.isActive = true
             }
             
             UIView.animate(withDuration: 0.3) {
@@ -109,10 +122,39 @@ class RegisterForm: UIView {
                     self.usernameLabel.alpha = 0.3
                     self.usernameIndicator.alpha = 0.3
                 }
+                
+                if self.fieldValue(for: self.emailField) == nil && self.emailLabel.textColor != self.errorColour {
+                    self.emailLabel.alpha = 0.3
+                    self.emailIndicator.alpha = 0.3
+                }
             }
             break
         case 3:
+            emailLabelCenterYConstraint.isActive = false
             
+            if fieldValue(for: usernameField) == nil {
+                usernameLabelCenterYConstraint.isActive = true
+            }
+            
+            if fieldValue(for: passwordField) == nil {
+                passwordLabelCenterYConstraint.isActive = true
+            }
+            
+            UIView.animate(withDuration: 0.3) {
+                self.layoutIfNeeded()
+                self.emailLabel.alpha = 1
+                self.emailIndicator.alpha = 1
+                
+                if self.fieldValue(for: self.usernameField) == nil && self.usernameLabel.textColor != self.errorColour {
+                    self.usernameLabel.alpha = 0.3
+                    self.usernameIndicator.alpha = 0.3
+                }
+                
+                if self.fieldValue(for: self.passwordField) == nil && self.passwordLabel.textColor != self.errorColour {
+                    self.passwordLabel.alpha = 0.3
+                    self.passwordIndicator.alpha = 0.3
+                }
+            }
             break
         default:
             break

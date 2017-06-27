@@ -24,6 +24,10 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         pagerView.isScrollEnabled = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         changePage(startPage, animated: false)
     }
     
@@ -39,7 +43,7 @@ class LoginViewController: UIViewController {
         pagerView.showPage(at: index, animated: animated)
         
         let titles = ["Login", "Register", "Forgotten Password"]
-        titleLabel.setTitle(titles[index], for: .disabled)
+        titleLabel.setTitle(titles[index].uppercased(), for: .disabled)
         
         UIView.animate(withDuration: 0.3) {
             switch index {
