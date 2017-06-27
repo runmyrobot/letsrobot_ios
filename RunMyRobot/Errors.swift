@@ -28,6 +28,8 @@ enum RobotError: Error {
             return "You must be logged in!"
         case .invalidLoginDetails:
             return "Incorrect Login Details! Try again."
+        case .apiFailure(let message):
+            return message
         default:
             return "Something went wrong!"
         }

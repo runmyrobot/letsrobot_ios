@@ -105,8 +105,8 @@ class RegisterForm: UIView {
         User.register(username: username, password: password, email: email) { [weak self] error in
             self?.registerIndicator.stopAnimating()
             
-            if let error = error {
-                self?.registerButton.setTitle("Log In", for: .normal)
+            if let error = error as? RobotError {
+                self?.registerButton.setTitle("Register", for: .normal)
                 self?.registerButton.isUserInteractionEnabled = true
                 self?.parent?.showMessage(error.localizedDescription, type: .error)
                 return
