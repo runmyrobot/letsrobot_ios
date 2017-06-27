@@ -104,7 +104,7 @@ class SubscriptionsListProvider: SettingsListViewProvider {
         } as [[String: Any]]
         
         subsMap.insert([
-            "title": "Your Subscriptions",
+            "title": "You Follow",
             "type": "title"
         ], at: 0)
         

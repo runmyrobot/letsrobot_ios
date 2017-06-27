@@ -20,7 +20,7 @@ class LoaderViewController: UIViewController {
 
         progressLabel.text = "Downloading Config"
         
-        Alamofire.request("http://sherlo.uk/letsrobot/config.json").validate().responseJSON { [weak self] response in
+        Networking.requestJSON("/mobile/config.json") { [weak self] response in
             guard let rawJSON = response.result.value else {
                 self?.progressLabel.text = "Error Downloading Config"
                 print("Something went wrong!")

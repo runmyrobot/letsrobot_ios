@@ -43,9 +43,9 @@ class SettingsListSubscriptionCell: UITableViewCell {
             self.activityIndicator.stopAnimating()
             
             if user.isSubscribed(to: robotId) {
-                self.primaryButton.setTitle("Unsubscribe", for: .normal)
+                self.primaryButton.setTitle("unfollow", for: .normal)
             } else {
-                self.primaryButton.setTitle("Subscribe", for: .normal)
+                self.primaryButton.setTitle("follow", for: .normal)
             }
         }
     }

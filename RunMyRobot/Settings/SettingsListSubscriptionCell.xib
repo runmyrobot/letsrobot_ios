@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pt2-HY-ctb" id="6Mx-EM-eln">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TrumpBot" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9E-GZ-2D8">
@@ -24,14 +24,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOk-mx-XbT">
-                        <rect key="frame" x="241" y="22" width="110" height="26"/>
+                        <rect key="frame" x="261" y="22" width="90" height="26"/>
                         <color key="backgroundColor" red="0.37254901960784315" green="0.47450980392156861" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="110" id="ZbU-Vo-1nU"/>
+                            <constraint firstAttribute="width" constant="90" id="ZbU-Vo-1nU"/>
                         </constraints>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
-                        <state key="normal" title="Unsubscribe">
+                        <state key="normal" title="unfollow">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <userDefinedRuntimeAttributes>
@@ -44,7 +44,7 @@
                         </connections>
                     </button>
                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Zn6-Ma-6xa">
-                        <rect key="frame" x="286" y="25" width="20" height="20"/>
+                        <rect key="frame" x="296" y="25" width="20" height="20"/>
                     </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" red="0.35686274509999999" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
