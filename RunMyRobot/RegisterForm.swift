@@ -45,7 +45,56 @@ class RegisterForm: UIView {
     }
 
     @IBAction func didPressRegister() {
+        let username = fieldValue(for: usernameField)
         
+        if let usernameError = validateUsername(username) {
+            UIView.animate(withDuration: 0.3) {
+                self.usernameLabel.textColor = self.errorColour
+                self.usernameIndicator.backgroundColor = self.errorColour
+                self.usernameLabel.alpha = 1
+                self.usernameIndicator.alpha = 1
+            }
+            
+            parent?.showMessage(usernameError, type: .error)
+            return
+        }
+        
+        clearError(field: usernameField)
+        
+        let password = fieldValue(for: passwordField)
+        
+        if let passwordError = validatePassword(password) {
+            UIView.animate(withDuration: 0.3) {
+                self.passwordLabel.textColor = self.errorColour
+                self.passwordIndicator.backgroundColor = self.errorColour
+                self.passwordLabel.alpha = 1
+                self.passwordIndicator.alpha = 1
+            }
+            
+            parent?.showMessage(passwordError, type: .error)
+            return
+        }
+        
+        clearError(field: passwordField)
+        
+        let email = fieldValue(for: emailField)
+        
+        if let emailError = validateEmail(email) {
+            UIView.animate(withDuration: 0.3) {
+                self.emailLabel.textColor = self.errorColour
+                self.emailIndicator.backgroundColor = self.errorColour
+                self.emailLabel.alpha = 1
+                self.emailIndicator.alpha = 1
+            }
+            
+            parent?.showMessage(emailError, type: .error)
+            return
+        }
+        
+        clearError(field: emailField)
+        
+        // We have all three fields and they've been validated
+        print(username, password, email)
     }
     
     @IBAction func didStartEditingField(_ sender: UITextField) {
@@ -169,5 +218,23 @@ class RegisterForm: UIView {
         }
         
         return rawText
+    }
+    
+    func validateUsername(_ username: String?) -> String? {
+        guard let username = username else { return "Username field is mandatory!" }
+        
+        return nil
+    }
+    
+    func validatePassword(_ password: String?) -> String? {
+        guard let password = password else { return "Password field is mandatory!" }
+        
+        return nil
+    }
+    
+    func validateEmail(_ email: String?) -> String? {
+        guard let email = email else { return "Email field is mandatory!" }
+        
+        return nil
     }
 }

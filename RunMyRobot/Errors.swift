@@ -20,4 +20,17 @@ enum RobotError: Error {
     case userCancelled
     case noPaymentNonce
     case requestFailure(original: Error)
+    
+    var localizedDescription: String {
+        switch self {
+        case .notLoggedIn:
+            return "You must be logged in!"
+        case .invalidLoginDetails:
+            return "Incorrect Login Details! Try again."
+        case .requestFailure(let original):
+            return original.localizedDescription
+        default:
+            return "Something went wrong!"
+        }
+    }
 }
