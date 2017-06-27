@@ -45,9 +45,9 @@ class RegisterForm: UIView {
     }
 
     @IBAction func didPressRegister() {
-        let username = fieldValue(for: usernameField)
+        let usernameRaw = fieldValue(for: usernameField)
         
-        if let usernameError = validateUsername(username) {
+        if let usernameError = validateUsername(usernameRaw) {
             UIView.animate(withDuration: 0.3) {
                 self.usernameLabel.textColor = self.errorColour
                 self.usernameIndicator.backgroundColor = self.errorColour
@@ -61,9 +61,9 @@ class RegisterForm: UIView {
         
         clearError(field: usernameField)
         
-        let password = fieldValue(for: passwordField)
+        let passwordRaw = fieldValue(for: passwordField)
         
-        if let passwordError = validatePassword(password) {
+        if let passwordError = validatePassword(passwordRaw) {
             UIView.animate(withDuration: 0.3) {
                 self.passwordLabel.textColor = self.errorColour
                 self.passwordIndicator.backgroundColor = self.errorColour
@@ -77,9 +77,9 @@ class RegisterForm: UIView {
         
         clearError(field: passwordField)
         
-        let email = fieldValue(for: emailField)
+        let emailRaw = fieldValue(for: emailField)
         
-        if let emailError = validateEmail(email) {
+        if let emailError = validateEmail(emailRaw) {
             UIView.animate(withDuration: 0.3) {
                 self.emailLabel.textColor = self.errorColour
                 self.emailIndicator.backgroundColor = self.errorColour
@@ -93,8 +93,34 @@ class RegisterForm: UIView {
         
         clearError(field: emailField)
         
-        // We have all three fields and they've been validated
-        print(username, password, email)
+        guard let username = usernameRaw,
+              let password = passwordRaw,
+              let email    = emailRaw else { return }
+        
+        parent?.view.endEditing(true)
+        registerButton.setTitle(nil, for: .normal)
+        registerButton.isUserInteractionEnabled = false
+        registerIndicator.startAnimating()
+        
+        User.register(username: username, password: password, email: email) { [weak self] error in
+            self?.registerIndicator.stopAnimating()
+            
+            if let error = error {
+                self?.registerButton.setTitle("Log In", for: .normal)
+                self?.registerButton.isUserInteractionEnabled = true
+                self?.parent?.showMessage(error.localizedDescription, type: .error)
+                return
+            }
+            
+            self?.registerButton.setTitle("Success", for: .normal)
+            NotificationCenter.default.post(name: NSNotification.Name("LoginStatusChanged"), object: nil)
+            
+            self?.parent?.showMessage("Successfully registered!", type: .success)
+            
+            Threading.run(on: .main, after: 0.4) {
+                self?.parent?.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func didStartEditingField(_ sender: UITextField) {

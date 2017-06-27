@@ -26,7 +26,7 @@ class Networking {
             parameters: parameters,
             encoding: encoding,
             headers: headers
-        ).validate().response(completionHandler: completion)
+        ).response(completionHandler: completion)
     }
     
     static func requestJSON(_ url: String,

@@ -68,6 +68,63 @@ class User {
         }
     }
     
+    class func register(username: String, password: String, email: String, callback: @escaping ((Error?) -> Void)) {
+        let registerDetails: Parameters = [
+            "username": username,
+            "password": password,
+            "email": email
+        ]
+        
+        Networking.request("/api/v1/register", method: .post, parameters: registerDetails) { response in
+            // Check for Alamofire error, and return that immediately
+            if let error = response.error {
+                Answers.logSignUp(withMethod: "App", success: false, customAttributes: [
+                    "error": "Alamofire: \(error.localizedDescription)"
+                ])
+                callback(RobotError.requestFailure(original: error))
+                return
+            }
+            
+            // Ensure the response has some data
+            guard let data = response.data else {
+                Answers.logSignUp(withMethod: "App", success: false, customAttributes: [
+                    "error": "No Response Data"
+                ])
+                callback(RobotError.noData)
+                return
+            }
+            
+            // Create JSON object
+            let json = JSON(data)
+            
+            if var error = json["error"].string {
+                let mapping = [
+                    "username already exists": "Username already exists!",
+                ]
+                
+                error = mapping[error] ?? error
+                Answers.logSignUp(withMethod: "App", success: false, customAttributes: [
+                    "error": "API Error: \(error)"
+                ])
+                callback(RobotError.apiFailure(message: error))
+                return
+            }
+            
+            guard let user = CurrentUser(json: json) else {
+                Answers.logSignUp(withMethod: "App", success: false, customAttributes: [
+                    "error": "Parse User Failure"
+                ])
+                callback(RobotError.parseFailure)
+                return
+            }
+            
+            user.load { _, error in
+                Answers.logSignUp(withMethod: "App", success: true, customAttributes: nil)
+                callback(error)
+            }
+        }
+    }
+    
     class func get(name: String) -> User? {
         if let user = Socket.shared.users.first(where: { $0.username == name }) {
             return user
@@ -182,8 +239,8 @@ class CurrentUser: User {
             let json = JSON(data)
             
             // Check API had no errors
-            if json["error"].string != nil {
-                callback(RobotError.apiFailure)
+            if let error = json["error"].string {
+                callback(RobotError.apiFailure(message: error))
                 return
             }
             

@@ -34,8 +34,8 @@ extension CurrentUser {
             
             let json = JSON(data)
             
-            if json["error"].string != nil {
-                callback(RobotError.apiFailure)
+            if let error = json["error"].string {
+                callback(RobotError.apiFailure(message: error))
                 return
             }
             
