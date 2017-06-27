@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,6 +23,9 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="didStartEditingField:" destination="Wie-lp-YFl" eventType="editingDidBegin" id="y0v-8a-ytx"/>
+                    </connections>
                 </textField>
                 <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3G-7i-PfN">
                     <rect key="frame" x="24" y="64" width="327" height="1"/>
@@ -47,6 +50,9 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                    <connections>
+                        <action selector="didStartEditingField:" destination="Wie-lp-YFl" eventType="editingDidBegin" id="0cd-Lm-uYU"/>
+                    </connections>
                 </textField>
                 <view alpha="0.30000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeK-pB-0HM">
                     <rect key="frame" x="24" y="137" width="327" height="1"/>
@@ -72,6 +78,9 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" secureTextEntry="YES"/>
+                    <connections>
+                        <action selector="didStartEditingField:" destination="Wie-lp-YFl" eventType="editingDidBegin" id="z0F-FO-Ajp"/>
+                    </connections>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKm-SP-icU">
                     <rect key="frame" x="24" y="179" width="42.5" height="22"/>
@@ -103,6 +112,9 @@
                             <integer key="value" value="4"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="didPressRegister" destination="Wie-lp-YFl" eventType="touchUpInside" id="BQY-qa-NbH"/>
+                    </connections>
                 </button>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4yD-x6-vwt">
                     <rect key="frame" x="178" y="250" width="20" height="20"/>
@@ -148,6 +160,22 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="emailField" destination="6lv-Sa-Ft5" id="V5E-ve-DNY"/>
+                <outlet property="emailIndicator" destination="egF-64-gcz" id="ZoV-LL-l3e"/>
+                <outlet property="emailLabel" destination="jKm-SP-icU" id="AEE-xJ-6QE"/>
+                <outlet property="emailLabelCenterYConstraint" destination="kgP-3G-pal" id="Kyv-aU-YqD"/>
+                <outlet property="passwordField" destination="1Hv-HN-SNL" id="kMh-w3-WHu"/>
+                <outlet property="passwordIndicator" destination="aeK-pB-0HM" id="WQW-ud-UIo"/>
+                <outlet property="passwordLabel" destination="Dbf-Iq-KyF" id="cjT-N7-3dK"/>
+                <outlet property="passwordLabelCenterYConstraint" destination="clh-RC-Wmc" id="67l-tc-vcO"/>
+                <outlet property="registerButton" destination="CBs-Nh-NXt" id="5pw-ZM-9I2"/>
+                <outlet property="registerIndicator" destination="4yD-x6-vwt" id="ne5-Cg-3kH"/>
+                <outlet property="usernameField" destination="tcC-Gs-AN9" id="YjQ-K7-luq"/>
+                <outlet property="usernameIndicator" destination="s3G-7i-PfN" id="hPg-Qi-nRz"/>
+                <outlet property="usernameLabel" destination="mLX-dG-sHg" id="smj-w4-mEc"/>
+                <outlet property="usernameLabelCenterYConstraint" destination="tKK-HA-ycz" id="bY0-zc-wFY"/>
+            </connections>
             <point key="canvasLocation" x="494.5" y="-73"/>
         </view>
         <view contentMode="scaleToFill" id="Mdb-9L-iQa" customClass="ForgottenPasswordForm" customModule="RunMyRobot" customModuleProvider="target">
