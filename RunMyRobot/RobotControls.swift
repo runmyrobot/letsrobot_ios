@@ -11,13 +11,11 @@ import SnapKit
 
 class RobotControls: UIView {
 
+    @IBOutlet var tableView: UITableView!
+    
     var robot: Robot!
     
-    /// Timer used to send out continous socket messages when holding down a direction
-    var touchDownTimer: Timer?
-    
-    /// Last direction touched down on, used in conjuction with the timer to send out continous socket messages.
-    var touchDownDirection: RobotCommand?
+    var panels: [ButtonPanel]!
     
     class func create(for robot: Robot) -> RobotControls {
         let nib = UINib(nibName: "RobotControls", bundle: nil)
@@ -27,13 +25,10 @@ class RobotControls: UIView {
         }
         
         controls.robot = robot
-        
-        for view in controls.subviews {
-            guard view is ControlArrowButton else { continue }
-            view.backgroundColor = .clear
-        }
+        controls.panels = robot.getControlPanels()
         
         robot.controls = controls
+        controls.updateControls()
         return controls
     }
     
@@ -49,96 +44,60 @@ class RobotControls: UIView {
                 self?.updateControls()
             }
         }
+        
+        setupTableView()
     }
     
-    func updateControls() {
-        for view in subviews {
-            guard let arrow = view as? ControlArrowButton else { continue }
-            guard let buttonCommand = command(from: view.tag) else { continue }
-            
-            switch buttonCommand {
-            case .forward:
-                arrow.useWhiteBorder = robot.currentCommand == RobotCommand.forward.rawValue
-            case .backward:
-                arrow.useWhiteBorder = robot.currentCommand == RobotCommand.backward.rawValue
-            case .left:
-                arrow.useWhiteBorder = robot.currentCommand == RobotCommand.left.rawValue
-            case .right:
-                arrow.useWhiteBorder = robot.currentCommand == RobotCommand.right.rawValue
-            default:
-                break
-            }
-            
-            arrow.setNeedsDisplay()
-        }
+    func setupTableView() {
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(UINib(nibName: "RobotControlGroupTableViewCell", bundle: nil), forCellReuseIdentifier: "ButtonPanelCell")
+        tableView.dataSource = self
     }
     
     func flashCommand(_ command: String) {
-        let tag: Int = {
-            switch command {
-            case "F":
-                return 1
-            case "B":
-                return 2
-            case "L":
-                return 3
-            case "R":
-                return 4
-            default:
-                return 0
+        guard let cells = tableView.visibleCells as? [RobotControlGroupTableViewCell] else { return }
+        
+        for cell in cells {
+            guard let tagView = cell.tagView(from: command) else { continue }
+            tagView.isSelected = true
+            
+            Threading.run(on: .main, after: 0.1) {
+                tagView.isSelected = false
             }
-        }()
-        
-        guard let arrow = viewWithTag(tag) as? ControlArrowButton else { return }
-        arrow.useSelectedColor = true
-        arrow.setNeedsDisplay()
-        
-        Threading.run(on: .main, after: 0.1) {
-            arrow.useSelectedColor = false
-            arrow.setNeedsDisplay()
         }
     }
     
-    @IBAction func didPressDirection(_ sender: UIButton) {
-        guard let direction = command(from: sender.tag) else { return }
+    func updateControls() {
+        guard let cells = tableView.visibleCells as? [RobotControlGroupTableViewCell] else { return }
         
-        // Setup a timer which will be used to send out continous direction requests via the socket
-        // This allows the user to hold down a direction and continue moving
-        touchDownDirection = direction
-        touchDownTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(didHoldDirection), userInfo: nil, repeats: true)
-        
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
-    }
-    
-    @IBAction func didReleaseDirection(_ sender: UIButton) {
-        guard let direction = command(from: sender.tag) else { return }
-        
-        // Clean up the timer and cancel any future runs
-        touchDownTimer?.invalidate()
-        touchDownTimer = nil
-        touchDownDirection = nil
-        
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "up")
-    }
-    
-    func didHoldDirection() {
-        guard let direction = touchDownDirection else { return }
-        Socket.shared.sendDirection(direction, robot: robot, keyPosition: "down")
-    }
-    
-    func command(from tag: Int) -> RobotCommand? {
-        switch tag {
-        case 1:
-            return .forward
-        case 2:
-            return .backward
-        case 3:
-            return .left
-        case 4:
-            return .right
-        default:
-            return nil
+        for cell in cells {
+            for tagView in cell.tagView.tagViews {
+                if robot.currentCommand != nil, cell.command(from: tagView) == robot.currentCommand {
+                    tagView.borderColor = .white
+                    tagView.borderWidth = 2
+                } else {
+                    tagView.borderColor = tagView.tagBackgroundColor.darker(by: 5)
+                    tagView.borderWidth = 1
+                }
+            }
         }
     }
+}
 
+extension RobotControls: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return panels.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonPanelCell", for: indexPath) as? RobotControlGroupTableViewCell else {
+            fatalError()
+        }
+        
+        cell.robot = robot
+        cell.setControls(panel: panels[indexPath.item])
+        return cell
+    }
 }

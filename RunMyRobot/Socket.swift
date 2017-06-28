@@ -130,6 +130,8 @@ class Socket {
                     
                     let count = json["users"].dictionaryObject?.count ?? 0
                     guard let command = json["command"].string else { return }
+                    // This won't actually work long term as we need to get the colour out as well
+                    // Currently unused (v2)
                     robot.pips[command] = count
                     robot.updateControls?()
                 }
@@ -310,7 +312,7 @@ class Socket {
         }
     }
     
-    func sendDirection(_ command: RobotCommand, robot: Robot, keyPosition: String) {
+    func sendDirection(_ command: String, robot: Robot, keyPosition: String) {
         guard socket?.engine?.connected == true else { return }
         
         if robot.isAnonymousControlEnabled == false && !CurrentUser.loggedIn {
@@ -319,7 +321,7 @@ class Socket {
         }
         
         var dict = [
-            "command": command.rawValue,
+            "command": command,
             "_id": robot.id,
             "key_position": keyPosition,
             "timestamp": formatter.string(from: Date()),

@@ -5,7 +5,6 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,112 +14,23 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="343"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGY-25-uxy" userLabel="Up" customClass="ControlArrowButton" customModule="RunMyRobot" customModuleProvider="target">
-                    <rect key="frame" x="137" y="39.5" width="100" height="120"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="30"/>
-                    <state key="normal" title="Forward">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="arrowDirection" value="down"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="didPressDirection:" destination="f06-Se-oIC" eventType="touchDown" id="z3v-zS-gm3"/>
-                        <action selector="didReleaseDirection:" destination="f06-Se-oIC" eventType="touchUpInside" id="VMj-J7-VrX"/>
-                        <action selector="didReleaseDirection:" destination="f06-Se-oIC" eventType="touchUpOutside" id="e7F-8l-ijk"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgc-mb-F63" userLabel="Down" customClass="ControlArrowButton" customModule="RunMyRobot" customModuleProvider="target">
-                    <rect key="frame" x="137" y="183.5" width="100" height="120"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="120" id="IXf-k7-Fjy"/>
-                        <constraint firstAttribute="width" constant="100" id="Zg8-Ta-njf"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <inset key="titleEdgeInsets" minX="0.0" minY="30" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="Backwards">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="arrowDirection" value="up"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="didPressDirection:" destination="f06-Se-oIC" eventType="touchDown" id="3xk-B7-Kz1"/>
-                        <action selector="didReleaseDirection:" destination="f06-Se-oIC" eventType="touchUpOutside" id="9pX-Za-nHM"/>
-                        <action selector="didReleaseDirection:" destination="f06-Se-oIC" eventType="touchUpInside" id="slA-cq-AGW"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NfQ-xx-BOm" userLabel="Left" customClass="ControlArrowButton" customModule="RunMyRobot" customModuleProvider="target">
-                    <rect key="frame" x="55" y="122" width="120" height="100"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="Turn Left">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="arrowDirection" value="right"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="didPressDirection:" destination="f06-Se-oIC" eventType="touchDown" id="7EI-7x-9NY"/>
-                        <action selector="didReleaseDirection:" destination="f06-Se-oIC" eventType="touchUpOutside" id="PFF-qL-qwk"/>
-                        <action selector="didReleaseDirection:" destination="f06-Se-oIC" eventType="touchUpInside" id="fZG-xn-AFH"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GhV-AR-Zms" userLabel="Right" customClass="ControlArrowButton" customModule="RunMyRobot" customModuleProvider="target">
-                    <rect key="frame" x="199" y="122" width="120" height="100"/>
-                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                    <state key="normal" title="Turn Right">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="arrowDirection" value="left"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="didPressDirection:" destination="f06-Se-oIC" eventType="touchDown" id="LQ5-13-vyN"/>
-                        <action selector="didReleaseDirection:" destination="f06-Se-oIC" eventType="touchUpOutside" id="Dyg-xo-meu"/>
-                        <action selector="didReleaseDirection:" destination="f06-Se-oIC" eventType="touchUpInside" id="b9T-nV-IoG"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D74-NI-jgY">
-                    <rect key="frame" x="179" y="163.5" width="16" height="16"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RCW-cR-y1Y">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="343"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="D74-NI-jgY" secondAttribute="height" multiplier="1:1" id="USG-CF-Wfs"/>
-                        <constraint firstAttribute="width" constant="16" id="ZlZ-hZ-2ZE"/>
-                    </constraints>
-                </view>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="fGY-25-uxy" firstAttribute="height" secondItem="Kgc-mb-F63" secondAttribute="height" id="1WH-FB-Pdz"/>
-                <constraint firstItem="fGY-25-uxy" firstAttribute="centerX" secondItem="D74-NI-jgY" secondAttribute="centerX" id="4Pj-Jd-ebN"/>
-                <constraint firstItem="D74-NI-jgY" firstAttribute="top" secondItem="fGY-25-uxy" secondAttribute="bottom" constant="4" id="7em-wS-NYp"/>
-                <constraint firstItem="D74-NI-jgY" firstAttribute="centerX" secondItem="f06-Se-oIC" secondAttribute="centerX" id="M33-38-eEJ"/>
-                <constraint firstItem="D74-NI-jgY" firstAttribute="centerY" secondItem="f06-Se-oIC" secondAttribute="centerY" id="P6Z-V8-AfU"/>
-                <constraint firstItem="fGY-25-uxy" firstAttribute="width" secondItem="Kgc-mb-F63" secondAttribute="width" id="P96-b9-Bwg"/>
-                <constraint firstItem="Kgc-mb-F63" firstAttribute="centerX" secondItem="D74-NI-jgY" secondAttribute="centerX" id="Rnt-JU-AxL"/>
-                <constraint firstItem="GhV-AR-Zms" firstAttribute="height" secondItem="Kgc-mb-F63" secondAttribute="width" id="aF6-jm-8zn"/>
-                <constraint firstItem="Kgc-mb-F63" firstAttribute="top" secondItem="D74-NI-jgY" secondAttribute="bottom" constant="4" id="cVI-Nu-lN8"/>
-                <constraint firstItem="GhV-AR-Zms" firstAttribute="width" secondItem="Kgc-mb-F63" secondAttribute="height" id="dWH-Bq-k52"/>
-                <constraint firstItem="GhV-AR-Zms" firstAttribute="leading" secondItem="D74-NI-jgY" secondAttribute="trailing" constant="4" id="dq6-GA-5lG"/>
-                <constraint firstItem="NfQ-xx-BOm" firstAttribute="width" secondItem="Kgc-mb-F63" secondAttribute="height" id="eTZ-5J-peZ"/>
-                <constraint firstItem="D74-NI-jgY" firstAttribute="leading" secondItem="NfQ-xx-BOm" secondAttribute="trailing" constant="4" id="fLo-0Z-fSY"/>
-                <constraint firstItem="GhV-AR-Zms" firstAttribute="centerY" secondItem="D74-NI-jgY" secondAttribute="centerY" id="gGW-Q4-Kuv"/>
-                <constraint firstItem="NfQ-xx-BOm" firstAttribute="height" secondItem="Kgc-mb-F63" secondAttribute="width" id="xGg-Ve-hWK"/>
-                <constraint firstItem="NfQ-xx-BOm" firstAttribute="centerY" secondItem="D74-NI-jgY" secondAttribute="centerY" id="zPA-C2-4CN"/>
+                <constraint firstItem="RCW-cR-y1Y" firstAttribute="leading" secondItem="f06-Se-oIC" secondAttribute="leading" id="Ln3-lx-vOU"/>
+                <constraint firstAttribute="trailing" secondItem="RCW-cR-y1Y" secondAttribute="trailing" id="TKR-tg-bok"/>
+                <constraint firstAttribute="bottom" secondItem="RCW-cR-y1Y" secondAttribute="bottom" id="hgT-qG-3YI"/>
+                <constraint firstItem="RCW-cR-y1Y" firstAttribute="top" secondItem="f06-Se-oIC" secondAttribute="top" id="k95-H9-f9E"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="tableView" destination="RCW-cR-y1Y" id="NtE-Ak-Frh"/>
+            </connections>
             <point key="canvasLocation" x="13.5" y="980.5"/>
         </view>
     </objects>

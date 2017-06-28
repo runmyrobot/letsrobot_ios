@@ -245,7 +245,7 @@ class StreamViewController: UIViewController {
         guard let robotId = notification.userInfo?["robot_id"] as? String else { return }
         guard robotId == robot.id else { return }
         
-        showMessage("\(robot.name) just went \(robot.live ? "online" : "offline")!", type: .info)
+        showMessage("\(robot.name) just went \(robot.live ? "online" : "offline")!", type: .info, options: [.autoHide(false)])
     }
     
     func setCameraControlsVisible(_ visible: Bool, animated: Bool = true) {

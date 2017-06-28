@@ -29,7 +29,7 @@ class Robot {
     var description: String?
     
     /// Array of custom button panels (Requires download; still may be nil if they use default panels)
-    var panels: [ButtonPanel]?
+    private var panels: [ButtonPanel]?
     
     var subscribers = [String]()
     var updateSubscribers: (() -> Void)?
@@ -88,6 +88,14 @@ class Robot {
         self.isDevMode = json["dev_mode"].bool ?? false
         self.isGlobalChat = !(json["non_global_chat"].bool ?? false)
         self.owner = json["owner"].string
+    }
+    
+    func getControlPanels() -> [ButtonPanel] {
+        if let panels = panels {
+            return panels
+        }
+        
+        return [ButtonPanel.defaultPanel]
     }
     
     /// Downloads the full feed of information for this robot, some values are only accessible once the download has happened
@@ -261,6 +269,18 @@ struct ButtonPanel {
             buttons.append(Button(label: label, command: command))
         }
     }
+    
+    init(title: String, buttons: [Button]) {
+        self.title = title
+        self.buttons = buttons
+    }
+    
+    static let defaultPanel = ButtonPanel(title: "Default Controls", buttons: [
+        Button(label: "Left", command: "L"),
+        Button(label: "Right", command: "R"),
+        Button(label: "Forward", command: "F"),
+        Button(label: "Backwards", command: "B")
+    ])
 }
 
 enum RobotSettings: String {
