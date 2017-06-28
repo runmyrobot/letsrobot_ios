@@ -284,22 +284,26 @@ class Socket {
                 }
             }
             
-            socket?.on("global_users_list") { (data, _) in
+            socket?.on("channel_users_list") { (data, _) in
                 guard let data = data.first, let userJSON = JSON(data).dictionary else { return }
                 
                 var builder = [User]()
-                for userJSON in Array(userJSON.values) {
-                    let username = userJSON["user", "username"].stringValue
-                    
-                    let user = User(username: username)
-                    user.currentRobotId = userJSON["robot_id"].string
-                    user.anonymous = userJSON["user", "anonymous"].bool ?? false
-                    
-                    if let avatar = userJSON["user", "avatar", "thumbnail"].string {
-                        user.avatarUrl = URL(string: avatar)
+                
+                // Underscore here is the user's "channel" (either "global", or the owner of the bot)
+                for (_, value) in userJSON {
+                    for singleUser in Array(value.dictionaryValue.values) {
+                        let username = singleUser["user", "username"].stringValue
+    
+                        let user = User(username: username)
+                        user.currentRobotId = singleUser["robot_id"].string
+                        user.anonymous = singleUser["user", "anonymous"].bool ?? false
+    
+                        if let avatar = singleUser["user", "avatar", "thumbnail"].string {
+                            user.avatarUrl = URL(string: avatar)
+                        }
+                        
+                        builder.append(user)
                     }
-                    
-                    builder.append(user)
                 }
                 
                 self.users = builder
