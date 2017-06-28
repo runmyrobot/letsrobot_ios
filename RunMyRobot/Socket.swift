@@ -332,6 +332,11 @@ class Socket {
     func sendDirection(_ command: RobotCommand, robot: Robot, keyPosition: String) {
         guard socket?.engine?.connected == true else { return }
         
+        if robot.isAnonymousControlEnabled == false && !CurrentUser.loggedIn {
+            print("Anonymous user tried to send direction!")
+            return
+        }
+        
         var dict = [
             "command": command.rawValue,
             "_id": robot.id,

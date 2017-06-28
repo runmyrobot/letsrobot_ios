@@ -92,6 +92,14 @@ extension StreamViewController {
         let desiredView = sender.tag
         guard activeView != desiredView else { return }
         
+        if desiredView == 2 && !CurrentUser.loggedIn && robot.isAnonymousControlEnabled == false {
+            let modal = LoginErrorModalViewController.create()
+            
+            let popup = PopupDialog(viewController: modal, transitionStyle: .zoomIn)
+            present(popup, animated: true, completion: nil)
+            return
+        }
+        
         view.endEditing(true)
         activeView = desiredView
         
