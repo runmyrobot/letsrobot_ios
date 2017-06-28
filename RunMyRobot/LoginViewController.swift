@@ -24,10 +24,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         pagerView.isScrollEnabled = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         changePage(startPage, animated: false)
     }
     
@@ -40,7 +36,7 @@ class LoginViewController: UIViewController {
     }
     
     func changePage(_ index: Int, animated: Bool) {
-        pagerView.showPage(at: index, animated: animated)
+        pagerView.showPage(at: mapTag(index), animated: animated)
         
         let titles = ["Login", "Register", "Forgotten Password"]
         titleLabel.setTitle(titles[index].uppercased(), for: .disabled)
@@ -71,6 +67,21 @@ class LoginViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    func mapTag(_ tag: Int) -> Int {
+        if startPage == 1 {
+            switch tag {
+            case 0:
+                return 1
+            case 1:
+                return 0
+            default:
+                return tag
+            }
+        }
+        
+        return tag
+    }
 }
 
 extension LoginViewController: MXPagerViewDataSource, MXPagerViewDelegate {
@@ -82,9 +93,9 @@ extension LoginViewController: MXPagerViewDataSource, MXPagerViewDelegate {
     func pagerView(_ pagerView: MXPagerView, viewForPageAt index: Int) -> UIView? {
         switch index {
         case 0:
-            return LoginForm.create(parent: self)
+            return startPage == 0 ? LoginForm.create(parent: self) : RegisterForm.create(parent: self)
         case 1:
-            return RegisterForm.create(parent: self)
+            return startPage == 0 ? RegisterForm.create(parent: self) : LoginForm.create(parent: self)
         case 2:
             return ForgottenPasswordForm.create(parent: self)
         default:
