@@ -19,6 +19,7 @@ target 'RunMyRobot' do
   pod 'SlideMenuControllerSwift'
   pod 'PopupDialog', '~> 0.5'
   pod 'GMStepper'
+  pod 'TagListView', '~> 1.0'
 
   # Code Analysis & Standards
   pod 'SwiftLint'

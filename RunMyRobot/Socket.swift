@@ -148,15 +148,6 @@ class Socket {
                     robot.currentCommand = command == "stop" ? nil : command
                     robot.updateControls?()
                 }
-                
-                /*
-                 On the provided robot, only the given command should be highlighted. All others should not be highlighted.
-                 
-                 {
-                    "command" : "R", - Can also be "stop"
-                    "robot_id" : "11467183"
-                 }
-                */
             }
             
             socket?.on("account_robits") { (data, _) in
@@ -206,20 +197,6 @@ class Socket {
                         robot.controls?.flashCommand(command)
                     }
                 }
-                
-                /*
-                 Probably only want to flash the button if the user is me?
-                 
-                 {
-                     "key_position" : "down",
-                     "robot_id" : "11467183",
-                     "_id" : "11467183",
-                     "user" : "Sherlouk",
-                     "robot_name" : "PonyBot",
-                     "command" : "R",
-                     "timestamp" : "2017-06-14T14:15:24.873Z"
-                 }
-                 */
             }
             
             socket?.on("news") { (data, _) in

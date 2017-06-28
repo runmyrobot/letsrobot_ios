@@ -99,7 +99,7 @@ class User {
             
             if var error = json["error"].string {
                 let mapping = [
-                    "username already exists": "Username already exists!",
+                    "username already exists": "Username already exists!"
                 ]
                 
                 error = mapping[error] ?? error
