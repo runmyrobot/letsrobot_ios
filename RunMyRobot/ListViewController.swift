@@ -48,6 +48,14 @@ class ListViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateRobots), name: NSNotification.Name("LoginStatusChanged"), object: nil)
         
         Socket.shared.showConnectionMessages = true
+        
+        if let appDelegate = AppDelegate.current {
+            appDelegate.postponeLinks = false
+            
+            if let postponeUrl = appDelegate.router.postponeURL {
+                appDelegate.router.handle(postponeUrl)
+            }
+        }
     }
     
     func updateRobots() {

@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate, OSPe
     var appId: String?
     var window: UIWindow?
     var router = Router()
+    var postponeLinks = true
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // BrainTree Payments

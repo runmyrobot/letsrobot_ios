@@ -112,6 +112,12 @@ class StreamViewController: UIViewController {
         view.bringSubview(toFront: loadingViewContainer)
         view.bringSubview(toFront: backButton)
         
+        if robot == nil {
+            loadingMessageLabel.text = "Could not find the robot specified!"
+            chatTableView.dataSource = nil
+            return
+        }
+        
         robot.download { [weak self] success in
             guard success else {
                 self?.loadingMessageLabel.text = "Error Loading Robot :("
@@ -187,6 +193,7 @@ class StreamViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        guard robot != nil else { return }
         
         chatTextField.attributedPlaceholder = NSAttributedString(string: "Type your text here...", attributes: [
             NSForegroundColorAttributeName: UIColor.white.withAlphaComponent(0.8)
@@ -216,9 +223,9 @@ class StreamViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
         Socket.shared.chat.chatCallback = nil
-        robot.updateSubscribers = nil
-        robot.updateControls = nil
-        robot.controls = nil
+        robot?.updateSubscribers = nil
+        robot?.updateControls = nil
+        robot?.controls = nil
         cameraWebView.stopLoading()
         cameraWebView.delegate = nil
         cameraWebView.removeFromSuperview()

@@ -15,7 +15,11 @@ extension StreamViewController {
     
     @IBAction func didPressBack() {
         Threading.run(on: .main) {
-            _ = self.navigationController?.popViewController(animated: true)
+            if let navController = self.navigationController {
+                _ = navController.popViewController(animated: true)
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
