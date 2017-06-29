@@ -22,4 +22,10 @@ extension UserDefaults {
         set { set(!newValue, forKey: #function) }
     }
     
+    /// Stores whether the current device should receive "Go Live" notifications
+    var goLiveNotifications: Bool {
+        get { return !bool(forKey: #function) }
+        set { set(!newValue, forKey: #function); User.current?.syncNotificationTags() }
+    }
+    
 }

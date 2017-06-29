@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import Crashlytics
+import OneSignal
 
 class User {
     /// Current signed in user
@@ -215,6 +216,9 @@ class CurrentUser: User {
             // Update UI
             NotificationCenter.default.post(name: NSNotification.Name("LoginStatusChanged"), object: nil)
             
+            // Remove Tags
+            self.syncNotificationTags()
+            
             // Callback for additional functionality
             callback?()
         }
@@ -363,7 +367,38 @@ class CurrentUser: User {
                 }
             }
             
+            self.syncNotificationTags()
             callback(self, nil)
+        }
+    }
+    
+    func syncNotificationTags() {
+        OneSignal.getTags { (tags) in
+            guard let tags = tags else { return }
+            
+            // If the user has signed out, this will clear all their tags
+            if User.current == nil {
+                OneSignal.deleteTags(tags.map({ $0.key }))
+                return
+            }
+            
+            print(tags)
+            
+            // Clear out all subscription tags
+            let robotSubscriptions = tags.filter({ ($0.key as? String)?.contains("subscribed_") == true }).map({ $0.key })
+            OneSignal.deleteTags(robotSubscriptions)
+            
+            // Build a dictionary of the user's subscriptions
+            var builder = [AnyHashable: Any]()
+            for robot in self.subscriptions {
+                builder["subscribed_\(robot.id)"] = "true"
+            }
+            
+            // Add standard tags
+            builder["live_notifications"] = UserDefaults.standard.goLiveNotifications ? "true" : ""
+            
+            // Send the tags back to OneSignal
+            OneSignal.sendTags(builder)
         }
     }
 }

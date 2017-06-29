@@ -27,7 +27,7 @@ class UserSettingsListProvider: SettingsListViewProvider {
     }
     
     var cellCount: Int {
-        return 8
+        return 7
     }
     
     func cellInfo(for index: Int) -> [String : Any] {
@@ -58,14 +58,13 @@ class UserSettingsListProvider: SettingsListViewProvider {
                 "type": "title"
             ],
             [
-                "title": "GLOBAL NOTIFICATIONS",
-                "subtitle": "Manual notifications by site administrators when special events begin!",
-                "type": "toggle"
-            ],
-            [
                 "title": "GO LIVE NOTIFICATIONS",
                 "subtitle": "You will be notified when a robot you're subscribed to goes live!",
-                "type": "toggle"
+                "type": "toggle",
+                "value": UserDefaults.standard.goLiveNotifications,
+                "callback": { (value: Bool) in
+                    UserDefaults.standard.goLiveNotifications = value
+                }
             ],
             [
                 "title": "Privacy",
