@@ -29,12 +29,12 @@
 			<string>BrainTree Payments</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>uk.sherlo.letsrobot.payments</string>
+				<string>tv.letsrobot.client.ios.payments</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>100000</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

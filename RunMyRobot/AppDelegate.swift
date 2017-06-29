@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        BTAppSwitch.setReturnURLScheme("uk.sherlo.letsrobot.payments")
+        BTAppSwitch.setReturnURLScheme("tv.letsrobot.client.ios.payments")
         
         Crashlytics.sharedInstance().delegate = self
         Fabric.with([Crashlytics.self])
@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        if url.scheme?.localizedCaseInsensitiveCompare("uk.sherlo.letsrobot.payments") == .orderedSame {
+        if url.scheme?.localizedCaseInsensitiveCompare("tv.letsrobot.client.ios.payments") == .orderedSame {
             return BTAppSwitch.handleOpen(url, options: options)
         }
         
