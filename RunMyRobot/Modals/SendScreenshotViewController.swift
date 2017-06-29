@@ -8,6 +8,7 @@
 
 import UIKit
 import GSMessages
+import Crashlytics
 
 class SendScreenshotViewController: UIViewController {
 
@@ -61,6 +62,8 @@ class SendScreenshotViewController: UIViewController {
                 } else {
                     self.messageViewController?.showMessage("Screenshot has been sent!", type: .success)
                 }
+                
+                Answers.logCustomEvent(withName: "Snapshot Sent", customAttributes: ["success": error == nil])
             }
         }
     }

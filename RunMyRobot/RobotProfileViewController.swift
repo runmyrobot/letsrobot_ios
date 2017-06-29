@@ -8,6 +8,7 @@
 
 import UIKit
 import Nuke
+import Crashlytics
 
 class RobotProfileViewController: UIViewController {
 
@@ -58,6 +59,8 @@ class RobotProfileViewController: UIViewController {
         } else {
             lastActivityLabel.text = "Last Activity: Unknown"
         }
+        
+        Answers.logContentView(withName: "Viewed Robot Profile", contentType: "robot_profile", contentId: robot.id)
     }
     
     @IBAction func didPressClose() {

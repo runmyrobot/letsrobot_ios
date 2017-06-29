@@ -8,6 +8,7 @@
 
 import UIKit
 import GMStepper
+import Crashlytics
 
 class PurchaseRobitsViewController: UIViewController {
 
@@ -140,10 +141,16 @@ class PurchaseRobitsViewController: UIViewController {
                     print(error)
                     self.view.showMessage("Something went wrong!", type: .error)
                 }
+                
+                Answers.logPurchase(withPrice: NSDecimalNumber(string: product.price), currency: "USD", success: NSNumber(value: false),
+                                    itemName: product.name, itemType: "robits", itemId: product.name)
                 return
             }
             
             self.view.showMessage("\(robitCount) robits purchased successfully!", type: .success)
+            
+            Answers.logPurchase(withPrice: NSDecimalNumber(string: product.price), currency: "USD", success: NSNumber(value: true),
+                                itemName: product.name, itemType: "robits", itemId: product.name)
         }
     }
     
