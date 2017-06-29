@@ -100,6 +100,11 @@ extension StreamViewController {
             return
         }
         
+        if desiredView == 2 && robot.isDevMode == true && User.current?.username != robot.owner {
+            showMessage("This robot is in development mode and can not be controlled!", type: .error, options: [.textNumberOfLines(0)])
+            return
+        }
+        
         view.endEditing(true)
         activeView = desiredView
         
