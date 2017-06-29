@@ -42,6 +42,7 @@ PODS:
   - GSMessages (1.3.4)
   - MXPagerView (0.2.1)
   - Nuke (5.1)
+  - OneSignal (2.5.4)
   - PopupDialog (0.5.4)
   - ReverseExtension (0.4.8)
   - SlideMenuControllerSwift (3.0.1)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - GSMessages
   - MXPagerView
   - Nuke (~> 5.0)
+  - OneSignal (< 3.0, >= 2.5.2)
   - PopupDialog (~> 0.5)
   - ReverseExtension
   - SlideMenuControllerSwift
@@ -85,6 +87,7 @@ SPEC CHECKSUMS:
   GSMessages: b26e37bb6017b11d61f2708684179d5e9495c063
   MXPagerView: ede184b5191b2ed689ccf05a750a9978cce42414
   Nuke: 8ab71e77f6a54ff5fb697f93537c35f419bb01f7
+  OneSignal: da994bcf6a2efbdceaf71e389e1d05245c562899
   PopupDialog: 75cf955693590b0cb2fdde00223fb65d99c57247
   ReverseExtension: 78dcc8414c4efb6115d787694649d9f4f020324a
   SlideMenuControllerSwift: 9a163b16d54afab734add42858cba7ef7c307755
@@ -96,6 +99,6 @@ SPEC CHECKSUMS:
   TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
   UIImageColors: ba833ce88773453e0a1065f29cde333a97865607
 
-PODFILE CHECKSUM: 00ea57ab91412c4fd755424337dcfc4f067c5451
+PODFILE CHECKSUM: 0a214947b2305333055fe5273b2d36d3950e1345
 
 COCOAPODS: 1.2.0

@@ -12,24 +12,36 @@ import Crashlytics
 import PopupDialog
 import Braintree
 import AVFoundation
+import OneSignal
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate, OSPermissionObserver {
 
     var appId: String?
     var window: UIWindow?
-
+    var router = Router()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // BrainTree Payments
         BTAppSwitch.setReturnURLScheme("tv.letsrobot.client.ios.payments")
         
+        // Crashlytics & Fabric
         Crashlytics.sharedInstance().delegate = self
         Fabric.with([Crashlytics.self])
         
+        // Push Notifications
+        setupPushNotifications(launchOptions)
+        
+        // Audio Settings
         try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         
         // Some things can be done on background thread as to not lock up the launching
         Threading.run(on: .background, after: 0) {
             self.setupDefaultAlert()
+        }
+        
+        if let url = launchOptions?[.url] as? URL {
+            return router.handle(url, source: launchOptions?[.sourceApplication] as? String)
         }
         
         return true
@@ -40,7 +52,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
             return BTAppSwitch.handleOpen(url, options: options)
         }
         
-        return false
+        return router.handle(url, source: options[.sourceApplication] as? String)
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb else { return false }
+        guard let url = userActivity.webpageURL else { return false }
+        
+        return router.handle(url, source: "continueUserActivity")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -129,6 +148,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
         if let url = URL(string: "itms-apps://itunes.apple.com/app/id\(appId)\(actionUrl)"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.openURL(url)
         }
+    }
+    
+    func setupPushNotifications(_ launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        let oneSignalInitSettings = [kOSSettingsKeyAutoPrompt: true,
+                                     kOSSettingsKeyInAppLaunchURL: true,
+                                     kOSSettingsKeyInAppAlerts: false]
+        
+        let notificationReceived: OSHandleNotificationReceivedBlock = { notification in
+            print(notification?.payload.title ?? "Unknown Title")
+        }
+        
+        let notificationActioned: OSHandleNotificationActionBlock = { result in
+            // Need to work out how to detect the URL from the payload.
+            print(result?.notification.payload.launchURL ?? "hmm")
+            print(result?.notification.payload.title ?? "Unknown Title")
+        }
+        
+        OneSignal.initWithLaunchOptions(launchOptions, appId: "db6a356a-83f6-4cc5-b751-3b54978a8f67",
+                                        handleNotificationReceived: notificationReceived,
+                                        handleNotificationAction: notificationActioned,
+                                        settings: oneSignalInitSettings)
+        
+        OneSignal.inFocusDisplayType = .notification
+        OneSignal.add(self as OSPermissionObserver)
+    }
+    
+    func onOSPermissionChanged(_ stateChanges: OSPermissionStateChanges!) {
+        let authorised = OneSignal.getPermissionSubscriptionState().permissionStatus.status == .authorized
+        Crashlytics.sharedInstance().setBoolValue(authorised, forKey: "notifications_authorised")
     }
 }
 

@@ -26,10 +26,20 @@
 			<key>CFBundleURLIconFile</key>
 			<string></string>
 			<key>CFBundleURLName</key>
-			<string>BrainTree Payments</string>
+			<string>tv.letsrobot.client.ios.payments.braintree</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>tv.letsrobot.client.ios.payments</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>tv.letsrobot.client.ios.core</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>letsrobot</string>
 			</array>
 		</dict>
 	</array>
@@ -62,6 +72,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

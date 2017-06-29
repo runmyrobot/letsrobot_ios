@@ -32,4 +32,11 @@ target 'RunMyRobot' do
   pod 'Braintree'
   pod 'Braintree/Apple-Pay'
   pod 'BraintreeDropIn'
+
+  # Push Notifications
+  pod 'OneSignal', '>= 2.5.2', '< 3.0'
+end
+
+target 'RMRNotificationServiceExtension' do
+  pod 'OneSignal', '>= 2.5.2', '< 3.0'
 end
