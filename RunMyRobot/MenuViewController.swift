@@ -26,8 +26,8 @@ class MenuViewController: UIViewController {
             ("Join Discord", "Social/discord", "ShowDiscord"),
             ("Follow Us", "Social/twitter", "ShowTwitter"),
             ("Reddit", "Social/reddit", "ShowReddit"),
-            ("Source Code", "Social/github", "ShowGitHub"),
-            ("Rules", "Menu/rules", "ShowRules")
+            ("Rules", "Menu/rules", "ShowRules"),
+            ("About", "Menu/about", "ShowAbout")
         ]
         
         if !CurrentUser.loggedIn {
@@ -145,6 +145,8 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             performSegue(withIdentifier: "ShowRules", sender: nil)
         case "ShowMyRobots":
             performSegue(withIdentifier: "ShowRobotSettings", sender: nil)
+        case "ShowAbout":
+            performSegue(withIdentifier: "ShowAbout", sender: nil)
         default:
             print("❓ Unknown Action: \(item.action)!")
         }

@@ -31,11 +31,10 @@ class LoaderViewController: UIViewController {
             let json = JSON(rawJSON)
             
             let appId = json["appStoreId"].stringValue
+            AppDelegate.current?.appId = appId
             
             let appStore = DefaultButton(title: "Go to App Store", dismissOnTap: false) {
-                if let url = URL(string: "itms-apps://itunes.apple.com/app/id\(appId)"), UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.openURL(url)
-                }
+                AppDelegate.current?.openAppStore()
             }
             
             let forcedEnabed = json["forcedUpdate", "enabled"].boolValue

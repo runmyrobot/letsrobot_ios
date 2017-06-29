@@ -16,6 +16,7 @@ import AVFoundation
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
 
+    var appId: String?
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -113,6 +114,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CrashlyticsDelegate {
     func crashlyticsDidDetectReport(forLastExecution report: CLSReport, completionHandler: @escaping (Bool) -> Void) {
         completionHandler(UserDefaults.standard.sendCrashReports)
     }
+    
+    func openAppStore(action: String? = nil) {
+        guard let appId = appId else { return }
+        
+        let actionUrl: String = {
+            if let action = action {
+                return "?action=\(action)"
+            }
+            
+            return ""
+        }()
+        
+        if let url = URL(string: "itms-apps://itunes.apple.com/app/id\(appId)\(actionUrl)"), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        }
+    }
+}
+
+extension AppDelegate {
+    
+    static var current: AppDelegate? {
+        return UIApplication.shared.delegate as? AppDelegate
+    }
+    
+    var appVersion: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+    
+    var appBuild: String? {
+        return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
+    }
+    
+    var currentVersionDescription: String? {
+        guard let version = appVersion, let build = appBuild else { return nil }
+        return "Version \(version), Build \(build)"
+    }
+    
 }
 
 func fabricLog(_ message: String) {

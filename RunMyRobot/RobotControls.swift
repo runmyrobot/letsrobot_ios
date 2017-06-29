@@ -73,7 +73,7 @@ class RobotControls: UIView {
         
         for cell in cells {
             for tagView in cell.tagView.tagViews {
-                if robot.currentCommand != nil, cell.command(from: tagView) == robot.currentCommand {
+                if robot?.currentCommand != nil, cell.command(from: tagView) == robot?.currentCommand {
                     tagView.borderColor = .white
                     tagView.borderWidth = 2
                 } else {
