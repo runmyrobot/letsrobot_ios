@@ -195,6 +195,10 @@ class CurrentUser: User {
             return .globalModerator
         }
         
+        if isOwner(of: robot) {
+            return .owner
+        }
+        
         if isModerator(for: robot) {
             return .moderator
         }
@@ -410,6 +414,7 @@ class CurrentUser: User {
 enum UserRole {
     case staff
     case globalModerator
+    case owner
     case moderator
     case subscriber
     case user

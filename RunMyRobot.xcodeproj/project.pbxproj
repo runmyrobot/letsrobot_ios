@@ -61,6 +61,7 @@
 		987DF39F1EE871730042539B /* HEXColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987DF39E1EE871730042539B /* HEXColor.swift */; };
 		987DF3A21EE875110042539B /* MenuListItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987DF3A11EE875110042539B /* MenuListItemCell.swift */; };
 		987DF3A41EE875EC0042539B /* DictionarySubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987DF3A31EE875EC0042539B /* DictionarySubscript.swift */; };
+		987E457C1F06522800E95DF8 /* Socket+Moderation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987E457B1F06522800E95DF8 /* Socket+Moderation.swift */; };
 		98878FF71EED51E40017B7F5 /* RobotSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98878FF61EED51E40017B7F5 /* RobotSettingsViewController.swift */; };
 		98878FFA1EED78E70017B7F5 /* SettingsListButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98878FF81EED78E70017B7F5 /* SettingsListButtonCell.swift */; };
 		98878FFB1EED78E70017B7F5 /* SettingsListButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98878FF91EED78E70017B7F5 /* SettingsListButtonCell.xib */; };
@@ -178,6 +179,7 @@
 		987DF39E1EE871730042539B /* HEXColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HEXColor.swift; sourceTree = "<group>"; };
 		987DF3A11EE875110042539B /* MenuListItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuListItemCell.swift; sourceTree = "<group>"; };
 		987DF3A31EE875EC0042539B /* DictionarySubscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionarySubscript.swift; sourceTree = "<group>"; };
+		987E457B1F06522800E95DF8 /* Socket+Moderation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Socket+Moderation.swift"; sourceTree = "<group>"; };
 		98878FF61EED51E40017B7F5 /* RobotSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotSettingsViewController.swift; sourceTree = "<group>"; };
 		98878FF81EED78E70017B7F5 /* SettingsListButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListButtonCell.swift; sourceTree = "<group>"; };
 		98878FF91EED78E70017B7F5 /* SettingsListButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListButtonCell.xib; sourceTree = "<group>"; };
@@ -278,14 +280,15 @@
 				9823E6B11EEC1F5300619964 /* Networking.swift */,
 				98B047851EF4244400D260FE /* Payment.swift */,
 				980ADD6D1EE43CD300B00B33 /* Robot.swift */,
+				984466CF1F053326005C8733 /* Router.swift */,
 				98B73C231EF2DB8900577D39 /* Snapshot.swift */,
 				98500C7F1EE0A57B00CFA446 /* Socket.swift */,
+				987E457B1F06522800E95DF8 /* Socket+Moderation.swift */,
 				980ADD741EE465F500B00B33 /* User.swift */,
 				988790021EEEE6490017B7F5 /* User+Authentication.swift */,
 				98B73C291EF4103A00577D39 /* User+Payments.swift */,
 				988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */,
 				9823E6AF1EEC1DFB00619964 /* UserDefaults.swift */,
-				984466CF1F053326005C8733 /* Router.swift */,
 			);
 			name = Business;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */,
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
 				9823E6CA1EED2CAC00619964 /* Chat.swift in Sources */,
+				987E457C1F06522800E95DF8 /* Socket+Moderation.swift in Sources */,
 				98878FF71EED51E40017B7F5 /* RobotSettingsViewController.swift in Sources */,
 				9823E6C71EEC818900619964 /* SettingsListTitleCell.swift in Sources */,
 				980ADD561EE2BFD200B00B33 /* LoaderViewController.swift in Sources */,
