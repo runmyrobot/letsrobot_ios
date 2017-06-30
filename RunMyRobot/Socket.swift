@@ -69,7 +69,7 @@ class Socket {
                 print("♻︎ [SOCKET] Reconnect", data, ack)
                 
                 if self.showConnectionMessages {
-                    self.viewController?.showMessage("Socket Reconnecting", type: .info)
+                    self.viewController?.showMessage("Socket Reconnecting", type: .info, options: [.autoHide(false)])
                 }
             }
             
@@ -77,7 +77,7 @@ class Socket {
                 print("♻︎ [SOCKET] Reconnect Attempt", data, ack)
                 
                 if self.showConnectionMessages {
-                    self.viewController?.showMessage("Socket Reconnecting", type: .info)
+                    self.viewController?.showMessage("Socket Reconnecting", type: .info, options: [.autoHide(false)])
                 }
             }
             
