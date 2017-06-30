@@ -46,6 +46,8 @@ extension UserListModalViewController: UITableViewDataSource, UITableViewDelegat
             fatalError()
         }
         
+        cell.parent = self
+        cell.robot = robot
         cell.loadUser(list[indexPath.item])
         return cell
     }

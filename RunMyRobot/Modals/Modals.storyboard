@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -637,7 +638,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfU-5T-rCX">
-                                                            <rect key="frame" x="76" y="19.5" width="16.5" height="21"/>
+                                                            <rect key="frame" x="76" y="19.5" width="188" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -654,18 +655,36 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcR-ov-wig">
+                                                            <rect key="frame" x="280" y="8" width="44" height="44"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="44" id="GNd-Z5-nf0"/>
+                                                                <constraint firstAttribute="width" secondItem="mcR-ov-wig" secondAttribute="height" multiplier="1:1" id="rkw-By-F5f"/>
+                                                            </constraints>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                            <state key="normal" image="icon-moderate"/>
+                                                            <connections>
+                                                                <action selector="didPressModerateUser" destination="LW1-gk-R2w" eventType="touchUpInside" id="Y2p-k2-oAc"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstItem="mcR-ov-wig" firstAttribute="leading" secondItem="IfU-5T-rCX" secondAttribute="trailing" constant="16" id="KbL-M4-5mw"/>
                                                         <constraint firstAttribute="bottom" secondItem="7NU-S3-6Ae" secondAttribute="bottom" constant="8" id="PWn-Xs-58P"/>
                                                         <constraint firstItem="IfU-5T-rCX" firstAttribute="leading" secondItem="7NU-S3-6Ae" secondAttribute="trailing" constant="16" id="RnF-eh-yHy"/>
                                                         <constraint firstItem="IfU-5T-rCX" firstAttribute="centerY" secondItem="uSu-fz-e0v" secondAttribute="centerY" id="Sgq-8W-Gfw"/>
                                                         <constraint firstItem="7NU-S3-6Ae" firstAttribute="top" secondItem="uSu-fz-e0v" secondAttribute="top" constant="8" id="Yws-WP-Tv3"/>
+                                                        <constraint firstItem="mcR-ov-wig" firstAttribute="centerY" secondItem="uSu-fz-e0v" secondAttribute="centerY" id="heq-WJ-5nK"/>
+                                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="IfU-5T-rCX" secondAttribute="trailing" constant="16" id="idp-5x-mbJ"/>
                                                         <constraint firstItem="7NU-S3-6Ae" firstAttribute="leading" secondItem="uSu-fz-e0v" secondAttribute="leading" constant="16" id="lq6-MM-0kV"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="mcR-ov-wig" secondAttribute="trailing" constant="8" id="nNX-tc-rLd"/>
                                                         <constraint firstItem="7NU-S3-6Ae" firstAttribute="centerY" secondItem="uSu-fz-e0v" secondAttribute="centerY" id="pKx-VA-lnm"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <connections>
+                                                    <outlet property="moderateUserButton" destination="mcR-ov-wig" id="zcc-8J-ok2"/>
                                                     <outlet property="nameLabel" destination="IfU-5T-rCX" id="DMS-1h-8g1"/>
                                                     <outlet property="userImageView" destination="7NU-S3-6Ae" id="pFn-SU-EZq"/>
                                                 </connections>
