@@ -186,13 +186,18 @@ class CurrentUser: User {
         return username == owner
     }
     
-    func role(for robot: Robot) -> UserRole {
+    /// Returns the users current role, a robot must be provided for optimal responses
+    func role(for robot: Robot?) -> UserRole {
         if isStaff {
             return .staff
         }
         
         if isGlobalModerator {
             return .globalModerator
+        }
+        
+        guard let robot = robot else {
+            return .user
         }
         
         if isOwner(of: robot) {

@@ -14,6 +14,7 @@ class ChatMessageTableViewCell: UITableViewCell {
     
     @IBOutlet var messageLabel: TTTAttributedLabel!
     weak var parentViewController: UIViewController?
+    weak var robot: Robot?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -123,6 +124,7 @@ extension ChatMessageTableViewCell: TTTAttributedLabelDelegate {
             
             let modal = UserModalViewController.create()
             modal.user = user
+            modal.robot = robot
             
             let popup = PopupDialog(viewController: modal, transitionStyle: .zoomIn)
             parentViewController?.present(popup, animated: true, completion: nil)

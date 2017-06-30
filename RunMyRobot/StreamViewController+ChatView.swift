@@ -27,6 +27,7 @@ extension StreamViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.parentViewController = self
+        cell.robot = robot
         return cell
     }
     

@@ -11,6 +11,7 @@ import Nuke
 
 class UserModalViewController: UIViewController {
 
+    @IBOutlet var moderateButton: UIButton!
     @IBOutlet var loadingLabel: UILabel!
     @IBOutlet var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet var robotCountLabel: UILabel!
@@ -21,6 +22,9 @@ class UserModalViewController: UIViewController {
     @IBOutlet var loadingContainerView: UIView!
     
     var user: User!
+    
+    /// The robot in which the modal was launched from
+    var robot: Robot?
     
     class func create() -> UserModalViewController {
         let storyboard = UIStoryboard(name: "Modals", bundle: nil)
@@ -53,6 +57,19 @@ class UserModalViewController: UIViewController {
                 self?.showDetailsPane()
             }
         }
+        
+        if let user = User.current {
+            let role = user.role(for: robot)
+            
+            switch role {
+            case .staff, .globalModerator, .moderator:
+                return
+            default:
+                moderateButton.isHidden = true
+            }
+        } else {
+            moderateButton.isHidden = true
+        }
     }
     
     func showDetailsPane() {
@@ -72,5 +89,10 @@ class UserModalViewController: UIViewController {
     
     @IBAction func didPressViewUser() {
         
+    }
+    
+    @IBAction func didPressModerateUser() {
+        guard let modal = ModerateModalViewController.createModal(for: user, robot: robot) else { return }
+        present(modal, animated: true, completion: nil)
     }
 }
