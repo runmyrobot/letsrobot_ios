@@ -16,12 +16,13 @@ class RobotControlGroupTableViewCell: UITableViewCell {
     
     var robot: Robot!
     var panel: ButtonPanel!
+    weak var parentView: RobotControls?
     
     /// Timer used to send out continous socket messages when holding down a direction
     var touchDownTimer: Timer?
     
     /// Last direction touched down on, used in conjuction with the timer to send out continous socket messages.
-    var touchDownCommand: String?
+    var touchDownButton: ButtonPanel.Button?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +34,9 @@ class RobotControlGroupTableViewCell: UITableViewCell {
         self.panel = panel
         
         titleLabel.text = panel.title.uppercased()
-        tagView.addTags(panel.buttons.map({ $0.label.lowercased() }))
+        tagView.addTags(panel.buttons.map({
+            title(for: $0) ?? ""
+        }))
         
         tagView.tagViews.forEach({
             // Touch Down (Start)
@@ -49,37 +52,58 @@ class RobotControlGroupTableViewCell: UITableViewCell {
     }
     
     func touchDown(_ sender: TagView) {
-        guard let senderCommand = command(from: sender) else { return }
+        guard let senderButton = button(from: sender) else { return }
         
-        // Setup a timer which will be used to send out continous direction requests via the socket
-        // This allows the user to hold down a direction and continue moving
-        touchDownCommand = senderCommand
-        touchDownTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(repeatCommand), userInfo: nil, repeats: true)
+        // If the command is premium then we don't want to have "hold to repeat" functionality.
+        if senderButton.isPremium {
+            guard User.current?.canAffordPremiumCommand(senderButton) == true else {
+                parentView?.showMessage("You can't afford this premium command!", type: .error)
+                return
+            }
+        } else {
+            // Setup a timer which will be used to send out continous direction requests via the socket
+            // This allows the user to hold down a direction and continue moving
+            touchDownButton = senderButton
+            touchDownTimer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(repeatCommand), userInfo: nil, repeats: true)
+        }
         
-        Socket.shared.sendDirection(senderCommand, robot: robot, keyPosition: "down")
+        Socket.shared.sendDirection(senderButton, robot: robot, keyPosition: "down")
     }
     
     func touchUp(_ sender: TagView) {
         // Clean up the timer and cancel any future runs
         touchDownTimer?.invalidate()
         touchDownTimer = nil
-        touchDownCommand = nil
+        touchDownButton = nil
         
-        guard let senderCommand = command(from: sender) else { return }
-        Socket.shared.sendDirection(senderCommand, robot: robot, keyPosition: "up")
+        // Premium commands are only done on key-down events!
+        guard let senderButton = button(from: sender), !senderButton.isPremium else { return }
+        Socket.shared.sendDirection(senderButton, robot: robot, keyPosition: "up")
     }
     
     func repeatCommand() {
-        guard let senderCommand = touchDownCommand else { return }
-        Socket.shared.sendDirection(senderCommand, robot: robot, keyPosition: "down")
+        guard let senderButton = touchDownButton else { return }
+        Socket.shared.sendDirection(senderButton, robot: robot, keyPosition: "down")
     }
     
     func command(from tagView: TagView) -> String? {
-        guard let button = panel.buttons.first(where: { $0.label.lowercased() == tagView.currentTitle }) else { return nil }
-        return button.command
+        return button(from: tagView)?.command
     }
     
     func tagView(from senderCommand: String) -> TagView? {
         return tagView.tagViews.first(where: { command(from: $0) == senderCommand })
+    }
+    
+    func button(from tagView: TagView) -> ButtonPanel.Button? {
+        return panel.buttons.first(where: { title(for: $0) == tagView.currentTitle })
+    }
+    
+    func title(for button: ButtonPanel.Button) -> String? {
+        guard button.isPremium else {
+            return button.label.lowercased()
+        }
+        
+        // Premium UI is temporary
+        return button.label.lowercased() + (button.isPremium ? " - \(button.price)r" : "")
     }
 }

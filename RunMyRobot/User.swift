@@ -206,6 +206,10 @@ class CurrentUser: User {
         return .user
     }
     
+    func canAffordPremiumCommand(_ button: ButtonPanel.Button) -> Bool {
+        return spendableRobits >= button.price
+    }
+    
     func logout(callback: (() -> Void)? = nil) {
         // Simple GET request to the web's logout page is enough to clear all authentication/cookies
         Networking.request("/logout") { _ in

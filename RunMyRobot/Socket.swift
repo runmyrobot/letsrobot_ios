@@ -312,7 +312,7 @@ class Socket {
         }
     }
     
-    func sendDirection(_ command: String, robot: Robot, keyPosition: String) {
+    func sendDirection(_ button: ButtonPanel.Button, robot: Robot, keyPosition: String) {
         guard socket?.engine?.connected == true else { return }
         
         if robot.isAnonymousControlEnabled == false && !CurrentUser.loggedIn {
@@ -320,13 +320,31 @@ class Socket {
             return
         }
         
+        if !robot.live {
+            print("Robot is not live! Not going to send the command...")
+            return
+        }
+        
+        if button.isPremium && User.current?.canAffordPremiumCommand(button) != true {
+            print("User is either anonymous or can't afford premium command!")
+            return
+        }
+        
+        if button.isPremium {
+            // This will be later enforced by a socket event, but doing it client side ensures if there
+            // are any network issues then it's synced ASAP
+            User.current?.spendableRobits -= button.price
+        }
+        
         var dict = [
-            "command": command,
+            "command": button.command,
             "_id": robot.id,
             "key_position": keyPosition,
             "timestamp": formatter.string(from: Date()),
             "robot_id": robot.id,
-            "robot_name": robot.name
+            "robot_name": robot.name,
+            "command_id": button.id,
+            "premium": button.isPremium
         ] as [String : Any]
         
         if let user = User.current {

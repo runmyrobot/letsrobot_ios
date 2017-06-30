@@ -249,8 +249,11 @@ class Robot {
 
 struct ButtonPanel {
     struct Button {
+        var id: String
         var label: String
         var command: String
+        var isPremium = false
+        var price = 0
     }
     
     var title: String
@@ -263,10 +266,13 @@ struct ButtonPanel {
         buttons = [Button]()
         
         for button in buttonArray {
+            let id = button["_id"].stringValue
             let label = button["label"].stringValue
             let command = button["command"].stringValue
+            let premium = button["premium"].bool ?? false
+            let price = button["price"].int ?? 0
             
-            buttons.append(Button(label: label, command: command))
+            buttons.append(Button(id: id, label: label, command: command, isPremium: premium, price: price))
         }
     }
     
@@ -276,10 +282,11 @@ struct ButtonPanel {
     }
     
     static let defaultPanel = ButtonPanel(title: "Default Controls", buttons: [
-        Button(label: "Left", command: "L"),
-        Button(label: "Right", command: "R"),
-        Button(label: "Forward", command: "F"),
-        Button(label: "Backwards", command: "B")
+        // IDs are only used if the command is premium, so setting these to empty strings will not break anything
+        Button(id: "", label: "Left", command: "L", isPremium: false, price: 0),
+        Button(id: "", label: "Right", command: "R", isPremium: false, price: 0),
+        Button(id: "", label: "Forward", command: "F", isPremium: false, price: 0),
+        Button(id: "", label: "Backwards", command: "B", isPremium: false, price: 0)
     ])
 }
 

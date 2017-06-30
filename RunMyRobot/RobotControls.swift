@@ -24,6 +24,7 @@ class RobotControls: UIView {
             fatalError()
         }
         
+        controls.clipsToBounds = true
         controls.robot = robot
         controls.panels = robot.getControlPanels()
         
@@ -96,6 +97,7 @@ extension RobotControls: UITableViewDataSource {
             fatalError()
         }
         
+        cell.parentView = self
         cell.robot = robot
         cell.setControls(panel: panels[indexPath.item])
         return cell
