@@ -80,5 +80,7 @@ class ModerateModalViewController: UIViewController {
         default:
             return
         }
+        
+        dismiss(animated: true, completion: nil)
     }
 }
