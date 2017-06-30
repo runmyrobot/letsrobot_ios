@@ -308,6 +308,21 @@ class Socket {
                 robot.updateSubscribers?()
             }
             
+            socket?.on("registered_user_active") { (data, _) in
+                // We only care about this socket if the user is anonymous
+                guard !CurrentUser.loggedIn else { return }
+                
+                guard let data = data.first else { return }
+                let json = JSON(data)
+                
+                // Don't ask why the JSON name is wrong. Blame Theo!
+                guard let robotId = json["robot_name"].string else { return }
+                guard let robot = Robot.get(id: robotId) else { return }
+                
+                robot.controls?.showMessage("A registered user currently has priority! Log in for more control!",
+                                            type: .info, options: [.textNumberOfLines(0), .autoHideDelay(3.0)])
+            }
+            
             socket?.connect()
         }
     }
