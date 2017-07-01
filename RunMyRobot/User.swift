@@ -22,6 +22,11 @@ class User {
     var downloaded = false
     var anonymous = false
     var avatarUrl: URL?
+    var usernameColorRaw: String?
+    var usernameColor: UIColor? {
+        guard let usernameColorRaw = usernameColorRaw else { return nil }
+        return UIColor(hex: usernameColorRaw)
+    }
     
     var publicRobots: [Robot] {
         return Config.shared?.robots.values.filter({ $0.owner == username }) ?? []

@@ -280,6 +280,7 @@ class Socket {
                             let user = User(username: username)
                             user.currentRobotId = singleUser["robot_id"].string
                             user.anonymous = singleUser["user", "anonymous"].bool ?? false
+                            user.usernameColorRaw = singleUser["user", "username_color"].string
                             user.room = room
         
                             if let avatar = singleUser["user", "avatar", "thumbnail"].string {

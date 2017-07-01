@@ -15,10 +15,14 @@ opt_in_rules:
   - nimble_operator
 
 file_length:
-  warning: 500
+  warning: 800
   error: 1200
 
 function_body_length:
+  warning: 500
+  error: 1200
+
+type_body_length:
   warning: 500
   error: 1200
 

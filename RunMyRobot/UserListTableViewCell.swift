@@ -22,6 +22,7 @@ class UserListTableViewCell: UITableViewCell {
     func loadUser(_ user: User) {
         self.user = user
         nameLabel.text = user.username
+        nameLabel.textColor = user.usernameColor ?? .white
         
         if let url = user.avatarUrl {
             Nuke.loadImage(with: url, into: userImageView)
