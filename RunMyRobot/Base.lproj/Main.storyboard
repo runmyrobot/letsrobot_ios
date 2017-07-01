@@ -403,7 +403,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pV-fL-Y07">
-                                <rect key="frame" x="8" y="29.5" width="44" height="44"/>
+                                <rect key="frame" x="8" y="30" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3pV-fL-Y07" secondAttribute="height" multiplier="1:1" id="Ef8-hi-UVo"/>
                                     <constraint firstAttribute="width" constant="44" id="wKI-5E-ii6"/>
@@ -427,10 +427,10 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="BvD-h8-Pub">
-                                <rect key="frame" x="331" y="41.5" width="20" height="20"/>
+                                <rect key="frame" x="331" y="42" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6V-L9-O5B">
-                                <rect key="frame" x="319" y="29.5" width="44" height="44"/>
+                                <rect key="frame" x="319" y="30" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="d6V-L9-O5B" secondAttribute="height" multiplier="1:1" id="Agz-3P-ZsJ"/>
                                     <constraint firstAttribute="width" constant="44" id="JAI-5k-x4Y"/>
@@ -694,7 +694,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CUSTOM PANELS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-QV-1CA" customClass="TTTAttributedLabel">
-                                <rect key="frame" x="115" y="40" width="146" height="22"/>
+                                <rect key="frame" x="115.5" y="40" width="146" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1040,7 +1040,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="8" maxX="8" maxY="8"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="4" maxX="10" maxY="4"/>
                                                 <state key="normal" title="4" image="icon-eye"/>
                                                 <connections>
                                                     <action selector="didPressUserCount" destination="s8K-cS-TTW" eventType="touchUpInside" id="GDE-4w-Qzz"/>

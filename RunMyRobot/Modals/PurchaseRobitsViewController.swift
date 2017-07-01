@@ -92,9 +92,11 @@ class PurchaseRobitsViewController: UIViewController {
             currentRobitCountLabel.text = "You currently have \(user.spendableRobits) robits!"
             robitStepper.value = Double(min(10, user.spendableRobits))
             robitStepper.maximumValue = Double(user.spendableRobits)
+            pagePicker.isEnabled = true
         } else {
             loginView.isHidden = false
             currentRobitCountLabel.text = ""
+            pagePicker.isEnabled = false
         }
     }
     
