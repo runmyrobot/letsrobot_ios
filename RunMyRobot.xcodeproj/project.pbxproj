@@ -91,6 +91,7 @@
 		98DB08041EDC4DF0005BAF18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98DB08021EDC4DF0005BAF18 /* Main.storyboard */; };
 		98DB08061EDC4DF0005BAF18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98DB08051EDC4DF0005BAF18 /* Assets.xcassets */; };
 		98DB08091EDC4DF0005BAF18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98DB08071EDC4DF0005BAF18 /* LaunchScreen.storyboard */; };
+		98DE7B231F07B53D00F3EA87 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 98DE7B221F07B53D00F3EA87 /* Settings.bundle */; };
 		98EA90D61F041D83008D5D85 /* RobotControlGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EA90D41F041D83008D5D85 /* RobotControlGroupTableViewCell.swift */; };
 		98EA90D71F041D83008D5D85 /* RobotControlGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98EA90D51F041D83008D5D85 /* RobotControlGroupTableViewCell.xib */; };
 		E8B9D7BDDC4176CC33E9E014 /* libPods-RMRNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A58F60519B4773C45B7ED1 /* libPods-RMRNotificationServiceExtension.a */; };
@@ -212,6 +213,7 @@
 		98DB08051EDC4DF0005BAF18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98DB08081EDC4DF0005BAF18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98DB080A1EDC4DF0005BAF18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98DE7B221F07B53D00F3EA87 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		98EA90D41F041D83008D5D85 /* RobotControlGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RobotControlGroupTableViewCell.swift; sourceTree = "<group>"; };
 		98EA90D51F041D83008D5D85 /* RobotControlGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RobotControlGroupTableViewCell.xib; sourceTree = "<group>"; };
 		C9EC57E245CE70F9AA4B7843 /* Pods-RMRNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RMRNotificationServiceExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-RMRNotificationServiceExtension/Pods-RMRNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
@@ -298,8 +300,9 @@
 		980ADD541EE20EC900B00B33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				98DB08051EDC4DF0005BAF18 /* Assets.xcassets */,
+				98DE7B221F07B53D00F3EA87 /* Settings.bundle */,
 				98DB080A1EDC4DF0005BAF18 /* Info.plist */,
+				98DB08051EDC4DF0005BAF18 /* Assets.xcassets */,
 				98DB08071EDC4DF0005BAF18 /* LaunchScreen.storyboard */,
 				98DB08021EDC4DF0005BAF18 /* Main.storyboard */,
 			);
@@ -601,6 +604,7 @@
 				98BB51641EE73E0200177A32 /* SettingsListSwitchCell.xib in Resources */,
 				98B73C1C1EF177B800577D39 /* RobotControls.xib in Resources */,
 				98878FFB1EED78E70017B7F5 /* SettingsListButtonCell.xib in Resources */,
+				98DE7B231F07B53D00F3EA87 /* Settings.bundle in Resources */,
 				98DB08091EDC4DF0005BAF18 /* LaunchScreen.storyboard in Resources */,
 				98EA90D71F041D83008D5D85 /* RobotControlGroupTableViewCell.xib in Resources */,
 				98DB08061EDC4DF0005BAF18 /* Assets.xcassets in Resources */,
