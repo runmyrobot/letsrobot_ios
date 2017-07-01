@@ -23,7 +23,7 @@ class LoaderViewController: UIViewController {
         Networking.requestJSON("/mobile/config.json") { [weak self] response in
             guard let rawJSON = response.result.value else {
                 self?.progressLabel.text = "Error Downloading Config"
-                print("Something went wrong!")
+                print("1. Something went wrong!")
                 return
             }
             
@@ -81,7 +81,7 @@ class LoaderViewController: UIViewController {
         Networking.requestJSON("/internal") { [weak self] response in
             guard let rawJSON = response.result.value else {
                 self?.progressLabel.text = "Error Downloading Robots"
-                print("Something went wrong!")
+                print("2. Something went wrong!")
                 return
             }
             
@@ -94,7 +94,7 @@ class LoaderViewController: UIViewController {
             Networking.requestJSON("/api/v1/products") { [weak self] response in
                 guard let rawProductJSON = response.result.value else {
                     self?.progressLabel.text = "Error Downloading Products"
-                    print("Something went wrong!")
+                    print("3. Something went wrong!")
                     return
                 }
                 

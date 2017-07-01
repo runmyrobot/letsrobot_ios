@@ -226,33 +226,37 @@ class Socket {
             }
             
             socket?.on("robot_statuses") { (data, _) in
-                guard let data = data.first, let statuses = JSON(data)["robot_statuses"].array else { return }
-                
-                var changes = false
-                for status in statuses {
-                    guard let id = status["robot_id"].string else { continue }
+                Threading.run(on: .background) {
+                    guard let data = data.first, let statuses = JSON(data)["robot_statuses"].array else { return }
                     
-                    Robot.get(id: id) { (robot: inout Robot, success) in
-                        guard success else { return }
+                    var changes = false
+                    for status in statuses {
+                        guard let id = status["robot_id"].string else { continue }
                         
-                        let before = robot.live
-                        robot.live = status["status"].string == "online"
-                        let after = robot.live
-                        
-                        if before != after {
-                            changes = true
-                            print("🔄 \(robot.name) is now \(after ? "online" : "offline"). Previously: \(before ? "online" : "offline")")
+                        Robot.get(id: id) { (robot: inout Robot, success) in
+                            guard success else { return }
                             
-                            NotificationCenter.default.post(name: NSNotification.Name("RobotStateChanged"), object: nil, userInfo: [
-                                "robot_id": robot.id,
-                                "online": after
-                            ])
+                            let before = robot.live
+                            robot.live = status["status"].string == "online"
+                            let after = robot.live
+                            
+                            if before != after {
+                                changes = true
+                                print("🔄 \(robot.name) is now \(after ? "online" : "offline"). Previously: \(before ? "online" : "offline")")
+                                
+                                NotificationCenter.default.post(name: NSNotification.Name("RobotStateChanged"), object: nil, userInfo: [
+                                    "robot_id": robot.id,
+                                    "online": after
+                                ])
+                            }
                         }
                     }
-                }
-                
-                if changes {
-                    NotificationCenter.default.post(name: NSNotification.Name("RobotsChanged"), object: nil)
+                    
+                    if changes {
+                        Threading.run(on: .main) {
+                            NotificationCenter.default.post(name: NSNotification.Name("RobotsChanged"), object: nil)
+                        }
+                    }
                 }
             }
             
@@ -264,63 +268,76 @@ class Socket {
             }
             
             socket?.on("channel_users_list") { (data, _) in
-                guard let data = data.first, let userJSON = JSON(data).dictionary else { return }
-                
-                var builder = [User]()
-                
-                // Underscore here is the user's "channel" (either "global", or the owner of the bot)
-                for (_, value) in userJSON {
-                    for singleUser in Array(value.dictionaryValue.values) {
-                        let username = singleUser["user", "username"].stringValue
-    
-                        let user = User(username: username)
-                        user.currentRobotId = singleUser["robot_id"].string
-                        user.anonymous = singleUser["user", "anonymous"].bool ?? false
-    
-                        if let avatar = singleUser["user", "avatar", "thumbnail"].string {
-                            user.avatarUrl = URL(string: avatar)
+                Threading.run(on: .background) {
+                    guard let data = data.first, let userJSON = JSON(data).dictionary else { return }
+                    
+                    var builder = [User]()
+                    
+                    for (room, value) in userJSON {
+                        for singleUser in Array(value.dictionaryValue.values) {
+                            let username = singleUser["user", "username"].stringValue
+        
+                            let user = User(username: username)
+                            user.currentRobotId = singleUser["robot_id"].string
+                            user.anonymous = singleUser["user", "anonymous"].bool ?? false
+                            user.room = room
+        
+                            if let avatar = singleUser["user", "avatar", "thumbnail"].string {
+                                user.avatarUrl = URL(string: avatar)
+                            }
+                            
+                            builder.append(user)
                         }
-                        
-                        builder.append(user)
+                    }
+                    
+                    self.users = builder
+                    
+                    Threading.run(on: .main) {
+                        NotificationCenter.default.post(name: NSNotification.Name("UpdateActiveUsers"), object: nil)
                     }
                 }
-                
-                self.users = builder
-                NotificationCenter.default.post(name: NSNotification.Name("UpdateActiveUsers"), object: nil)
             }
             
             socket?.on("subscription_state_change") { (data, _) in
-                guard let data = data.first else { return }
-                let json = JSON(data)
-                guard let robot = Config.shared?.robots[json["robot_id"].stringValue] else { return }
-                guard let username = json["username"].string else { return }
-                
-                if json["subscribed"].boolValue {
-                    if robot.subscribers.contains(username) == false {
-                        robot.subscribers.append(username)
+                Threading.run(on: .background) {
+                    guard let data = data.first else { return }
+                    let json = JSON(data)
+                    guard let robot = Config.shared?.robots[json["robot_id"].stringValue] else { return }
+                    guard let username = json["username"].string else { return }
+                    
+                    if json["subscribed"].boolValue {
+                        if robot.subscribers.contains(username) == false {
+                            robot.subscribers.append(username)
+                        }
+                    } else {
+                        if let index = robot.subscribers.index(of: username ) {
+                            robot.subscribers.remove(at: index)
+                        }
                     }
-                } else {
-                    if let index = robot.subscribers.index(of: username ) {
-                        robot.subscribers.remove(at: index)
+                    
+                    Threading.run(on: .main) {
+                        robot.updateSubscribers?()
                     }
                 }
-                
-                robot.updateSubscribers?()
             }
             
             socket?.on("registered_user_active") { (data, _) in
-                // We only care about this socket if the user is anonymous
-                guard !CurrentUser.loggedIn else { return }
-                
-                guard let data = data.first else { return }
-                let json = JSON(data)
-                
-                // Don't ask why the JSON name is wrong. Blame Theo!
-                guard let robotId = json["robot_name"].string else { return }
-                guard let robot = Robot.get(id: robotId) else { return }
-                
-                robot.controls?.showMessage("A registered user currently has priority! Log in for more control!",
-                                            type: .info, options: [.textNumberOfLines(0), .autoHideDelay(3.0)])
+                Threading.run(on: .background) {
+                    // We only care about this socket if the user is anonymous
+                    guard !CurrentUser.loggedIn else { return }
+                    
+                    guard let data = data.first else { return }
+                    let json = JSON(data)
+                    
+                    // Don't ask why the JSON name is wrong. Blame Theo!
+                    guard let robotId = json["robot_name"].string else { return }
+                    guard let robot = Robot.get(id: robotId) else { return }
+                    
+                    Threading.run(on: .main) {
+                        robot.controls?.showMessage("A registered user currently has priority! Log in for more control!",
+                                                    type: .info, options: [.textNumberOfLines(0), .autoHideDelay(3.0)])
+                    }
+                }
             }
             
             socket?.connect()

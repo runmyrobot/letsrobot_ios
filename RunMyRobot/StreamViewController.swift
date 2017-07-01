@@ -234,8 +234,13 @@ class StreamViewController: UIViewController {
     func updateActiveUsers() {
         userListButton.imageView?.contentMode = .scaleAspectFit
         
-        let currentUsers = User.all(for: robot)
-        userListButton.setTitle(String(describing: currentUsers.count), for: .normal)
+        Threading.run(on: .background) {
+            let currentUsers = User.all(for: self.robot)
+            
+            Threading.run(on: .main) {
+                self.userListButton.setTitle(String(describing: currentUsers.count), for: .normal)
+            }
+        }
     }
     
     func sendScreenshot() {
@@ -252,7 +257,9 @@ class StreamViewController: UIViewController {
         guard let robotId = notification.userInfo?["robot_id"] as? String else { return }
         guard robotId == robot.id else { return }
         
-        showMessage("\(robot.name) just went \(robot.live ? "online" : "offline")!", type: .info, options: [.autoHide(false)])
+        Threading.run(on: .main) {
+            self.showMessage("\(self.robot.name) just went \(self.robot.live ? "online" : "offline")!", type: .info, options: [.autoHide(false)])
+        }
     }
     
     func setCameraControlsVisible(_ visible: Bool, animated: Bool = true) {

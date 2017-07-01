@@ -26,11 +26,12 @@ class User {
     var publicRobots: [Robot] {
         return Config.shared?.robots.values.filter({ $0.owner == username }) ?? []
     }
-    
-    var room: String {
-        guard let robot = Robot.all().first(where: { $0.name == currentRobotId }) else { return "global" }
-        return robot.room
-    }
+
+    var room: String = "global"
+//    var room: String {
+//        guard let robot = Robot.all().first(where: { $0.name == currentRobotId }) else { return "global" }
+//        return robot.room
+//    }
     
     init(username: String) {
         self.username = username
