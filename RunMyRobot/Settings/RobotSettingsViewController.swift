@@ -36,10 +36,14 @@ class RobotSettingsViewController: UIViewController {
 
     @IBAction func didPressClose() {
         view.endEditing(true)
-        let unsavedChanges = robots.filter { $0.unsavedChanges.count > 0 }
+        let unsavedChanges = robots.filter { ($0.unsavedChanges?.count ?? 0) > 0 }
         
         if unsavedChanges.count == 0 {
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: {
+                self.robots.forEach {
+                    $0.unsavedChanges = nil
+                }
+            })
             return
         }
         
@@ -48,7 +52,7 @@ class RobotSettingsViewController: UIViewController {
         let cancel = CancelButton(title: "Cancel", action: nil)
         let revert = DestructiveButton(title: "Revert Changes") {
             self.robots.forEach {
-                $0.unsavedChanges.removeAll()
+                $0.unsavedChanges = nil
             }
             
             self.dismiss(animated: true, completion: nil)

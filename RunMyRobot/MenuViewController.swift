@@ -100,6 +100,10 @@ class MenuViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowRobotSettings", let destination = segue.destination as? RobotSettingsViewController {
             destination.robots = User.current?.robots ?? []
+            
+            for robot in destination.robots {
+                robot.unsavedChanges = [RobotSettings: Any]()
+            }
         } else if segue.identifier == "ShowLogin", let destination = segue.destination as? LoginViewController {
             destination.startPage = (sender as? String) == "register" ? 1 : 0
         }

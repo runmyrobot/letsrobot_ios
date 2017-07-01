@@ -55,7 +55,7 @@ class Robot {
     var isGlobalChat: Bool?
     
     var downloaded = false
-    var unsavedChanges = [RobotSettings: Any]()
+    var unsavedChanges: [RobotSettings: Any]?
     var snapshots = [Snapshot]()
     var snapshotsFetched = false
     
