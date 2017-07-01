@@ -126,7 +126,7 @@ class Socket {
                     let json = JSON(data)
                     
                     guard let robotId = json["robot_id"].string else { return }
-                    guard let robot = Robot.get(id: robotId) else { return }
+                    guard let robot = Robot.get(id: robotId, activeOnly: true) else { return }
                     
                     let count = json["users"].dictionaryObject?.count ?? 0
                     guard let command = json["command"].string else { return }
@@ -144,7 +144,7 @@ class Socket {
                     let json = JSON(data)
                     
                     guard let robotId = json["robot_id"].string else { return }
-                    guard let robot = Robot.get(id: robotId) else { return }
+                    guard let robot = Robot.get(id: robotId, activeOnly: true) else { return }
                         
                     let command = json["command"].string
                     robot.currentCommand = command == "stop" ? nil : command
@@ -193,7 +193,7 @@ class Socket {
                     
                     guard let command = json["command"].string else { return }
                     guard let robotId = json["robot_id"].string else { return }
-                    guard let robot = Robot.get(id: robotId) else { return }
+                    guard let robot = Robot.get(id: robotId, activeOnly: true) else { return }
                     
                     Threading.run(on: .main) {
                         robot.controls?.flashCommand(command)
@@ -302,7 +302,8 @@ class Socket {
                 Threading.run(on: .background) {
                     guard let data = data.first else { return }
                     let json = JSON(data)
-                    guard let robot = Config.shared?.robots[json["robot_id"].stringValue] else { return }
+                    
+                    guard let robot = Robot.get(id: json["robot_id"].stringValue) else { return }
                     guard let username = json["username"].string else { return }
                     
                     if json["subscribed"].boolValue {
@@ -331,7 +332,7 @@ class Socket {
                     
                     // Don't ask why the JSON name is wrong. Blame Theo!
                     guard let robotId = json["robot_name"].string else { return }
-                    guard let robot = Robot.get(id: robotId) else { return }
+                    guard let robot = Robot.get(id: robotId, activeOnly: true) else { return }
                     
                     Threading.run(on: .main) {
                         robot.controls?.showMessage("A registered user currently has priority! Log in for more control!",

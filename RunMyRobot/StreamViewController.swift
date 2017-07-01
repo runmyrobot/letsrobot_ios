@@ -124,6 +124,8 @@ class StreamViewController: UIViewController {
                 return
             }
             
+            Robot.active = self?.robot
+            
             self?.titleLabel.text = self?.robot.name
             self?.subscriberCountLabel.text = String(describing: self?.robot.subscribers.count ?? 0)
             
@@ -226,6 +228,12 @@ class StreamViewController: UIViewController {
         robot?.updateSubscribers = nil
         robot?.updateControls = nil
         robot?.controls = nil
+        
+        if let active = Robot.active, active.id == robot?.id {
+            Robot.active = nil
+            robot = nil
+        }
+        
         cameraWebView.stopLoading()
         cameraWebView.delegate = nil
         cameraWebView.removeFromSuperview()
