@@ -366,7 +366,9 @@ class Socket {
             dict["user"] = user.username
         }
         
-        socket?.emit("command_to_robot", dict)
+        Threading.run(on: .socket) {
+            self.socket?.emit("command_to_robot", dict)
+        }
     }
     
     func selectRobot(_ robot: Robot) {
@@ -374,7 +376,9 @@ class Socket {
             "robot_id": robot.id
         ] as [String : Any]
         
-        socket?.emit("select_robot", dict)
+        Threading.run(on: .socket) {
+            self.socket?.emit("select_robot", dict)
+        }
     }
     
     func sendRobits(amount: Int, recipient: String) {
@@ -383,7 +387,9 @@ class Socket {
             "recipient": recipient
         ] as [String: Any]
         
-        socket?.emit("send_robits", dict)
+        Threading.run(on: .socket) {
+            self.socket?.emit("send_robits", dict)
+        }
     }
     
 }

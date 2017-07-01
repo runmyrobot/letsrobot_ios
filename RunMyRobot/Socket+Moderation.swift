@@ -28,7 +28,9 @@ extension Socket {
             "robot_name": robot.name
         ] as [String: Any]
         
-        socket?.emit("timeoutUser", dict)
+        Threading.run(on: .socket) {
+            self.socket?.emit("timeoutUser", dict)
+        }
     }
     
     func blockForRobocaster(user: User, robot: Robot) {
@@ -38,15 +40,14 @@ extension Socket {
             "robot_name": robot.name
         ] as [String: Any]
         
-        socket?.emit("blockUserForRobocaster", dict)
+        Threading.run(on: .socket) {
+            self.socket?.emit("blockUserForRobocaster", dict)
+        }
     }
     
     func block(user: User, global: Bool = false) {
-        socket?.emit(global ? "globalBlockUser" : "blockUser", user.username)
+        Threading.run(on: .socket) {
+            self.socket?.emit(global ? "globalBlockUser" : "blockUser", user.username)
+        }
     }
-    
-    // timeoutUser will become global automatically as an admin
-    // blockUserForRobocaster is what a robocaster's moderators send in order to block users on behalf of the robocaster
-    // blockUser simply blocks users from your current account
-    // globalBlockUser is meant for admins only and will block a user site-wide
 }

@@ -12,16 +12,18 @@ class Threading {
     
     /// Runs callback method on the given thread with (optionally) a delay before execution
     static func run(on thread: Thread, after delay: TimeInterval = 0, execute: @escaping (() -> Void)) {
-        var dispatchQueue: DispatchQueue {
+        var dispatchQueue: DispatchQueue? {
             switch thread {
             case .main:
                 return .main
             case .background:
                 return .global(qos: .background)
+            case .socket:
+                return Socket.shared.socket?.handleQueue
             }
         }
         
-        dispatchQueue.asyncAfter(
+        dispatchQueue?.asyncAfter(
             deadline: DispatchTime.now() + delay,
             execute: execute
         )
@@ -30,6 +32,7 @@ class Threading {
     enum Thread {
         case main
         case background
+        case socket
     }
     
 }
