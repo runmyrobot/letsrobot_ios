@@ -425,8 +425,35 @@ class CurrentUser: User {
 enum UserRole {
     case staff
     case globalModerator
-    case owner
-    case moderator
-    case subscriber
+    case owner // Owner of the provided robot
+    case moderator // Moderator of the provided robot
+    case subscriber // Subscriber of the provided robot
     case user
+    
+    var permissionLevel: Int {
+        switch self {
+        case .staff:
+            return 100
+        case .globalModerator:
+            return 90
+        case .owner:
+            return 80
+        case .moderator:
+            return 70
+        case .subscriber:
+            return 20
+        case .user:
+            return 10
+        }
+    }
+    
+    func canModerate(_ role: UserRole?) -> Bool {
+        let supportedRanks: [UserRole] = [.staff, .globalModerator, .moderator]
+        guard supportedRanks.contains(self) else { return false }
+        
+        // Currently there is no way to get the UserRole of a random user (only the currently signed in one)
+        // This needs to be supported before we can do client-side limitations on permission levels
+        return true
+//        return permissionLevel > role.permissionLevel
+    }
 }
