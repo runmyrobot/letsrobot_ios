@@ -75,7 +75,10 @@ class RobotCollectionViewCell: UICollectionViewCell {
                     self.loadingActivityIndicator.stopAnimating()
                 }
                 
-                if let colors = robot.colors {
+                if !self.loadColours() {
+                    self.robotThumbnailImageView.image = result.value
+                    self.loadingActivityIndicator.stopAnimating()
+                } else if let colors = robot.colors {
                     self.robotThumbnailImageView.image = result.value
                     self.setColors(colors)
                     self.loadingActivityIndicator.stopAnimating()
@@ -97,5 +100,9 @@ class RobotCollectionViewCell: UICollectionViewCell {
         angledOverlayView.angleColor = colors.backgroundColor.darker(by: 5)
         robotNameLabel.textColor = colors.primaryColor
         ownerNameLabel.textColor = colors.primaryColor
+    }
+    
+    func loadColours() -> Bool {
+        return Device.Size.current != .iPhone4
     }
 }
