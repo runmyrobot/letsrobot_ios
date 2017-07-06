@@ -29,6 +29,7 @@
 		980ADD801EE490F100B00B33 /* ControlArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980ADD7F1EE490F100B00B33 /* ControlArrowButton.swift */; };
 		981B51321F066ACD00252F45 /* ModerateModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981B51311F066ACD00252F45 /* ModerateModalViewController.swift */; };
 		981E521A1F0ED0C7008A104F /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981E52191F0ED0C7008A104F /* Device.swift */; };
+		981E521C1F0ED19F008A104F /* Limitations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981E521B1F0ED19F008A104F /* Limitations.swift */; };
 		9823E6A91EEBEADD00619964 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6A81EEBEADD00619964 /* LoginViewController.swift */; };
 		9823E6AC1EEC117400619964 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6AB1EEC117400619964 /* RulesViewController.swift */; };
 		9823E6AE1EEC142B00619964 /* Rules.html in Resources */ = {isa = PBXBuildFile; fileRef = 9823E6AD1EEC142B00619964 /* Rules.html */; };
@@ -149,6 +150,7 @@
 		980ADD7F1EE490F100B00B33 /* ControlArrowButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlArrowButton.swift; sourceTree = "<group>"; };
 		981B51311F066ACD00252F45 /* ModerateModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModerateModalViewController.swift; sourceTree = "<group>"; };
 		981E52191F0ED0C7008A104F /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		981E521B1F0ED19F008A104F /* Limitations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Limitations.swift; sourceTree = "<group>"; };
 		9823E6A81EEBEADD00619964 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9823E6AB1EEC117400619964 /* RulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		9823E6AD1EEC142B00619964 /* Rules.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Rules.html; sourceTree = "<group>"; };
@@ -316,14 +318,15 @@
 			children = (
 				988790001EEEA79E0017B7F5 /* ColorManipulation.swift */,
 				987DF39C1EE870090042539B /* Concatenate.swift */,
+				981E52191F0ED0C7008A104F /* Device.swift */,
 				987DF3A31EE875EC0042539B /* DictionarySubscript.swift */,
 				987DF39E1EE871730042539B /* HEXColor.swift */,
 				980ADD601EE3507000B00B33 /* InterruptableTimer.swift */,
+				981E521B1F0ED19F008A104F /* Limitations.swift */,
 				980ADD5A1EE2E0AC00B00B33 /* Regex.swift */,
 				98878FFC1EED8EC20017B7F5 /* Screengrab.swift */,
 				980ADD6B1EE3FAE300B00B33 /* Templating.swift */,
 				980ADD581EE2C2D100B00B33 /* Threading.swift */,
-				981E52191F0ED0C7008A104F /* Device.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				980ADD801EE490F100B00B33 /* ControlArrowButton.swift in Sources */,
 				980ADD501EE186CC00B00B33 /* ChatMessageTableViewCell.swift in Sources */,
 				983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */,
+				981E521C1F0ED19F008A104F /* Limitations.swift in Sources */,
 				981E521A1F0ED0C7008A104F /* Device.swift in Sources */,
 				9823E6CA1EED2CAC00619964 /* Chat.swift in Sources */,
 				987E457C1F06522800E95DF8 /* Socket+Moderation.swift in Sources */,

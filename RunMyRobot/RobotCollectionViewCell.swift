@@ -75,7 +75,7 @@ class RobotCollectionViewCell: UICollectionViewCell {
                     self.loadingActivityIndicator.stopAnimating()
                 }
                 
-                if !self.loadColours() {
+                if !Limitations.loadColours {
                     self.robotThumbnailImageView.image = result.value
                     self.loadingActivityIndicator.stopAnimating()
                 } else if let colors = robot.colors {
@@ -102,7 +102,4 @@ class RobotCollectionViewCell: UICollectionViewCell {
         ownerNameLabel.textColor = colors.primaryColor
     }
     
-    func loadColours() -> Bool {
-        return Device.Size.current != .iPhone4
-    }
 }
