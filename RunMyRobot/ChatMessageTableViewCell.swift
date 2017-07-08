@@ -21,6 +21,7 @@ class ChatMessageTableViewCell: UITableViewCell {
         messageLabel.delegate = self
     }
     
+    // This function is way too complex, really aught to refactor it...
     func setNewMessage(_ message: ChatMessage) {
         let attString = NSMutableAttributedString()
         
@@ -43,6 +44,36 @@ class ChatMessageTableViewCell: UITableViewCell {
             attString.append(username)
             attString.append(robot)
             attString.append(text)
+        } else if let snapshotMessage = message as? SnapshotMessage {
+            let user = User.get(name: snapshotMessage.snapshot.sender)
+            
+//            let cameraAttachment = NSTextAttachment()
+//            let image = UIImage(named: "icon-camera")
+//            cameraAttachment.image = image
+//            cameraAttachment.bounds = CGRect(x: 0, y: 0, width: 30, height: 30)
+//            
+//            let camera = NSAttributedString(attachment: cameraAttachment)
+            
+            let username = NSAttributedString(string: "\(user?.username ?? snapshotMessage.snapshot.sender)", attributes: [
+                NSForegroundColorAttributeName: user?.usernameColor ?? UIColor(hex: "#636363"),
+                NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
+            ])
+            
+            let textRaw = " submitted a new screenshot of \(snapshotMessage.snapshot.robotName ?? "Unknown")!"
+            let text = NSAttributedString(string: textRaw, attributes: [
+                NSForegroundColorAttributeName: UIColor.white,
+                NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightLight)
+            ])
+            
+            let prompt = NSAttributedString(string: " (Tap to open)", attributes: [
+                NSForegroundColorAttributeName: UIColor(hex: "#949494"),
+                NSFontAttributeName: UIFont.systemFont(ofSize: 14, weight: UIFontWeightSemibold)
+            ])
+            
+//            attString.append(camera)
+            attString.append(username)
+            attString.append(text)
+            attString.append(prompt)
         } else {
             let text = NSAttributedString(string: message.description, attributes: [
                 NSForegroundColorAttributeName: UIColor.white,
@@ -96,7 +127,13 @@ class ChatMessageTableViewCell: UITableViewCell {
             }
         } else if let snapshotMessage = message as? SnapshotMessage {
             guard let url = URL(string: "letsrobot://snapshot/\(snapshotMessage.snapshot.id)") else { return }
-            messageLabel.addLink(to: url, with: rangeOfEntireString)
+            
+            attString.enumerateAttribute(NSForegroundColorAttributeName, in: rangeOfEntireString, options: .init(rawValue: 0), using: { (value, range, _) in
+                
+                messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: range, url: url), attributes: [
+                    NSForegroundColorAttributeName: value as? UIColor ?? UIColor.white
+                ])
+            })
         }
     }
 }
