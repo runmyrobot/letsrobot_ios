@@ -44,6 +44,7 @@
 		9823E6C71EEC818900619964 /* SettingsListTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6C51EEC818900619964 /* SettingsListTitleCell.swift */; };
 		9823E6C81EEC818900619964 /* SettingsListTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9823E6C61EEC818900619964 /* SettingsListTitleCell.xib */; };
 		9823E6CA1EED2CAC00619964 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9823E6C91EED2CAC00619964 /* Chat.swift */; };
+		9827ACFD1F11524D004C85AA /* RunMyRobotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9827ACFC1F11524D004C85AA /* RunMyRobotTests.swift */; };
 		9828DDD31EFD7DF0004DDD62 /* UserListModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9828DDD21EFD7DF0004DDD62 /* UserListModalViewController.swift */; };
 		983BCB521EDE29A8007A1247 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB511EDE29A8007A1247 /* Config.swift */; };
 		983BCB541EDE9BB1007A1247 /* AngledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983BCB531EDE9BB0007A1247 /* AngledView.swift */; };
@@ -100,6 +101,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9827ACFF1F11524D004C85AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 98DB07F31EDC4DF0005BAF18 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 98DB07FA1EDC4DF0005BAF18;
+			remoteInfo = RunMyRobot;
+		};
 		984466DA1F0539A9005C8733 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 98DB07F31EDC4DF0005BAF18 /* Project object */;
@@ -165,6 +173,9 @@
 		9823E6C51EEC818900619964 /* SettingsListTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsListTitleCell.swift; sourceTree = "<group>"; };
 		9823E6C61EEC818900619964 /* SettingsListTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsListTitleCell.xib; sourceTree = "<group>"; };
 		9823E6C91EED2CAC00619964 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		9827ACFA1F11524D004C85AA /* RunMyRobotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunMyRobotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9827ACFC1F11524D004C85AA /* RunMyRobotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunMyRobotTests.swift; sourceTree = "<group>"; };
+		9827ACFE1F11524D004C85AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9828DDD21EFD7DF0004DDD62 /* UserListModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListModalViewController.swift; sourceTree = "<group>"; };
 		983BCB511EDE29A8007A1247 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		983BCB531EDE9BB0007A1247 /* AngledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AngledView.swift; sourceTree = "<group>"; };
@@ -224,6 +235,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9827ACF71F11524D004C85AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		984466D21F0539A9005C8733 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -364,6 +382,15 @@
 			name = Rules;
 			sourceTree = "<group>";
 		};
+		9827ACFB1F11524D004C85AA /* RunMyRobotTests */ = {
+			isa = PBXGroup;
+			children = (
+				9827ACFC1F11524D004C85AA /* RunMyRobotTests.swift */,
+				9827ACFE1F11524D004C85AA /* Info.plist */,
+			);
+			path = RunMyRobotTests;
+			sourceTree = "<group>";
+		};
 		984466D61F0539A9005C8733 /* RMRNotificationServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,6 +484,7 @@
 			children = (
 				98DB07FD1EDC4DF0005BAF18 /* RunMyRobot */,
 				984466D61F0539A9005C8733 /* RMRNotificationServiceExtension */,
+				9827ACFB1F11524D004C85AA /* RunMyRobotTests */,
 				98DB07FC1EDC4DF0005BAF18 /* Products */,
 				25E2DCE6A78B6F1399098C93 /* Pods */,
 				C1017998102FC63DE2381219 /* Frameworks */,
@@ -468,6 +496,7 @@
 			children = (
 				98DB07FB1EDC4DF0005BAF18 /* RunMyRobot.app */,
 				984466D51F0539A9005C8733 /* RMRNotificationServiceExtension.appex */,
+				9827ACFA1F11524D004C85AA /* RunMyRobotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -502,6 +531,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9827ACF91F11524D004C85AA /* RunMyRobotTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9827AD031F11524E004C85AA /* Build configuration list for PBXNativeTarget "RunMyRobotTests" */;
+			buildPhases = (
+				9827ACF61F11524D004C85AA /* Sources */,
+				9827ACF71F11524D004C85AA /* Frameworks */,
+				9827ACF81F11524D004C85AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9827AD001F11524D004C85AA /* PBXTargetDependency */,
+			);
+			name = RunMyRobotTests;
+			productName = RunMyRobotTests;
+			productReference = 9827ACFA1F11524D004C85AA /* RunMyRobotTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		984466D41F0539A9005C8733 /* RMRNotificationServiceExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 984466DD1F0539A9005C8733 /* Build configuration list for PBXNativeTarget "RMRNotificationServiceExtension" */;
@@ -555,6 +602,11 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Let's Robot";
 				TargetAttributes = {
+					9827ACF91F11524D004C85AA = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 98DB07FA1EDC4DF0005BAF18;
+					};
 					984466D41F0539A9005C8733 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = Y7J92F92X4;
@@ -587,11 +639,19 @@
 			targets = (
 				98DB07FA1EDC4DF0005BAF18 /* RunMyRobot */,
 				984466D41F0539A9005C8733 /* RMRNotificationServiceExtension */,
+				9827ACF91F11524D004C85AA /* RunMyRobotTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9827ACF81F11524D004C85AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		984466D31F0539A9005C8733 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -730,6 +790,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9827ACF61F11524D004C85AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9827ACFD1F11524D004C85AA /* RunMyRobotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		984466D11F0539A9005C8733 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -819,6 +887,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9827AD001F11524D004C85AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 98DB07FA1EDC4DF0005BAF18 /* RunMyRobot */;
+			targetProxy = 9827ACFF1F11524D004C85AA /* PBXContainerItemProxy */;
+		};
 		984466DB1F0539A9005C8733 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 984466D41F0539A9005C8733 /* RMRNotificationServiceExtension */;
@@ -846,6 +919,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9827AD011F11524E004C85AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RunMyRobotTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tv.letsrobot.client.ios.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RunMyRobot.app/RunMyRobot";
+			};
+			name = Debug;
+		};
+		9827AD021F11524E004C85AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RunMyRobotTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tv.letsrobot.client.ios.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RunMyRobot.app/RunMyRobot";
+			};
+			name = Release;
+		};
 		984466DE1F0539A9005C8733 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A4C38D31F4C8101BDC44532 /* Pods-RMRNotificationServiceExtension.debug.xcconfig */;
@@ -1010,6 +1111,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9827AD031F11524E004C85AA /* Build configuration list for PBXNativeTarget "RunMyRobotTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9827AD011F11524E004C85AA /* Debug */,
+				9827AD021F11524E004C85AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		984466DD1F0539A9005C8733 /* Build configuration list for PBXNativeTarget "RMRNotificationServiceExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
