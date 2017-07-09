@@ -23,12 +23,17 @@ class ChatMessageTableViewCell: UITableViewCell {
     // This function is way too complex, really aught to refactor it...
     func setNewMessage(_ message: ChatMessage) {
         let attString = NSMutableAttributedString()
+        backgroundColor = .clear
         
         if let userMessage = message as? UserChatMessage {
             let badge: NSAttributedString? = {
                 let badgeAttachment = NSTextAttachment()
                 
                 guard let role = userMessage.user?.role(for: self.robot) else { return nil }
+                
+                if role == .owner {
+                    backgroundColor = UIColor.black.withAlphaComponent(0.2)
+                }
                 
                 let image: UIImage? = {
                     switch role {
