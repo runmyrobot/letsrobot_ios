@@ -28,7 +28,7 @@ class ChatMessageTableViewCell: UITableViewCell {
             let badge: NSAttributedString? = {
                 let badgeAttachment = NSTextAttachment()
                 
-                guard let role = userMessage.user?.role(for: userMessage.robot) else { return nil }
+                guard let role = userMessage.user?.role(for: self.robot) else { return nil }
                 
                 let image: UIImage? = {
                     switch role {
