@@ -147,6 +147,8 @@ class StreamViewController: UIViewController {
             }
             
             self?.chatFilterLabel.text = self?.robot.isGlobalChat == true ? "Global Chat" : "Room Chat: \(self?.robot.owner ?? "Unknown")"
+            // Update chat to reflect global decision
+            self?.chatTableView.reloadData()
             
             UIView.animate(withDuration: 0.3, animations: {
                 self?.loadingViewContainer.alpha = 0

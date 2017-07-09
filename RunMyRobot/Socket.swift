@@ -282,6 +282,8 @@ class Socket {
                             user.anonymous = singleUser["user", "anonymous"].bool ?? false
                             user.usernameColorRaw = singleUser["user", "username_color"].string
                             user.room = room
+                            user.isGlobalModerator = singleUser["user", "moderator"].bool ?? false
+                            user.isStaff = singleUser["user", "staff"].bool ?? false
         
                             if let avatar = singleUser["user", "avatar", "thumbnail"].string {
                                 user.avatarUrl = URL(string: avatar)

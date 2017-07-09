@@ -34,7 +34,7 @@ class ModerateModalViewController: UIViewController {
     
     class func createModal(for user: User, robot: Robot?) -> PopupDialog? {
         guard let currentUser = User.current else { return nil }
-        guard currentUser.role(for: robot).canModerate(nil) else { return nil }
+        guard currentUser.role(for: robot).canModerate(user.role(for: robot)) else { return nil }
         
         let modal = create(for: user, robot: robot)
         return PopupDialog(viewController: modal, transitionStyle: .zoomIn)

@@ -33,10 +33,6 @@ class User {
     }
 
     var room: String = "global"
-//    var room: String {
-//        guard let robot = Robot.all().first(where: { $0.name == currentRobotId }) else { return "global" }
-//        return robot.room
-//    }
     
     init(username: String) {
         self.username = username
@@ -48,6 +44,63 @@ class User {
         }
         
         self.username = name
+    }
+    
+    var subscriptions: [Robot] {
+        return Robot.all().filter({ $0.subscribers.contains(self.username) })
+    }
+    
+    var isStaff = false
+    var isGlobalModerator = false
+    
+    // Currently only used for logged in users, WIP
+    fileprivate var moderatesFor = [String]()
+    
+    func isModerator(for robot: Robot) -> Bool {
+        guard let owner = robot.owner else { return false }
+        return moderatesFor.contains(owner)
+    }
+    
+    func isSubscriber(for robot: Robot) -> Bool {
+        return robot.subscribers.contains(username)
+    }
+    
+    func isSubscribed(to robotId: String) -> Bool {
+        return subscriptions.first(where: { $0.id == robotId }) != nil
+    }
+    
+    func isOwner(of robot: Robot) -> Bool {
+        guard let owner = robot.owner else { return false }
+        return username == owner
+    }
+    
+    /// Returns the users current role, a robot must be provided for optimal responses
+    func role(for robot: Robot?) -> UserRole {
+        if isStaff {
+            return .staff
+        }
+        
+        if isGlobalModerator {
+            return .globalModerator
+        }
+        
+        guard let robot = robot else {
+            return .user
+        }
+        
+        if isOwner(of: robot) {
+            return .owner
+        }
+        
+        if isModerator(for: robot) {
+            return .moderator
+        }
+        
+        if isSubscriber(for: robot) {
+            return .subscriber
+        }
+        
+        return .user
     }
     
     func loadPublic(callback: @escaping ((Error?) -> Void)) {
@@ -159,67 +212,12 @@ class CurrentUser: User {
         return User.current != nil
     }
     
-    var subscriptions: [Robot] {
-        return Robot.all().filter({ $0.subscribers.contains(self.username) })
-    }
-    
     var spendableRobits = 0
     var updateRobits: ((Int) -> Void)?
     
     var currentPayment: Payment?
     var robots = [Robot]()
     var unsavedChanges = [String: Any]()
-    
-    var isStaff = false
-    var isGlobalModerator = false
-    private var moderatesFor = [String]()
-    
-    func isModerator(for robot: Robot) -> Bool {
-        guard let owner = robot.owner else { return false }
-        return moderatesFor.contains(owner)
-    }
-    
-    func isSubscriber(for robot: Robot) -> Bool {
-        return robot.subscribers.contains(username)
-    }
-    
-    func isSubscribed(to robotId: String) -> Bool {
-        return subscriptions.first(where: { $0.id == robotId }) != nil
-    }
-    
-    func isOwner(of robot: Robot) -> Bool {
-        guard let owner = robot.owner else { return false }
-        return username == owner
-    }
-    
-    /// Returns the users current role, a robot must be provided for optimal responses
-    func role(for robot: Robot?) -> UserRole {
-        if isStaff {
-            return .staff
-        }
-        
-        if isGlobalModerator {
-            return .globalModerator
-        }
-        
-        guard let robot = robot else {
-            return .user
-        }
-        
-        if isOwner(of: robot) {
-            return .owner
-        }
-        
-        if isModerator(for: robot) {
-            return .moderator
-        }
-        
-        if isSubscriber(for: robot) {
-            return .subscriber
-        }
-        
-        return .user
-    }
     
     func canAffordPremiumCommand(_ button: ButtonPanel.Button) -> Bool {
         return spendableRobits >= button.price
@@ -451,9 +449,6 @@ enum UserRole {
         let supportedRanks: [UserRole] = [.staff, .globalModerator, .moderator]
         guard supportedRanks.contains(self) else { return false }
         
-        // Currently there is no way to get the UserRole of a random user (only the currently signed in one)
-        // This needs to be supported before we can do client-side limitations on permission levels
-        return true
-//        return permissionLevel > role.permissionLevel
+        return permissionLevel > role?.permissionLevel ?? 0
     }
 }

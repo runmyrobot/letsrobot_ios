@@ -7,12 +7,11 @@
 //
 
 import UIKit
-import TTTAttributedLabel
 import PopupDialog
 
 class ChatMessageTableViewCell: UITableViewCell {
     
-    @IBOutlet var messageLabel: TTTAttributedLabel!
+    @IBOutlet var messageLabel: UILinkLabel!
     weak var parentViewController: UIViewController?
     weak var robot: Robot?
     
@@ -26,7 +25,39 @@ class ChatMessageTableViewCell: UITableViewCell {
         let attString = NSMutableAttributedString()
         
         if let userMessage = message as? UserChatMessage {
-            let username = NSAttributedString(string: "\(userMessage.name): ", attributes: [
+            let badge: NSAttributedString? = {
+                let badgeAttachment = NSTextAttachment()
+                
+                guard let role = userMessage.user?.role(for: userMessage.robot) else { return nil }
+                
+                let image: UIImage? = {
+                    switch role {
+                    case .staff:
+                        return UIImage(named: "Chat/Staff")
+                    case .globalModerator:
+                        return UIImage(named: "Chat/GlobalMod")
+                    case .owner:
+                        return UIImage(named: "Chat/Owner")
+                    case .moderator:
+                        return UIImage(named: "Chat/Mod")
+                    default:
+                        return nil
+                    }
+                }()
+                
+                if image == nil {
+                    return nil
+                }
+                
+                badgeAttachment.image = image
+                badgeAttachment.bounds = CGRect(x: 0, y: -4, width: 20, height: 20)
+                
+                return NSAttributedString(attachment: badgeAttachment)
+            }()
+            
+            let spacing = badge != nil ? "  " : ""
+            
+            let username = NSAttributedString(string: "\(spacing)\(userMessage.name): ", attributes: [
                 NSForegroundColorAttributeName: userMessage.color,
                 NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
             ])
@@ -40,6 +71,10 @@ class ChatMessageTableViewCell: UITableViewCell {
                 NSForegroundColorAttributeName: UIColor.white,
                 NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightLight)
             ])
+            
+            if let badge = badge {
+                attString.append(badge)
+            }
             
             attString.append(username)
             attString.append(robot)
@@ -83,30 +118,26 @@ class ChatMessageTableViewCell: UITableViewCell {
             attString.append(text)
         }
         
-        messageLabel.setText(attString)
+        messageLabel.setLinkText(attString)
+        
         messageLabel.linkAttributes = [
             NSForegroundColorAttributeName: UIColor.white,
             NSUnderlineStyleAttributeName: NSUnderlineStyle.styleNone.rawValue
         ]
         
-        messageLabel.activeLinkAttributes = [
-            NSForegroundColorAttributeName: UIColor(hex: "#cccccc"),
-            NSUnderlineStyleAttributeName: NSUnderlineStyle.styleNone.rawValue
-        ]
-        
-        let rawString = messageLabel.attributedText.string
+        let rawString = messageLabel.attributedText?.string ?? ""
         let rawNSString = rawString as NSString
         let rangeOfEntireString = NSRange(location: 0, length: rawNSString.length)
         
         if let userMessage = message as? UserChatMessage {
             let robotRange = rawNSString.range(of: "[\(userMessage.robotName)]")
             if robotRange.location != NSNotFound, let url = URL(string: "letsrobot://robot/\(userMessage.robotName)") {
-                messageLabel.addLink(to: url, with: robotRange)
+                messageLabel.addLink(to: url, at: robotRange)
             }
             
             let senderRange = rawNSString.range(of: "\(userMessage.name):")
             if senderRange.location != NSNotFound, !userMessage.anonymous, let url = URL(string: "letsrobot://user/\(userMessage.name)") {
-                messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: senderRange, url: url), attributes: [
+                messageLabel.addLink(to: url, at: senderRange, attributes: [
                     NSForegroundColorAttributeName: userMessage.color,
                     NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
                 ])
@@ -120,17 +151,17 @@ class ChatMessageTableViewCell: UITableViewCell {
                 guard !user.anonymous else { continue }
                 guard let url = URL(string: "letsrobot://user/\(name)") else { continue }
                 
-                messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: nameMatch, url: url), attributes: [
+                messageLabel.addLink(to: url, at: nameMatch, attributes: [
                     NSForegroundColorAttributeName: UIColor.white,
                     NSFontAttributeName: UIFont.systemFont(ofSize: 16, weight: UIFontWeightSemibold)
                 ])
             }
-        } else if let snapshotMessage = message as? SnapshotMessage {
-            guard let url = URL(string: "letsrobot://snapshot/\(snapshotMessage.snapshot.id)") else { return }
+        } else if let snapshotMessage = message as? SnapshotMessage,
+                  let url = URL(string: "letsrobot://snapshot/\(snapshotMessage.snapshot.id)") {
             
             attString.enumerateAttribute(NSForegroundColorAttributeName, in: rangeOfEntireString, options: .init(rawValue: 0), using: { (value, range, _) in
                 
-                messageLabel.addLink(with: NSTextCheckingResult.linkCheckingResult(range: range, url: url), attributes: [
+                messageLabel.addLink(to: url, at: range, attributes: [
                     NSForegroundColorAttributeName: value as? UIColor ?? UIColor.white
                 ])
             })
@@ -138,9 +169,9 @@ class ChatMessageTableViewCell: UITableViewCell {
     }
 }
 
-extension ChatMessageTableViewCell: TTTAttributedLabelDelegate {
+extension ChatMessageTableViewCell: UILinkLabelDelegate {
     
-    func attributedLabel(_ label: TTTAttributedLabel!, didSelectLinkWith url: URL!) {
+    func attributedLabel(_ label: UILinkLabel!, didSelectLinkWith url: URL!) {
         print("Pressed URL! \(url.absoluteString)")
         
         let components = url.absoluteString.components(separatedBy: "/")

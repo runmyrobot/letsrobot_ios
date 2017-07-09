@@ -164,7 +164,7 @@ class Chat {
     func parseMessage(_ json: JSON) -> ChatMessage? {
         // Attempt to convert the JSON into known objects and extract more information from it
         if let message = UserChatMessage(json) { return message }
-        if let message = WootChatMessage(json) { return message }
+//        if let message = WootChatMessage(json) { return message }
         if let message = SnapshotMessage(json) { return message }
         
         // Message hasn't matched any known objects, so try and at least get the basic message

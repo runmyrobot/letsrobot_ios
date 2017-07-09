@@ -75,6 +75,7 @@
 		988790031EEEE6490017B7F5 /* User+Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988790021EEEE6490017B7F5 /* User+Authentication.swift */; };
 		988790051EEEE67A0017B7F5 /* User+SyncRobots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */; };
 		9887900A1EEF29D50017B7F5 /* Modals.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 988790091EEF29D50017B7F5 /* Modals.storyboard */; };
+		989F6FD11F125F0A0074686D /* UILinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989F6FD01F125F0A0074686D /* UILinkLabel.swift */; };
 		98B047861EF4244400D260FE /* Payment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B047851EF4244400D260FE /* Payment.swift */; };
 		98B047881EF43CD800D260FE /* PurchaseRobitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B047871EF43CD800D260FE /* PurchaseRobitsViewController.swift */; };
 		98B291901F03CE58004C440C /* LoginErrorModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B2918F1F03CE58004C440C /* LoginErrorModalViewController.swift */; };
@@ -207,6 +208,7 @@
 		988790021EEEE6490017B7F5 /* User+Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+Authentication.swift"; sourceTree = "<group>"; };
 		988790041EEEE67A0017B7F5 /* User+SyncRobots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+SyncRobots.swift"; sourceTree = "<group>"; };
 		988790091EEF29D50017B7F5 /* Modals.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Modals.storyboard; sourceTree = "<group>"; };
+		989F6FD01F125F0A0074686D /* UILinkLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILinkLabel.swift; sourceTree = "<group>"; };
 		98B047851EF4244400D260FE /* Payment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Payment.swift; sourceTree = "<group>"; };
 		98B047871EF43CD800D260FE /* PurchaseRobitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseRobitsViewController.swift; sourceTree = "<group>"; };
 		98B2918F1F03CE58004C440C /* LoginErrorModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginErrorModalViewController.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				980ADD5E1EE33E3F00B00B33 /* ListTitleCollectionReusableView.swift */,
 				98500C7D1EE08C5300CFA446 /* RobotCollectionViewCell.swift */,
 				98B73C271EF319EB00577D39 /* SnapshotPreviewCollectionViewCell.swift */,
+				989F6FD01F125F0A0074686D /* UILinkLabel.swift */,
 				98680FC91EFD8912000F09A4 /* UserListTableViewCell.swift */,
 			);
 			name = Views;
@@ -858,6 +861,7 @@
 				980ADD671EE3F8DD00B00B33 /* StreamViewController+WebView.swift in Sources */,
 				988790011EEEA79E0017B7F5 /* ColorManipulation.swift in Sources */,
 				98B73C191EF157B000577D39 /* RobotModalViewController.swift in Sources */,
+				989F6FD11F125F0A0074686D /* UILinkLabel.swift in Sources */,
 				980ADD651EE3F8CC00B00B33 /* StreamViewController+ChatView.swift in Sources */,
 				9823E6C31EEC7F2C00619964 /* SettingsListSubscriptionCell.swift in Sources */,
 				981B51321F066ACD00252F45 /* ModerateModalViewController.swift in Sources */,
@@ -1118,6 +1122,7 @@
 				9827AD021F11524E004C85AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		984466DD1F0539A9005C8733 /* Build configuration list for PBXNativeTarget "RMRNotificationServiceExtension" */ = {
 			isa = XCConfigurationList;
